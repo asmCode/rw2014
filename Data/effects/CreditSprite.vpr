@@ -1,0 +1,21 @@
+#version 400
+
+layout (location = 0) in vec2 a_position;
+
+uniform mat4 u_mvp;
+//uniform float u_globalOpacity;
+uniform float u_progress;
+
+varying vec2 v_coords;
+varying float v_opacity;
+
+void main()
+{
+	vec2 position = a_position + 0.5;
+	
+	v_opacity = clamp(position.x + (1 - u_progress), 0, 1);
+	
+	v_coords = vec2(position.x * min(u_progress, 1), position.y);
+	
+	gl_Position = u_mvp * vec4(position.x * min(u_progress, 1), position.y, 0, 1);
+}

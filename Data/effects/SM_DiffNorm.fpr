@@ -1,0 +1,70 @@
+#version 400
+
+layout( location = 0 ) out vec4 FragColor;
+
+uniform sampler2D u_diffTex;
+uniform sampler2D u_normalTex;
+uniform sampler2D u_shadowMap;
+uniform vec3 u_specularColor;
+uniform float u_opacity;
+uniform float u_glossiness; // 0.0 - 64.0 
+uniform float u_specularLevel; // 0.0 - 10.0
+
+uniform float u_biasScale;
+uniform float u_biasClamp;
+
+varying vec2 o_coordsDiff;
+varying vec3 o_shadowLightDirection;
+varying vec3 o_lightDirection;
+varying vec3 o_eyeDirection;
+varying vec4 o_shadowMapCoords;
+
+void main()
+{
+	vec3 lightDirection = normalize(o_lightDirection);
+	vec3 shadowLightDirection = normalize(o_shadowLightDirection);
+	vec3 eyeDirection = normalize(o_eyeDirection);
+	vec3 halfVector = normalize(lightDirection + eyeDirection);
+	
+	// to do wymiany - lepiej przygotowac odpowiednio teksture
+	vec3 normal = texture(u_normalTex, o_coordsDiff).xyz;
+	normal = (normal - 0.5f) * 2.0f;
+	normal = normalize(normal);
+	
+	float diffValue = max(dot(lightDirection, normal), 0.0);
+	float shadowDiffValue = max(dot(shadowLightDirection, normal), 0.0);
+	float specValue = pow(max(dot(halfVector, normal), 0.0), u_glossiness) * u_specularLevel;
+	
+	vec4 diffColor = texture(u_diffTex, o_coordsDiff);
+	diffColor.xyz *= diffValue;
+	diffColor.w *= u_opacity;
+	diffColor.xyz += u_specularColor * specValue;
+	
+    FragColor = diffColor;
+	
+	vec4 c = o_shadowMapCoords;
+	c.xyz /= c.w;
+	
+	if (c.x >= 0.0 && c.x <= 1.0 &&
+		c.y >= 0.0 && c.y <= 1.0)
+	{
+		if (shadowDiffValue > 0.0)
+		{	
+			float cosTheta = clamp(dot(lightDirection, normal), 0.0, 1.0);
+			
+			float shadowMapValue = texture(u_shadowMap, c.xy).z;
+			//float bias = 0.001;
+			float bias = u_biasScale * tan(acos(cosTheta));
+			bias = clamp(bias, 0, u_biasClamp);
+			//bias = 0.0001;
+			
+			//bias = u_biasScale;
+			if (shadowMapValue < c.z - bias)
+				FragColor.xyz *= 0.5;
+				
+			//FragColor.x = acos(cosTheta);
+		}
+		else
+			FragColor.xyz *= 0.5;
+	}
+}

@@ -1,0 +1,15 @@
+#version 400
+
+layout( location = 0 ) out vec4 FragColor;
+
+uniform sampler2D u_tex;
+
+varying vec2 v_coords;
+varying float v_opacity;
+
+void main()
+{
+   FragColor = texture2D(u_tex, v_coords);
+   FragColor.w *= v_opacity;
+}
+
