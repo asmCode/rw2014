@@ -17,6 +17,7 @@
 #include "Frustum.h"
 #include <Graphics/BoundingSphere.h>
 #include "common.h"
+#include "Scenes/Test1Scene.h"
 #include "MechArm.h"
 #include "AssemblingScene.h"
 #include <Graphics/Property.h>
@@ -52,9 +53,9 @@ const float DemoController::GlowBufferWidthRatio = 0.5f;
 const float DemoController::GlowBufferHeightRatio = 0.5f;
 
 #define DISABLE_FRUSTUM_CULLING 1
-//#define MAN_CAM 1
-//#define SHOW_FPS 1
-#define LOAD_LIGHTMAPS 1
+#define MAN_CAM 1
+#define SHOW_FPS 1
+//#define LOAD_LIGHTMAPS 1
 
 Texture *blackTex;
 LinearInterpolator<float> fadeAnim;
@@ -88,22 +89,6 @@ DemoController::DemoController() :
 	m_fovSignal(NULL),
 	m_fovPower(0.0f)
 {
-	fadeAnim.AddKeyframe(0, 0, true);
-
-	float baseDupa = conv(1,58,4480);
-	static Randomizer random;
-	int ee = 0;
-	while (baseDupa < conv(2, 11, 265))
-	{
-		ee ++;
-		fadeAnim.AddKeyframe(baseDupa, (float)(ee % 2 == 0), true);
-		baseDupa += random.GetFloat(0.01f, 0.03f);
-	}
-
-	fadeAnim.AddKeyframe(2 * 60.0f + 11.0f + (265.0f / 4800.0f), 1, true);
-	fadeAnim.AddKeyframe(2 * 60.0f + 14.0f + (265.0f / 4800.0f), 1, false);
-	fadeAnim.AddKeyframe(2 * 60.0f + 18.0f + (265.0f / 4800.0f), 0, false);
-
 	firstupdate = true;
 	fade = 0.0f;
 	blurFbo = NULL;
@@ -290,6 +275,13 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
  //m_lightViewMatrix.a[15] = 1.0000f;
 
 	//m_lightProjMatrix = sm::Matrix::Ortho2DMatrix(-10, 10, -10, 10);
+
+	m_scenes.push_back(new Test1Scene());
+
+	for (uint32_t i = 0; i < m_scenes.size(); i++)
+		m_scenes[i]->Initialize();
+
+	m_activeScene = m_scenes[0];
 	
 	return true;
 }
@@ -308,10 +300,7 @@ bool DemoController::LoadContent(const char *basePath)
 
 	//dc->AddContentObserver(this);
 	dc->LoadModels(m_strBasePath + "models\\");
-	dc->LoadModels(m_strBasePath + "models\\robot_parts\\");
 	dc->LoadTextures(m_strBasePath + "textures\\");
-	dc->LoadTextures(m_strBasePath + "textures\\greetz\\");
-	dc->LoadTextures(m_strBasePath + "textures\\dream\\");
 #if LOAD_LIGHTMAPS
 	dc->LoadTextures(m_strBasePath + "textures\\lightmaps\\");
 #endif
@@ -322,6 +311,7 @@ bool DemoController::LoadContent(const char *basePath)
 	if (!AssignAssets())
 		return false;
 
+	/*
 	blackTex = dc->Get<Texture>("black");
 	assert(blackTex != NULL);
 
@@ -391,60 +381,6 @@ bool DemoController::LoadContent(const char *basePath)
 		m_gameObjects[i]->ClearLightmaps();
 	}
 
-	//demo ->activeCamera = demo ->manualCamera;
-
-	//m_mdl_factory = dc->Get<Model*>("factory");
-	//assert(m_mdl_factory != NULL);
-
-	//m_robot = new Robot();
-	//m_robot->Initialize(m_strBasePath, m_content);
-	//m_robot->SetCurrentAction(Robot::Actions_BreakingWall);
-	//m_robot->Update(1000.0f, 10.0f);
-
-	//Model *factoryHal = dc->Get<Model>("factory_hal");
-	//assert(factoryHal != NULL);
-	//m_geoBatch[GeometryBatches_FactoryHall].AddModel(factoryHal);
-
-	//Model *factoryPassage = dc->Get<Model>("factory_passage");
-	//assert(factoryPassage != NULL);
-	//m_geoBatch[GeometryBatches_Passage].AddModel(factoryPassage);
-	//m_geoBatch[GeometryBatches_Passage].AddModel(dc->Get<Model>("robot_path"));
-
-	//m_geoBatch[GeometryBatches_MechArms].AddModel(dc->Get<Model>("mech_arm_01_base"));
-	//m_geoBatch[GeometryBatches_MechArms].AddModel(dc->Get<Model>("mech_arm_01_joint1"));
-	//m_geoBatch[GeometryBatches_MechArms].AddModel(dc->Get<Model>("mech_arm_01_joint2"));
-	//m_geoBatch[GeometryBatches_MechArms].AddModel(dc->Get<Model>("mech_arm_01_end"));
-	//m_geoBatch[GeometryBatches_MechArms].AddModel(dc->Get<Model>("mech_arm_02_base"));
-	//m_geoBatch[GeometryBatches_MechArms].AddModel(dc->Get<Model>("mech_arm_02_joint1"));
-	//m_geoBatch[GeometryBatches_MechArms].AddModel(dc->Get<Model>("mech_arm_02_joint2"));
-	//m_geoBatch[GeometryBatches_MechArms].AddModel(dc->Get<Model>("mech_arm_02_end"));
-
-	//Model *robotLying = dc->Get<Model>("robot_lying");
-	//assert(robotLying != NULL);
-	//m_geoBatch[GeometryBatches_RobotLying].AddModel(robotLying);
-
-	//std::vector<Model*> &robotModels = m_robot->GetModels();
-	//for (uint32_t i = 0; i < robotModels.size(); i++)
-	//{
-	//	m_geoBatch[GeometryBatches_RobotMoving].AddModel(robotModels[i]);
-	//	robotModels[i]->SetAlwaysVisible(true);
-	//}
-	//m_geoBatch[GeometryBatches_RobotMoving].SetVisibility(false);
-
-	///*m_assemblingScene = new AssemblingScene();
-	//m_assemblingScene->Initialize();*/
-
-	////m_activeScene = m_assemblingScene;
-	////m_activeScene->SetVisibility(true);
-
-	////m_mdl_korytarz = dc->Get<Model*>("korytarz");
-	////assert(m_mdl_korytarz != NULL);
-
-	//m_envTexture = new CubeTexture(m_strBasePath + "\\images\\env_");
-
-	////m_mdl_teapot = dc->Get<Model*>("teapot");
-	////assert(m_mdl_teapot != NULL);
-
 	camerasAnimation = dc->Get<Animation>("cameras");
 	assert(camerasAnimation != NULL);
 	animCamsMng.Load(m_strBasePath + "cameras\\cameras.cam", camerasAnimation);
@@ -453,21 +389,7 @@ bool DemoController::LoadContent(const char *basePath)
 	assert(camerasFactoryAnimation != NULL);
 	m_lightCamsMng.Load(m_strBasePath + "cameras\\cameras_factory.cam", camerasFactoryAnimation);
 
-
-	//if (width <= 1024)
-	//	mask = dc->Get<Texture>("mask");
-	//else
-	//	mask = dc->Get<Texture>("mask_big");
-
-	//assert(mask != NULL);
-
-	//mask->BindTexture();
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	//
-	//InitElectroNoise();
+	*/
 
 	return true;
 }
@@ -509,6 +431,9 @@ void DemoController::Release()
 static float lastTime;
 bool DemoController::Update(float time, float seconds)
 {
+	m_activeScene->Update(time, seconds);
+	return true;
+
 	if (firstupdate)
 	{
 		firstupdate = false;
@@ -522,7 +447,7 @@ bool DemoController::Update(float time, float seconds)
 	m_activeCamera = NULL;
 
 #if MAN_CAM
-	manCam.Process(ms);
+	manCam.Process(seconds);
 	m_activeCamera = &manCam;
 #else
 	camerasAnimation->Update(m_greetzDanceTime, sm::Matrix::IdentityMatrix(), seconds);
@@ -769,6 +694,12 @@ float DemoController::CalcFlash(float time, float ms)
 
 bool DemoController::Draw(float time, float seconds)
 {
+	m_activeScene->Draw(time, seconds);
+
+	glWnd->SwapBuffers();
+
+	return true;
+
 	DrawShadowMap();
 
 	m_distortionFramebuffer->BindFramebuffer();
@@ -887,7 +818,7 @@ bool DemoController::Draw(float time, float seconds)
 	glDisable(GL_BLEND);
 	glDisable(GL_TEXTURE_2D);
 	glColor4f(1, 0, 0, 1);
-	float fps= CalcFps(ms);
+	float fps= CalcFps(seconds);
 	char fpsText[1024];
 	sprintf(fpsText, "fps: %.2f", fps);
 	DrawText(fpsText, 4, height - 20, 255, 0, 0);

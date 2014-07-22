@@ -19,9 +19,9 @@ std::string baseDataPath;
 //#define TIME_SHIFT 115.0f
 #define TIME_SHIFT 0
 
-//#define DISABLE_MUSIC 1
+#define DISABLE_MUSIC 1
 #define START_IN_WINDOW 1
-//#define SKIP_SETUP_DIALOG 1
+#define SKIP_SETUP_DIALOG 1
 #define DONT_USE_ARCHIVE 1
 
 #ifndef DONT_USE_ARCHIVE
@@ -123,10 +123,10 @@ void StartNormalMode()
 	if (!ShowStartDialog(scrWidth, scrHeight, scrBpp, scrFreq))
 		return;
 #else
-	/*scrWidth = 1024;
-	scrHeight = 768;*/
-	scrWidth = 960;
-	scrHeight = 540;
+	scrWidth = 1024;
+	scrHeight = 768;
+	/*scrWidth = 960;
+	scrHeight = 540;*/
 	scrBpp = 32;
 	scrFreq = 60;
 #endif

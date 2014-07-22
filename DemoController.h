@@ -19,7 +19,6 @@
 #include "Particles/ParticleEmmiter.h"
 #include "GeometryBatch.h"
 
-#include "IScene.h"
 #include "ManCam.h"
 #include "AnimCameraManager.h"
 #include <Graphics/Interpolators/Interpolator.h>
@@ -30,6 +29,8 @@
 #include <windows.h>
 #include <vector>
 #include <map>
+
+class BaseScene;
 
 DWORD WINAPI EditableDemoThread(void *params);
 class DemoController;
@@ -97,7 +98,8 @@ public:
 
 	float m_fovPower;
 
-	IScene *m_activeScene;
+	std::vector<BaseScene*> m_scenes;
+	BaseScene *m_activeScene;
 
 	Model *m_mdl_teapot;
 
@@ -216,7 +218,6 @@ public:
 	void FilterGlowObjects();
 
 	ShadowMappingTest *shadowPass;
-	IScene *scene;
 	LoadingScreen *loadingScreen;
 
 	CameraMode cameraMode;
