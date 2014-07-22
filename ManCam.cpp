@@ -78,7 +78,7 @@ void ManCam::Process(float ms)
 	}
 
 	float ratio;
-	keys[VK_LCONTROL] ? ratio = ms * 0.02f : ratio = ms * 0.002f;
+	keys[VK_LCONTROL] ? ratio = ms * 0.2f : ratio = ms * 0.02f;
 	if (keys[VK_LSHIFT])
 		ratio *= 100.0f;
 

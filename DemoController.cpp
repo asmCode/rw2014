@@ -87,7 +87,8 @@ DemoController::DemoController() :
 	m_doors(NULL),
 	m_doorsAnim(NULL),
 	m_fovSignal(NULL),
-	m_fovPower(0.0f)
+	m_fovPower(0.0f),
+	m_glowTex(NULL)
 {
 	firstupdate = true;
 	fade = 0.0f;
