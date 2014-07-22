@@ -1,0 +1,7 @@
+<Material Name="teapot">
+	<Param Type="Diffuse" Value="0;0.254902;0.901961" />
+	<Param Type="Specular" Value="0.9;0.9;0.9" />
+	<Param Type="Opacity" Value="1" />
+	<Param Type="Glossiness" Value="0.1" />
+	<Param Type="SpecularLevel" Value="0" />
+</Material>

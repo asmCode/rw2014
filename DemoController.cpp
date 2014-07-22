@@ -431,19 +431,6 @@ void DemoController::Release()
 static float lastTime;
 bool DemoController::Update(float time, float seconds)
 {
-	m_activeScene->Update(time, seconds);
-	return true;
-
-	if (firstupdate)
-	{
-		firstupdate = false;
-		m_greetzDanceTime = time;
-	}
-	else
-	{
-		m_greetzDanceTime = m_creditsDance->GetAnimTime();
-	}
-
 	m_activeCamera = NULL;
 
 #if MAN_CAM
@@ -454,17 +441,22 @@ bool DemoController::Update(float time, float seconds)
 	m_activeCamera = animCamsMng.GetActiveCamera(time);
 #endif
 
-	camerasFactoryAnimation->Update(time, sm::Matrix::IdentityMatrix(), seconds);
-	m_currentLightCamera = m_lightCamsMng.GetActiveCamera(time);
-
-	m_dream->Update(time, seconds);
-
 	m_view = m_activeCamera->GetViewMatrix();
 	m_proj = sm::Matrix::PerspectiveMatrix(
 		m_activeCamera->GetFov(time),
 		(float)width / (float)height,
 		m_activeCamera->GetNearClip(),
 		m_activeCamera->GetFarClip());
+
+	m_viewProj = m_proj * m_view;
+
+	m_activeScene->Update(time, seconds);
+	return true;
+
+	camerasFactoryAnimation->Update(time, sm::Matrix::IdentityMatrix(), seconds);
+	m_currentLightCamera = m_lightCamsMng.GetActiveCamera(time);
+
+	m_dream->Update(time, seconds);
 
 	m_lightViewMatrix = m_currentLightCamera->GetViewMatrix();
 	m_lightProjMatrix = sm::Matrix::PerspectiveMatrix(
@@ -694,7 +686,18 @@ float DemoController::CalcFlash(float time, float ms)
 
 bool DemoController::Draw(float time, float seconds)
 {
+	glViewport(0, 0, width, height);
+	glDepthMask(true);
+	glColorMask(true, true, true, true);
+
+	DrawingRoutines::SetViewProjMatrix(m_viewProj);
+	DrawingRoutines::SetLightPosition(sm::Vec3(0, 100, 100));
+	DrawingRoutines::SetEyePosition(m_activeCamera->GetPosition());
+	DrawingRoutines::SetLightPosition(m_activeCamera->GetPosition());
+
 	m_activeScene->Draw(time, seconds);
+
+	DrawingRoutines::DrawWithMaterial(m_content->Get<Model>("teapot")->m_meshParts);
 
 	glWnd->SwapBuffers();
 
@@ -860,7 +863,7 @@ void DemoController::SetOpenglParams()
 
 	glShadeModel(GL_SMOOTH);
 
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
 	glClearDepth(1.0f);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);

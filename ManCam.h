@@ -38,11 +38,11 @@ public:
 
 	float GetNearClip()
 	{
-		return 100.0f;
+		return 0.1f;
 	}
 
 	float GetFarClip()
 	{
-		return 12000.0f;
+		return 1000.0f;
 	}
 };
