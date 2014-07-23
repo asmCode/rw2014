@@ -129,19 +129,14 @@ void TriangledMesh::Apply()
 
 void TriangledMesh::Update(float time, float deltaTime)
 {
+	sm::Vec3 *vertex = NULL;
+
 	if (m_triangleShader != NULL)
 	{
 		for (int i = 0; i < m_vertexCount; i+=3)
 		{
-			/*sm::Vec3 vertex[3];
-			memcpy(vertex, m_vertexBuffer + i * 3, sizeof(float) * 3 * 3);
+			vertex = reinterpret_cast<sm::Vec3*>(m_vertexBuffer + i * 3);
 			m_triangleShader->ProcessTriangle(time, deltaTime, vertex);
-			memcpy(m_vertexBuffer + i * 3, vertex, sizeof(float)* 3 * 3);*/
-
-			sm::Vec3 *vertex = reinterpret_cast<sm::Vec3*>(m_vertexBuffer + i * 3);
-			//memcpy(vertex, m_vertexBuffer + i * 3, sizeof(float)* 3 * 3);
-			m_triangleShader->ProcessTriangle(time, deltaTime, vertex);
-			//memcpy(m_vertexBuffer + i * 3, vertex, sizeof(float)* 3 * 3); */
 		}
 	}
 }
