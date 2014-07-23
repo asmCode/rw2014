@@ -90,6 +90,7 @@ DemoController::DemoController() :
 	m_fovPower(0.0f),
 	m_glowTex(NULL)
 {
+	flaps = 0;
 	firstupdate = true;
 	fade = 0.0f;
 	blurFbo = NULL;
@@ -206,7 +207,7 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 								int bpp, int freq, bool fullscreen, bool createOwnWindow)
 {
 	delay = 0.0f;
-	delayLimit = 500.0f;
+	delayLimit = 0.5f;
 	fps = 0.0f;
 
 	tmp_progress = 0.0f;
@@ -700,9 +701,7 @@ bool DemoController::Draw(float time, float seconds)
 
 	//DrawingRoutines::DrawWithMaterial(m_content->Get<Model>("teapot")->m_meshParts);
 
-	glWnd->SwapBuffers();
-
-	return true;
+#if 0
 
 	DrawShadowMap();
 
@@ -816,6 +815,7 @@ bool DemoController::Draw(float time, float seconds)
 		m_spriteBatch->Draw(m_endScreen, sm::Vec4(1, 1, 1, m_endScreenOpacity), 0, 0, width, height);
 		m_spriteBatch->End();
 	}
+#endif
 
 #ifdef SHOW_FPS
 	glViewport(0, 0, width, height);
@@ -1013,7 +1013,7 @@ float DemoController::CalcFps(float ms)
 	delay += ms;
 	if (delay > delayLimit)
 	{
-		fps = (float)flaps / delay * 1000.0f;
+		fps = (float)flaps / delay;
 		delay = 0.0f;
 		flaps = 0;
 	}

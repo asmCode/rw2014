@@ -5,11 +5,10 @@
 class TriangleShader
 {
 public:
-	TriangleShader();
 	virtual ~TriangleShader() {}
 
 	virtual void ProcessTriangle(
 		float time,
 		float deltaTime,
-		const sm::Vec3*& vertices) = 0;
+		sm::Vec3 vertices[3]) = 0;
 };

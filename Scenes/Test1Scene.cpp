@@ -1,6 +1,7 @@
 #include "Test1Scene.h"
 #include "../TriangledMesh.h"
 #include "../DrawingRoutines.h"
+#include "../BumpAlongNormal.h"
 #include <Utils/Randomizer.h>
 #include <Graphics/MeshPart.h>
 #include <Graphics/Model.h>
@@ -9,6 +10,8 @@
 
 bool Test1Scene::Initialize()
 {
+	m_triangleShader = new BumpAlongNormal();
+
 	float vertex[] =
 	{
 		 0.0f,   10.0f, 0.0f,
@@ -48,19 +51,22 @@ bool Test1Scene::Initialize()
 
 	m_triangledMesh = new TriangledMesh();
 	m_triangledMesh->Initialize(Content::Instance->Get<Model>("teapot")->m_meshParts[0]);
+	m_triangledMesh->SetTriangleShader(m_triangleShader);
 
 	return true;
 }
 
 bool Test1Scene::Update(float time, float deltaTime)
 {
+	m_triangledMesh->Update(time, deltaTime);
+
 	return true;
 }
 
 bool Test1Scene::Draw(float time, float deltaTime)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	DrawingRoutines::DrawWithMaterial(m_triangledMesh);
 

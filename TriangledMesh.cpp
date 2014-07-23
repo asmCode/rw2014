@@ -59,7 +59,7 @@ void TriangledMesh::Initialize(float* vertices, float* normals, float* texcoords
 
 	glGenBuffers(1, &m_vertexBufferId);
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float)* 3 * count, m_vertexBuffer, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float)* 3 * count, m_vertexBuffer, GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glGenBuffers(1, &m_normalBufferId);
@@ -122,16 +122,34 @@ void TriangledMesh::SetTriangleShader(TriangleShader* triangleShader)
 
 void TriangledMesh::Apply()
 {
-
+	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferId);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float)* 3 * m_vertexCount, m_vertexBuffer, GL_DYNAMIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void TriangledMesh::Update(float time, float deltaTime)
 {
+	if (m_triangleShader != NULL)
+	{
+		for (int i = 0; i < m_vertexCount; i+=3)
+		{
+			/*sm::Vec3 vertex[3];
+			memcpy(vertex, m_vertexBuffer + i * 3, sizeof(float) * 3 * 3);
+			m_triangleShader->ProcessTriangle(time, deltaTime, vertex);
+			memcpy(m_vertexBuffer + i * 3, vertex, sizeof(float)* 3 * 3);*/
 
+			sm::Vec3 *vertex = reinterpret_cast<sm::Vec3*>(m_vertexBuffer + i * 3);
+			//memcpy(vertex, m_vertexBuffer + i * 3, sizeof(float)* 3 * 3);
+			m_triangleShader->ProcessTriangle(time, deltaTime, vertex);
+			//memcpy(m_vertexBuffer + i * 3, vertex, sizeof(float)* 3 * 3); */
+		}
+	}
 }
 
 void TriangledMesh::Draw()
 {
+	Apply();
+
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferId);
 	glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
 

@@ -3,6 +3,7 @@
 #include "BaseScene.h"
 
 class TriangledMesh;
+class BumpAlongNormal;
 
 class Test1Scene : public BaseScene
 {
@@ -14,5 +15,6 @@ public:
 
 private:
 	TriangledMesh* m_triangledMesh;
+	BumpAlongNormal* m_triangleShader;
 };
 
