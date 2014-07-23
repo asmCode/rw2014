@@ -2,6 +2,8 @@
 
 #include "BaseScene.h"
 
+class TriangledMesh;
+
 class Test1Scene : public BaseScene
 {
 public:
@@ -9,5 +11,8 @@ public:
 
 	bool Update(float time, float deltaTime);
 	bool Draw(float time, float deltaTime);
+
+private:
+	TriangledMesh* m_triangledMesh;
 };
 

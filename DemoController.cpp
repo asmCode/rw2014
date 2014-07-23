@@ -233,9 +233,9 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 
 	SetOpenglParams();
 
-	//glEnable(GL_DEBUG_OUTPUT);
-	//glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-	//glDebugMessageCallback(OpenglDebugCallback, this);
+	glEnable(GL_DEBUG_OUTPUT);
+	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+	glDebugMessageCallback(OpenglDebugCallback, this);
 
 	loadingScreen = new LoadingScreen();
 
@@ -698,7 +698,7 @@ bool DemoController::Draw(float time, float seconds)
 
 	m_activeScene->Draw(time, seconds);
 
-	DrawingRoutines::DrawWithMaterial(m_content->Get<Model>("teapot")->m_meshParts);
+	//DrawingRoutines::DrawWithMaterial(m_content->Get<Model>("teapot")->m_meshParts);
 
 	glWnd->SwapBuffers();
 

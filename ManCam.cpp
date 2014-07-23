@@ -6,7 +6,7 @@ ManCam::ManCam()
 
 	position.Set(0, 0, 0);
 
-	position.Set(-20, 0, 0);
+	position.Set(0, 0, 20);
 
 	yaw = 0.0f;
 	pitch = 0.0f;

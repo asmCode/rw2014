@@ -195,6 +195,8 @@ exit /B 0
     <ClCompile Include="PropertyManager.cpp" />
     <ClCompile Include="StartDialog.cpp" />
     <ClCompile Include="StartNormalMode.cpp" />
+    <ClCompile Include="TriangledMesh.cpp" />
+    <ClCompile Include="TriangleShader.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -310,6 +312,8 @@ exit /B 0
     <ClInclude Include="PropertyManager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="StartDialog.h" />
+    <ClInclude Include="TriangledMesh.h" />
+    <ClInclude Include="TriangleShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="rw09.rc" />

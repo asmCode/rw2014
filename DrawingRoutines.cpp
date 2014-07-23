@@ -7,6 +7,7 @@
 #include <Graphics/Material.h>
 #include <Graphics/DepthTexture.h>
 #include "BasicLightingEffect.h"
+#include "TriangledMesh.h"
 #include <Graphics/MeshPart.h>
 #include <Graphics/Mesh.h>
 #include <Graphics/VertexType.h>
@@ -226,7 +227,7 @@ bool DrawingRoutines::SetupShader(Material *material, MeshPart *meshPart, const 
 	}
 	else if (material->diffuseTex != NULL &&
 		 	 material->normalTex != NULL &&
-	 	 	 meshPart->m_lightmap == NULL &&
+	 	 	 (meshPart == NULL || meshPart->m_lightmap == NULL) &&
 			 material->opacityTex == NULL)
 	{
 		m_diffNormShader->UseProgram();
@@ -234,7 +235,10 @@ bool DrawingRoutines::SetupShader(Material *material, MeshPart *meshPart, const 
 		m_diffNormShader->SetParameter("u_lightPosition", m_lightPosition);
 		m_diffNormShader->SetParameter("u_eyePosition", m_eyePosition);
 		//m_diffNormShader->SetMatrixParameter("u_worldMatrix", worldatrix);
-		m_diffNormShader->SetMatrixParameter("u_worldMatrix", meshPart->mesh->Transform());
+		if (meshPart != NULL)
+			m_diffNormShader->SetMatrixParameter("u_worldMatrix", meshPart->mesh->Transform());
+		else
+			m_diffNormShader->SetMatrixParameter("u_worldMatrix", sm::Matrix::IdentityMatrix());
 		m_diffNormShader->SetTextureParameter("u_diffTex", 0, material->diffuseTex->GetId());
 		m_diffNormShader->SetTextureParameter("u_normalTex", 1, material->normalTex->GetId());
 		m_diffNormShader->SetParameter("u_specularColor", material->specularColor);
@@ -252,13 +256,16 @@ bool DrawingRoutines::SetupShader(Material *material, MeshPart *meshPart, const 
 	}
 	else if (material->diffuseTex == NULL &&
 		 	 material->normalTex == NULL &&
-	 	 	 meshPart->m_lightmap == NULL &&
+			 (meshPart == NULL || meshPart->m_lightmap == NULL) &&
 			 material->opacityTex == NULL)
 	{
 		m_colorShader->UseProgram();
 		m_colorShader->SetMatrixParameter("u_viewProjMatrix", m_viewProjMatrix);
 		//m_colorShader->SetMatrixParameter("u_worldMatrix", worldatrix);
-		m_colorShader->SetMatrixParameter("u_worldMatrix", meshPart->mesh->model->m_baseTransform * meshPart->mesh->Transform());
+		if (meshPart != NULL)
+			m_colorShader->SetMatrixParameter("u_worldMatrix", meshPart->mesh->model->m_baseTransform * meshPart->mesh->Transform());
+		else
+			m_colorShader->SetMatrixParameter("u_worldMatrix", sm::Matrix::IdentityMatrix());
 		//m_sm_colorShader->SetMatrixParameter("u_worldMatrix", meshPart->mesh->Transform());
 		m_colorShader->SetParameter("u_lightPosition", m_lightPosition);
 		m_colorShader->SetParameter("u_eyePosition", m_eyePosition);
@@ -277,7 +284,7 @@ bool DrawingRoutines::SetupShader(Material *material, MeshPart *meshPart, const 
 	}
 	else if (material->diffuseTex != NULL &&
 		 	 material->normalTex != NULL &&
-	 	 	 meshPart->m_lightmap != NULL &&
+			 (meshPart != NULL && meshPart->m_lightmap) != NULL &&
 			 material->opacityTex == NULL)
 	{
 		assert(VertexInformation::HasAttrib(meshPart->m_vertexType, VertexAttrib::Coords2));
@@ -637,3 +644,14 @@ void DrawingRoutines::DrawShadowMap(std::vector<MeshPart*> &meshParts)
 	}
 }
 
+void DrawingRoutines::DrawWithMaterial(TriangledMesh* triangledMesh)
+{
+	if (triangledMesh->GetMaterial() == NULL)
+	{
+		//assert(false);
+		triangledMesh->SetMaterial(new Material());
+	}
+
+	if (SetupShader(triangledMesh->GetMaterial(), NULL, sm::Matrix::IdentityMatrix()))
+		triangledMesh->Draw();
+}

@@ -11,6 +11,7 @@ class MeshPart;
 class Content;
 class RobotElement;
 class Material;
+class TriangledMesh;
 
 class DrawingRoutines
 {
@@ -71,4 +72,6 @@ public:
 	static void DrawWithMaterialAndShadowMap(std::vector<MeshPart*> &meshParts, uint32_t shadowMapId);
 	static void DrawBlack(std::vector<MeshPart*> &meshParts);
 	static void DrawShadowMap(std::vector<MeshPart*> &meshParts);
+
+	static void DrawWithMaterial(TriangledMesh* triangledMesh);
 };
