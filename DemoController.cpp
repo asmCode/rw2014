@@ -279,9 +279,6 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 
 	m_scenes.push_back(new Test1Scene());
 
-	for (uint32_t i = 0; i < m_scenes.size(); i++)
-		m_scenes[i]->Initialize();
-
 	m_activeScene = m_scenes[0];
 	
 	return true;
@@ -391,6 +388,9 @@ bool DemoController::LoadContent(const char *basePath)
 	m_lightCamsMng.Load(m_strBasePath + "cameras\\cameras_factory.cam", camerasFactoryAnimation);
 
 	*/
+
+	for (uint32_t i = 0; i < m_scenes.size(); i++)
+		m_scenes[i]->Initialize();
 
 	return true;
 }

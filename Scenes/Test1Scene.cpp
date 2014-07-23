@@ -2,11 +2,13 @@
 #include "../TriangledMesh.h"
 #include "../DrawingRoutines.h"
 #include <Utils/Randomizer.h>
+#include <Graphics/MeshPart.h>
+#include <Graphics/Model.h>
+#include <Graphics/Content/Content.h>
 #include <GL/glew.h>
 
 bool Test1Scene::Initialize()
 {
-	
 	float vertex[] =
 	{
 		 0.0f,   10.0f, 0.0f,
@@ -45,7 +47,7 @@ bool Test1Scene::Initialize()
 	}*/
 
 	m_triangledMesh = new TriangledMesh();
-	m_triangledMesh->Initialize(vertex, normal, texcoord, count);
+	m_triangledMesh->Initialize(Content::Instance->Get<Model>("teapot")->m_meshParts[0]);
 
 	return true;
 }

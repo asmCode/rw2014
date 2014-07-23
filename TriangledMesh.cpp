@@ -2,7 +2,10 @@
 
 #include "TriangledMesh.h"
 #include "TriangleShader.h"
+#include <Math/Vec2.h>
 #include <Graphics/Material.h>
+#include <Graphics/MeshPart.h>
+#include <Graphics/VertexInformation.h>
 #include <GL/glew.h>
 
 TriangledMesh::TriangledMesh() :
@@ -73,6 +76,33 @@ void TriangledMesh::Initialize(float* vertices, float* normals, float* texcoords
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexBufferId);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint16_t) * count, m_indexBuffer, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
+
+void TriangledMesh::Initialize(MeshPart* meshPart)
+{
+	const void* rawVertices = meshPart->GetVertices();
+	int verticesCount = meshPart->GetVerticesCount();
+
+	float* vertices = new float[verticesCount * 3];
+	float* normals = new float[verticesCount * 3];
+	float* texcoords = new float[verticesCount * 2];
+
+	for (int i = 0; i < verticesCount; i++)
+	{
+		sm::Vec3 vertex = VertexInformation::GetPosition(rawVertices, i, meshPart->m_vertexType);
+		sm::Vec3 normal = VertexInformation::GetNormal(rawVertices, i, meshPart->m_vertexType);
+		sm::Vec2 texcoord = VertexInformation::GetTexcoord0(rawVertices, i, meshPart->m_vertexType);
+
+		vertices[i * 3 + 0] = vertex[0];
+		vertices[i * 3 + 1] = vertex[1];
+		vertices[i * 3 + 2] = vertex[2];
+
+		normals[i * 3 + 0] = normal[0];
+		normals[i * 3 + 1] = normal[1];
+		normals[i * 3 + 2] = normal[2];
+	}
+
+	Initialize(vertices, normals, texcoords, verticesCount);
 }
 
 void TriangledMesh::SetMaterial(Material* material)

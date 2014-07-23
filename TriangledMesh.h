@@ -4,6 +4,7 @@
 
 class Material;
 class TriangleShader;
+class MeshPart;
 
 class TriangledMesh
 {
@@ -12,6 +13,7 @@ public:
 	virtual ~TriangledMesh();
 
 	void Initialize(float* vertices, float* normals, float* texcoords, int count);
+	void Initialize(MeshPart* meshPart);
 
 	void SetMaterial(Material* material);
 	Material* GetMaterial() const;

@@ -16,6 +16,8 @@ class Material;
 class Content
 {
 public:
+	static Content* Instance;
+
 	Content(IGraphicsEngine *graphicsEngine);
 	~Content();
 

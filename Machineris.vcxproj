@@ -59,7 +59,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>D:\stuff\we-can_2013-demo\code\Framework;D:\stuff\we-can_2013-demo\code\Ext;D:\stuff\we-can_2013-demo\code\Ext\glew-1.9.0\include;d:\stuff\we-can_2013-demo\code\zip\contrib\minizip\;d:\stuff\we-can_2013-demo\code\zip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\stuff\River Wash 2014 Demo\Code\Framework;D:\stuff\River Wash 2014 Demo\Code\Ext;D:\stuff\River Wash 2014 Demo\Code\Ext\glew-1.9.0\include;d:\stuff\River Wash 2014 Demo\Code\zip\contrib\minizip\;d:\stuff\River Wash 2014 Demo\Code\zip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;libpng15.lib;zlib.lib;jpeg.lib;bass.lib;%(AdditionalDependencies)</AdditionalDependencies>

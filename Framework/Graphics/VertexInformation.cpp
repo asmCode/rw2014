@@ -101,6 +101,40 @@ sm::Vec3 VertexInformation::GetPosition(const void *vertices, uint32_t index, ui
 	return *reinterpret_cast<const sm::Vec3*>(vertices);
 }
 
+sm::Vec3 VertexInformation::GetNormal(const void *vertex, uint8_t vertexType)
+{
+	vertex = reinterpret_cast<const uint8_t*>(vertex)+GetOffset(vertexType, VertexAttrib::Normal);
+
+	return *reinterpret_cast<const sm::Vec3*>(vertex);
+}
+
+sm::Vec3 VertexInformation::GetNormal(const void *vertices, uint32_t index, uint8_t vertexType)
+{
+	vertices =
+		reinterpret_cast<const uint8_t*>(vertices)+
+		(GetStride(vertexType) * index) +
+		GetOffset(vertexType, VertexAttrib::Normal);
+
+	return *reinterpret_cast<const sm::Vec3*>(vertices);
+}
+
+sm::Vec2 VertexInformation::GetTexcoord0(const void *vertex, uint8_t vertexType)
+{
+	vertex = reinterpret_cast<const uint8_t*>(vertex)+GetOffset(vertexType, VertexAttrib::Coords1);
+
+	return *reinterpret_cast<const sm::Vec2*>(vertex);
+}
+
+sm::Vec2 VertexInformation::GetTexcoord0(const void *vertices, uint32_t index, uint8_t vertexType)
+{
+	vertices =
+		reinterpret_cast<const uint8_t*>(vertices)+
+		(GetStride(vertexType) * index) +
+		GetOffset(vertexType, VertexAttrib::Coords1);
+
+	return *reinterpret_cast<const sm::Vec2*>(vertices);
+}
+
 bool VertexInformation::HasAttrib(uint8_t vertexType, uint8_t vertexAttrib)
 {
 	return GetOffset(vertexType, vertexAttrib) != -1;

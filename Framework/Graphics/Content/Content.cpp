@@ -6,9 +6,12 @@
 #include "../Model.h"
 #include <IO/Path.h>
 
+Content* Content::Instance;
+
 Content::Content(IGraphicsEngine *graphicsEngine) :
 	m_graphicsEngine(graphicsEngine)
 {
+	Instance = this;
 }
 
 Content::~Content()
