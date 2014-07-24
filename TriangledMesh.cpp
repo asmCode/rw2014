@@ -2,6 +2,7 @@
 
 #include "TriangledMesh.h"
 #include "TriangleShader.h"
+#include "Triangle.h"
 #include <Math/Vec2.h>
 #include <Graphics/Material.h>
 #include <Graphics/MeshPart.h>
@@ -18,6 +19,7 @@ TriangledMesh::TriangledMesh() :
 	m_normalBuffer(NULL),
 	m_texcoordBuffer(NULL),
 	m_indexBuffer(NULL),
+	m_triangles(NULL),
 	m_material(NULL),
 	m_triangleShader(NULL)
 {
@@ -56,6 +58,15 @@ void TriangledMesh::Initialize(float* vertices, float* normals, float* texcoords
 
 	for (uint16_t i = 0; i < count; i++)
 		m_indexBuffer[i] = i;
+
+	m_triangles = new Triangle*[count / 3];
+	for (uint16_t i = 0; i < count / 3; i++)
+	{
+		m_triangles[i] = new Triangle();
+
+		m_triangles[i]->Vertices = reinterpret_cast<sm::Vec3*>(m_vertexBuffer + i * 3 * 3);
+		m_triangles[i]->Initalize();
+	}
 
 	glGenBuffers(1, &m_vertexBufferId);
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferId);
@@ -129,14 +140,18 @@ void TriangledMesh::Apply()
 
 void TriangledMesh::Update(float time, float deltaTime)
 {
+	return;
+
 	sm::Vec3 *vertex = NULL;
+	sm::Vec3 *normal = NULL;
 
 	if (m_triangleShader != NULL)
 	{
 		for (int i = 0; i < m_vertexCount; i+=3)
 		{
 			vertex = reinterpret_cast<sm::Vec3*>(m_vertexBuffer + i * 3);
-			m_triangleShader->ProcessTriangle(time, deltaTime, vertex);
+			normal = reinterpret_cast<sm::Vec3*>(m_normalBuffer + i * 3);
+			m_triangleShader->ProcessTriangle(time, deltaTime, vertex, normal);
 		}
 	}
 }
@@ -158,3 +173,12 @@ void TriangledMesh::Draw()
 	glDrawElements(GL_TRIANGLES, m_vertexCount, GL_UNSIGNED_SHORT, 0);
 }
 
+Triangle** TriangledMesh::GetTriangles() const
+{
+	return m_triangles;
+}
+
+uint32_t TriangledMesh::GetTrianglesCount() const
+{
+	return m_vertexCount / 3;
+}

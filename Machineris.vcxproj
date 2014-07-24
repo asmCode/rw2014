@@ -124,6 +124,7 @@ exit /B 0
     <ClCompile Include="BasicLightingEffect.cpp" />
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="BumpAlongNormal.cpp" />
+    <ClCompile Include="DecomposeAndFly.cpp" />
     <ClCompile Include="DistortParticleHandler.cpp" />
     <ClCompile Include="Dream.cpp" />
     <ClCompile Include="Ext\tinyxml\tinyxml2.cpp" />
@@ -196,6 +197,7 @@ exit /B 0
     <ClCompile Include="PropertyManager.cpp" />
     <ClCompile Include="StartDialog.cpp" />
     <ClCompile Include="StartNormalMode.cpp" />
+    <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="TriangledMesh.cpp" />
     <ClCompile Include="TriangleShader.cpp" />
     <ClCompile Include="WinMain.cpp" />
@@ -212,6 +214,7 @@ exit /B 0
     <ClInclude Include="BumpAlongNormal.h" />
     <ClInclude Include="CameraMode.h" />
     <ClInclude Include="common.h" />
+    <ClInclude Include="DecomposeAndFly.h" />
     <ClInclude Include="DistortParticleHandler.h" />
     <ClInclude Include="Dream.h" />
     <ClInclude Include="Ext\tinyxml\tinyxml2.h" />
@@ -314,6 +317,7 @@ exit /B 0
     <ClInclude Include="PropertyManager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="StartDialog.h" />
+    <ClInclude Include="Triangle.h" />
     <ClInclude Include="TriangledMesh.h" />
     <ClInclude Include="TriangleShader.h" />
   </ItemGroup>

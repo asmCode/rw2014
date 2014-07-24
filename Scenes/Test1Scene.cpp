@@ -2,6 +2,7 @@
 #include "../TriangledMesh.h"
 #include "../DrawingRoutines.h"
 #include "../BumpAlongNormal.h"
+#include "../DecomposeAndFly.h"
 #include <Utils/Randomizer.h>
 #include <Graphics/MeshPart.h>
 #include <Graphics/Model.h>
@@ -11,6 +12,7 @@
 bool Test1Scene::Initialize()
 {
 	m_triangleShader = new BumpAlongNormal();
+	m_decomposeAndFly = new DecomposeAndFly();
 
 	float vertex[] =
 	{
@@ -53,12 +55,15 @@ bool Test1Scene::Initialize()
 	m_triangledMesh->Initialize(Content::Instance->Get<Model>("teapot")->m_meshParts[0]);
 	m_triangledMesh->SetTriangleShader(m_triangleShader);
 
+	m_decomposeAndFly->Initialize(m_triangledMesh);
+
 	return true;
 }
 
 bool Test1Scene::Update(float time, float deltaTime)
 {
 	m_triangledMesh->Update(time, deltaTime);
+	m_decomposeAndFly->Update(time, deltaTime);
 
 	return true;
 }

@@ -5,6 +5,7 @@
 class Material;
 class TriangleShader;
 class MeshPart;
+class Triangle;
 
 class TriangledMesh
 {
@@ -24,6 +25,9 @@ public:
 	void Update(float time, float deltaTime);
 	void Draw();
 
+	Triangle** GetTriangles() const;
+	uint32_t GetTrianglesCount() const;
+
 private:
 	uint32_t m_vertexBufferId;
 	uint32_t m_normalBufferId;
@@ -35,6 +39,8 @@ private:
 	float* m_normalBuffer;
 	float* m_texcoordBuffer;
 	uint16_t* m_indexBuffer;
+
+	Triangle** m_triangles;
 
 	Material* m_material;
 	TriangleShader* m_triangleShader;
