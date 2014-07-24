@@ -158,6 +158,9 @@ exit /B 0
     <ClCompile Include="Framework\IO\BinaryReader.cpp" />
     <ClCompile Include="Framework\IO\BinaryWriter.cpp" />
     <ClCompile Include="Framework\IO\Win32\Path.cpp" />
+    <ClCompile Include="Framework\Math\Animation\BackOut.cpp" />
+    <ClCompile Include="Framework\Math\Animation\LinearCurve.cpp" />
+    <ClCompile Include="Framework\Math\Animation\QuarticOut.cpp" />
     <ClCompile Include="Framework\Math\MathUtils.cpp" />
     <ClCompile Include="Framework\Utils\Log.cpp" />
     <ClCompile Include="Framework\Utils\Randomizer.cpp" />
@@ -263,6 +266,10 @@ exit /B 0
     <ClInclude Include="Framework\IO\BinaryReader.h" />
     <ClInclude Include="Framework\IO\BinaryWriter.h" />
     <ClInclude Include="Framework\IO\Path.h" />
+    <ClInclude Include="Framework\Math\Animation\BackOut.h" />
+    <ClInclude Include="Framework\Math\Animation\IAnimationCurve.h" />
+    <ClInclude Include="Framework\Math\Animation\LinearCurve.h" />
+    <ClInclude Include="Framework\Math\Animation\QuarticOut.h" />
     <ClInclude Include="Framework\Math\MathUtils.h" />
     <ClInclude Include="Framework\Math\Matrix.h" />
     <ClInclude Include="Framework\Math\Plane.h" />

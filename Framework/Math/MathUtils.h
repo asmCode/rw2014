@@ -2,9 +2,8 @@
 #ifndef _MATHUTILS_
 #define _MATHUTILS_
 
-#include <windows.h>
-#include <math\Vec3.h>
-#include <math\Vec2.h>
+#include "../Math/Vec3.h"
+#include "../Math/Vec2.h"
 
 class MathUtils
 {
@@ -60,60 +59,6 @@ public:
 		}
 	}
 
-	static bool IsSquare(sm::Vec3 *points, float dotsEpsilon, float lengthsEpsilon)
-	{
-		float dots[4];
-		float lengths[4];
-
-		GetDotsAndLengths(points, dots, lengths);
-
-		float dotsSum = 0;
-		float lengthSum = 0;
-
-		for (int i = 0; i < 4; i++)
-		{
-			dotsSum += abs(dots[i]);
-			lengthSum += lengths[i];
-		}
-
-		float lengthAvg = lengthSum / 4.0f;
-
-		float dotWeight = (4.0f - dotsSum) / 4.0f;
-
-		float lenWeight = (4.0f -
-			(abs(lengths[0] - lengthAvg) / lengthAvg) -
-			(abs(lengths[1] - lengthAvg) / lengthAvg) -
-			(abs(lengths[2] - lengthAvg) / lengthAvg) -
-			(abs(lengths[3] - lengthAvg) / lengthAvg)) / 4.0f;
-
-		if ((1.0f - dotWeight) <= dotsEpsilon && (1.0f - lenWeight) <= lengthsEpsilon)
-			return true;
-		else
-			return false;
-	}
-
-	template <typename Vec3Collection>
-	static sm::Vec3 GetAvgVector(Vec3Collection vectors, int count)
-	{
-		sm::Vec3 avg(0, 0, 0);
-
-		for (int i = 0; i < count; i++)
-			avg += vectors[i];
-
-		return avg *= 1.0f / (float)count;
-	}
-
-	static sm::Vec3 GetTriangleHeightVector(sm::Vec3 base, sm::Vec3 arm)
-	{
-		sm::Vec3 basen = base;
-		basen.Normalize();
-
-		float shift = sm::Vec3::Dot(basen, arm);
-
-		base = basen * shift;
-		return arm - base;
-	}
-
 	static float GetDistanceFromLine(sm::Vec3 a, sm::Vec3 b, sm::Vec3 p)
 	{
 		sm::Vec3 ab = b - a;
@@ -139,10 +84,6 @@ public:
 		sm::Vec3 ba = a - b;
 		sm::Vec3 bc = c - b;
 		sm::Vec3 bp = p - b;
-
-		sm::Vec3 ca = a - c;
-		sm::Vec3 cb = b - c;
-		sm::Vec3 cp = p - c;
 
 		return
 			sm::Vec3::Dot(ab * ac, ab * ap) >= 0 &&
@@ -211,9 +152,29 @@ public:
 		return a > b ? a : b;
 	}
 
-	static float PI;
-	static float PI2;
-	static float PI4;
+	static inline float Sign(const float &v)
+	{
+		if (v > 0.0f) return 1.0f;
+		if (v < 0.0f) return -1.0f;
+		return 0.0f;
+	}
+
+	template <typename T>
+	static inline T Clamp(const T &v, const T &_min, const T &_max)
+	{
+		return Max(Min(v, _max), _min);
+	}
+
+	template <typename T>
+	static inline T Abs(const T &v)
+	{
+		return v >= 0 ? v : -v;
+	}
+
+	static const float PI;
+	static const float PI2;
+	static const float PI4;
+	static const float Deg2Rad;
 };
 
 #endif
