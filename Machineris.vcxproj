@@ -125,6 +125,7 @@ exit /B 0
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="BumpAlongNormal.cpp" />
     <ClCompile Include="DecomposeAndFly.cpp" />
+    <ClCompile Include="DemoUtils.cpp" />
     <ClCompile Include="DistortParticleHandler.cpp" />
     <ClCompile Include="Dream.cpp" />
     <ClCompile Include="Ext\tinyxml\tinyxml2.cpp" />
@@ -218,6 +219,7 @@ exit /B 0
     <ClInclude Include="CameraMode.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="DecomposeAndFly.h" />
+    <ClInclude Include="DemoUtils.h" />
     <ClInclude Include="DistortParticleHandler.h" />
     <ClInclude Include="Dream.h" />
     <ClInclude Include="Ext\tinyxml\tinyxml2.h" />
