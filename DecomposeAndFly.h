@@ -18,6 +18,7 @@ private:
 	struct TriangleData
 	{
 		Triangle* Triangle;
+		sm::Vec3 AxisPivotTriangle[3];
 		sm::Vec3 BasePosition;
 		sm::Vec3 TargetPosition;
 		float Time;

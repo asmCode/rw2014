@@ -72,7 +72,38 @@ Randomizer DemoController::random;
 	  const GLchar* message,
 	  void* userParam)
  {
-	 int houston = 0;
+	  int d;
+
+	  switch (type)
+	  {
+	  case GL_DEBUG_TYPE_ERROR:
+		  d = 0;
+		  break;
+
+	  case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
+		  d = 0;
+		  break;
+
+	  case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
+		  d = 0;
+		  break;
+
+	  case GL_DEBUG_TYPE_PORTABILITY:
+		  d = 0;
+		  break;
+
+	  case GL_DEBUG_TYPE_PERFORMANCE:
+		  d = 0;
+		  break;
+
+	  case GL_DEBUG_TYPE_OTHER:
+		  d = 0;
+		  break;
+
+	  default:
+		  d = 0;
+		  break;
+	  }
  }
 
 float conv(int a, int b, int c)
@@ -231,6 +262,11 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 	{
 		assert(false);
 	}
+
+	wglSwapIntervalEXT(false);
+
+	std::string openGlVendor = reinterpret_cast<const char*>(glGetString(GL_VENDOR));
+	Log::LogT("OpenGl Vendor: %s", openGlVendor.c_str());
 
 	SetOpenglParams();
 
