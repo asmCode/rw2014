@@ -1,0 +1,7 @@
+<Material Name="sphere">
+	<Param Type="Diffuse" Value="0.501961;0;0" />
+	<Param Type="Specular" Value="0.9;0.9;0.9" />
+	<Param Type="Opacity" Value="1" />
+	<Param Type="Glossiness" Value="0.73" />
+	<Param Type="SpecularLevel" Value="0.62" />
+</Material>

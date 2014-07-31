@@ -52,6 +52,11 @@ public:
 		stopKey = key ->stopKey;
 	}
 
+	KeyFrame<Type> GetKeyframe(int index)
+	{
+		return *keys[index];
+	}
+
 	int GetKeysCount()
 	{
 		return static_cast<int>(keys.size());

@@ -55,7 +55,18 @@ bool Test1Scene::Initialize()
 	m_triangledMesh->Initialize(Content::Instance->Get<Model>("teapot")->m_meshParts[0]);
 	m_triangledMesh->SetTriangleShader(m_triangleShader);
 
-	m_decomposeAndFly->Initialize(m_triangledMesh);
+	std::vector<sm::Vec3> path;
+	path.push_back(sm::Vec3(0.0f, 30.0f, 0.0f));
+	path.push_back(sm::Vec3(30.0f, 30.0f, 0.0f));
+	path.push_back(sm::Vec3(30.0f, 15.0f, 15.0f));
+	path.push_back(sm::Vec3(0.0f, 10.0f, 0.0f));
+
+	m_decomposeAndFly->Initialize(
+		m_triangledMesh,
+		path,
+		3.0f,
+		15.0f,
+		false);
 
 	return true;
 }
