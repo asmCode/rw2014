@@ -124,6 +124,7 @@ exit /B 0
     <ClCompile Include="BasicLightingEffect.cpp" />
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="BumpAlongNormal.cpp" />
+    <ClCompile Include="DebugUtils.cpp" />
     <ClCompile Include="DecomposeAndFly.cpp" />
     <ClCompile Include="DemoUtils.cpp" />
     <ClCompile Include="DistortParticleHandler.cpp" />
@@ -159,6 +160,8 @@ exit /B 0
     <ClCompile Include="Framework\IO\BinaryReader.cpp" />
     <ClCompile Include="Framework\IO\BinaryWriter.cpp" />
     <ClCompile Include="Framework\IO\Win32\Path.cpp" />
+    <ClCompile Include="Framework\Math\Animation\Keyframe.cpp" />
+    <ClCompile Include="Framework\Math\Animation\AnimationCurve.cpp" />
     <ClCompile Include="Framework\Math\Animation\BackOut.cpp" />
     <ClCompile Include="Framework\Math\Animation\LinearCurve.cpp" />
     <ClCompile Include="Framework\Math\Animation\QuarticOut.cpp" />
@@ -183,6 +186,7 @@ exit /B 0
     <ClCompile Include="GraphicsLibrary\OpenglWindow.cpp" />
     <ClCompile Include="GraphicsLibrary\SteerCamera.cpp" />
     <ClCompile Include="GraphicsLibrary\TimeControl.cpp" />
+    <ClCompile Include="GraphicsLog.cpp" />
     <ClCompile Include="ParticlesManager.cpp" />
     <ClCompile Include="Particles\Particle.cpp" />
     <ClCompile Include="Particles\ParticleEmmiter.cpp" />
@@ -204,6 +208,7 @@ exit /B 0
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="TriangledMesh.cpp" />
     <ClCompile Include="TriangleShader.cpp" />
+    <ClCompile Include="VectorGraphics.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +223,7 @@ exit /B 0
     <ClInclude Include="BumpAlongNormal.h" />
     <ClInclude Include="CameraMode.h" />
     <ClInclude Include="common.h" />
+    <ClInclude Include="DebugUtils.h" />
     <ClInclude Include="DecomposeAndFly.h" />
     <ClInclude Include="DemoUtils.h" />
     <ClInclude Include="DistortParticleHandler.h" />
@@ -268,6 +274,8 @@ exit /B 0
     <ClInclude Include="Framework\IO\BinaryReader.h" />
     <ClInclude Include="Framework\IO\BinaryWriter.h" />
     <ClInclude Include="Framework\IO\Path.h" />
+    <ClInclude Include="Framework\Math\Animation\Keyframe.h" />
+    <ClInclude Include="Framework\Math\Animation\AnimationCurve.h" />
     <ClInclude Include="Framework\Math\Animation\BackOut.h" />
     <ClInclude Include="Framework\Math\Animation\IAnimationCurve.h" />
     <ClInclude Include="Framework\Math\Animation\LinearCurve.h" />
@@ -303,6 +311,7 @@ exit /B 0
     <ClInclude Include="GraphicsLibrary\PosKey.h" />
     <ClInclude Include="GraphicsLibrary\SteerCamera.h" />
     <ClInclude Include="GraphicsLibrary\TimeControl.h" />
+    <ClInclude Include="GraphicsLog.h" />
     <ClInclude Include="ParticlesManager.h" />
     <ClInclude Include="Particles\IParticleHandler.h" />
     <ClInclude Include="Particles\Particle.h" />
@@ -329,6 +338,7 @@ exit /B 0
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="TriangledMesh.h" />
     <ClInclude Include="TriangleShader.h" />
+    <ClInclude Include="VectorGraphics.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="rw09.rc" />

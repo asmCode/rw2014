@@ -37,6 +37,8 @@
 #include "GameObjects/Cigarette.h"
 #include "GameObjects/Fan.h"
 #include "Dream.h"
+#include "VectorGraphics.h"
+#include "GraphicsLog.h"
 Dream *m_dream;
 
 #include <Graphics/TextureLoader.h>
@@ -274,6 +276,8 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 	glDebugMessageCallback(OpenglDebugCallback, this);
 
+	GraphicsLog::Initialize(NULL, NULL);
+
 	loadingScreen = new LoadingScreen();
 
 	targetTex0 = new Texture(width, height, 32, NULL, Texture::Wrap_ClampToEdge, Texture::Filter_Nearest, Texture::Filter_Nearest, false);
@@ -345,6 +349,13 @@ bool DemoController::LoadContent(const char *basePath)
 
 	if (!AssignAssets())
 		return false;
+
+	Shader* vgShader = m_content->Get<Shader>("VectorGraphics");
+	assert(vgShader != NULL);
+	vgShader->BindVertexChannel(0, "a_position");
+	vgShader->LinkProgram();
+
+	VectorGraphics::Initialize(vgShader);
 
 	/*
 	blackTex = dc->Get<Texture>("black");
@@ -880,6 +891,11 @@ bool DemoController::Draw(float time, float seconds)
 	float m_biasScale;
 	float m_biasClamp;
 #endif
+
+	GraphicsLog::AddSegment(sm::Vec3(0, 0, 0), sm::Vec3(100, 100, 100), sm::Vec3(1, 1, 1));
+
+	VectorGraphics::SetViewProjMatrix(m_viewProj);
+	GraphicsLog::DrawAndClear();
 
 	glWnd ->SwapBuffers();
 

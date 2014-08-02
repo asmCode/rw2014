@@ -28,9 +28,7 @@ private:
 		Triangle* Triangle;
 		sm::Vec3 AxisPivotTriangle[3];
 		sm::Vec3 BasePosition;
-		sm::Vec3 TargetPosition;
 		float Time;
-		float Duration;
 
 		int LastKeyframeIndex;
 		IInterpolator<sm::Vec3>* Curve;
@@ -42,9 +40,10 @@ private:
 		const sm::Vec3& normal,
 		std::vector<sm::Vec3>& path,
 		float startTime,
-		float duration);
+		float duration,
+		bool a);
 
-	IInterpolator<float>* CreateScaleCurve(float startTime, float endTime);
+	IInterpolator<float>* CreateScaleCurve(float startTime, float endTime, bool a);
 
 	int m_trianglesCount;
 	TriangleData** m_trianglesData;

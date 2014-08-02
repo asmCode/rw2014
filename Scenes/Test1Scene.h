@@ -16,7 +16,10 @@ public:
 
 private:
 	TriangledMesh* m_triangledMesh;
+	TriangledMesh* m_triangledMeshSphere;
+
 	BumpAlongNormal* m_triangleShader;
 	DecomposeAndFly* m_decomposeAndFly;
+	DecomposeAndFly* m_decomposeAndFlySphere;
 };
 

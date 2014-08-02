@@ -13,6 +13,7 @@ bool Test1Scene::Initialize()
 {
 	m_triangleShader = new BumpAlongNormal();
 	m_decomposeAndFly = new DecomposeAndFly();
+	m_decomposeAndFlySphere = new DecomposeAndFly();
 
 	float vertex[] =
 	{
@@ -55,18 +56,32 @@ bool Test1Scene::Initialize()
 	m_triangledMesh->Initialize(Content::Instance->Get<Model>("teapot")->m_meshParts[0]);
 	m_triangledMesh->SetTriangleShader(m_triangleShader);
 
+	m_triangledMeshSphere = new TriangledMesh();
+	m_triangledMeshSphere->Initialize(Content::Instance->Get<Model>("sphere")->m_meshParts[0]);
+
 	std::vector<sm::Vec3> path;
 	path.push_back(sm::Vec3(0.0f, 30.0f, 0.0f));
 	path.push_back(sm::Vec3(30.0f, 30.0f, 0.0f));
-	path.push_back(sm::Vec3(30.0f, 15.0f, 15.0f));
-	path.push_back(sm::Vec3(0.0f, 10.0f, 0.0f));
+	path.push_back(sm::Vec3(40.0f, 20.0f, 5.0f));
 
 	m_decomposeAndFly->Initialize(
 		m_triangledMesh,
 		path,
 		3.0f,
-		15.0f,
+		8.0f,
 		false);
+
+	path.clear();
+	path.push_back(sm::Vec3(40.0f, 20.0f, 5.0f));
+	path.push_back(sm::Vec3(40.0f, 20.0f, 10.0f));
+	path.push_back(sm::Vec3(0.0f, 0.0f, 0.0f));
+
+	m_decomposeAndFlySphere->Initialize(
+		m_triangledMeshSphere,
+		path,
+		12.0f,
+		10.0f,
+		true);
 
 	return true;
 }
@@ -74,7 +89,9 @@ bool Test1Scene::Initialize()
 bool Test1Scene::Update(float time, float deltaTime)
 {
 	m_triangledMesh->Update(time, deltaTime);
+	m_triangledMeshSphere->Update(time, deltaTime);
 	m_decomposeAndFly->Update(time, deltaTime);
+	m_decomposeAndFlySphere->Update(time, deltaTime);
 
 	return true;
 }
@@ -85,6 +102,7 @@ bool Test1Scene::Draw(float time, float deltaTime)
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	DrawingRoutines::DrawWithMaterial(m_triangledMesh);
+	DrawingRoutines::DrawWithMaterial(m_triangledMeshSphere);
 
 	return true;
 }
