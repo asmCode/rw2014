@@ -1,28 +1,27 @@
 #pragma once
 
 #include <Math/Vec3.h>
-#include <Graphics/Interpolators/IInterpolator.h>
+#include <Math/Animation/AnimationCurve.h>
 #include <vector>
 
 class TriangledMesh;
 class Triangle;
 
-class DecomposeAndFly
+class TrianglesRibbon
 {
 public:
-	DecomposeAndFly();
-	~DecomposeAndFly();
+	TrianglesRibbon();
+	virtual ~TrianglesRibbon();
 
 	void Initialize(
 		TriangledMesh* triangledMesh,
 		std::vector<sm::Vec3>& path,
 		float startTime,
-		float duration,
-		bool morphIn);
+		float duration);
 
 	void Update(float time, float deltaTime);
 
-private:
+protected:
 	struct TriangleData
 	{
 		Triangle* Triangle;
@@ -31,19 +30,18 @@ private:
 		float Time;
 
 		int LastKeyframeIndex;
-		IInterpolator<sm::Vec3>* Curve;
-		IInterpolator<float>* ScaleCurve;
+		AnimationCurve<sm::Vec3>* Curve;
+		AnimationCurve<float>* ScaleCurve;
 	};
 
-	IInterpolator<sm::Vec3>* CreateCurve(
+	virtual AnimationCurve<sm::Vec3>* CreateCurve(
 		const sm::Vec3& basePosition,
 		const sm::Vec3& normal,
 		std::vector<sm::Vec3>& path,
 		float startTime,
-		float duration,
-		bool a);
+		float duration) = 0;
 
-	IInterpolator<float>* CreateScaleCurve(float startTime, float endTime, bool a);
+	virtual AnimationCurve<float>* CreateScaleCurve(AnimationCurve<sm::Vec3> *transformCurve) = 0;
 
 	int m_trianglesCount;
 	TriangleData** m_trianglesData;

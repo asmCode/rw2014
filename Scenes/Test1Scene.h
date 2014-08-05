@@ -4,7 +4,8 @@
 
 class TriangledMesh;
 class BumpAlongNormal;
-class DecomposeAndFly;
+class DecomposeToRibbon;
+class ComposeFromRibbon;
 
 class Test1Scene : public BaseScene
 {
@@ -19,7 +20,7 @@ private:
 	TriangledMesh* m_triangledMeshSphere;
 
 	BumpAlongNormal* m_triangleShader;
-	DecomposeAndFly* m_decomposeAndFly;
-	DecomposeAndFly* m_decomposeAndFlySphere;
+	DecomposeToRibbon* m_decomposeAndFly;
+	ComposeFromRibbon* m_composeFromRibbon;
 };
 

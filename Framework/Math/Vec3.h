@@ -19,6 +19,16 @@ namespace sm
 
 		Vec3()
 		{
+			this->x = 0;
+			this->y = 0;
+			this->z = 0;
+		}
+
+		Vec3(float value)
+		{
+			this->x = value;
+			this->y = value;
+			this->z = value;
 		}
 
 		Vec3(float x, float y, float z)
@@ -81,6 +91,17 @@ namespace sm
 			vret.x = x * s;
 			vret.y = y * s;
 			vret.z = z * s;
+
+			return vret;
+		}
+
+		Vec3 operator / (float s) const
+		{
+			Vec3 vret;
+
+			vret.x = x / s;
+			vret.y = y / s;
+			vret.z = z / s;
 
 			return vret;
 		}

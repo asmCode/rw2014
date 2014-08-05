@@ -879,20 +879,9 @@ bool DemoController::Draw(float time, float seconds)
 	sprintf(fpsText, "camera position: (%.4f, %.4f, %.4f)", camPos.x, camPos.y, camPos.z);
 	DrawText(fpsText, 4, 20, 255, 255, 255);
 
-	sprintf(fpsText, "time: %.2f, robot dance: %.2f", time, m_greetzDanceTime);
+	sprintf(fpsText, "time: %.2f", time);
 	DrawText(fpsText, 4, height - 160, 255, 0, 0);
-
-	sprintf(fpsText, "bias scale = %.5f, bias clamp = %.5f", m_biasScale, m_biasClamp);
-	DrawText(fpsText, 4, height - 180, 255, 0, 0);
-	
-	sprintf(fpsText, "fov = %.2f", fov);
-	DrawText(fpsText, 4, height - 200, 255, 0, 0);
-
-	float m_biasScale;
-	float m_biasClamp;
 #endif
-
-	GraphicsLog::AddSegment(sm::Vec3(0, 0, 0), sm::Vec3(100, 100, 100), sm::Vec3(1, 1, 1));
 
 	VectorGraphics::SetViewProjMatrix(m_viewProj);
 	GraphicsLog::DrawAndClear();

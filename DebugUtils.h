@@ -8,5 +8,5 @@ class DebugUtils
 {
 public:
 	static void DrawCurve(IInterpolator<sm::Vec3>* curve, float timeStep, const sm::Vec3& color);
-	static void DrawCurve(AnimationCurve& curve, float timeStep, const sm::Vec3& color);
+	static void DrawCurve(AnimationCurve<sm::Vec3>& curve, float timeStep, const sm::Vec3& color);
 };

@@ -124,8 +124,9 @@ exit /B 0
     <ClCompile Include="BasicLightingEffect.cpp" />
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="BumpAlongNormal.cpp" />
+    <ClCompile Include="ComposeFromRibbon.cpp" />
     <ClCompile Include="DebugUtils.cpp" />
-    <ClCompile Include="DecomposeAndFly.cpp" />
+    <ClCompile Include="DecomposeToRibbon.cpp" />
     <ClCompile Include="DemoUtils.cpp" />
     <ClCompile Include="DistortParticleHandler.cpp" />
     <ClCompile Include="Dream.cpp" />
@@ -208,6 +209,7 @@ exit /B 0
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="TriangledMesh.cpp" />
     <ClCompile Include="TriangleShader.cpp" />
+    <ClCompile Include="TrianglesRibbon.cpp" />
     <ClCompile Include="VectorGraphics.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
@@ -223,8 +225,9 @@ exit /B 0
     <ClInclude Include="BumpAlongNormal.h" />
     <ClInclude Include="CameraMode.h" />
     <ClInclude Include="common.h" />
+    <ClInclude Include="ComposeFromRibbon.h" />
     <ClInclude Include="DebugUtils.h" />
-    <ClInclude Include="DecomposeAndFly.h" />
+    <ClInclude Include="DecomposeToRibbon.h" />
     <ClInclude Include="DemoUtils.h" />
     <ClInclude Include="DistortParticleHandler.h" />
     <ClInclude Include="Dream.h" />
@@ -338,6 +341,7 @@ exit /B 0
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="TriangledMesh.h" />
     <ClInclude Include="TriangleShader.h" />
+    <ClInclude Include="TrianglesRibbon.h" />
     <ClInclude Include="VectorGraphics.h" />
   </ItemGroup>
   <ItemGroup>

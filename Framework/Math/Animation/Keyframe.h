@@ -1,10 +1,11 @@
 #pragma once
 
+template <typename T>
 class Keyframe
 {
 public:
 	float Time;
-	float Value;
-	float LeftTangent;
-	float RightTangent;
+	T Value;
+	T LeftTangent;
+	T RightTangent;
 };

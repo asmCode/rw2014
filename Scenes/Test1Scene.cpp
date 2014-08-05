@@ -2,7 +2,8 @@
 #include "../TriangledMesh.h"
 #include "../DrawingRoutines.h"
 #include "../BumpAlongNormal.h"
-#include "../DecomposeAndFly.h"
+#include "../DecomposeToRibbon.h"
+#include "../ComposeFromRibbon.h"
 #include <Utils/Randomizer.h>
 #include <Graphics/MeshPart.h>
 #include <Graphics/Model.h>
@@ -12,8 +13,8 @@
 bool Test1Scene::Initialize()
 {
 	m_triangleShader = new BumpAlongNormal();
-	m_decomposeAndFly = new DecomposeAndFly();
-	m_decomposeAndFlySphere = new DecomposeAndFly();
+	m_decomposeAndFly = new DecomposeToRibbon();
+	m_composeFromRibbon = new ComposeFromRibbon();
 
 	float vertex[] =
 	{
@@ -63,25 +64,25 @@ bool Test1Scene::Initialize()
 	path.push_back(sm::Vec3(0.0f, 30.0f, 0.0f));
 	path.push_back(sm::Vec3(30.0f, 30.0f, 0.0f));
 	path.push_back(sm::Vec3(40.0f, 20.0f, 5.0f));
+	path.push_back(sm::Vec3(20.0f, 20.0f, -5.0f));
 
 	m_decomposeAndFly->Initialize(
 		m_triangledMesh,
 		path,
 		3.0f,
-		8.0f,
-		false);
+		8.0f);
 
 	path.clear();
 	path.push_back(sm::Vec3(40.0f, 20.0f, 5.0f));
-	path.push_back(sm::Vec3(40.0f, 20.0f, 10.0f));
-	path.push_back(sm::Vec3(0.0f, 0.0f, 0.0f));
+	path.push_back(sm::Vec3(20.0f, 20.0f, -5.0f));
+	path.push_back(sm::Vec3(10.0f, 10.0f, 10.0f));
+	path.push_back(sm::Vec3(-10.0f, -10.0f, 20.0f));
 
-	m_decomposeAndFlySphere->Initialize(
+	m_composeFromRibbon->Initialize(
 		m_triangledMeshSphere,
 		path,
-		12.0f,
 		10.0f,
-		true);
+		6.0f);
 
 	return true;
 }
@@ -91,7 +92,7 @@ bool Test1Scene::Update(float time, float deltaTime)
 	m_triangledMesh->Update(time, deltaTime);
 	m_triangledMeshSphere->Update(time, deltaTime);
 	m_decomposeAndFly->Update(time, deltaTime);
-	m_decomposeAndFlySphere->Update(time, deltaTime);
+	m_composeFromRibbon->Update(time, deltaTime);
 
 	return true;
 }
