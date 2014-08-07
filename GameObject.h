@@ -1,24 +1,27 @@
 #pragma once
 
-#include <vector>
+#include <Math/Matrix.h>
 
-class MeshPart;
+class Renderable;
 
 class GameObject
 {
 public:
-	virtual ~GameObject() {}
+	sm::Matrix WorldMatrix;
 
-	virtual void Awake() {}
+	GameObject();
+	virtual ~GameObject();
 
-	virtual void Update(float time, float seconds) {}
-	virtual void Draw() {}
+	void SetRenderable(Renderable* renderable);
+	Renderable* GetRenderable() const;
 
-	virtual std::vector<MeshPart*>& GetMeshParts();
+	virtual void Awake();
+	virtual void Update(float time, float seconds);
 
-	virtual void ClearLightmaps() {}
+	bool IsActive() const;
 
-private:
-	static std::vector<MeshPart*> m_dummy;
+protected:
+	Renderable* m_renderable;
+	bool m_isActive;
 };
 

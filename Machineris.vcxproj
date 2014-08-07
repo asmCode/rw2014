@@ -174,14 +174,6 @@ exit /B 0
     <ClCompile Include="Framework\XML\XMLNode.cpp" />
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GameObjects\SimpleAnim.cpp" />
-    <ClCompile Include="GameObjects\CreditsDance.cpp" />
-    <ClCompile Include="GameObjects\Factory.cpp" />
-    <ClCompile Include="GameObjects\Fan.cpp" />
-    <ClCompile Include="GameObjects\Robot.cpp" />
-    <ClCompile Include="GameObjects\ShadowmapTest.cpp" />
-    <ClCompile Include="GameObjects\Cigarette.cpp" />
-    <ClCompile Include="GameObjects\Teapots.cpp" />
     <ClCompile Include="GraphicsLibrary\AnimCamera.cpp" />
     <ClCompile Include="GraphicsLibrary\CubeTexture.cpp" />
     <ClCompile Include="GraphicsLibrary\OpenglWindow.cpp" />
@@ -191,6 +183,7 @@ exit /B 0
     <ClCompile Include="ParticlesManager.cpp" />
     <ClCompile Include="Particles\Particle.cpp" />
     <ClCompile Include="Particles\ParticleEmmiter.cpp" />
+    <ClCompile Include="Renderable.cpp" />
     <ClCompile Include="RobotElement.cpp" />
     <ClCompile Include="GeometryBatch.cpp" />
     <ClCompile Include="LoadingScreen.cpp" />
@@ -297,14 +290,6 @@ exit /B 0
     <ClInclude Include="Framework\XML\XMLNode.h" />
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameObjects\SimpleAnim.h" />
-    <ClInclude Include="GameObjects\CreditsDance.h" />
-    <ClInclude Include="GameObjects\Factory.h" />
-    <ClInclude Include="GameObjects\Fan.h" />
-    <ClInclude Include="GameObjects\Robot.h" />
-    <ClInclude Include="GameObjects\ShadowmapTest.h" />
-    <ClInclude Include="GameObjects\Cigarette.h" />
-    <ClInclude Include="GameObjects\Teapots.h" />
     <ClInclude Include="GraphicsLibrary\AnimCamera.h" />
     <ClInclude Include="GraphicsLibrary\CubeTexture.h" />
     <ClInclude Include="GraphicsLibrary\ICamera.h" />
@@ -319,6 +304,7 @@ exit /B 0
     <ClInclude Include="Particles\IParticleHandler.h" />
     <ClInclude Include="Particles\Particle.h" />
     <ClInclude Include="Particles\ParticleEmmiter.h" />
+    <ClInclude Include="Renderable.h" />
     <ClInclude Include="RobotElement.h" />
     <ClInclude Include="GeometryBatch.h" />
     <ClInclude Include="GlassPart.h" />

@@ -28,14 +28,6 @@
 #include "Particles/ParticleEmmiter.h"
 #include "Particles/IParticleHandler.h"
 #include "GameObject.h"
-#include "GameObjects/Factory.h"
-#include "GameObjects/Teapots.h"
-#include "GameObjects/Robot.h"
-#include "GameObjects/ShadowmapTest.h"
-#include "GameObjects/SimpleAnim.h"
-#include "GameObjects/CreditsDance.h"
-#include "GameObjects/Cigarette.h"
-#include "GameObjects/Fan.h"
 #include "Dream.h"
 #include "VectorGraphics.h"
 #include "GraphicsLog.h"
@@ -1157,8 +1149,6 @@ void DemoController::DrawGlowTexture()
 	DrawingRoutines::DrawBlack(m_solidNonGlowObjects);
 
 	DrawingRoutines::DrawWithMaterial(m_opacityGlowObjects);
-	if (m_creditsDance->IsActive())
-		m_creditsDance->DrawOpacities();
 	DrawingRoutines::DrawBlack(m_opacityNonGlowObjects);
 
 	Framebuffer::RestoreDefaultFramebuffer();

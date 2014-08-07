@@ -176,8 +176,6 @@ public:
 	sm::Matrix glowProj;
 	bool isStereo;
 
-	CreditsDance *m_creditsDance;
-
 	ParticlesManager *m_particlesManager;
 
 	PostProcessing *postProcessing;
@@ -228,8 +226,6 @@ public:
 
 	DemoController();
 	~DemoController();
-
-	Cigarette *m_cigarette;
 
 	void SetOpenglParams();
 	bool InitCg();
