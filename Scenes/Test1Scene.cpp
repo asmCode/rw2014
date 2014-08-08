@@ -1,5 +1,6 @@
 #include "Test1Scene.h"
 #include "../TriangledMesh.h"
+#include "../InstanceTest.h"
 #include "../DrawingRoutines.h"
 #include "../BumpAlongNormal.h"
 #include "../DecomposeToRibbon.h"
@@ -60,6 +61,9 @@ bool Test1Scene::Initialize()
 	m_triangledMeshSphere = new TriangledMesh();
 	m_triangledMeshSphere->Initialize(Content::Instance->Get<Model>("sphere")->m_meshParts[0]);
 
+	m_instanceTest = new InstanceTest();
+	m_instanceTest->Initialize();
+
 	std::vector<sm::Vec3> path;
 	path.push_back(sm::Vec3(0.0f, 30.0f, 0.0f));
 	path.push_back(sm::Vec3(30.0f, 30.0f, 0.0f));
@@ -104,6 +108,7 @@ bool Test1Scene::Draw(float time, float deltaTime)
 
 	DrawingRoutines::DrawWithMaterial(m_triangledMesh);
 	DrawingRoutines::DrawWithMaterial(m_triangledMeshSphere);
+	DrawingRoutines::DrawWithMaterial(m_instanceTest);
 
 	return true;
 }

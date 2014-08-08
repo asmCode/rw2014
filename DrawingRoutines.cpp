@@ -8,6 +8,7 @@
 #include <Graphics/DepthTexture.h>
 #include "BasicLightingEffect.h"
 #include "TriangledMesh.h"
+#include "InstanceTest.h"
 #include <Graphics/MeshPart.h>
 #include <Graphics/Mesh.h>
 #include <Graphics/VertexType.h>
@@ -25,6 +26,7 @@ Shader *DrawingRoutines::m_diffLightMapShader;
 Shader *DrawingRoutines::m_diffNormLightmapShader;
 Shader *DrawingRoutines::m_diffShader;
 Shader *DrawingRoutines::m_colorShader;
+Shader *DrawingRoutines::m_specularColored;
 Shader *DrawingRoutines::m_diffNormShader;
 Shader *DrawingRoutines::m_blackShader;
 Shader *DrawingRoutines::m_shadowMapShader;
@@ -103,6 +105,13 @@ bool DrawingRoutines::Initialize(Content *content)
 	m_sm_colorShader->BindVertexChannel(0, "a_position");
 	m_sm_colorShader->BindVertexChannel(1, "a_normal");
 	m_sm_colorShader->LinkProgram();
+
+	m_specularColored = content->Get<Shader>("SpecularColored");
+	assert(m_specularColored != NULL);
+	m_specularColored->BindVertexChannel(0, "a_position");
+	m_specularColored->BindVertexChannel(1, "a_color");
+	m_specularColored->BindVertexChannel(2, "a_transform");
+	m_specularColored->LinkProgram();
 
 	m_sm_diffNormShader = content->Get<Shader>("SM_DiffNorm");
 	assert(m_diffNormShader != NULL);
@@ -277,7 +286,8 @@ bool DrawingRoutines::SetupShader(Material *material, MeshPart *meshPart, const 
 		glEnableVertexAttribArray(0);
 		glDisableVertexAttribArray(1);
 		glDisableVertexAttribArray(2);
-		glEnableVertexAttribArray(3);
+		//glEnableVertexAttribArray(3);
+		glDisableVertexAttribArray(3);
 		glDisableVertexAttribArray(4);
 		
 		return true;
@@ -654,4 +664,41 @@ void DrawingRoutines::DrawWithMaterial(TriangledMesh* triangledMesh)
 
 	if (SetupShader(triangledMesh->GetMaterial(), NULL, sm::Matrix::IdentityMatrix()))
 		triangledMesh->Draw();
+}
+
+void DrawingRoutines::DrawWithMaterial(InstanceTest* mesh)
+{
+	if (mesh->GetMaterial() == NULL)
+	{
+		//assert(false);
+		mesh->SetMaterial(new Material());
+	}
+
+	Material* material = mesh->GetMaterial();
+
+	//if (SetupShader(mesh->GetMaterial(), NULL, sm::Matrix::IdentityMatrix()))
+	//{
+	//}
+
+	glEnable(GL_DEPTH_TEST);
+	glDepthMask(true);
+	glDisable(GL_BLEND);
+		
+	m_specularColored->UseProgram();
+	m_specularColored->SetMatrixParameter("u_viewProjMatrix", m_viewProjMatrix);
+	m_specularColored->SetParameter("u_lightPosition", m_lightPosition);
+	m_specularColored->SetParameter("u_eyePosition", m_eyePosition);
+	m_specularColored->SetParameter("u_diffuseColor", material->diffuseColor);
+	m_specularColored->SetParameter("u_specularColor", material->specularColor);
+	m_specularColored->SetParameter("u_glossiness", material->glossiness * 256.0f);
+	m_specularColored->SetParameter("u_specularLevel", material->specularLevel);
+
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(2);
+	glEnableVertexAttribArray(3);
+	glEnableVertexAttribArray(4);
+	glEnableVertexAttribArray(5);
+
+	mesh->Draw();
 }

@@ -12,6 +12,7 @@ class Content;
 class RobotElement;
 class Material;
 class TriangledMesh;
+class InstanceTest;
 
 class DrawingRoutines
 {
@@ -41,6 +42,8 @@ private:
 
 	// only black objects with opacity
 	static Shader *m_blackShader;
+
+	static Shader *m_specularColored;
 
 	// only black objects for shadowmap
 	static Shader *m_shadowMapShader;
@@ -74,4 +77,5 @@ public:
 	static void DrawShadowMap(std::vector<MeshPart*> &meshParts);
 
 	static void DrawWithMaterial(TriangledMesh* triangledMesh);
+	static void DrawWithMaterial(InstanceTest* mesh);
 };

@@ -174,12 +174,14 @@ exit /B 0
     <ClCompile Include="Framework\XML\XMLNode.cpp" />
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GraphicsEngine.cpp" />
     <ClCompile Include="GraphicsLibrary\AnimCamera.cpp" />
     <ClCompile Include="GraphicsLibrary\CubeTexture.cpp" />
     <ClCompile Include="GraphicsLibrary\OpenglWindow.cpp" />
     <ClCompile Include="GraphicsLibrary\SteerCamera.cpp" />
     <ClCompile Include="GraphicsLibrary\TimeControl.cpp" />
     <ClCompile Include="GraphicsLog.cpp" />
+    <ClCompile Include="InstanceTest.cpp" />
     <ClCompile Include="ParticlesManager.cpp" />
     <ClCompile Include="Particles\Particle.cpp" />
     <ClCompile Include="Particles\ParticleEmmiter.cpp" />
@@ -290,6 +292,7 @@ exit /B 0
     <ClInclude Include="Framework\XML\XMLNode.h" />
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GraphicsEngine.h" />
     <ClInclude Include="GraphicsLibrary\AnimCamera.h" />
     <ClInclude Include="GraphicsLibrary\CubeTexture.h" />
     <ClInclude Include="GraphicsLibrary\ICamera.h" />
@@ -300,6 +303,7 @@ exit /B 0
     <ClInclude Include="GraphicsLibrary\SteerCamera.h" />
     <ClInclude Include="GraphicsLibrary\TimeControl.h" />
     <ClInclude Include="GraphicsLog.h" />
+    <ClInclude Include="InstanceTest.h" />
     <ClInclude Include="ParticlesManager.h" />
     <ClInclude Include="Particles\IParticleHandler.h" />
     <ClInclude Include="Particles\Particle.h" />
@@ -325,6 +329,7 @@ exit /B 0
     <ClInclude Include="resource.h" />
     <ClInclude Include="StartDialog.h" />
     <ClInclude Include="Triangle.h" />
+    <ClInclude Include="TriangleDataColor.h" />
     <ClInclude Include="TriangledMesh.h" />
     <ClInclude Include="TriangleShader.h" />
     <ClInclude Include="TrianglesRibbon.h" />
@@ -352,6 +357,8 @@ exit /B 0
     <None Include="Data\effects\DistortParticle.vpr" />
     <None Include="Data\effects\HoriBlur.fpr" />
     <None Include="Data\effects\HoriBlur.vpr" />
+    <None Include="Data\effects\SpecularColored.fpr" />
+    <None Include="Data\effects\SpecularColored.vpr" />
     <None Include="Data\effects\Sprite.fpr" />
     <None Include="Data\effects\Sprite.vpr" />
     <None Include="Data\effects\VertBlur.fpr" />
