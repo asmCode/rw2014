@@ -1,11 +1,14 @@
 #pragma once
 
 #include <Math/Vec3.h>
+#include <Math/Matrix.h>
 #include <Math/Animation/AnimationCurve.h>
 #include <vector>
 
 class TriangledMesh;
-class Triangle;
+class MeshPart;
+class TriangleDataColor;
+class BaseMesh;
 
 class TrianglesRibbon
 {
@@ -14,19 +17,20 @@ public:
 	virtual ~TrianglesRibbon();
 
 	void Initialize(
-		TriangledMesh* triangledMesh,
+		MeshPart* meshPart,
 		std::vector<sm::Vec3>& path,
 		float startTime,
 		float duration);
 
 	void Update(float time, float deltaTime);
 
+	BaseMesh* GetMesh() const;
+
 protected:
 	struct TriangleData
 	{
-		Triangle* Triangle;
-		sm::Vec3 AxisPivotTriangle[3];
-		sm::Vec3 BasePosition;
+		TriangleDataColor* m_triangleData;
+		sm::Matrix BaseTransform;
 		float Time;
 
 		int LastKeyframeIndex;
@@ -43,6 +47,7 @@ protected:
 
 	virtual AnimationCurve<float>* CreateScaleCurve(AnimationCurve<sm::Vec3> *transformCurve) = 0;
 
+	TriangledMesh* m_triangledMesh;
 	int m_trianglesCount;
 	TriangleData** m_trianglesData;
 };

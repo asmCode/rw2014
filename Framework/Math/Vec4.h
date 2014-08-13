@@ -216,6 +216,11 @@ namespace sm
 			return sqrtf(x*x + y*y + z*z + w*w);
 		}
 
+		Vec3 XYZ()
+		{
+			return Vec3(x, y, z);
+		}
+
 		static float Dot(const Vec4 &v1, const Vec4 &v2)
 		{
 			return (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z) + (v1.w * v2.w);

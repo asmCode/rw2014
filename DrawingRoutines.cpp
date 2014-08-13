@@ -1,14 +1,13 @@
 #include "DrawingRoutines.h"
 
 #include "RobotElement.h"
+#include "Renderable.h"
+#include "BasicLightingEffect.h"
 #include <Graphics/Content/Content.h>
 #include <Graphics/Model.h>
 #include <Graphics/Shader.h>
 #include <Graphics/Material.h>
 #include <Graphics/DepthTexture.h>
-#include "BasicLightingEffect.h"
-#include "TriangledMesh.h"
-#include "InstanceTest.h"
 #include <Graphics/MeshPart.h>
 #include <Graphics/Mesh.h>
 #include <Graphics/VertexType.h>
@@ -654,27 +653,15 @@ void DrawingRoutines::DrawShadowMap(std::vector<MeshPart*> &meshParts)
 	}
 }
 
-void DrawingRoutines::DrawWithMaterial(TriangledMesh* triangledMesh)
+void DrawingRoutines::DrawWithMaterial(Renderable* renderable)
 {
-	if (triangledMesh->GetMaterial() == NULL)
+	Material* material = renderable->GetMaterial();
+
+	if (material == NULL)
 	{
-		//assert(false);
-		triangledMesh->SetMaterial(new Material());
+		material = new Material();
+		renderable->SetMaterial(material);
 	}
-
-	if (SetupShader(triangledMesh->GetMaterial(), NULL, sm::Matrix::IdentityMatrix()))
-		triangledMesh->Draw();
-}
-
-void DrawingRoutines::DrawWithMaterial(InstanceTest* mesh)
-{
-	if (mesh->GetMaterial() == NULL)
-	{
-		//assert(false);
-		mesh->SetMaterial(new Material());
-	}
-
-	Material* material = mesh->GetMaterial();
 
 	//if (SetupShader(mesh->GetMaterial(), NULL, sm::Matrix::IdentityMatrix()))
 	//{
@@ -700,5 +687,5 @@ void DrawingRoutines::DrawWithMaterial(InstanceTest* mesh)
 	glEnableVertexAttribArray(4);
 	glEnableVertexAttribArray(5);
 
-	mesh->Draw();
+	renderable->Draw();
 }

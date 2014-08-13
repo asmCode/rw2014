@@ -1,8 +1,8 @@
 #include "Renderable.h"
-#include "TriangledMesh.h"
+#include "BaseMesh.h"
 #include <Graphics/Material.h>
 
-Renderable::Renderable(TriangledMesh *mesh, Material* material) :
+Renderable::Renderable(BaseMesh *mesh, Material* material) :
 	m_mesh(mesh),
 	m_material(material)
 {
@@ -19,12 +19,12 @@ void Renderable::Draw()
 	m_mesh->Draw();
 }
 
-void Renderable::SetMesh(TriangledMesh* mesh)
+void Renderable::SetMesh(BaseMesh* mesh)
 {
 	m_mesh = mesh;
 }
 
-TriangledMesh* Renderable::GetTriangledMesh() const
+BaseMesh* Renderable::GetMesh() const
 {
 	return m_mesh;
 }

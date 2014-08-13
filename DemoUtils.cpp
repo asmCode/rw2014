@@ -21,3 +21,10 @@ float DemoUtils::GetPathLength(std::vector<sm::Vec3>& path)
 
 	return length;
 }
+
+sm::Matrix DemoUtils::GetTransform(sm::Vec3 triangle[3])
+{
+	sm::Vec3 center = (triangle[0] + triangle[1] + triangle[2]) / 3.0f;
+
+	return sm::Matrix::TranslateMatrix(center);
+}

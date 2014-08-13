@@ -1,47 +1,40 @@
 #pragma once
 
+#include "BaseMesh.h"
 #include <stdint.h>
 
 class Material;
-class TriangleShader;
+class TriangleDataColor;
 class MeshPart;
-class Triangle;
 
-class TriangledMesh
+class TriangledMesh : public BaseMesh
 {
 public:
 	TriangledMesh();
 	virtual ~TriangledMesh();
 
-	void Initialize(float* vertices, float* normals, float* texcoords, int count);
-	void Initialize(MeshPart* meshPart);
+	void Initialize(int trianglesCount);
 
 	void SetMaterial(Material* material);
 	Material* GetMaterial() const;
 
-	void SetTriangleShader(TriangleShader* triangleShader);
-
-	void Apply();
-	void Update(float time, float deltaTime);
 	void Draw();
 
-	Triangle** GetTriangles() const;
+	TriangleDataColor* GetTrianglesData() const;
 	uint32_t GetTrianglesCount() const;
 
 private:
-	uint32_t m_vertexBufferId;
-	uint32_t m_normalBufferId;
-	uint32_t m_texcoordBufferId;
-	uint32_t m_indexBufferId;
+	uint32_t m_vertexBufferId; // to statyczne i jedyne na aplikacje
+	uint32_t m_vertexDataBufferId;
+	uint32_t m_indexBufferId; // to statyczne i jedyne na aplikacje
 
-	int m_vertexCount;
-	float* m_vertexBuffer;
-	float* m_normalBuffer;
-	float* m_texcoordBuffer;
-	uint16_t* m_indexBuffer;
+	float* m_vertexBuffer; // to statyczne i jedyne na aplikacje
+	uint16_t* m_indexBuffer; // to statyczne i jedyne na aplikacje
 
-	Triangle** m_triangles;
+	int m_trianglesCount;
+	TriangleDataColor* m_triangles;
 
 	Material* m_material;
-	TriangleShader* m_triangleShader;
+
+	void Apply();
 };

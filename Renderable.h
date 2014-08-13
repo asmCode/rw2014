@@ -1,24 +1,24 @@
 #pragma once
 
-class TriangledMesh;
+class BaseMesh;
 class Material;
 
 class Renderable
 {
 public:
-	Renderable(TriangledMesh *mesh, Material* material);
+	Renderable(BaseMesh *mesh, Material* material);
 	virtual ~Renderable();
 
 	virtual void Draw();
 
-	void SetMesh(TriangledMesh* mesh);
-	TriangledMesh* GetTriangledMesh() const;
+	void SetMesh(BaseMesh* mesh);
+	BaseMesh* GetMesh() const;
 
 	void SetMaterial(Material* material);
 	Material* GetMaterial() const;
 
 private:
-	TriangledMesh* m_mesh;
+	BaseMesh* m_mesh;
 	Material* m_material;
 };
 

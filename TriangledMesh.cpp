@@ -1,8 +1,7 @@
 #pragma once
 
 #include "TriangledMesh.h"
-#include "TriangleShader.h"
-#include "Triangle.h"
+#include "TriangleDataColor.h"
 #include <Math/Vec2.h>
 #include <Graphics/Material.h>
 #include <Graphics/MeshPart.h>
@@ -10,18 +9,14 @@
 #include <GL/glew.h>
 
 TriangledMesh::TriangledMesh() :
-	m_texcoordBufferId(0),
-	m_normalBufferId(0),
 	m_vertexBufferId(0),
+	m_vertexDataBufferId(0),
 	m_indexBufferId(0),
-	m_vertexCount(0),
 	m_vertexBuffer(NULL),
-	m_normalBuffer(NULL),
-	m_texcoordBuffer(NULL),
 	m_indexBuffer(NULL),
+	m_trianglesCount(0),
 	m_triangles(NULL),
-	m_material(NULL),
-	m_triangleShader(NULL)
+	m_material(NULL)
 {
 }
 
@@ -29,91 +24,54 @@ TriangledMesh::~TriangledMesh()
 {
 	if (m_vertexBuffer != NULL)
 		delete m_vertexBuffer;
-	if (m_normalBuffer != NULL)
-		delete m_normalBuffer;
-	if (m_texcoordBuffer != NULL)
-		delete m_texcoordBuffer;
 	if (m_indexBuffer != NULL)
 		delete m_indexBuffer;
+	if (m_triangles != NULL)
+		delete m_triangles;
 
-	glDeleteBuffers(1, &m_vertexBufferId);
-	glDeleteBuffers(1, &m_normalBufferId);
-	glDeleteBuffers(1, &m_texcoordBufferId);
-	glDeleteBuffers(1, &m_indexBufferId);
+	if (m_vertexBufferId != 0)
+		glDeleteBuffers(1, &m_vertexBufferId);
+	if (m_vertexDataBufferId != 0)
+		glDeleteBuffers(1, &m_vertexDataBufferId);
+	if (m_indexBufferId != 0)
+		glDeleteBuffers(1, &m_indexBufferId);
 }
 
-void TriangledMesh::Initialize(float* vertices, float* normals, float* texcoords, int count)
+void TriangledMesh::Initialize(int trianglesCount)
 {
-	int fullBufferSize = count * 3;
+	m_trianglesCount = trianglesCount;
 
-	m_vertexCount = count;
-	m_vertexBuffer = new float[count * 3];
-	m_normalBuffer = new float[count * 3];
-	m_texcoordBuffer = new float[count * 2];
-	m_indexBuffer = new uint16_t[count];
-
-	memcpy(m_vertexBuffer, vertices, sizeof(float) * count * 3);
-	memcpy(m_normalBuffer, normals, sizeof(float)* count * 3);
-	memcpy(m_texcoordBuffer, texcoords, sizeof(float)* count * 2);
-
-	for (uint16_t i = 0; i < count; i++)
-		m_indexBuffer[i] = i;
-
-	m_triangles = new Triangle*[count / 3];
-	for (uint16_t i = 0; i < count / 3; i++)
+	m_vertexBuffer = new float[9]
 	{
-		m_triangles[i] = new Triangle();
+		-0.5f, -0.5f, 0.0f,
+		 0.5f, -0.5f, 0.0f,
+		 0.0f,  0.5f, 0.0f,
+	};
 
-		m_triangles[i]->Vertices = reinterpret_cast<sm::Vec3*>(m_vertexBuffer + i * 3 * 3);
-		m_triangles[i]->Initalize();
+	m_indexBuffer = new uint16_t[3] {0, 1, 2};
+	
+	m_triangles = new TriangleDataColor[m_trianglesCount];
+	
+	for (uint16_t i = 0; i < m_trianglesCount; i++)
+	{
+		m_triangles[i].Transform = sm::Matrix::IdentityMatrix();
+		m_triangles[i].Color.Set(1, 0, 0, 1);
 	}
 
 	glGenBuffers(1, &m_vertexBufferId);
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float)* 3 * count, m_vertexBuffer, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * 3, m_vertexBuffer, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	glGenBuffers(1, &m_normalBufferId);
-	glBindBuffer(GL_ARRAY_BUFFER, m_normalBufferId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float)* 3 * count, m_normalBuffer, GL_STATIC_DRAW);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-	glGenBuffers(1, &m_texcoordBufferId);
-	glBindBuffer(GL_ARRAY_BUFFER, m_texcoordBufferId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float)* 2 * count, m_texcoordBuffer, GL_STATIC_DRAW);
+	glGenBuffers(1, &m_vertexDataBufferId);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vertexDataBufferId);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(TriangleDataColor) * m_trianglesCount, NULL, GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glGenBuffers(1, &m_indexBufferId);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexBufferId);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint16_t) * count, m_indexBuffer, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint16_t) * 3, m_indexBuffer, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-}
-
-void TriangledMesh::Initialize(MeshPart* meshPart)
-{
-	const void* rawVertices = meshPart->GetVertices();
-	int verticesCount = meshPart->GetVerticesCount();
-
-	float* vertices = new float[verticesCount * 3];
-	float* normals = new float[verticesCount * 3];
-	float* texcoords = new float[verticesCount * 2];
-
-	for (int i = 0; i < verticesCount; i++)
-	{
-		sm::Vec3 vertex = VertexInformation::GetPosition(rawVertices, i, meshPart->m_vertexType);
-		sm::Vec3 normal = VertexInformation::GetNormal(rawVertices, i, meshPart->m_vertexType);
-		sm::Vec2 texcoord = VertexInformation::GetTexcoord0(rawVertices, i, meshPart->m_vertexType);
-
-		vertices[i * 3 + 0] = vertex[0];
-		vertices[i * 3 + 1] = vertex[1];
-		vertices[i * 3 + 2] = vertex[2];
-
-		normals[i * 3 + 0] = normal[0];
-		normals[i * 3 + 1] = normal[1];
-		normals[i * 3 + 2] = normal[2];
-	}
-
-	Initialize(vertices, normals, texcoords, verticesCount);
 }
 
 void TriangledMesh::SetMaterial(Material* material)
@@ -126,33 +84,18 @@ Material* TriangledMesh::GetMaterial() const
 	return m_material;
 }
 
-void TriangledMesh::SetTriangleShader(TriangleShader* triangleShader)
-{
-	m_triangleShader = triangleShader;
-}
-
 void TriangledMesh::Apply()
 {
-	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float)* 3 * m_vertexCount, m_vertexBuffer, GL_DYNAMIC_DRAW);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-}
+	glBindBuffer(GL_ARRAY_BUFFER, m_vertexDataBufferId);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(TriangleDataColor)* m_trianglesCount, m_triangles, GL_DYNAMIC_DRAW);
+	glVertexAttribPointer(1, 4, GL_FLOAT, false, sizeof(TriangleDataColor), 0);
+	glVertexAttribDivisor(1, 1);
 
-void TriangledMesh::Update(float time, float deltaTime)
-{
-	return;
-
-	sm::Vec3 *vertex = NULL;
-	sm::Vec3 *normal = NULL;
-
-	if (m_triangleShader != NULL)
+	int baseVertexDataIndex = 2;
+	for (int i = 0; i < 4; i++)
 	{
-		for (int i = 0; i < m_vertexCount; i+=3)
-		{
-			vertex = reinterpret_cast<sm::Vec3*>(m_vertexBuffer + i * 3);
-			normal = reinterpret_cast<sm::Vec3*>(m_normalBuffer + i * 3);
-			m_triangleShader->ProcessTriangle(time, deltaTime, vertex, normal);
-		}
+		glVertexAttribPointer(baseVertexDataIndex + i, 4, GL_FLOAT, false, sizeof(TriangleDataColor), reinterpret_cast<void*>(sizeof(sm::Vec4) + sizeof(sm::Vec4) * i));
+		glVertexAttribDivisor(baseVertexDataIndex + i, 1);
 	}
 }
 
@@ -163,25 +106,19 @@ void TriangledMesh::Draw()
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferId);
 	glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
 
-	glBindBuffer(GL_ARRAY_BUFFER, m_normalBufferId);
-	glVertexAttribPointer(3, 3, GL_FLOAT, false, 0, 0);
-
-	//glBindBuffer(GL_ARRAY_BUFFER, m_texcoordBufferId);
-	//glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0);
-
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexBufferId);
-	glDrawElements(GL_TRIANGLES, m_vertexCount, GL_UNSIGNED_SHORT, 0);
+	glDrawElementsInstanced(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, 0, m_trianglesCount);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-Triangle** TriangledMesh::GetTriangles() const
+TriangleDataColor* TriangledMesh::GetTrianglesData() const
 {
 	return m_triangles;
 }
 
 uint32_t TriangledMesh::GetTrianglesCount() const
 {
-	return m_vertexCount / 3;
+	return m_trianglesCount;
 }

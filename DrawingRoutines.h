@@ -12,7 +12,7 @@ class Content;
 class RobotElement;
 class Material;
 class TriangledMesh;
-class InstanceTest;
+class Renderable;
 
 class DrawingRoutines
 {
@@ -76,6 +76,5 @@ public:
 	static void DrawBlack(std::vector<MeshPart*> &meshParts);
 	static void DrawShadowMap(std::vector<MeshPart*> &meshParts);
 
-	static void DrawWithMaterial(TriangledMesh* triangledMesh);
-	static void DrawWithMaterial(InstanceTest* mesh);
+	static void DrawWithMaterial(Renderable* renderable);
 };

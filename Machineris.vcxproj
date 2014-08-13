@@ -181,7 +181,7 @@ exit /B 0
     <ClCompile Include="GraphicsLibrary\SteerCamera.cpp" />
     <ClCompile Include="GraphicsLibrary\TimeControl.cpp" />
     <ClCompile Include="GraphicsLog.cpp" />
-    <ClCompile Include="InstanceTest.cpp" />
+    <ClCompile Include="TriangledMesh.cpp" />
     <ClCompile Include="ParticlesManager.cpp" />
     <ClCompile Include="Particles\Particle.cpp" />
     <ClCompile Include="Particles\ParticleEmmiter.cpp" />
@@ -202,7 +202,6 @@ exit /B 0
     <ClCompile Include="StartDialog.cpp" />
     <ClCompile Include="StartNormalMode.cpp" />
     <ClCompile Include="Triangle.cpp" />
-    <ClCompile Include="TriangledMesh.cpp" />
     <ClCompile Include="TriangleShader.cpp" />
     <ClCompile Include="TrianglesRibbon.cpp" />
     <ClCompile Include="VectorGraphics.cpp" />
@@ -215,6 +214,7 @@ exit /B 0
     <ClInclude Include="AnimationClips\WheelClip.h" />
     <ClInclude Include="AnimCameraManager.h" />
     <ClInclude Include="AssemblingScene.h" />
+    <ClInclude Include="BaseMesh.h" />
     <ClInclude Include="BasicLightingEffect.h" />
     <ClInclude Include="Billboard.h" />
     <ClInclude Include="BumpAlongNormal.h" />
@@ -303,7 +303,7 @@ exit /B 0
     <ClInclude Include="GraphicsLibrary\SteerCamera.h" />
     <ClInclude Include="GraphicsLibrary\TimeControl.h" />
     <ClInclude Include="GraphicsLog.h" />
-    <ClInclude Include="InstanceTest.h" />
+    <ClInclude Include="TriangledMesh.h" />
     <ClInclude Include="ParticlesManager.h" />
     <ClInclude Include="Particles\IParticleHandler.h" />
     <ClInclude Include="Particles\Particle.h" />
@@ -330,7 +330,6 @@ exit /B 0
     <ClInclude Include="StartDialog.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="TriangleDataColor.h" />
-    <ClInclude Include="TriangledMesh.h" />
     <ClInclude Include="TriangleShader.h" />
     <ClInclude Include="TrianglesRibbon.h" />
     <ClInclude Include="VectorGraphics.h" />

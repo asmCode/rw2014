@@ -1,6 +1,4 @@
 #include "Test1Scene.h"
-#include "../TriangledMesh.h"
-#include "../InstanceTest.h"
 #include "../DrawingRoutines.h"
 #include "../BumpAlongNormal.h"
 #include "../DecomposeToRibbon.h"
@@ -11,58 +9,12 @@
 #include <Graphics/Content/Content.h>
 #include <GL/glew.h>
 
+#include "../Renderable.h"
+
 bool Test1Scene::Initialize()
 {
-	m_triangleShader = new BumpAlongNormal();
 	m_decomposeAndFly = new DecomposeToRibbon();
 	m_composeFromRibbon = new ComposeFromRibbon();
-
-	float vertex[] =
-	{
-		 0.0f,   10.0f, 0.0f,
-		-10.0f, -10.0f, 0.0f,
-		 10.0f, -10.0f, 0.0f,
-	};
-
-	float normal[] =
-	{
-		0.0f, 0.0f, 1.0f,
-		0.0f, 0.0f, 1.0f,
-		0.0f, 0.0f, 1.0f,
-	};
-
-	float texcoord[] =
-	{
-		0, 0,
-		0, 0,
-		0, 0,
-	};
-	
-
-	int count = 3;
-
-	/*float* vertex = new float[count * 3];
-	float* normal = new float[count * 3];
-	float* texcoord = new float[count * 2];
-
-	static Randomizer random;
-
-	for (int i = 0; i < count; i++)
-	{
-		vertex[i * 3 + 0] = random.GetFloat(-100.0f, 100.0f);
-		vertex[i * 3 + 1] = random.GetFloat(-100.0f, 100.0f);
-		vertex[i * 3 + 2] = random.GetFloat(-100.0f, 100.0f);
-	}*/
-
-	m_triangledMesh = new TriangledMesh();
-	m_triangledMesh->Initialize(Content::Instance->Get<Model>("teapot")->m_meshParts[0]);
-	m_triangledMesh->SetTriangleShader(m_triangleShader);
-
-	m_triangledMeshSphere = new TriangledMesh();
-	m_triangledMeshSphere->Initialize(Content::Instance->Get<Model>("sphere")->m_meshParts[0]);
-
-	m_instanceTest = new InstanceTest();
-	m_instanceTest->Initialize();
 
 	std::vector<sm::Vec3> path;
 	path.push_back(sm::Vec3(0.0f, 30.0f, 0.0f));
@@ -71,7 +23,7 @@ bool Test1Scene::Initialize()
 	path.push_back(sm::Vec3(20.0f, 20.0f, -5.0f));
 
 	m_decomposeAndFly->Initialize(
-		m_triangledMesh,
+		Content::Instance->Get<Model>("teapot")->m_meshParts[0],
 		path,
 		3.0f,
 		8.0f);
@@ -83,7 +35,7 @@ bool Test1Scene::Initialize()
 	path.push_back(sm::Vec3(-10.0f, -10.0f, 20.0f));
 
 	m_composeFromRibbon->Initialize(
-		m_triangledMeshSphere,
+		Content::Instance->Get<Model>("sphere")->m_meshParts[0],
 		path,
 		10.0f,
 		6.0f);
@@ -93,8 +45,6 @@ bool Test1Scene::Initialize()
 
 bool Test1Scene::Update(float time, float deltaTime)
 {
-	m_triangledMesh->Update(time, deltaTime);
-	m_triangledMeshSphere->Update(time, deltaTime);
 	m_decomposeAndFly->Update(time, deltaTime);
 	m_composeFromRibbon->Update(time, deltaTime);
 
@@ -106,9 +56,11 @@ bool Test1Scene::Draw(float time, float deltaTime)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-	DrawingRoutines::DrawWithMaterial(m_triangledMesh);
-	DrawingRoutines::DrawWithMaterial(m_triangledMeshSphere);
-	DrawingRoutines::DrawWithMaterial(m_instanceTest);
+	Renderable renderable(m_decomposeAndFly->GetMesh(), NULL);
+	DrawingRoutines::DrawWithMaterial(&renderable);
+
+	renderable.SetMesh(m_composeFromRibbon->GetMesh());
+	DrawingRoutines::DrawWithMaterial(&renderable);
 
 	return true;
 }
