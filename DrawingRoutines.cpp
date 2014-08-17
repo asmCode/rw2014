@@ -1,6 +1,5 @@
 #include "DrawingRoutines.h"
 
-#include "RobotElement.h"
 #include "Renderable.h"
 #include "BasicLightingEffect.h"
 #include <Graphics/Content/Content.h>

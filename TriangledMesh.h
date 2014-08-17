@@ -1,11 +1,10 @@
 #pragma once
 
 #include "BaseMesh.h"
+#include <Math/Matrix.h>
 #include <stdint.h>
 
-class Material;
 class TriangleDataColor;
-class MeshPart;
 
 class TriangledMesh : public BaseMesh
 {
@@ -13,28 +12,23 @@ public:
 	TriangledMesh();
 	virtual ~TriangledMesh();
 
-	void Initialize(int trianglesCount);
+	virtual void Draw();
 
-	void SetMaterial(Material* material);
-	Material* GetMaterial() const;
-
-	void Draw();
-
-	TriangleDataColor* GetTrianglesData() const;
+	//TriangleDataColor* GetTrianglesData() const;
 	uint32_t GetTrianglesCount() const;
 
-private:
-	uint32_t m_vertexBufferId; // to statyczne i jedyne na aplikacje
-	uint32_t m_vertexDataBufferId;
-	uint32_t m_indexBufferId; // to statyczne i jedyne na aplikacje
+	void SetTriangleData(int index, const sm::Matrix& transform, const sm::Vec4& color);
+	void SetTriangleTransform(int index, const sm::Matrix& transform);
+	void SetTriangleColor(int index, const sm::Vec4& color);
 
-	float* m_vertexBuffer; // to statyczne i jedyne na aplikacje
-	uint16_t* m_indexBuffer; // to statyczne i jedyne na aplikacje
+protected:
+	uint32_t m_vertexBufferId;
+	uint32_t m_vertexDataBufferId;
+	uint32_t m_indexBufferId;
 
 	int m_trianglesCount;
 	TriangleDataColor* m_triangles;
 
-	Material* m_material;
-
-	void Apply();
+	virtual void Apply();
+	void CreateVertexDataBuffer();
 };

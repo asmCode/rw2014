@@ -5,7 +5,7 @@
 #include <Math/Animation/AnimationCurve.h>
 #include <vector>
 
-class TriangledMesh;
+class UniqueTriangledMesh;
 class MeshPart;
 class TriangleDataColor;
 class BaseMesh;
@@ -29,7 +29,6 @@ public:
 protected:
 	struct TriangleData
 	{
-		TriangleDataColor* m_triangleData;
 		sm::Matrix BaseTransform;
 		float Time;
 
@@ -47,7 +46,7 @@ protected:
 
 	virtual AnimationCurve<float>* CreateScaleCurve(AnimationCurve<sm::Vec3> *transformCurve) = 0;
 
-	TriangledMesh* m_triangledMesh;
+	UniqueTriangledMesh* m_triangledMesh;
 	int m_trianglesCount;
 	TriangleData** m_trianglesData;
 };

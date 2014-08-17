@@ -1,5 +1,5 @@
 #include "TrianglesRibbon.h"
-#include "TriangledMesh.h"
+#include "UniqueTriangledMesh.h"
 #include "TriangleDataColor.h"
 #include "DemoUtils.h"
 #include "DebugUtils.h"
@@ -26,28 +26,22 @@ void TrianglesRibbon::Initialize(
 
 	m_trianglesCount = meshPart->GetVerticesCount() / 3;
 
-	m_triangledMesh = new TriangledMesh();
-	m_triangledMesh->Initialize(m_trianglesCount);
-	TriangleDataColor* trianglesData = m_triangledMesh->GetTrianglesData();
+	m_triangledMesh = new UniqueTriangledMesh();
+	m_triangledMesh->Initialize(meshPart);
 
 	m_trianglesData = new TriangleData*[m_trianglesCount];
 
 	for (int i = 0; i < m_trianglesCount; i++)
 	{
-		sm::Vec3 triangleVerts[3];
-		triangleVerts[0] = VertexInformation::GetPosition(meshPart->GetVertices(), i * 3 + 0, meshPart->m_vertexType);
-		triangleVerts[1] = VertexInformation::GetPosition(meshPart->GetVertices(), i * 3 + 1, meshPart->m_vertexType);
-		triangleVerts[2] = VertexInformation::GetPosition(meshPart->GetVertices(), i * 3 + 2, meshPart->m_vertexType);
-
 		m_trianglesData[i] = new TriangleData();
-		m_trianglesData[i]->m_triangleData = &trianglesData[i];
-		m_trianglesData[i]->BaseTransform = DemoUtils::GetTransform(triangleVerts);
+		//m_trianglesData[i]->BaseTransform = m_triangledMesh->GetBaseTransform(i);
+		//m_trianglesData[i]->BaseTransform = sm::Matrix::IdentityMatrix();
 		m_trianglesData[i]->Time = 0.0f;
 
 		m_trianglesData[i]->LastKeyframeIndex = 0;
 		m_trianglesData[i]->Curve = CreateCurve(
-			m_trianglesData[i]->BaseTransform * sm::Vec3(0, 0, 0),
-			(m_trianglesData[i]->BaseTransform * sm::Vec4(0, 0, 1, 0)).XYZ(),
+			m_triangledMesh->GetBasePosition(i),
+			(m_triangledMesh->GetBaseRotation(i) * sm::Vec3(0, 0, 1)).GetNormalized(),
 			path,
 			startTime,
 			duration);
@@ -71,9 +65,11 @@ void TrianglesRibbon::Update(float time, float deltaTime)
 		position = m_trianglesData[i]->Curve->Evaluate(time);
 		scale = m_trianglesData[i]->ScaleCurve->Evaluate(time);
 
-		m_trianglesData[i]->m_triangleData->Transform = 
+		m_triangledMesh->SetTriangleTransform(
+			i,
 			sm::Matrix::TranslateMatrix(position) *
-			sm::Matrix::ScaleMatrix(scale, scale, scale);
+			m_triangledMesh->GetBaseRotation(i) *
+			sm::Matrix::ScaleMatrix(scale, scale, scale));
 	}
 }
 

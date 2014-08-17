@@ -181,12 +181,12 @@ exit /B 0
     <ClCompile Include="GraphicsLibrary\SteerCamera.cpp" />
     <ClCompile Include="GraphicsLibrary\TimeControl.cpp" />
     <ClCompile Include="GraphicsLog.cpp" />
+    <ClCompile Include="MeshUtils.cpp" />
     <ClCompile Include="TriangledMesh.cpp" />
     <ClCompile Include="ParticlesManager.cpp" />
     <ClCompile Include="Particles\Particle.cpp" />
     <ClCompile Include="Particles\ParticleEmmiter.cpp" />
     <ClCompile Include="Renderable.cpp" />
-    <ClCompile Include="RobotElement.cpp" />
     <ClCompile Include="GeometryBatch.cpp" />
     <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="MechArm.cpp" />
@@ -204,6 +204,7 @@ exit /B 0
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="TriangleShader.cpp" />
     <ClCompile Include="TrianglesRibbon.cpp" />
+    <ClCompile Include="UniqueTriangledMesh.cpp" />
     <ClCompile Include="VectorGraphics.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
@@ -303,13 +304,13 @@ exit /B 0
     <ClInclude Include="GraphicsLibrary\SteerCamera.h" />
     <ClInclude Include="GraphicsLibrary\TimeControl.h" />
     <ClInclude Include="GraphicsLog.h" />
+    <ClInclude Include="MeshUtils.h" />
     <ClInclude Include="TriangledMesh.h" />
     <ClInclude Include="ParticlesManager.h" />
     <ClInclude Include="Particles\IParticleHandler.h" />
     <ClInclude Include="Particles\Particle.h" />
     <ClInclude Include="Particles\ParticleEmmiter.h" />
     <ClInclude Include="Renderable.h" />
-    <ClInclude Include="RobotElement.h" />
     <ClInclude Include="GeometryBatch.h" />
     <ClInclude Include="GlassPart.h" />
     <ClInclude Include="LoadingScreen.h" />
@@ -332,6 +333,7 @@ exit /B 0
     <ClInclude Include="TriangleDataColor.h" />
     <ClInclude Include="TriangleShader.h" />
     <ClInclude Include="TrianglesRibbon.h" />
+    <ClInclude Include="UniqueTriangledMesh.h" />
     <ClInclude Include="VectorGraphics.h" />
   </ItemGroup>
   <ItemGroup>

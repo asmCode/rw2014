@@ -22,9 +22,23 @@ float DemoUtils::GetPathLength(std::vector<sm::Vec3>& path)
 	return length;
 }
 
-sm::Matrix DemoUtils::GetTransform(sm::Vec3 triangle[3])
+sm::Matrix DemoUtils::GetTriangleTransform(sm::Vec3* triangle)
 {
 	sm::Vec3 center = (triangle[0] + triangle[1] + triangle[2]) / 3.0f;
 
-	return sm::Matrix::TranslateMatrix(center);
+	sm::Vec3 normal = -((triangle[1] - triangle[0]) * (triangle[2] - triangle[0])).GetNormalized();
+	sm::Vec3 triangleBase = triangle[1] - triangle[0];
+
+	sm::Vec3 up = (normal * triangleBase).GetNormalized();
+
+	sm::Matrix rotate;
+	if (normal != sm::Vec3(0, 0, 0) &&
+		up != sm::Vec3(0, 0, 0))
+		rotate = sm::Matrix::CreateLookAt(normal, up);
+	else
+		rotate = sm::Matrix::IdentityMatrix();
+
+	return
+		sm::Matrix::TranslateMatrix(center) *
+		rotate;
 }

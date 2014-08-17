@@ -260,7 +260,10 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 	wglSwapIntervalEXT(false);
 
 	std::string openGlVendor = reinterpret_cast<const char*>(glGetString(GL_VENDOR));
+	std::string openGlversion = reinterpret_cast<const char*>(glGetString(GL_VERSION));
+
 	Log::LogT("OpenGl Vendor: %s", openGlVendor.c_str());
+	Log::LogT("OpenGl Version: %s", openGlversion.c_str());
 
 	SetOpenglParams();
 
