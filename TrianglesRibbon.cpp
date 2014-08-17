@@ -69,6 +69,7 @@ void TrianglesRibbon::Update(float time, float deltaTime)
 			i,
 			sm::Matrix::TranslateMatrix(position) *
 			m_triangledMesh->GetBaseRotation(i) *
+			//sm::Matrix::RotateAxisMatrix(m_trianglesData[i]->Time, 0, 0, 1) *
 			sm::Matrix::ScaleMatrix(scale, scale, scale));
 	}
 }
