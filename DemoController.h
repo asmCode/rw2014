@@ -55,6 +55,7 @@ class SpriteBatch;
 class FontRenderer;
 class DistortParticleHandler;
 class GameObject;
+class GraphicsEngine;
 
 #define demo DemoController::GetInstance()
 
@@ -219,6 +220,8 @@ public:
 	LoadingScreen *loadingScreen;
 
 	CameraMode cameraMode;
+
+	GraphicsEngine* m_graphicsEngine;
 
 	int nextId;
 

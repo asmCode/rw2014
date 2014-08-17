@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 class GameObject;
 
 class GraphicsEngine
@@ -8,7 +10,7 @@ public:
 	GraphicsEngine();
 	virtual ~GraphicsEngine();
 
-	void RenderGameObjects(GameObject** gameObjects, int count);
+	void RenderGameObjects(const std::vector<GameObject*>& gameObjects);
 
 private:
 };

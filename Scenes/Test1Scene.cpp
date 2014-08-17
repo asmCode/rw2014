@@ -3,11 +3,11 @@
 #include "../BumpAlongNormal.h"
 #include "../DecomposeToRibbon.h"
 #include "../ComposeFromRibbon.h"
+#include "../GameObject.h"
 #include <Utils/Randomizer.h>
 #include <Graphics/MeshPart.h>
 #include <Graphics/Model.h>
 #include <Graphics/Content/Content.h>
-#include <GL/glew.h>
 
 #include "../Renderable.h"
 
@@ -40,6 +40,14 @@ bool Test1Scene::Initialize()
 		10.0f,
 		6.0f);
 
+	GameObject *g1 = new GameObject();
+	g1->SetRenderable(new Renderable(m_decomposeAndFly->GetMesh(), NULL));
+	m_gameObjects.push_back(g1);
+
+	GameObject *g2 = new GameObject();
+	g2->SetRenderable(new Renderable(m_composeFromRibbon->GetMesh(), NULL));
+	m_gameObjects.push_back(g2);
+
 	return true;
 }
 
@@ -47,20 +55,6 @@ bool Test1Scene::Update(float time, float deltaTime)
 {
 	m_decomposeAndFly->Update(time, deltaTime);
 	m_composeFromRibbon->Update(time, deltaTime);
-
-	return true;
-}
-
-bool Test1Scene::Draw(float time, float deltaTime)
-{
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-	Renderable renderable(m_decomposeAndFly->GetMesh(), NULL);
-	DrawingRoutines::DrawWithMaterial(&renderable);
-
-	renderable.SetMesh(m_composeFromRibbon->GetMesh());
-	DrawingRoutines::DrawWithMaterial(&renderable);
 
 	return true;
 }

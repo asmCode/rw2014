@@ -182,6 +182,7 @@ exit /B 0
     <ClCompile Include="GraphicsLibrary\TimeControl.cpp" />
     <ClCompile Include="GraphicsLog.cpp" />
     <ClCompile Include="MeshUtils.cpp" />
+    <ClCompile Include="Scenes\BaseScene.cpp" />
     <ClCompile Include="TriangledMesh.cpp" />
     <ClCompile Include="ParticlesManager.cpp" />
     <ClCompile Include="Particles\Particle.cpp" />

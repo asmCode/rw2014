@@ -19,6 +19,7 @@
 #include "common.h"
 #include "Scenes/Test1Scene.h"
 #include "MechArm.h"
+#include "GraphicsEngine.h"
 #include "AssemblingScene.h"
 #include <Graphics/Property.h>
 #include "PropertySignal.h"
@@ -256,6 +257,8 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 	{
 		assert(false);
 	}
+
+	m_graphicsEngine = new GraphicsEngine();
 
 	wglSwapIntervalEXT(false);
 
@@ -739,9 +742,9 @@ bool DemoController::Draw(float time, float seconds)
 	DrawingRoutines::SetEyePosition(m_activeCamera->GetPosition());
 	DrawingRoutines::SetLightPosition(m_activeCamera->GetPosition());
 
-	m_activeScene->Draw(time, seconds);
-
 	//DrawingRoutines::DrawWithMaterial(m_content->Get<Model>("teapot")->m_meshParts);
+
+	m_graphicsEngine->RenderGameObjects(m_activeScene->GetGameObjects());
 
 #if 0
 
