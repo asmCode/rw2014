@@ -74,7 +74,7 @@ void TrianglesRibbon::Update(float time, float deltaTime)
 	}
 }
 
-BaseMesh* TrianglesRibbon::GetMesh() const
+UniqueTriangledMesh* TrianglesRibbon::GetMesh() const
 {
 	return m_triangledMesh;
 }

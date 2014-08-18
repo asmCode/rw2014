@@ -1,9 +1,8 @@
 #include "Test1Scene.h"
-#include "../DrawingRoutines.h"
-#include "../BumpAlongNormal.h"
 #include "../DecomposeToRibbon.h"
 #include "../ComposeFromRibbon.h"
 #include "../GameObject.h"
+#include "../UniqueTriangledMesh.h"
 #include <Utils/Randomizer.h>
 #include <Graphics/MeshPart.h>
 #include <Graphics/Model.h>

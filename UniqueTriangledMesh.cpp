@@ -15,12 +15,6 @@ UniqueTriangledMesh::UniqueTriangledMesh() :
 	m_baseRotations(NULL),
 	m_basePositions(NULL)
 {
-	sm::Vec3 dupa[3];
-	dupa[0].Set( 0.0f, 1.0f, 1.0f);
-	dupa[1].Set(-1.0f, -1.0f, 1.0f);
-	dupa[2].Set( 1.0f, -1.0f, 1.0f);
-
-	DemoUtils::GetTriangleTransform(dupa);
 }
 
 UniqueTriangledMesh::~UniqueTriangledMesh()

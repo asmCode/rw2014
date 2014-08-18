@@ -183,6 +183,7 @@ exit /B 0
     <ClCompile Include="GraphicsLog.cpp" />
     <ClCompile Include="MeshUtils.cpp" />
     <ClCompile Include="Scenes\BaseScene.cpp" />
+    <ClCompile Include="Scenes\GlowTestScene.cpp" />
     <ClCompile Include="TriangledMesh.cpp" />
     <ClCompile Include="ParticlesManager.cpp" />
     <ClCompile Include="Particles\Particle.cpp" />
@@ -306,6 +307,7 @@ exit /B 0
     <ClInclude Include="GraphicsLibrary\TimeControl.h" />
     <ClInclude Include="GraphicsLog.h" />
     <ClInclude Include="MeshUtils.h" />
+    <ClInclude Include="Scenes\GlowTestScene.h" />
     <ClInclude Include="TriangledMesh.h" />
     <ClInclude Include="ParticlesManager.h" />
     <ClInclude Include="Particles\IParticleHandler.h" />

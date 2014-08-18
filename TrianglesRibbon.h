@@ -8,7 +8,6 @@
 class UniqueTriangledMesh;
 class MeshPart;
 class TriangleDataColor;
-class BaseMesh;
 
 class TrianglesRibbon
 {
@@ -24,7 +23,7 @@ public:
 
 	void Update(float time, float deltaTime);
 
-	BaseMesh* GetMesh() const;
+	UniqueTriangledMesh* GetMesh() const;
 
 protected:
 	struct TriangleData

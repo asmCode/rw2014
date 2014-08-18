@@ -18,6 +18,7 @@
 #include <Graphics/BoundingSphere.h>
 #include "common.h"
 #include "Scenes/Test1Scene.h"
+#include "Scenes/GlowTestScene.h"
 #include "MechArm.h"
 #include "GraphicsEngine.h"
 #include "AssemblingScene.h"
@@ -317,8 +318,9 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 	//m_lightProjMatrix = sm::Matrix::Ortho2DMatrix(-10, 10, -10, 10);
 
 	m_scenes.push_back(new Test1Scene());
+	m_scenes.push_back(new GlowTestScene());
 
-	m_activeScene = m_scenes[0];
+	m_activeScene = m_scenes[1];
 	
 	return true;
 }
