@@ -1,49 +1,30 @@
 #version 400
 
 layout (location = 0) in vec2 a_position;
-layout (location = 1) in vec2 a_coords;
 
-uniform float u_pixelSize;
-uniform mat4 u_mvp;
+uniform float u_texelSize;
 
-varying vec2 v_coords;
-varying vec2 v_blurCoords[14];
+varying vec2 v_coords[15];
 
 void main()
 {
-	v_coords = a_coords;
-	
-	/*
-	v_blurCoords[ 0] = v_coords + vec2(0.0, -u_pixelSize * 7);
-    v_blurCoords[ 1] = v_coords + vec2(0.0, -u_pixelSize * 6);
-    v_blurCoords[ 2] = v_coords + vec2(0.0, -u_pixelSize * 5);
-    v_blurCoords[ 3] = v_coords + vec2(0.0, -u_pixelSize * 4);
-    v_blurCoords[ 4] = v_coords + vec2(0.0, -u_pixelSize * 3);
-    v_blurCoords[ 5] = v_coords + vec2(0.0, -u_pixelSize * 2);
-    v_blurCoords[ 6] = v_coords + vec2(0.0, -u_pixelSize);
-    v_blurCoords[ 7] = v_coords + vec2(0.0,  u_pixelSize);
-    v_blurCoords[ 8] = v_coords + vec2(0.0,  u_pixelSize * 2);
-    v_blurCoords[ 9] = v_coords + vec2(0.0,  u_pixelSize * 3);
-    v_blurCoords[10] = v_coords + vec2(0.0,  u_pixelSize * 4);
-    v_blurCoords[11] = v_coords + vec2(0.0,  u_pixelSize * 5);
-    v_blurCoords[12] = v_coords + vec2(0.0,  u_pixelSize * 6);
-    v_blurCoords[13] = v_coords + vec2(0.0,  u_pixelSize * 7);
-	*/
-	
-	v_blurCoords[ 0] = v_coords + vec2(0.0, -u_pixelSize * 14);
-    v_blurCoords[ 1] = v_coords + vec2(0.0, -u_pixelSize * 12);
-    v_blurCoords[ 2] = v_coords + vec2(0.0, -u_pixelSize * 10);
-    v_blurCoords[ 3] = v_coords + vec2(0.0, -u_pixelSize * 8);
-    v_blurCoords[ 4] = v_coords + vec2(0.0, -u_pixelSize * 6);
-    v_blurCoords[ 5] = v_coords + vec2(0.0, -u_pixelSize * 4);
-    v_blurCoords[ 6] = v_coords + vec2(0.0, -u_pixelSize * 2);
-    v_blurCoords[ 7] = v_coords + vec2(0.0,  u_pixelSize * 2);
-    v_blurCoords[ 8] = v_coords + vec2(0.0,  u_pixelSize * 4);
-    v_blurCoords[ 9] = v_coords + vec2(0.0,  u_pixelSize * 6);
-    v_blurCoords[10] = v_coords + vec2(0.0,  u_pixelSize * 8);
-    v_blurCoords[11] = v_coords + vec2(0.0,  u_pixelSize * 10);
-    v_blurCoords[12] = v_coords + vec2(0.0,  u_pixelSize * 12);
-    v_blurCoords[13] = v_coords + vec2(0.0,  u_pixelSize * 14);
+	vec2 coords = a_position * 0.5f + 0.5f;
 
-	gl_Position = u_mvp * vec4(a_position.x, a_position.y, 0, 1);
+	v_coords[ 0] = coords + vec2(0.0, -u_texelSize * 7);
+    v_coords[ 1] = coords + vec2(0.0, -u_texelSize * 6);
+    v_coords[ 2] = coords + vec2(0.0, -u_texelSize * 5);
+    v_coords[ 3] = coords + vec2(0.0, -u_texelSize * 4);
+    v_coords[ 4] = coords + vec2(0.0, -u_texelSize * 3);
+    v_coords[ 5] = coords + vec2(0.0, -u_texelSize * 2);
+    v_coords[ 6] = coords + vec2(0.0, -u_texelSize * 1);
+	v_coords[ 7] = coords;
+    v_coords[ 8] = coords + vec2(0.0, u_texelSize * 1);
+    v_coords[ 9] = coords + vec2(0.0, u_texelSize * 2);
+    v_coords[10] = coords + vec2(0.0, u_texelSize * 3);
+    v_coords[11] = coords + vec2(0.0, u_texelSize * 4);
+    v_coords[12] = coords + vec2(0.0, u_texelSize * 5);
+    v_coords[13] = coords + vec2(0.0, u_texelSize * 6);
+    v_coords[14] = coords + vec2(0.0, u_texelSize * 7);
+
+	gl_Position = vec4(a_position.x, a_position.y, 0, 1);
 }

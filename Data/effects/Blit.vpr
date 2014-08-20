@@ -1,0 +1,12 @@
+#version 400
+
+layout (location = 0) in vec2 a_position;
+
+varying vec2 v_coords;
+
+void main()
+{
+	v_coords = a_position * 0.5f + 0.5f;
+
+	gl_Position = vec4(a_position, 0, 1);
+}

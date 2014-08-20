@@ -1,0 +1,13 @@
+#version 400
+
+layout( location = 0 ) out vec4 FragColor;
+
+uniform sampler2D u_tex1;
+uniform sampler2D u_tex2;
+
+varying vec2 v_coords;
+
+void main()
+{
+	FragColor = texture2D(u_tex1, v_coords) + texture2D(u_tex2, v_coords);
+}

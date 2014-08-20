@@ -347,8 +347,12 @@ exit /B 0
     <ResourceCompile Include="rw09.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\effects\Add.fpr" />
+    <None Include="Data\effects\Add.vpr" />
     <None Include="Data\effects\Black.fpr" />
     <None Include="Data\effects\Black.vpr" />
+    <None Include="Data\effects\Blit.fpr" />
+    <None Include="Data\effects\Blit.vpr" />
     <None Include="Data\effects\Color.fpr" />
     <None Include="Data\effects\Color.vpr" />
     <None Include="Data\effects\Diff.fpr" />
