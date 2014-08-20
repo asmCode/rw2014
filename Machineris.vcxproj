@@ -129,6 +129,7 @@ exit /B 0
     <ClCompile Include="DecomposeToRibbon.cpp" />
     <ClCompile Include="DemoUtils.cpp" />
     <ClCompile Include="DistortParticleHandler.cpp" />
+    <ClCompile Include="DownsampleMaterial.cpp" />
     <ClCompile Include="Dream.cpp" />
     <ClCompile Include="Ext\tinyxml\tinyxml2.cpp" />
     <ClCompile Include="Framework\Graphics\Animation.cpp">
@@ -182,6 +183,7 @@ exit /B 0
     <ClCompile Include="GraphicsLibrary\TimeControl.cpp" />
     <ClCompile Include="GraphicsLog.cpp" />
     <ClCompile Include="MeshUtils.cpp" />
+    <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Scenes\BaseScene.cpp" />
     <ClCompile Include="Scenes\GlowTestScene.cpp" />
     <ClCompile Include="TriangledMesh.cpp" />
@@ -228,6 +230,7 @@ exit /B 0
     <ClInclude Include="DecomposeToRibbon.h" />
     <ClInclude Include="DemoUtils.h" />
     <ClInclude Include="DistortParticleHandler.h" />
+    <ClInclude Include="DownsampleMaterial.h" />
     <ClInclude Include="Dream.h" />
     <ClInclude Include="Ext\tinyxml\tinyxml2.h" />
     <ClInclude Include="Framework\Graphics\Animation.h" />
@@ -307,6 +310,7 @@ exit /B 0
     <ClInclude Include="GraphicsLibrary\TimeControl.h" />
     <ClInclude Include="GraphicsLog.h" />
     <ClInclude Include="MeshUtils.h" />
+    <ClInclude Include="Quad.h" />
     <ClInclude Include="Scenes\GlowTestScene.h" />
     <ClInclude Include="TriangledMesh.h" />
     <ClInclude Include="ParticlesManager.h" />
@@ -359,6 +363,8 @@ exit /B 0
     <None Include="Data\effects\Distortion.vpr" />
     <None Include="Data\effects\DistortParticle.fpr" />
     <None Include="Data\effects\DistortParticle.vpr" />
+    <None Include="Data\effects\Downsample.fpr" />
+    <None Include="Data\effects\Downsample.vpr" />
     <None Include="Data\effects\HoriBlur.fpr" />
     <None Include="Data\effects\HoriBlur.vpr" />
     <None Include="Data\effects\SpecularColored.fpr" />

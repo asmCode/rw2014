@@ -21,9 +21,6 @@ public:
 	Framebuffer();
 	~Framebuffer(void);
 
-	void StartOffscreenRendering();
-	void StopOffscreenRendering();
-
 	bool Initialize(int width, int height, int bpp);
 	unsigned GetTextureId();
 

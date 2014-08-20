@@ -63,6 +63,16 @@ void Shader::SetParameter(const char *name, float val)
 	glUniform1f(uniformParam, val);
 }
 
+void Shader::SetParameter(const char *name, float val1, float val2)
+{
+	int uniformParam = glGetUniformLocation(m_programId, name);
+	//assert(uniformParam != -1);
+	if (uniformParam == -1)
+		return;
+
+	glUniform2f(uniformParam, val1, val2);
+}
+
 void Shader::SetParameter(const char *name, float val1, float val2, float val3)
 {
 	int uniformParam = glGetUniformLocation(m_programId, name);
@@ -95,7 +105,9 @@ void Shader::SetTextureParameter(const char *name, unsigned channel, unsigned te
 	glBindTexture(GL_TEXTURE_2D, texId);
 
 	int uniformParam = glGetUniformLocation(m_programId, name);
-	assert(uniformParam != -1);
+	//assert(uniformParam != -1);
+	if (uniformParam == -1)
+		return;
 	
 	glUniform1i(uniformParam, channel);
 	

@@ -23,6 +23,7 @@ public:
 	void BindVertexChannel(unsigned channel, const char *name);
 	
 	void SetParameter(const char *name, float val);
+	void SetParameter(const char *name, float val1, float val2);
 	void SetParameter(const char *name, float val1, float val2, float val3);
 	void SetParameter(const char *name, float val1, float val2, float val3, float val4);
 	

@@ -12,6 +12,8 @@ class Shader;
 class SpriteBatch
 {	
 public:
+	static SpriteBatch* Instance;
+
 	SpriteBatch(Shader *shader, const sm::Matrix &mvp);
 
 	void Begin();
@@ -37,6 +39,9 @@ public:
 		const float *coords,
 		const unsigned char *colorMask,
 		sm::Vec4 color = sm::Vec4(1, 1, 1, 1));
+
+	sm::Matrix GetMvp() const;
+	void SetMvp(const sm::Matrix& mvp);
 
 private:
 	Shader *m_shader;

@@ -30,10 +30,9 @@
 #include "Particles/ParticleEmmiter.h"
 #include "Particles/IParticleHandler.h"
 #include "GameObject.h"
-#include "Dream.h"
+//#include "Dream.h"
 #include "VectorGraphics.h"
 #include "GraphicsLog.h"
-Dream *m_dream;
 
 #include <Graphics/TextureLoader.h>
 #include <Graphics/ModelLoader.h>
@@ -219,9 +218,6 @@ void DemoController::InitializeBlur()
 		Texture::Filter_Nearest,
 		false);
 
-	m_dream = new Dream();
-	m_dream->Initialize();
-
 	m_distortionFramebuffer = new Framebuffer();
 	m_distortionFramebuffer->Initialize(width, height, 32);
 	m_distortionFramebuffer->BindFramebuffer();
@@ -258,8 +254,6 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 	{
 		assert(false);
 	}
-
-	m_graphicsEngine = new GraphicsEngine();
 
 	wglSwapIntervalEXT(false);
 
@@ -357,6 +351,14 @@ bool DemoController::LoadContent(const char *basePath)
 
 	VectorGraphics::Initialize(vgShader);
 
+	m_spriteShader = m_content->Get<Shader>("Sprite");
+	assert(m_spriteShader != NULL);
+	m_spriteShader->BindVertexChannel(0, "a_position");
+	m_spriteShader->BindVertexChannel(1, "a_coords");
+	m_spriteShader->LinkProgram();
+
+	m_spriteBatch = new SpriteBatch(m_spriteShader, sm::Matrix::Ortho2DMatrix(0, width, 0, height));
+
 	/*
 	blackTex = dc->Get<Texture>("black");
 	assert(blackTex != NULL);
@@ -437,6 +439,9 @@ bool DemoController::LoadContent(const char *basePath)
 
 	*/
 
+	m_graphicsEngine = new GraphicsEngine(width, height);
+	m_graphicsEngine->Initialize();
+
 	for (uint32_t i = 0; i < m_scenes.size(); i++)
 		m_scenes[i]->Initialize();
 
@@ -504,8 +509,6 @@ bool DemoController::Update(float time, float seconds)
 
 	camerasFactoryAnimation->Update(time, sm::Matrix::IdentityMatrix(), seconds);
 	m_currentLightCamera = m_lightCamsMng.GetActiveCamera(time);
-
-	m_dream->Update(time, seconds);
 
 	m_lightViewMatrix = m_currentLightCamera->GetViewMatrix();
 	m_lightProjMatrix = sm::Matrix::PerspectiveMatrix(

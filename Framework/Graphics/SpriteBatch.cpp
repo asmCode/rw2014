@@ -22,6 +22,8 @@ const unsigned char SpriteBatch::ColorMask[16] = {
 	255, 255, 255, 255
 };
 
+SpriteBatch* SpriteBatch::Instance;
+
 SpriteBatch::SpriteBatch(Shader *shader, const sm::Matrix &mvp) :
 	m_shader(shader),
 	m_mvp(mvp),
@@ -29,6 +31,8 @@ SpriteBatch::SpriteBatch(Shader *shader, const sm::Matrix &mvp) :
 	m_isBlend(false)
 {
 	assert(m_shader != NULL);
+
+	Instance = this;
 	
 	m_shader->BindVertexChannel(0, "a_position");
 	m_shader->BindVertexChannel(1, "a_coords");
@@ -229,6 +233,16 @@ void SpriteBatch::Draw(uint32_t texId,
 	}*/
 	
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+}
+
+sm::Matrix SpriteBatch::GetMvp() const
+{
+	return m_mvp;
+}
+
+void SpriteBatch::SetMvp(const sm::Matrix& mvp)
+{
+	m_mvp = mvp;
 }
 
 void SpriteBatch::CreateQuad(float *vertices, int x, int y, int width, int height)

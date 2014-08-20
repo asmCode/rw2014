@@ -1,6 +1,5 @@
 #include "DepthTexture.h"
 #include <GL/glew.h>
-#include <gl/gl.h>
 #include <stddef.h>
 
 DepthTexture::DepthTexture(uint32_t width, uint32_t height)
