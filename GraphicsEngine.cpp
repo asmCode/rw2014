@@ -204,12 +204,16 @@ void GraphicsEngine::RenderGameObjects(const std::vector<Renderable*>& renderabl
 	glColorMask(true, true, true, false);
 	glDisable(GL_DEPTH_TEST);
 
-	//m_blitShader->UseProgram();
+#if 0
+	m_blitShader->UseProgram();
 	//m_blitShader->SetTextureParameter("u_tex", 0, m_blurTextureStep2->GetId());
-
+	//m_blitShader->SetTextureParameter("u_tex", 0, m_mainRenderTexture->GetId());
+	//m_blitShader->SetTextureParameter("u_tex", 0, m_downsampledGlowTexture->GetId());
+#else
 	m_addShader->UseProgram();
 	m_addShader->SetTextureParameter("u_tex1", 0, m_mainRenderTexture->GetId());
 	m_addShader->SetTextureParameter("u_tex2", 1, m_blurTextureStep2->GetId());
+#endif
 
 	glViewport(0, 0, m_screenWidth, m_screenHeight);
 
@@ -225,6 +229,7 @@ void GraphicsEngine::Downsample(Texture* srcTexture)
 	glDepthMask(false);
 	glColorMask(true, true, true, false);
 	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_BLEND);
 
 	m_downsampleShader->UseProgram();
 	m_downsampleShader->SetTextureParameter("u_tex", 0, srcTexture->GetId());
@@ -264,14 +269,23 @@ void GraphicsEngine::Blur(Texture* srcTexture)
 	Quad::Clean();
 }
 
-void GraphicsEngine::DrawGlow(const std::vector<Renderable*>& renderables)
+void GraphicsEngine::DrawGlow(
+	const std::vector<Renderable*>& solid,
+	const std::vector<Renderable*>& transparent)
 {
-	glEnable(GL_DEPTH_TEST);
-	glDepthMask(true);
-	glDisable(GL_BLEND);
+	for (uint32_t i = 0; i < solid.size(); i++)
+	{
+		Material* material = solid[i]->GetMaterial();
+		material->SetupMaterial();
+		solid[i]->Draw();
+	}
 
-	for (uint32_t i = 0; i < renderables.size(); i++)
-		DrawingRoutines::DrawGlow(renderables[i]);
+	for (uint32_t i = 0; i < transparent.size(); i++)
+	{
+		Material* material = transparent[i]->GetMaterial();
+		material->SetupMaterial();
+		transparent[i]->Draw();
+	}
 }
 
 void GraphicsEngine::SortRenderables(

@@ -43,7 +43,9 @@ private:
 	void Downsample(Texture* srcTexture);
 	void Blur(Texture* srcTexture);
 
-	void DrawGlow(const std::vector<Renderable*>& renderables);
+	void DrawGlow(
+		const std::vector<Renderable*>& solid,
+		const std::vector<Renderable*>& transparent);
 
 	void SortRenderables(
 		const std::vector<Renderable*>& renderables,

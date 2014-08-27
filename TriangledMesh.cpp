@@ -5,6 +5,7 @@
 #include <Math/Vec2.h>
 #include <Graphics/MeshPart.h>
 #include <Graphics/VertexInformation.h>
+#include <Utils/Randomizer.h>
 #include <GL/glew.h>
 
 TriangledMesh::TriangledMesh() :
@@ -34,17 +35,35 @@ void TriangledMesh::CreateVertexDataBuffer()
 	// TODO: bedzie trzeba przeniesc inicjalizacji klas pochodnych
 
 	m_triangles = new TriangleDataColorGlow[m_trianglesCount * 3];
-	
+
 	for (uint16_t i = 0; i < m_trianglesCount * 3; i++)
 	{
 		m_triangles[i].Transform = sm::Matrix::IdentityMatrix();
 
-		m_triangles[i].Color.Set(0.7f, 0.2f, 0.8f, 0.5f);
+		m_triangles[i].Color.Set(0.7f, 0.2f, 0.8f, 0.0f);
 
 		if (i >= 1000)
-			m_triangles[i].GlowPower = 0.0f;
+			m_triangles[i].GlowPower = 1.0f;
 		else
-			m_triangles[i].GlowPower = 2.0f;
+			m_triangles[i].GlowPower = 0.0f;
+	}
+
+	/*
+	m_triangles[148 * 3 + 0].Color.Set(0.1f, 0.1f, 1.0f, 0.8f);
+	m_triangles[148 * 3 + 1].Color.Set(0.1f, 0.1f, 1.0f, 0.8f);
+	m_triangles[148 * 3 + 2].Color.Set(0.1f, 0.1f, 1.0f, 0.8f);
+
+	m_triangles[148 * 3 + 0].GlowPower = 1.0f;
+	m_triangles[148 * 3 + 1].GlowPower = 1.0f;
+	m_triangles[148 * 3 + 2].GlowPower = 1.0f;
+	*/
+
+	static Randomizer random;
+	for (int i = 0; i < 20; i++)
+	{
+		int index = random.GetInt(0, m_trianglesCount - 1);
+		SetTriangleColor(index, sm::Vec4(random.GetFloat(), random.GetFloat(), random.GetFloat(), 0.7f));
+		SetGlowPower(index, 1.0f);
 	}
 
 	glGenBuffers(1, &m_vertexDataBufferId);
@@ -118,4 +137,13 @@ void TriangledMesh::SetTriangleColor(int index, const sm::Vec4& color)
 	trianglesPointer->Color = color;
 	(trianglesPointer + 1)->Color = color;
 	(trianglesPointer + 2)->Color = color;
+}
+
+void TriangledMesh::SetGlowPower(int index, float glowPower)
+{
+	TriangleDataColorGlow* trianglesPointer = m_triangles + index * 3;
+
+	trianglesPointer->GlowPower = glowPower;
+	(trianglesPointer + 1)->GlowPower = glowPower;
+	(trianglesPointer + 2)->GlowPower = glowPower;
 }

@@ -37,7 +37,7 @@ void GlowTransparencySpecullar::SetupRenderState()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	glColorMask(true, true, true, false);
+	glColorMask(true, true, true, true);
 	glDepthMask(false);
 
 	glEnableVertexAttribArray(0);
