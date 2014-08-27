@@ -14,7 +14,7 @@ Quad::~Quad()
 
 }
 
-bool Quad::Initialize(int width, int height)
+bool Quad::Initialize()
 {
 	assert(m_vboId == 0);
 
@@ -49,6 +49,8 @@ void Quad::Setup()
 	glDisableVertexAttribArray(2);
 	glDisableVertexAttribArray(3);
 	glDisableVertexAttribArray(4);
+	glDisableVertexAttribArray(5);
+	glDisableVertexAttribArray(6);
 }
 
 void Quad::Clean()

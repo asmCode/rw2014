@@ -8,7 +8,7 @@ public:
 	Quad();
 	~Quad();
 
-	bool Initialize(int width, int height);
+	bool Initialize();
 
 	void Draw();
 

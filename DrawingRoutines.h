@@ -57,6 +57,8 @@ private:
 	// diffuse and specular lighting with shadow mapping (1 source)
 	static Shader *m_sm_diffNormLightmapShader;
 
+	static Shader* m_specularBlur;
+
 	static bool SetupShader(Material *material, MeshPart *meshPart, const sm::Matrix &worldatrix);
 	static bool SetupShaderShadowMap(Material *material, MeshPart *meshPart, const sm::Matrix &worldatrix, uint32_t shadowMapId);
 	
@@ -77,4 +79,6 @@ public:
 	static void DrawShadowMap(std::vector<MeshPart*> &meshParts);
 
 	static void DrawWithMaterial(Renderable* renderable);
+
+	static void DrawGlow(Renderable* renderable);
 };

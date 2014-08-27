@@ -4,7 +4,7 @@
 #include <Math/Matrix.h>
 #include <stdint.h>
 
-class TriangleDataColor;
+class TriangleDataColorGlow;
 
 class TriangledMesh : public BaseMesh
 {
@@ -27,7 +27,7 @@ protected:
 	uint32_t m_indexBufferId;
 
 	int m_trianglesCount;
-	TriangleDataColor* m_triangles;
+	TriangleDataColorGlow* m_triangles;
 
 	virtual void Apply();
 	void CreateVertexDataBuffer();

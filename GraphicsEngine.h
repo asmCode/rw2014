@@ -26,12 +26,11 @@ private:
 	Framebuffer* m_halfFrame;
 
 	Texture* m_mainRenderTexture;
-	Texture* m_halfRenderTexture;
+	Texture* m_glowTexture;
 	Texture* m_blurTextureStep1;
 	Texture* m_blurTextureStep2;
 
-	Quad* m_fullScreenQuad;
-	Quad* m_halfScreenQuad;
+	Quad* m_quad;
 
 	Shader* m_downsampleShader;
 	Shader* m_blitShader;
@@ -41,4 +40,6 @@ private:
 
 	void Downsample(Texture* srcTexture);
 	void Blur(Texture* srcTexture);
+
+	void DrawGlow(const std::vector<GameObject*>& gameObjects);
 };

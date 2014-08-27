@@ -15,10 +15,11 @@
 GraphicsEngine::GraphicsEngine(int screenWidth, int screenHeight) :
 	m_screenWidth(screenWidth),
 	m_screenHeight(screenHeight),
+	m_quad(NULL),
 	m_mainFrame(NULL),
 	m_halfFrame(NULL),
 	m_mainRenderTexture(NULL),
-	m_halfRenderTexture(NULL),
+	m_glowTexture(NULL),
 	m_blurTextureStep1(NULL),
 	m_blurTextureStep2(NULL),
 	m_downsampleShader(NULL),
@@ -45,7 +46,7 @@ void GraphicsEngine::Initialize()
 		Texture::Filter_Linear,
 		false);
 
-	m_halfRenderTexture = new Texture(
+	m_glowTexture = new Texture(
 		m_screenWidth / 2,
 		m_screenHeight / 2,
 		32,
@@ -84,11 +85,8 @@ void GraphicsEngine::Initialize()
 	m_halfFrame = new Framebuffer();
 	m_halfFrame->Initialize(m_screenWidth / 2, m_screenHeight / 2, 32);
 
-	m_fullScreenQuad = new Quad();
-	m_fullScreenQuad->Initialize(m_screenWidth, m_screenHeight);
-
-	m_halfScreenQuad = new Quad();
-	m_halfScreenQuad->Initialize(m_screenWidth / 2, m_screenHeight / 2);
+	m_quad = new Quad();
+	m_quad->Initialize();
 
 	m_downsampleShader = Content::Instance->Get<Shader>("Downsample");
 	assert(m_downsampleShader != NULL);
@@ -121,29 +119,55 @@ void GraphicsEngine::RenderGameObjects(const std::vector<GameObject*>& gameObjec
 		DrawingRoutines::DrawWithMaterial(gameObjects[i]->GetRenderable());
 
 	m_halfFrame->BindFramebuffer();
-	m_halfFrame->AttachColorTexture(m_halfRenderTexture->GetId());
+	m_halfFrame->AttachColorTexture(m_glowTexture->GetId());
 	m_halfFrame->Validate();
 
-	Downsample(m_mainRenderTexture);
+	glDepthMask(true);
+	glColorMask(true, true, true, true);
+	glViewport(0, 0, m_screenWidth / 2, m_screenHeight / 2);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	m_halfFrame->AttachColorTexture(m_blurTextureStep1->GetId());
-	Blur(m_halfRenderTexture);
+	DrawGlow(gameObjects);
+
+	Blur(m_glowTexture);
+
+	//m_blitShader->UseProgram();
+	//m_blitShader->SetTextureParameter("u_tex", 0, m_blurTextureStep2->GetId());
 
 	Framebuffer::RestoreDefaultFramebuffer();
 
+	/*
+	glViewport(0, 0, m_screenWidth, m_screenHeight);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDepthMask(false);
 	glColorMask(true, true, true, false);
 	glDisable(GL_DEPTH_TEST);
 
-	m_addShader->UseProgram();
-	m_addShader->SetTextureParameter("u_tex1", 0, m_mainRenderTexture->GetId());
-	m_addShader->SetTextureParameter("u_tex2", 1, m_blurTextureStep2->GetId());
+	Quad::Setup();
+	m_quad->Draw();
+	Quad::Clean();
+	*/
+
+	//Downsample(m_mainRenderTexture);
+
+	Framebuffer::RestoreDefaultFramebuffer();
+	glViewport(0, 0, m_screenWidth, m_screenHeight);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glDepthMask(false);
+	glColorMask(true, true, true, false);
+	glDisable(GL_DEPTH_TEST);
+
+	m_blitShader->UseProgram();
+	m_blitShader->SetTextureParameter("u_tex", 0, m_glowTexture->GetId());
+
+	//m_addShader->UseProgram();
+	//m_addShader->SetTextureParameter("u_tex1", 0, m_mainRenderTexture->GetId());
+	//m_addShader->SetTextureParameter("u_tex2", 1, m_blurTextureStep2->GetId());
 
 	glViewport(0, 0, m_screenWidth, m_screenHeight);
 
 	Quad::Setup();
-	m_halfScreenQuad->Draw();
+	m_quad->Draw();
 	Quad::Clean();
 }
 
@@ -160,12 +184,14 @@ void GraphicsEngine::Downsample(Texture* srcTexture)
 	m_downsampleShader->SetParameter("u_texelSize", 1.0f / (float)m_screenWidth, 1.0f / (float)m_screenHeight);
 
 	Quad::Setup();
-	m_halfScreenQuad->Draw();
+	m_quad->Draw();
 	Quad::Clean();
 }
 
 void GraphicsEngine::Blur(Texture* srcTexture)
 {
+	m_halfFrame->AttachColorTexture(m_blurTextureStep1->GetId());
+
 	glViewport(0, 0, m_screenWidth / 2, m_screenHeight / 2);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDepthMask(false);
@@ -177,7 +203,7 @@ void GraphicsEngine::Blur(Texture* srcTexture)
 	m_horiBlurShader->SetParameter("u_texelSize", 1.0f / (float)srcTexture->GetWidth());
 
 	Quad::Setup();
-	m_halfScreenQuad->Draw();
+	m_quad->Draw();
 	Quad::Clean();
 
 	m_halfFrame->AttachColorTexture(m_blurTextureStep2->GetId());
@@ -187,6 +213,16 @@ void GraphicsEngine::Blur(Texture* srcTexture)
 	m_vertBlurShader->SetParameter("u_texelSize", 1.0f / (float)srcTexture->GetHeight());
 
 	Quad::Setup();
-	m_halfScreenQuad->Draw();
+	m_quad->Draw();
 	Quad::Clean();
+}
+
+void GraphicsEngine::DrawGlow(const std::vector<GameObject*>& gameObjects)
+{
+	glEnable(GL_DEPTH_TEST);
+	glDepthMask(true);
+	glDisable(GL_BLEND);
+
+	for (uint32_t i = 0; i < gameObjects.size(); i++)
+		DrawingRoutines::DrawGlow(gameObjects[i]->GetRenderable());
 }

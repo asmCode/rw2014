@@ -33,6 +33,8 @@ Shader *DrawingRoutines::m_sm_colorShader;
 Shader *DrawingRoutines::m_sm_diffNormShader;
 Shader *DrawingRoutines::m_sm_diffNormLightmapShader;
 
+Shader *DrawingRoutines::m_specularBlur;
+
 //sm::Matrix DrawingRoutines::fixCoordsMatrix;
 //
 //DrawingRoutines::DrawingRoutines(void)
@@ -127,6 +129,9 @@ bool DrawingRoutines::Initialize(Content *content)
 	m_sm_diffNormLightmapShader->BindVertexChannel(3, "a_normal");
 	m_sm_diffNormLightmapShader->BindVertexChannel(4, "a_tangent");
 	m_sm_diffNormLightmapShader->LinkProgram();
+
+	m_specularBlur = content->Get<Shader>("SpecularBlur");
+	assert(m_specularBlur != NULL);
 
 	return true;
 }
@@ -685,6 +690,53 @@ void DrawingRoutines::DrawWithMaterial(Renderable* renderable)
 	glEnableVertexAttribArray(3);
 	glEnableVertexAttribArray(4);
 	glEnableVertexAttribArray(5);
+	glDisableVertexAttribArray(6);
 
 	renderable->Draw();
+
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
+	glDisableVertexAttribArray(3);
+	glDisableVertexAttribArray(4);
+	glDisableVertexAttribArray(5);
+	//glDisableVertexAttribArray(6);
+}
+
+void DrawingRoutines::DrawGlow(Renderable* renderable)
+{
+	Material* material = renderable->GetMaterial();
+
+	if (material == NULL)
+	{
+		material = new Material();
+		renderable->SetMaterial(material);
+	}
+
+	m_specularBlur->UseProgram();
+	m_specularBlur->SetMatrixParameter("u_viewProjMatrix", m_viewProjMatrix);
+	m_specularBlur->SetParameter("u_lightPosition", m_lightPosition);
+	m_specularBlur->SetParameter("u_eyePosition", m_eyePosition);
+	m_specularBlur->SetParameter("u_diffuseColor", material->diffuseColor);
+	m_specularBlur->SetParameter("u_specularColor", material->specularColor);
+	m_specularBlur->SetParameter("u_glossiness", material->glossiness * 256.0f);
+	m_specularBlur->SetParameter("u_specularLevel", material->specularLevel);
+
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(2);
+	glEnableVertexAttribArray(3);
+	glEnableVertexAttribArray(4);
+	glEnableVertexAttribArray(5);
+	glEnableVertexAttribArray(6);
+
+	renderable->Draw();
+
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
+	glDisableVertexAttribArray(3);
+	glDisableVertexAttribArray(4);
+	glDisableVertexAttribArray(5);
+	glDisableVertexAttribArray(6);
 }

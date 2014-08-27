@@ -312,6 +312,7 @@ exit /B 0
     <ClInclude Include="MeshUtils.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Scenes\GlowTestScene.h" />
+    <ClInclude Include="TriangleDataColorGlow.h" />
     <ClInclude Include="TriangledMesh.h" />
     <ClInclude Include="ParticlesManager.h" />
     <ClInclude Include="Particles\IParticleHandler.h" />
@@ -371,6 +372,8 @@ exit /B 0
     <None Include="Data\effects\Downsample.vpr" />
     <None Include="Data\effects\HoriBlur.fpr" />
     <None Include="Data\effects\HoriBlur.vpr" />
+    <None Include="Data\effects\SpecularBlur.fpr" />
+    <None Include="Data\effects\SpecularBlur.vpr" />
     <None Include="Data\effects\SpecularColored.fpr" />
     <None Include="Data\effects\SpecularColored.vpr" />
     <None Include="Data\effects\Sprite.fpr" />
