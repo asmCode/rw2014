@@ -20,6 +20,7 @@ GraphicsEngine::GraphicsEngine(int screenWidth, int screenHeight) :
 	m_halfFrame(NULL),
 	m_mainRenderTexture(NULL),
 	m_glowTexture(NULL),
+	m_downsampledGlowTexture(NULL),
 	m_blurTextureStep1(NULL),
 	m_blurTextureStep2(NULL),
 	m_downsampleShader(NULL),
@@ -47,6 +48,16 @@ void GraphicsEngine::Initialize()
 		false);
 
 	m_glowTexture = new Texture(
+		m_screenWidth,
+		m_screenHeight,
+		32,
+		NULL,
+		Texture::Wrap_ClampToEdge,
+		Texture::Filter_Linear,
+		Texture::Filter_Linear,
+		false);
+
+	m_downsampledGlowTexture = new Texture(
 		m_screenWidth / 2,
 		m_screenHeight / 2,
 		32,
@@ -79,7 +90,8 @@ void GraphicsEngine::Initialize()
 	m_mainFrame = new Framebuffer();
 	m_mainFrame->Initialize(m_screenWidth, m_screenHeight, 32);
 	m_mainFrame->BindFramebuffer();
-	m_mainFrame->AttachColorTexture(m_mainRenderTexture->GetId());
+	m_mainFrame->AttachColorTexture(m_mainRenderTexture->GetId(), 0);
+	m_mainFrame->AttachColorTexture(m_glowTexture->GetId(), 1);
 	m_mainFrame->Validate();
 
 	m_halfFrame = new Framebuffer();
@@ -106,11 +118,17 @@ void GraphicsEngine::Initialize()
 
 void GraphicsEngine::RenderGameObjects(const std::vector<GameObject*>& gameObjects)
 {
-	glViewport(0, 0, m_screenWidth, m_screenHeight);
 	m_mainFrame->BindFramebuffer();
+	glViewport(0, 0, m_screenWidth, m_screenHeight);
+
+	GLenum enabledBuffers[2];
+	enabledBuffers[0] = GL_COLOR_ATTACHMENT0;
+	enabledBuffers[1] = GL_COLOR_ATTACHMENT1;
+	glDrawBuffers(2, enabledBuffers);
 
 	glDepthMask(true);
-	glColorMask(true, true, true, true);
+	glColorMaski(0, true, true, true, true);
+	glColorMaski(1, true, true, true, true);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
@@ -118,6 +136,7 @@ void GraphicsEngine::RenderGameObjects(const std::vector<GameObject*>& gameObjec
 	for (uint32_t i = 0; i < gameObjects.size(); i++)
 		DrawingRoutines::DrawWithMaterial(gameObjects[i]->GetRenderable());
 
+	/*
 	m_halfFrame->BindFramebuffer();
 	m_halfFrame->AttachColorTexture(m_glowTexture->GetId());
 	m_halfFrame->Validate();
@@ -126,10 +145,11 @@ void GraphicsEngine::RenderGameObjects(const std::vector<GameObject*>& gameObjec
 	glColorMask(true, true, true, true);
 	glViewport(0, 0, m_screenWidth / 2, m_screenHeight / 2);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	*/
 
-	DrawGlow(gameObjects);
+	//DrawGlow(gameObjects);
 
-	Blur(m_glowTexture);
+	//Blur(m_glowTexture);
 
 	//m_blitShader->UseProgram();
 	//m_blitShader->SetTextureParameter("u_tex", 0, m_blurTextureStep2->GetId());
@@ -148,21 +168,29 @@ void GraphicsEngine::RenderGameObjects(const std::vector<GameObject*>& gameObjec
 	Quad::Clean();
 	*/
 
-	//Downsample(m_mainRenderTexture);
+	m_halfFrame->BindFramebuffer();
+	m_halfFrame->AttachColorTexture(m_downsampledGlowTexture->GetId());
+
+	glDrawBuffer(GL_COLOR_ATTACHMENT0);
+
+	Downsample(m_glowTexture);
+
+	Blur(m_downsampledGlowTexture);
 
 	Framebuffer::RestoreDefaultFramebuffer();
+	//glDrawBuffer(GL_COLOR_ATTACHMENT0);
 	glViewport(0, 0, m_screenWidth, m_screenHeight);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDepthMask(false);
 	glColorMask(true, true, true, false);
 	glDisable(GL_DEPTH_TEST);
 
-	m_blitShader->UseProgram();
-	m_blitShader->SetTextureParameter("u_tex", 0, m_glowTexture->GetId());
+	//m_blitShader->UseProgram();
+	//m_blitShader->SetTextureParameter("u_tex", 0, m_blurTextureStep2->GetId());
 
-	//m_addShader->UseProgram();
-	//m_addShader->SetTextureParameter("u_tex1", 0, m_mainRenderTexture->GetId());
-	//m_addShader->SetTextureParameter("u_tex2", 1, m_blurTextureStep2->GetId());
+	m_addShader->UseProgram();
+	m_addShader->SetTextureParameter("u_tex1", 0, m_mainRenderTexture->GetId());
+	m_addShader->SetTextureParameter("u_tex2", 1, m_blurTextureStep2->GetId());
 
 	glViewport(0, 0, m_screenWidth, m_screenHeight);
 

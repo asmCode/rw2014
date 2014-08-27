@@ -675,6 +675,7 @@ void DrawingRoutines::DrawWithMaterial(Renderable* renderable)
 	glDepthMask(true);
 	glDisable(GL_BLEND);
 		
+	/*
 	m_specularColored->UseProgram();
 	m_specularColored->SetMatrixParameter("u_viewProjMatrix", m_viewProjMatrix);
 	m_specularColored->SetParameter("u_lightPosition", m_lightPosition);
@@ -683,6 +684,16 @@ void DrawingRoutines::DrawWithMaterial(Renderable* renderable)
 	m_specularColored->SetParameter("u_specularColor", material->specularColor);
 	m_specularColored->SetParameter("u_glossiness", material->glossiness * 256.0f);
 	m_specularColored->SetParameter("u_specularLevel", material->specularLevel);
+	*/
+
+	m_specularBlur->UseProgram();
+	m_specularBlur->SetMatrixParameter("u_viewProjMatrix", m_viewProjMatrix);
+	m_specularBlur->SetParameter("u_lightPosition", m_lightPosition);
+	m_specularBlur->SetParameter("u_eyePosition", m_eyePosition);
+	m_specularBlur->SetParameter("u_diffuseColor", material->diffuseColor);
+	m_specularBlur->SetParameter("u_specularColor", material->specularColor);
+	m_specularBlur->SetParameter("u_glossiness", material->glossiness * 256.0f);
+	m_specularBlur->SetParameter("u_specularLevel", material->specularLevel);
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
@@ -690,7 +701,7 @@ void DrawingRoutines::DrawWithMaterial(Renderable* renderable)
 	glEnableVertexAttribArray(3);
 	glEnableVertexAttribArray(4);
 	glEnableVertexAttribArray(5);
-	glDisableVertexAttribArray(6);
+	glEnableVertexAttribArray(6);
 
 	renderable->Draw();
 
@@ -700,7 +711,7 @@ void DrawingRoutines::DrawWithMaterial(Renderable* renderable)
 	glDisableVertexAttribArray(3);
 	glDisableVertexAttribArray(4);
 	glDisableVertexAttribArray(5);
-	//glDisableVertexAttribArray(6);
+	glDisableVertexAttribArray(6);
 }
 
 void DrawingRoutines::DrawGlow(Renderable* renderable)

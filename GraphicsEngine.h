@@ -27,6 +27,7 @@ private:
 
 	Texture* m_mainRenderTexture;
 	Texture* m_glowTexture;
+	Texture* m_downsampledGlowTexture;
 	Texture* m_blurTextureStep1;
 	Texture* m_blurTextureStep2;
 
