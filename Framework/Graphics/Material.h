@@ -8,6 +8,8 @@
 #include "Texture.h"
 //#include "CubeTexture.h"
 
+class Shader;
+
 class Material
 {
 private:
@@ -42,7 +44,15 @@ public:
 
 	float& Opacity();
 
-	bool IsOpacity() const;
+	void SetupMaterial();
+
+	virtual bool IsOpacity() const;
+
+protected:
+	Shader* m_shader;
+
+	virtual void SetupRenderState() {};
+	virtual void SetupShader() {};
 };
 
 #endif // MATERIAL

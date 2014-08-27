@@ -3,9 +3,11 @@
 #include "../ComposeFromRibbon.h"
 #include "../GameObject.h"
 #include "../UniqueTriangledMesh.h"
+#include "../Materials/GlowTransparencySpecullar.h"
 #include <Utils/Randomizer.h>
 #include <Graphics/MeshPart.h>
 #include <Graphics/Model.h>
+#include <Graphics/Shader.h>
 #include <Graphics/Content/Content.h>
 
 #include "../Renderable.h"
@@ -39,8 +41,13 @@ bool Test1Scene::Initialize()
 		10.0f,
 		6.0f);
 
-	m_renderables.push_back(new Renderable(m_decomposeAndFly->GetMesh(), NULL));
-	m_renderables.push_back(new Renderable(m_composeFromRibbon->GetMesh(), NULL));
+	Shader* glowSpecullarShader = Content::Instance->Get<Shader>("SpecularBlur");
+	assert(glowSpecullarShader != NULL);
+
+	Material* material = new GlowTransparencySpecullar(glowSpecullarShader);
+
+	m_renderables.push_back(new Renderable(m_decomposeAndFly->GetMesh(), material));
+	m_renderables.push_back(new Renderable(m_composeFromRibbon->GetMesh(), material));
 
 	return true;
 }

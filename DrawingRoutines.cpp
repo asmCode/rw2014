@@ -141,6 +141,11 @@ void DrawingRoutines::SetViewProjMatrix(const sm::Matrix &viewProj)
 	m_viewProjMatrix = viewProj;
 }
 
+const sm::Matrix& DrawingRoutines::GetViewProjMatrix()
+{
+	return m_viewProjMatrix;
+}
+
 void DrawingRoutines::SetLightPosition(const sm::Vec3 &lightPosition)
 {
 	m_lightPosition = lightPosition;

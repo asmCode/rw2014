@@ -31,6 +31,6 @@ void main()
 	
 	FragColor =	(diffuseColor * 0.001) + vec4(100, 0, 0, 1);
 	FragColor =	o_color;
-	BlurFragColor = vec4(FragColor.xyz * o_glowPower, 1.0f);
+	BlurFragColor = vec4(o_color.xyz * o_glowPower, o_color.w);
 }
 

@@ -3,10 +3,12 @@
 #include "../Renderable.h"
 #include "../GameObject.h"
 #include "../UniqueTriangledMesh.h"
+#include "../Materials/GlowTransparencySpecullar.h"
 #include <Graphics/Content/Content.h>
 #include <Graphics/Model.h>
 #include <Graphics/Mesh.h>
 #include <Graphics/MeshPart.h>
+#include <Graphics/Shader.h>
 
 GlowTestScene::GlowTestScene()
 {
@@ -33,7 +35,16 @@ bool GlowTestScene::Initialize()
 	//m_teapot->SetRenderable(new Renderable(decompose->GetMesh(), NULL));
 	//m_gameObjects.push_back(m_teapot);
 
-	m_renderables.push_back(new Renderable(decompose->GetMesh(), NULL));
+	Shader* glowSpecullarShader = Content::Instance->Get<Shader>("SpecularBlur");
+	assert(glowSpecullarShader != NULL);
+
+	GlowTransparencySpecullar* materialFill = new GlowTransparencySpecullar(glowSpecullarShader);
+
+	GlowTransparencySpecullar* materialLine = new GlowTransparencySpecullar(glowSpecullarShader);
+	materialLine->SetPolygonMode(GlowTransparencySpecullar::PolygonMode_Lines);
+
+	m_renderables.push_back(new Renderable(decompose->GetMesh(), materialFill));
+	m_renderables.push_back(new Renderable(decompose->GetMesh(), materialLine));
 
 	for (int i = 0; i < decompose->GetMesh()->GetTrianglesCount(); i++)
 	{

@@ -66,6 +66,7 @@ public:
 	static bool Initialize(Content *content);
 
 	static void SetViewProjMatrix(const sm::Matrix &viewProj);
+	static const sm::Matrix& GetViewProjMatrix();
 	static void SetLightPosition(const sm::Vec3 &lightPosition);
 	static void SetShadowLightPosition(const sm::Vec3 &shadowLightPosition);
 	static void SetEyePosition(const sm::Vec3 &eyePosition);

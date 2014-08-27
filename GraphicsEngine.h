@@ -44,4 +44,9 @@ private:
 	void Blur(Texture* srcTexture);
 
 	void DrawGlow(const std::vector<Renderable*>& renderables);
+
+	void SortRenderables(
+		const std::vector<Renderable*>& renderables,
+		std::vector<Renderable*>& solid,
+		std::vector<Renderable*>& transparent);
 };

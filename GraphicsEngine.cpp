@@ -7,6 +7,7 @@
 #include <Graphics/Framebuffer.h>
 #include <Graphics/SpriteBatch.h>
 #include <Graphics/Texture.h>
+#include <Graphics/Material.h>
 #include <Graphics/Shader.h>
 #include <Graphics/Content/Content.h>
 #include <GL/glew.h>
@@ -118,7 +119,12 @@ void GraphicsEngine::Initialize()
 
 void GraphicsEngine::RenderGameObjects(const std::vector<Renderable*>& renderables)
 {
+	std::vector<Renderable*> solidRenderables;
+	solidRenderables.reserve(renderables.size());
+	std::vector<Renderable*> transparentRenderables;
+	transparentRenderables.reserve(renderables.size());
 
+	SortRenderables(renderables, solidRenderables, transparentRenderables);
 
 	m_mainFrame->BindFramebuffer();
 	glViewport(0, 0, m_screenWidth, m_screenHeight);
@@ -135,8 +141,19 @@ void GraphicsEngine::RenderGameObjects(const std::vector<Renderable*>& renderabl
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
 
-	for (uint32_t i = 0; i < renderables.size(); i++)
-		DrawingRoutines::DrawWithMaterial(renderables[i]);
+	for (uint32_t i = 0; i < solidRenderables.size(); i++)
+	{
+		Material* material = solidRenderables[i]->GetMaterial();
+		material->SetupMaterial();
+		solidRenderables[i]->Draw();
+	}
+
+	for (uint32_t i = 0; i < transparentRenderables.size(); i++)
+	{
+		Material* material = transparentRenderables[i]->GetMaterial();
+		material->SetupMaterial();
+		transparentRenderables[i]->Draw();
+	}
 
 	/*
 	m_halfFrame->BindFramebuffer();
@@ -255,4 +272,21 @@ void GraphicsEngine::DrawGlow(const std::vector<Renderable*>& renderables)
 
 	for (uint32_t i = 0; i < renderables.size(); i++)
 		DrawingRoutines::DrawGlow(renderables[i]);
+}
+
+void GraphicsEngine::SortRenderables(
+	const std::vector<Renderable*>& renderables,
+	std::vector<Renderable*>& solid,
+	std::vector<Renderable*>& transparent)
+{
+	for (uint32_t i = 0; i < renderables.size(); i++)
+	{
+		Material* material = renderables[i]->GetMaterial();
+		assert(material != NULL);
+
+		if (material->IsOpacity())
+			transparent.push_back(renderables[i]);
+		else
+			solid.push_back(renderables[i]);
+	}
 }

@@ -182,6 +182,7 @@ exit /B 0
     <ClCompile Include="GraphicsLibrary\SteerCamera.cpp" />
     <ClCompile Include="GraphicsLibrary\TimeControl.cpp" />
     <ClCompile Include="GraphicsLog.cpp" />
+    <ClCompile Include="Materials\GlowTransparencySpecullar.cpp" />
     <ClCompile Include="MeshUtils.cpp" />
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Scenes\BaseScene.cpp" />
@@ -309,6 +310,7 @@ exit /B 0
     <ClInclude Include="GraphicsLibrary\SteerCamera.h" />
     <ClInclude Include="GraphicsLibrary\TimeControl.h" />
     <ClInclude Include="GraphicsLog.h" />
+    <ClInclude Include="Materials\GlowTransparencySpecullar.h" />
     <ClInclude Include="MeshUtils.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Scenes\GlowTestScene.h" />

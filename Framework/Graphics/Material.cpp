@@ -29,3 +29,9 @@ bool Material::IsOpacity() const
 {
 	return diffuseColor.w < 1.0f;
 }
+
+void Material::SetupMaterial()
+{
+	SetupRenderState();
+	SetupShader();
+}
