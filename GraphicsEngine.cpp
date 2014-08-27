@@ -116,8 +116,10 @@ void GraphicsEngine::Initialize()
 	assert(m_addShader != NULL);
 }
 
-void GraphicsEngine::RenderGameObjects(const std::vector<GameObject*>& gameObjects)
+void GraphicsEngine::RenderGameObjects(const std::vector<Renderable*>& renderables)
 {
+
+
 	m_mainFrame->BindFramebuffer();
 	glViewport(0, 0, m_screenWidth, m_screenHeight);
 
@@ -133,8 +135,8 @@ void GraphicsEngine::RenderGameObjects(const std::vector<GameObject*>& gameObjec
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
 
-	for (uint32_t i = 0; i < gameObjects.size(); i++)
-		DrawingRoutines::DrawWithMaterial(gameObjects[i]->GetRenderable());
+	for (uint32_t i = 0; i < renderables.size(); i++)
+		DrawingRoutines::DrawWithMaterial(renderables[i]);
 
 	/*
 	m_halfFrame->BindFramebuffer();
@@ -245,12 +247,12 @@ void GraphicsEngine::Blur(Texture* srcTexture)
 	Quad::Clean();
 }
 
-void GraphicsEngine::DrawGlow(const std::vector<GameObject*>& gameObjects)
+void GraphicsEngine::DrawGlow(const std::vector<Renderable*>& renderables)
 {
 	glEnable(GL_DEPTH_TEST);
 	glDepthMask(true);
 	glDisable(GL_BLEND);
 
-	for (uint32_t i = 0; i < gameObjects.size(); i++)
-		DrawingRoutines::DrawGlow(gameObjects[i]->GetRenderable());
+	for (uint32_t i = 0; i < renderables.size(); i++)
+		DrawingRoutines::DrawGlow(renderables[i]);
 }

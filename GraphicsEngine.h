@@ -3,6 +3,7 @@
 #include <vector>
 
 class GameObject;
+class Renderable;
 class Framebuffer;
 class Texture;
 class Quad;
@@ -16,7 +17,7 @@ public:
 
 	void Initialize();
 
-	void RenderGameObjects(const std::vector<GameObject*>& gameObjects);
+	void RenderGameObjects(const std::vector<Renderable*>& renderables);
 
 private:
 	int m_screenWidth;
@@ -42,5 +43,5 @@ private:
 	void Downsample(Texture* srcTexture);
 	void Blur(Texture* srcTexture);
 
-	void DrawGlow(const std::vector<GameObject*>& gameObjects);
+	void DrawGlow(const std::vector<Renderable*>& renderables);
 };

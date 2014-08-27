@@ -39,13 +39,8 @@ bool Test1Scene::Initialize()
 		10.0f,
 		6.0f);
 
-	GameObject *g1 = new GameObject();
-	g1->SetRenderable(new Renderable(m_decomposeAndFly->GetMesh(), NULL));
-	m_gameObjects.push_back(g1);
-
-	GameObject *g2 = new GameObject();
-	g2->SetRenderable(new Renderable(m_composeFromRibbon->GetMesh(), NULL));
-	m_gameObjects.push_back(g2);
+	m_renderables.push_back(new Renderable(m_decomposeAndFly->GetMesh(), NULL));
+	m_renderables.push_back(new Renderable(m_composeFromRibbon->GetMesh(), NULL));
 
 	return true;
 }

@@ -29,10 +29,11 @@ bool GlowTestScene::Initialize()
 	DecomposeToRibbon* decompose = new DecomposeToRibbon();
 	decompose->Initialize(teapotModel->m_meshParts[0], path, 0, 0);
 
-	m_teapot = new GameObject();
-	m_teapot->SetRenderable(new Renderable(decompose->GetMesh(), NULL));
+	//m_teapot = new GameObject();
+	//m_teapot->SetRenderable(new Renderable(decompose->GetMesh(), NULL));
+	//m_gameObjects.push_back(m_teapot);
 
-	m_gameObjects.push_back(m_teapot);
+	m_renderables.push_back(new Renderable(decompose->GetMesh(), NULL));
 
 	for (int i = 0; i < decompose->GetMesh()->GetTrianglesCount(); i++)
 	{

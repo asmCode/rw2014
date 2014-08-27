@@ -749,7 +749,7 @@ bool DemoController::Draw(float time, float seconds)
 
 	//DrawingRoutines::DrawWithMaterial(m_content->Get<Model>("teapot")->m_meshParts);
 
-	m_graphicsEngine->RenderGameObjects(m_activeScene->GetGameObjects());
+	m_graphicsEngine->RenderGameObjects(m_activeScene->GetRenderables());
 
 #if 0
 
