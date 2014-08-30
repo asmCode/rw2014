@@ -40,7 +40,7 @@ void TriangledMesh::CreateVertexDataBuffer()
 	{
 		m_triangles[i].Transform = sm::Matrix::IdentityMatrix();
 
-		m_triangles[i].Color.Set(0.7f, 0.2f, 0.8f, 0.0f);
+		m_triangles[i].Color.Set(0.7f, 0.2f, 0.8f, 0.1f);
 
 		if (i >= 1000)
 			m_triangles[i].GlowPower = 1.0f;
@@ -48,16 +48,7 @@ void TriangledMesh::CreateVertexDataBuffer()
 			m_triangles[i].GlowPower = 0.0f;
 	}
 
-	/*
-	m_triangles[148 * 3 + 0].Color.Set(0.1f, 0.1f, 1.0f, 0.8f);
-	m_triangles[148 * 3 + 1].Color.Set(0.1f, 0.1f, 1.0f, 0.8f);
-	m_triangles[148 * 3 + 2].Color.Set(0.1f, 0.1f, 1.0f, 0.8f);
-
-	m_triangles[148 * 3 + 0].GlowPower = 1.0f;
-	m_triangles[148 * 3 + 1].GlowPower = 1.0f;
-	m_triangles[148 * 3 + 2].GlowPower = 1.0f;
-	*/
-
+	// TEST
 	static Randomizer random;
 	for (int i = 0; i < 20; i++)
 	{
@@ -65,6 +56,7 @@ void TriangledMesh::CreateVertexDataBuffer()
 		SetTriangleColor(index, sm::Vec4(random.GetFloat(), random.GetFloat(), random.GetFloat(), 0.7f));
 		SetGlowPower(index, 1.0f);
 	}
+	//
 
 	glGenBuffers(1, &m_vertexDataBufferId);
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexDataBufferId);
