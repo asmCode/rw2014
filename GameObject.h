@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Math/Matrix.h>
+#include <vector>
 
 class Renderable;
 
@@ -12,8 +13,7 @@ public:
 	GameObject();
 	virtual ~GameObject();
 
-	void SetRenderable(Renderable* renderable);
-	Renderable* GetRenderable() const;
+	const std::vector<Renderable*>& GetRenderables() const;
 
 	virtual void Awake();
 	virtual void Update(float time, float seconds);
@@ -21,7 +21,8 @@ public:
 	bool IsActive() const;
 
 protected:
-	Renderable* m_renderable;
+	std::vector<Renderable*> m_renderables;
+
 	bool m_isActive;
 };
 

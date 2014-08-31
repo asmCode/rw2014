@@ -21,7 +21,7 @@ void VectorGraphics::Begin()
 {
 	glDepthMask(GL_TRUE);
 	glDisable(GL_BLEND);
-	glEnable(GL_DEPTH_TEST);
+	glDisable(GL_DEPTH_TEST);
 
 	glEnableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
@@ -29,6 +29,7 @@ void VectorGraphics::Begin()
 	glDisableVertexAttribArray(3);
 	glDisableVertexAttribArray(4);
 	glDisableVertexAttribArray(5);
+	glDisableVertexAttribArray(6);
 
 	m_shader->UseProgram();
 	m_shader->SetMatrixParameter("u_mvp", m_viewProjMatrix);

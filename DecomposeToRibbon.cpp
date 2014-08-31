@@ -3,6 +3,8 @@
 #include "Triangle.h"
 #include "DemoUtils.h"
 #include "DebugUtils.h"
+#include "SceneElement/Path.h"
+#include "SceneElement/Key.h"
 #include <Math/Animation/QuarticOut.h>
 #include <Utils/Randomizer.h>
 #include <Graphics/Interpolators/TCBInterpolator.h>
@@ -19,24 +21,19 @@ DecomposeToRibbon::~DecomposeToRibbon()
 AnimationCurve<sm::Vec3>* DecomposeToRibbon::CreateCurve(
 	const sm::Vec3& basePosition,
 	const sm::Vec3& normal,
-	std::vector<sm::Vec3>& path,
-	float startTime,
-	float duration)
+	SceneElement::Path* path,
+	int endKeyIndex,
+	float spread)
 {	
 	AnimationCurve<sm::Vec3>* curve = new AnimationCurve<sm::Vec3>();
 
 	static Randomizer random;
 
+	/*
 	float time = startTime;
 
 	float firstMoveDistance = random.GetFloat(1.0f, 3.0f);
 	sm::Vec3 firstMovePosition = basePosition + normal * firstMoveDistance;
-
-	float pathLength = DemoUtils::GetPathLength(path);
-	assert(pathLength > 0.0f);
-	pathLength += firstMoveDistance;
-	pathLength += (firstMovePosition - path[0]).GetLength();
-	float durationPerUnit = duration / pathLength;
 
 	curve->AddKeyframe(time += +random.GetFloat(0.0, 2.0f), basePosition);
 	curve->AddKeyframe(time += durationPerUnit * firstMoveDistance + random.GetFloat(1.0, 2.0f), firstMovePosition);
@@ -52,13 +49,29 @@ AnimationCurve<sm::Vec3>* DecomposeToRibbon::CreateCurve(
 
 		curve->AddKeyframe(time, path[i] + DemoUtils::GetRandomVector() * random.GetFloat(0, 2.0f));
 	}
+	*/
+
+	float time = 0.0f;
+
+	float firstMoveDistance = random.GetFloat(0.5f, 2.0f);
+	sm::Vec3 firstMovePosition = basePosition + normal * firstMoveDistance;
+
+	curve->AddKeyframe(time += path->Keys[0]->Time + random.GetFloat(0.0f, 1.0f), basePosition);
+	curve->AddKeyframe(time += (path->Keys[1]->Time - path->Keys[0]->Time) + random.GetFloat(0.0f, 1.0f), firstMovePosition);
+
+	for (uint32_t i = 2; i < endKeyIndex; i++)
+	{
+		time += (path->Keys[i]->Time - path->Keys[i - 1]->Time) + random.GetFloat(0.0f, 0.2f);
+
+		curve->AddKeyframe(time, path->Keys[i]->Position + DemoUtils::GetRandomVector() * random.GetFloat(0, spread));
+	}
 
 	curve->SmoothTangents();
 
 	return curve;
 }
 
-AnimationCurve<float>* DecomposeToRibbon::CreateScaleCurve(AnimationCurve<sm::Vec3> *transformCurve)
+AnimationCurve<float>* DecomposeToRibbon::CreateScaleCurve(AnimationCurve<sm::Vec3> *transformCurve, float minScale)
 {
 	AnimationCurve<float>* curve = new AnimationCurve<float>();
 
@@ -66,10 +79,11 @@ AnimationCurve<float>* DecomposeToRibbon::CreateScaleCurve(AnimationCurve<sm::Ve
 	float endTime = transformCurve->GetEndTime();
 
 	curve->AddKeyframe(startTime, 1.0f);
-	curve->AddKeyframe(startTime + 3.0f, 0.2f);
-	curve->AddKeyframe(endTime - 3.0f, 0.2f);
+	curve->AddKeyframe(startTime + 3.0f, minScale);
+	//curve->AddKeyframe((endTime + startTime) / 2.0f, 0.2f);
+	curve->AddKeyframe(endTime - 3.0f, minScale);
 	curve->AddKeyframe(endTime, 0.0f);
-	curve->SmoothTangents();
+	//curve->SmoothTangents();
 
 	return curve;
 }

@@ -72,28 +72,43 @@ bool XMLNode::HasAttrib(const std::string &name)
 	return true;
 }
 
-std::string XMLNode::GetAttribAsString(const std::string &name)
+std::string XMLNode::GetAttribAsString(const std::string &name, const std::string& default)
 {
+	if (!HasAttrib(name))
+		return default;
+
 	return m_attribs[name];
 }
 
-uint32_t XMLNode::GetAttribAsUInt32(const std::string &name)
+uint32_t XMLNode::GetAttribAsUInt32(const std::string &name, uint32_t default)
 {
+	if (!HasAttrib(name))
+		return default;
+
 	return ParseValue<uint32_t>(m_attribs[name], "%ud");
 }
 
-int32_t XMLNode::GetAttribAsInt32(const std::string &name)
+int32_t XMLNode::GetAttribAsInt32(const std::string &name, int32_t default)
 {
+	if (!HasAttrib(name))
+		return default;
+
 	return ParseValue<int32_t>(m_attribs[name], "%d");
 }
 
-float XMLNode::GetAttribAsFloat(const std::string &name)
+float XMLNode::GetAttribAsFloat(const std::string &name, float default)
 {
+	if (!HasAttrib(name))
+		return default;
+
 	return ParseValue<float>(m_attribs[name], "%f");
 }
 
-bool XMLNode::GetAttribAsBool(const std::string &name)
+bool XMLNode::GetAttribAsBool(const std::string &name, bool default)
 {
+	if (!HasAttrib(name))
+		return default;
+
 	if (StringUtils::LowerCase(m_attribs[name]) == "true" || m_value == "1")
 		return true;
 	else if (StringUtils::LowerCase(m_attribs[name]) == "false" || m_value == "0")
@@ -112,9 +127,9 @@ uint32_t XMLNode::GetChildrenCount() const
 
 XMLNode& XMLNode::operator[](const std::string &name) const
 {
-	for (uint32_t i = 0; i < m_children.size(); i++)
-		if (m_children[i]->m_name == name)
-			return *m_children[i];
+	XMLNode *node = GetChild(name);
+	if (node != NULL)
+		return *node;
 
 	assert(false && "no such child element");
 	return *(new XMLNode()); // only to remove warning
@@ -127,3 +142,18 @@ XMLNode& XMLNode::operator[](uint32_t index) const
 	return *m_children[index];
 }
 
+XMLNode* XMLNode::GetChild(uint32_t index) const
+{
+	assert(index < m_children.size());
+
+	return m_children[index];
+}
+
+XMLNode* XMLNode::GetChild(const std::string &name) const
+{
+	for (uint32_t i = 0; i < m_children.size(); i++)
+	if (m_children[i]->m_name == name)
+		return m_children[i];
+
+	return NULL;
+}

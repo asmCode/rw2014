@@ -40,7 +40,7 @@ void TriangledMesh::CreateVertexDataBuffer()
 	{
 		m_triangles[i].Transform = sm::Matrix::IdentityMatrix();
 
-		m_triangles[i].Color.Set(0.7f, 0.2f, 0.8f, 0.1f);
+		m_triangles[i].Color.Set(0.7f, 0.2f, 0.8f, 0.8f);
 
 		if (i >= 1000)
 			m_triangles[i].GlowPower = 1.0f;

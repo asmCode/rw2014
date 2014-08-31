@@ -1,5 +1,6 @@
 #include "DemoUtils.h"
 #include <Utils/Randomizer.h>
+#include <Utils/StringUtils.h>
 #include <stdint.h>
 
 sm::Vec3 DemoUtils::GetRandomVector()
@@ -41,4 +42,18 @@ sm::Matrix DemoUtils::GetTriangleTransform(sm::Vec3* triangle)
 	return
 		sm::Matrix::TranslateMatrix(center) *
 		rotate;
+}
+
+sm::Vec3 DemoUtils::ParseVector3(const std::string& vectorStr, const std::string& separator)
+{
+	sm::Vec3 vec;
+	sscanf(vectorStr.c_str(), "%f;%f;%f", &vec.x, &vec.y, &vec.z);
+	return vec;
+}
+
+sm::Vec4 DemoUtils::ParseVector4(const std::string& vectorStr, const std::string& separator)
+{
+	sm::Vec4 vec;
+	sscanf(vectorStr.c_str(), "%f;%f;%f;%f", &vec.x, &vec.y, &vec.z, &vec.w);
+	return vec;
 }

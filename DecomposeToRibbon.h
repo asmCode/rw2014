@@ -15,9 +15,9 @@ private:
 	AnimationCurve<sm::Vec3>* CreateCurve(
 		const sm::Vec3& basePosition,
 		const sm::Vec3& normal,
-		std::vector<sm::Vec3>& path,
-		float startTime,
-		float duration);
+		SceneElement::Path* path,
+		int endKeyIndex,
+		float spread);
 
-	AnimationCurve<float>* CreateScaleCurve(AnimationCurve<sm::Vec3> *transformCurve);
+	AnimationCurve<float>* CreateScaleCurve(AnimationCurve<sm::Vec3> *transformCurve, float minScale);
 };

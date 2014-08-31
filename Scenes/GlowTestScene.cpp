@@ -4,6 +4,8 @@
 #include "../GameObject.h"
 #include "../UniqueTriangledMesh.h"
 #include "../Materials/GlowTransparencySpecullar.h"
+#include "../SceneElement/Path.h"
+#include "../SceneElement/Key.h"
 #include <Graphics/Content/Content.h>
 #include <Graphics/Model.h>
 #include <Graphics/Mesh.h>
@@ -20,16 +22,16 @@ GlowTestScene::~GlowTestScene()
 
 }
 
-bool GlowTestScene::Initialize()
+void GlowTestScene::InitializeSubScene()
 {
 	Model* teapotModel = Content::Instance->Get<Model>("teapot");
 
-	std::vector<sm::Vec3> path;
-	path.push_back(sm::Vec3(0, 0, 0));
-	path.push_back(sm::Vec3(0, 0, 0.1f));
+	SceneElement::Path* path = new SceneElement::Path();
+	path->Keys.push_back(new SceneElement::Key());
+	path->Keys.push_back(new SceneElement::Key());
 
 	DecomposeToRibbon* decompose = new DecomposeToRibbon();
-	decompose->Initialize(teapotModel->m_meshParts[0], path, 0, 0);
+	decompose->Initialize(teapotModel->m_meshParts[0], path, 0, 0.0f, 0.4f);
 
 	//m_teapot = new GameObject();
 	//m_teapot->SetRenderable(new Renderable(decompose->GetMesh(), NULL));
@@ -54,8 +56,6 @@ bool GlowTestScene::Initialize()
 
 		decompose->GetMesh()->SetTriangleTransform(i, transform);
 	}
-
-	return true;
 }
 
 bool GlowTestScene::Update(float time, float deltaTime)

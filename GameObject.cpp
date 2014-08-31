@@ -4,7 +4,6 @@
 
 GameObject::GameObject() :
 	WorldMatrix(sm::Matrix::IdentityMatrix()),
-	m_renderable(NULL),
 	m_isActive(true)
 {
 }
@@ -13,14 +12,9 @@ GameObject::~GameObject()
 {
 }
 
-void GameObject::SetRenderable(Renderable* renderable)
+const std::vector<Renderable*>& GameObject::GetRenderables() const
 {
-	m_renderable = renderable;
-}
-
-Renderable* GameObject::GetRenderable() const
-{
-	return m_renderable;
+	return m_renderables;
 }
 
 void GameObject::Awake()

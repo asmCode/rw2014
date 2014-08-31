@@ -5,6 +5,7 @@
 #include <map>
 #include <vector>
 #include <stdint.h>
+#include <stdio.h>
 #include <assert.h>
 
 class XMLNode
@@ -27,15 +28,18 @@ public:
 	bool GetValueAsBool() const;
 
 	bool HasAttrib(const std::string &name);
-	std::string GetAttribAsString(const std::string &name);
-	uint32_t GetAttribAsUInt32(const std::string &name);
-	int32_t GetAttribAsInt32(const std::string &name);
-	float GetAttribAsFloat(const std::string &name);
-	bool GetAttribAsBool(const std::string &name);
+	std::string GetAttribAsString(const std::string &name, const std::string& default = "");
+	uint32_t GetAttribAsUInt32(const std::string &name, uint32_t default = 0);
+	int32_t GetAttribAsInt32(const std::string &name, int32_t default = 0);
+	float GetAttribAsFloat(const std::string &name, float default = 0.0f);
+	bool GetAttribAsBool(const std::string &name, bool default = false);
 
 	uint32_t GetChildrenCount() const;
 	XMLNode& operator[](const std::string &name) const;
 	XMLNode& operator[](uint32_t index) const;
+
+	XMLNode* GetChild(uint32_t index) const;
+	XMLNode* GetChild(const std::string &name) const;
 
 private:
 	std::string m_name;

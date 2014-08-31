@@ -18,9 +18,10 @@ TrianglesRibbon::~TrianglesRibbon()
 
 void TrianglesRibbon::Initialize(
 	MeshPart* meshPart,
-	std::vector<sm::Vec3>& path,
-	float startTime,
-	float duration)
+	SceneElement::Path* path,
+	int endKeyIndex,
+	float spread,
+	float minScale)
 {
 	static Randomizer random;
 
@@ -43,10 +44,10 @@ void TrianglesRibbon::Initialize(
 			m_triangledMesh->GetBasePosition(i),
 			(m_triangledMesh->GetBaseRotation(i) * sm::Vec3(0, 0, 1)).GetNormalized(),
 			path,
-			startTime,
-			duration);
+			endKeyIndex,
+			spread);
 
-		m_trianglesData[i]->ScaleCurve = CreateScaleCurve(m_trianglesData[i]->Curve);
+		m_trianglesData[i]->ScaleCurve = CreateScaleCurve(m_trianglesData[i]->Curve, minScale);
 	}
 }
 
@@ -55,7 +56,7 @@ void TrianglesRibbon::Update(float time, float deltaTime)
 	sm::Vec3 position;
 	float scale;
 
-	//DebugUtils::DrawCurve(*m_trianglesData[0]->Curve, 0.1f, sm::Vec3(0, 0, 1));
+	DebugUtils::DrawCurve(*m_trianglesData[0]->Curve, 0.1f, sm::Vec3(0, 0, 1));
 
 	for (int i = 0; i < m_trianglesCount; i++)
 	{

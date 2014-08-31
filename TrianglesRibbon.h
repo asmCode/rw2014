@@ -9,6 +9,8 @@ class UniqueTriangledMesh;
 class MeshPart;
 class TriangleDataColor;
 
+namespace SceneElement { class Path; }
+
 class TrianglesRibbon
 {
 public:
@@ -17,9 +19,10 @@ public:
 
 	void Initialize(
 		MeshPart* meshPart,
-		std::vector<sm::Vec3>& path,
-		float startTime,
-		float duration);
+		SceneElement::Path* path,
+		int endKeyIndex,
+		float spread,
+		float minScale);
 
 	void Update(float time, float deltaTime);
 
@@ -39,11 +42,11 @@ protected:
 	virtual AnimationCurve<sm::Vec3>* CreateCurve(
 		const sm::Vec3& basePosition,
 		const sm::Vec3& normal,
-		std::vector<sm::Vec3>& path,
-		float startTime,
-		float duration) = 0;
+		SceneElement::Path* path,
+		int endKeyIndex,
+		float spread) = 0;
 
-	virtual AnimationCurve<float>* CreateScaleCurve(AnimationCurve<sm::Vec3> *transformCurve) = 0;
+	virtual AnimationCurve<float>* CreateScaleCurve(AnimationCurve<sm::Vec3> *transformCurve, float minScale) = 0;
 
 	UniqueTriangledMesh* m_triangledMesh;
 	int m_trianglesCount;

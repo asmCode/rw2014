@@ -30,6 +30,7 @@
 #include "Particles/ParticleEmmiter.h"
 #include "Particles/IParticleHandler.h"
 #include "GameObject.h"
+#include "Environment.h"
 //#include "Dream.h"
 #include "VectorGraphics.h"
 #include "GraphicsLog.h"
@@ -314,7 +315,7 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 	m_scenes.push_back(new Test1Scene());
 	m_scenes.push_back(new GlowTestScene());
 
-	m_activeScene = m_scenes[1];
+	m_activeScene = m_scenes[0];
 	
 	return true;
 }
@@ -330,6 +331,8 @@ bool DemoController::LoadContent(const char *basePath)
 	loadingScreen->Draw();
 
 	m_strBasePath = basePath;
+
+	Environment::GetInstance()->SetBasePath(m_strBasePath);
 
 	//dc->AddContentObserver(this);
 	dc->LoadModels(m_strBasePath + "models\\");

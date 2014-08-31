@@ -8,10 +8,10 @@ public:
 	GlowTestScene();
 	virtual ~GlowTestScene();
 
-	bool Initialize();
-
 	bool Update(float time, float deltaTime);
 
 private:
 	GameObject* m_teapot;
+
+	void InitializeSubScene();
 };

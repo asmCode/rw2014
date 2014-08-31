@@ -1,6 +1,6 @@
 #include "XMLLoader.h"
 #include "XMLNode.h"
-#include <tinyxml/tinyxml2.h>
+#include "../../Ext/tinyxml/tinyxml2.h"
 
 XMLNode* XMLLoader::LoadNode(const tinyxml2::XMLElement *element)
 {
@@ -38,3 +38,15 @@ XMLNode* XMLLoader::LoadFromFile(const std::string &path)
 	return LoadNode(rootElement);
 }
 
+XMLNode* XMLLoader::LoadFromString(const std::string &data)
+{
+	tinyxml2::XMLDocument xmlDoc;
+	if (xmlDoc.Parse(data.c_str(), data.size()) != tinyxml2::XML_NO_ERROR)
+		return NULL;
+
+	const tinyxml2::XMLElement *rootElement = xmlDoc.RootElement();
+	if (rootElement == NULL)
+		return NULL;
+
+	return LoadNode(rootElement);
+}

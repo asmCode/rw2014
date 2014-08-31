@@ -1,7 +1,10 @@
 #pragma once
 
+#include <Math/Matrix.h>
+
 class BaseMesh;
 class Material;
+
 
 class Renderable
 {
@@ -16,6 +19,8 @@ public:
 
 	void SetMaterial(Material* material);
 	Material* GetMaterial() const;
+
+	sm::Matrix Transform;
 
 private:
 	BaseMesh* m_mesh;

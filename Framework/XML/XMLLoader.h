@@ -10,6 +10,7 @@ class XMLLoader
 {
 public:
 	static XMLNode* LoadFromFile(const std::string &path);
+	static XMLNode* LoadFromString(const std::string &data);
 
 private:
 	static XMLNode* LoadNode(const tinyxml2::XMLElement *element);

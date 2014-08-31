@@ -7,13 +7,15 @@ class Renderable;
 
 class BaseScene
 {
+	friend class SceneLoader;
+
 public:
 	BaseScene() {};
 	virtual ~BaseScene() {}
 
-	virtual bool Initialize() = 0;
+	bool Initialize();
 
-	virtual bool Update(float time, float deltaTime) = 0;
+	bool Update(float time, float deltaTime);
 
 	virtual void Enter() {};
 	virtual void Leave() {};
@@ -22,7 +24,11 @@ public:
 	const std::vector<Renderable*>& GetRenderables() const;
 
 protected:
+	std::string m_name;
+
 	std::vector<GameObject*> m_gameObjects;
 	std::vector<Renderable*> m_renderables;
+
+	virtual void InitializeSubScene() = 0;
 };
 

@@ -131,6 +131,7 @@ exit /B 0
     <ClCompile Include="DistortParticleHandler.cpp" />
     <ClCompile Include="DownsampleMaterial.cpp" />
     <ClCompile Include="Dream.cpp" />
+    <ClCompile Include="Environment.cpp" />
     <ClCompile Include="Ext\tinyxml\tinyxml2.cpp" />
     <ClCompile Include="Framework\Graphics\Animation.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\stuff\we-can_2013-demo\code\Framework;D:\stuff\we-can_2013-demo\code\Ext;D:\stuff\we-can_2013-demo\code\Ext\glew-1.9.0\include;d:\stuff\we-can_2013-demo\code\zip\contrib\minizip\;d:\stuff\we-can_2013-demo\code\zip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -175,6 +176,7 @@ exit /B 0
     <ClCompile Include="Framework\XML\XMLNode.cpp" />
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjects\Ribbon.cpp" />
     <ClCompile Include="GraphicsEngine.cpp" />
     <ClCompile Include="GraphicsLibrary\AnimCamera.cpp" />
     <ClCompile Include="GraphicsLibrary\CubeTexture.cpp" />
@@ -185,8 +187,11 @@ exit /B 0
     <ClCompile Include="Materials\GlowTransparencySpecullar.cpp" />
     <ClCompile Include="MeshUtils.cpp" />
     <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="SceneElement\RibbonData.cpp" />
+    <ClCompile Include="SceneLoader.cpp" />
     <ClCompile Include="Scenes\BaseScene.cpp" />
     <ClCompile Include="Scenes\GlowTestScene.cpp" />
+    <ClCompile Include="SceneUtils.cpp" />
     <ClCompile Include="TriangledMesh.cpp" />
     <ClCompile Include="ParticlesManager.cpp" />
     <ClCompile Include="Particles\Particle.cpp" />
@@ -233,6 +238,7 @@ exit /B 0
     <ClInclude Include="DistortParticleHandler.h" />
     <ClInclude Include="DownsampleMaterial.h" />
     <ClInclude Include="Dream.h" />
+    <ClInclude Include="Environment.h" />
     <ClInclude Include="Ext\tinyxml\tinyxml2.h" />
     <ClInclude Include="Framework\Graphics\Animation.h" />
     <ClInclude Include="Framework\Graphics\AnimationLoader.h" />
@@ -299,6 +305,7 @@ exit /B 0
     <ClInclude Include="Framework\XML\XMLNode.h" />
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjects\Ribbon.h" />
     <ClInclude Include="GraphicsEngine.h" />
     <ClInclude Include="GraphicsLibrary\AnimCamera.h" />
     <ClInclude Include="GraphicsLibrary\CubeTexture.h" />
@@ -313,7 +320,14 @@ exit /B 0
     <ClInclude Include="Materials\GlowTransparencySpecullar.h" />
     <ClInclude Include="MeshUtils.h" />
     <ClInclude Include="Quad.h" />
+    <ClInclude Include="SceneElement\Destination.h" />
+    <ClInclude Include="SceneElement\Key.h" />
+    <ClInclude Include="SceneElement\Path.h" />
+    <ClInclude Include="SceneElement\RibbonData.h" />
+    <ClInclude Include="SceneElement\Source.h" />
+    <ClInclude Include="SceneLoader.h" />
     <ClInclude Include="Scenes\GlowTestScene.h" />
+    <ClInclude Include="SceneUtils.h" />
     <ClInclude Include="TriangleDataColorGlow.h" />
     <ClInclude Include="TriangledMesh.h" />
     <ClInclude Include="ParticlesManager.h" />
