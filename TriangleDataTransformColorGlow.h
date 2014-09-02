@@ -4,9 +4,10 @@
 #include <Math/Vec4.h>
 #include <Math/Matrix.h>
 
-class TriangleDataColor
+class TriangleDataTransformColorGlow
 {
 public:
 	sm::Vec4 Color;
 	sm::Matrix Transform;
+	float GlowPower;
 };

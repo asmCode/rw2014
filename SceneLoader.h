@@ -3,6 +3,7 @@
 #include <string>
 
 class Ribbon;
+class Static;
 class BaseScene;
 
 namespace SceneElement
@@ -12,6 +13,7 @@ namespace SceneElement
 	class Destination;
 	class Path;
 	class Key;
+	class StaticData;
 }
 
 class XMLNode;
@@ -27,6 +29,8 @@ private:
 	static SceneElement::Destination* LoadDestination(XMLNode* node);
 	static SceneElement::Path* LoadPath(XMLNode* node);
 	static SceneElement::Key* LoadKey(XMLNode* node);
+	static SceneElement::StaticData* LoadStatic(XMLNode* node);
 
 	static Ribbon* CreateRibbonFromData(const std::string& sceneName, SceneElement::RibbonData* ribbon);
+	static Static* CreateStaticFromData(const std::string& sceneName, SceneElement::StaticData* staticData);
 };

@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "DemoUtils.h"
 #include "GameObjects/Ribbon.h"
+#include "GameObjects/Static.h"
 #include "Scenes/BaseScene.h"
 
 #include "SceneElement/RibbonData.h"
@@ -10,6 +11,7 @@
 #include "SceneElement/Destination.h"
 #include "SceneElement/Path.h"
 #include "SceneElement/Key.h"
+#include "SceneElement/StaticData.h"
 
 #include <XML/XMLNode.h>
 #include <XML/XMLLoader.h>
@@ -37,6 +39,21 @@ bool SceneLoader::LoadFromFile(BaseScene* scene, const std::string& sceneName)
 		Ribbon* ribbon = CreateRibbonFromData(scene->m_name, ribbonData);
 		if (ribbon != NULL)
 			scene->m_gameObjects.push_back(ribbon);
+	}
+
+	XMLNode* staticMeshesNode = node->GetChild("StaticMeshes");
+	if (staticMeshesNode != NULL)
+	{
+		for (uint32_t i = 0; i < staticMeshesNode->GetChildrenCount(); i++)
+		{
+			SceneElement::StaticData* staticData = LoadStatic(staticMeshesNode->GetChild(i));
+			if (staticData == NULL)
+				continue;
+
+			Static* staticMesh = CreateStaticFromData(scene->m_name, staticData);
+			if (staticMesh != NULL)
+				scene->m_gameObjects.push_back(staticMesh);
+		}
 	}
 
 	return true;
@@ -103,7 +120,19 @@ SceneElement::Key* SceneLoader::LoadKey(XMLNode* node)
 	return key;
 }
 
+SceneElement::StaticData* SceneLoader::LoadStatic(XMLNode* node)
+{
+	SceneElement::StaticData* data = new SceneElement::StaticData();
+	data->MeshName = node->GetAttribAsString("mesh_name");
+	return data;
+}
+
 Ribbon* SceneLoader::CreateRibbonFromData(const std::string& sceneName, SceneElement::RibbonData* ribbon)
 {
 	return new Ribbon(sceneName, ribbon);
+}
+
+Static* SceneLoader::CreateStaticFromData(const std::string& sceneName, SceneElement::StaticData* staticData)
+{
+	return new Static(sceneName, staticData);
 }

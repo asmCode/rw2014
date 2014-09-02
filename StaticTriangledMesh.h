@@ -4,21 +4,21 @@
 #include <Math/Matrix.h>
 #include <stdint.h>
 
-class TriangleDataTransformColorGlow;
+class MeshPart;
+class TriangleDataColorGlow;
 
-class TriangledMesh : public BaseMesh
+class StaticTriangledMesh : public BaseMesh
 {
 public:
-	TriangledMesh();
-	virtual ~TriangledMesh();
+	StaticTriangledMesh();
+	virtual ~StaticTriangledMesh();
 
+	void Initialize(MeshPart* meshPart);
 	virtual void Draw();
 
 	//TriangleDataColor* GetTrianglesData() const;
 	uint32_t GetTrianglesCount() const;
 
-	void SetTriangleData(int index, const sm::Matrix& transform, const sm::Vec4& color);
-	void SetTriangleTransform(int index, const sm::Matrix& transform);
 	void SetTriangleColor(int index, const sm::Vec4& color);
 	void SetGlowPower(int index, float glowPower);
 
@@ -28,8 +28,10 @@ protected:
 	uint32_t m_indexBufferId;
 
 	int m_trianglesCount;
-	TriangleDataTransformColorGlow* m_triangles;
+	TriangleDataColorGlow* m_triangles;
 
 	virtual void Apply();
 	void CreateVertexDataBuffer();
+	void CreateVertexPositionBuffer(MeshPart* meshPart);
+	void CreateIndexBuffer();
 };

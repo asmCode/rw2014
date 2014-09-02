@@ -44,4 +44,8 @@
 			</Path>
 		</Ribbon>
 	</Ribbons>
+	<StaticMeshes>
+		<Static mesh_name="Cone001" />
+		<Static mesh_name="Sphere001" />
+	</StaticMeshes>
 </Scene>

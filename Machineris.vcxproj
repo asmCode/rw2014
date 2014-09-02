@@ -177,6 +177,7 @@ exit /B 0
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjects\Ribbon.cpp" />
+    <ClCompile Include="GameObjects\Static.cpp" />
     <ClCompile Include="GraphicsEngine.cpp" />
     <ClCompile Include="GraphicsLibrary\AnimCamera.cpp" />
     <ClCompile Include="GraphicsLibrary\CubeTexture.cpp" />
@@ -185,13 +186,16 @@ exit /B 0
     <ClCompile Include="GraphicsLibrary\TimeControl.cpp" />
     <ClCompile Include="GraphicsLog.cpp" />
     <ClCompile Include="Materials\GlowTransparencySpecullar.cpp" />
+    <ClCompile Include="Materials\StaticGlowTransparencySpecullar.cpp" />
     <ClCompile Include="MeshUtils.cpp" />
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="SceneElement\RibbonData.cpp" />
+    <ClCompile Include="SceneElement\StaticData.cpp" />
     <ClCompile Include="SceneLoader.cpp" />
     <ClCompile Include="Scenes\BaseScene.cpp" />
     <ClCompile Include="Scenes\GlowTestScene.cpp" />
     <ClCompile Include="SceneUtils.cpp" />
+    <ClCompile Include="StaticTriangledMesh.cpp" />
     <ClCompile Include="TriangledMesh.cpp" />
     <ClCompile Include="ParticlesManager.cpp" />
     <ClCompile Include="Particles\Particle.cpp" />
@@ -306,6 +310,7 @@ exit /B 0
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjects\Ribbon.h" />
+    <ClInclude Include="GameObjects\Static.h" />
     <ClInclude Include="GraphicsEngine.h" />
     <ClInclude Include="GraphicsLibrary\AnimCamera.h" />
     <ClInclude Include="GraphicsLibrary\CubeTexture.h" />
@@ -318,6 +323,7 @@ exit /B 0
     <ClInclude Include="GraphicsLibrary\TimeControl.h" />
     <ClInclude Include="GraphicsLog.h" />
     <ClInclude Include="Materials\GlowTransparencySpecullar.h" />
+    <ClInclude Include="Materials\StaticGlowTransparencySpecullar.h" />
     <ClInclude Include="MeshUtils.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="SceneElement\Destination.h" />
@@ -325,10 +331,13 @@ exit /B 0
     <ClInclude Include="SceneElement\Path.h" />
     <ClInclude Include="SceneElement\RibbonData.h" />
     <ClInclude Include="SceneElement\Source.h" />
+    <ClInclude Include="SceneElement\StaticData.h" />
     <ClInclude Include="SceneLoader.h" />
     <ClInclude Include="Scenes\GlowTestScene.h" />
     <ClInclude Include="SceneUtils.h" />
     <ClInclude Include="TriangleDataColorGlow.h" />
+    <ClInclude Include="TriangleDataTransformColorGlow.h" />
+    <ClInclude Include="StaticTriangledMesh.h" />
     <ClInclude Include="TriangledMesh.h" />
     <ClInclude Include="ParticlesManager.h" />
     <ClInclude Include="Particles\IParticleHandler.h" />
@@ -354,7 +363,7 @@ exit /B 0
     <ClInclude Include="resource.h" />
     <ClInclude Include="StartDialog.h" />
     <ClInclude Include="Triangle.h" />
-    <ClInclude Include="TriangleDataColor.h" />
+    <ClInclude Include="TriangleDataTransformColor.h" />
     <ClInclude Include="TriangleShader.h" />
     <ClInclude Include="TrianglesRibbon.h" />
     <ClInclude Include="UniqueTriangledMesh.h" />
@@ -394,6 +403,8 @@ exit /B 0
     <None Include="Data\effects\SpecularColored.vpr" />
     <None Include="Data\effects\Sprite.fpr" />
     <None Include="Data\effects\Sprite.vpr" />
+    <None Include="Data\effects\StaticSpecularBlur.fpr" />
+    <None Include="Data\effects\StaticSpecularBlur.vpr" />
     <None Include="Data\effects\VertBlur.fpr" />
     <None Include="Data\effects\VertBlur.vpr" />
   </ItemGroup>

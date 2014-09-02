@@ -1,6 +1,6 @@
 #include "TrianglesRibbon.h"
 #include "UniqueTriangledMesh.h"
-#include "TriangleDataColor.h"
+#include "TriangleDataTransformColorGlow.h"
 #include "DemoUtils.h"
 #include "DebugUtils.h"
 #include <Utils/Randomizer.h>

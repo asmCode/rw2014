@@ -1,7 +1,7 @@
 #pragma once
 
 #include "TriangledMesh.h"
-#include "TriangleDataColorGlow.h"
+#include "TriangleDataTransformColorGlow.h"
 #include <Math/Vec2.h>
 #include <Graphics/MeshPart.h>
 #include <Graphics/VertexInformation.h>
@@ -34,7 +34,7 @@ void TriangledMesh::CreateVertexDataBuffer()
 {
 	// TODO: bedzie trzeba przeniesc inicjalizacji klas pochodnych
 
-	m_triangles = new TriangleDataColorGlow[m_trianglesCount * 3];
+	m_triangles = new TriangleDataTransformColorGlow[m_trianglesCount * 3];
 
 	for (uint16_t i = 0; i < m_trianglesCount * 3; i++)
 	{
@@ -60,23 +60,23 @@ void TriangledMesh::CreateVertexDataBuffer()
 
 	glGenBuffers(1, &m_vertexDataBufferId);
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexDataBufferId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(TriangleDataColorGlow)* m_trianglesCount * 3, NULL, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(TriangleDataTransformColorGlow)* m_trianglesCount * 3, NULL, GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void TriangledMesh::Apply()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexDataBufferId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(TriangleDataColorGlow)* m_trianglesCount * 3, m_triangles, GL_DYNAMIC_DRAW);
-	glVertexAttribPointer(1, 4, GL_FLOAT, false, sizeof(TriangleDataColorGlow), 0);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(TriangleDataTransformColorGlow)* m_trianglesCount * 3, m_triangles, GL_DYNAMIC_DRAW);
+	glVertexAttribPointer(1, 4, GL_FLOAT, false, sizeof(TriangleDataTransformColorGlow), 0);
 
 	int baseVertexDataIndex = 2;
 	for (int i = 0; i < 4; i++)
 	{ 
-		glVertexAttribPointer(baseVertexDataIndex + i, 4, GL_FLOAT, false, sizeof(TriangleDataColorGlow), reinterpret_cast<void*>(sizeof(sm::Vec4) + sizeof(sm::Vec4) * i));
+		glVertexAttribPointer(baseVertexDataIndex + i, 4, GL_FLOAT, false, sizeof(TriangleDataTransformColorGlow), reinterpret_cast<void*>(sizeof(sm::Vec4) + sizeof(sm::Vec4) * i));
 	}
 
-	glVertexAttribPointer(6, 1, GL_FLOAT, false, sizeof(TriangleDataColorGlow), reinterpret_cast<void*>(sizeof(sm::Vec4) + sizeof(sm::Vec4) * 4));
+	glVertexAttribPointer(6, 1, GL_FLOAT, false, sizeof(TriangleDataTransformColorGlow), reinterpret_cast<void*>(sizeof(sm::Vec4) + sizeof(sm::Vec4) * 4));
 }
 
 void TriangledMesh::Draw()
@@ -105,17 +105,17 @@ uint32_t TriangledMesh::GetTrianglesCount() const
 
 void TriangledMesh::SetTriangleData(int index, const sm::Matrix& transform, const sm::Vec4& color)
 {
-	TriangleDataColorGlow* trianglesPointer = m_triangles + index * 3;
+	TriangleDataTransformColorGlow* trianglesPointer = m_triangles + index * 3;
 
 	trianglesPointer->Transform = transform;
 	trianglesPointer->Color = color;
 	
-	memcpy(trianglesPointer + 1, trianglesPointer, sizeof(TriangleDataColorGlow)* 2);
+	memcpy(trianglesPointer + 1, trianglesPointer, sizeof(TriangleDataTransformColorGlow)* 2);
 }
 
 void TriangledMesh::SetTriangleTransform(int index, const sm::Matrix& transform)
 {
-	TriangleDataColorGlow* trianglesPointer = m_triangles + index * 3;
+	TriangleDataTransformColorGlow* trianglesPointer = m_triangles + index * 3;
 
 	trianglesPointer->Transform = transform;
 	(trianglesPointer + 1)->Transform = transform;
@@ -124,7 +124,7 @@ void TriangledMesh::SetTriangleTransform(int index, const sm::Matrix& transform)
 
 void TriangledMesh::SetTriangleColor(int index, const sm::Vec4& color)
 {
-	TriangleDataColorGlow* trianglesPointer = m_triangles + index * 3;
+	TriangleDataTransformColorGlow* trianglesPointer = m_triangles + index * 3;
 
 	trianglesPointer->Color = color;
 	(trianglesPointer + 1)->Color = color;
@@ -133,7 +133,7 @@ void TriangledMesh::SetTriangleColor(int index, const sm::Vec4& color)
 
 void TriangledMesh::SetGlowPower(int index, float glowPower)
 {
-	TriangleDataColorGlow* trianglesPointer = m_triangles + index * 3;
+	TriangleDataTransformColorGlow* trianglesPointer = m_triangles + index * 3;
 
 	trianglesPointer->GlowPower = glowPower;
 	(trianglesPointer + 1)->GlowPower = glowPower;

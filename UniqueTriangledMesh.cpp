@@ -2,7 +2,7 @@
 
 #include "UniqueTriangledMesh.h"
 #include "TriangledMesh.h"
-#include "TriangleDataColorGlow.h"
+#include "TriangleDataTransformColorGlow.h"
 #include "MeshUtils.h"
 #include "DemoUtils.h"
 #include <Math/Vec2.h>
@@ -33,17 +33,17 @@ void UniqueTriangledMesh::Initialize(MeshPart* meshPart)
 void UniqueTriangledMesh::Apply()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexDataBufferId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(TriangleDataColorGlow)* m_trianglesCount * 3, m_triangles, GL_DYNAMIC_DRAW);
-	glVertexAttribPointer(1, 4, GL_FLOAT, false, sizeof(TriangleDataColorGlow), 0);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(TriangleDataTransformColorGlow)* m_trianglesCount * 3, m_triangles, GL_DYNAMIC_DRAW);
+	glVertexAttribPointer(1, 4, GL_FLOAT, false, sizeof(TriangleDataTransformColorGlow), 0);
 
 	int baseVertexDataIndex = 2;
 	for (int i = 0; i < 4; i++)
 	{
-		glVertexAttribPointer(baseVertexDataIndex + i, 4, GL_FLOAT, false, sizeof(TriangleDataColorGlow), reinterpret_cast<void*>(sizeof(sm::Vec4) + sizeof(sm::Vec4) * i));
+		glVertexAttribPointer(baseVertexDataIndex + i, 4, GL_FLOAT, false, sizeof(TriangleDataTransformColorGlow), reinterpret_cast<void*>(sizeof(sm::Vec4) + sizeof(sm::Vec4) * i));
 	}
 
-	int d = offsetof(TriangleDataColorGlow, GlowPower);
-	glVertexAttribPointer(6, 1, GL_FLOAT, false, sizeof(TriangleDataColorGlow), reinterpret_cast<void*>(d));
+	int d = offsetof(TriangleDataTransformColorGlow, GlowPower);
+	glVertexAttribPointer(6, 1, GL_FLOAT, false, sizeof(TriangleDataTransformColorGlow), reinterpret_cast<void*>(d));
 }
 
 void UniqueTriangledMesh::Draw()
