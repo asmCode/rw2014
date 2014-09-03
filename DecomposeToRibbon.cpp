@@ -23,47 +23,27 @@ AnimationCurve<sm::Vec3>* DecomposeToRibbon::CreateCurve(
 	const sm::Vec3& normal,
 	SceneElement::Path* path,
 	int endKeyIndex,
-	float spread)
+	float spread,
+	float maxDelay)
 {	
 	AnimationCurve<sm::Vec3>* curve = new AnimationCurve<sm::Vec3>();
 
 	static Randomizer random;
 
-	/*
-	float time = startTime;
+	const std::vector<SceneElement::Key*>& keys = path->Keys;
 
-	float firstMoveDistance = random.GetFloat(1.0f, 3.0f);
-	sm::Vec3 firstMovePosition = basePosition + normal * firstMoveDistance;
-
-	curve->AddKeyframe(time += +random.GetFloat(0.0, 2.0f), basePosition);
-	curve->AddKeyframe(time += durationPerUnit * firstMoveDistance + random.GetFloat(1.0, 2.0f), firstMovePosition);
-
-	for (uint32_t i = 0; i < path.size(); i++)
-	{
-		if (i == 0)
-			time += (firstMovePosition - path[0]).GetLength() * durationPerUnit;
-		else
-			time += (path[i] - path[i - 1]).GetLength() * durationPerUnit;
-
-		//time += random.GetFloat(1.0f, 2.0f) + segmentDistance * durationPerUnit;
-
-		curve->AddKeyframe(time, path[i] + DemoUtils::GetRandomVector() * random.GetFloat(0, 2.0f));
-	}
-	*/
-
-	float time = 0.0f;
+	float endTime = path->Keys[endKeyIndex - 1]->Time;
+	float timeScale = random.GetFloat(1.0f, (endTime + maxDelay) / endTime);
 
 	float firstMoveDistance = random.GetFloat(0.5f, 2.0f);
 	sm::Vec3 firstMovePosition = basePosition + normal * firstMoveDistance;
 
-	curve->AddKeyframe(time += path->Keys[0]->Time + random.GetFloat(0.0f, 1.0f), basePosition);
-	curve->AddKeyframe(time += (path->Keys[1]->Time - path->Keys[0]->Time) + random.GetFloat(0.0f, 1.0f), firstMovePosition);
+	curve->AddKeyframe(keys[0]->Time * timeScale, basePosition);
+	curve->AddKeyframe(keys[1]->Time * timeScale, firstMovePosition);
 
 	for (uint32_t i = 2; i < endKeyIndex; i++)
 	{
-		time += (path->Keys[i]->Time - path->Keys[i - 1]->Time) + random.GetFloat(0.0f, 0.2f);
-
-		curve->AddKeyframe(time, path->Keys[i]->Position + DemoUtils::GetRandomVector() * random.GetFloat(0, spread));
+		curve->AddKeyframe(keys[i]->Time * timeScale, path->Keys[i]->Position + DemoUtils::GetRandomVector() * random.GetFloat(0, spread));
 	}
 
 	curve->SmoothTangents();

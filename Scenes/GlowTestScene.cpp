@@ -24,6 +24,7 @@ GlowTestScene::~GlowTestScene()
 
 void GlowTestScene::InitializeSubScene()
 {
+	/*
 	Model* teapotModel = Content::Instance->Get<Model>("teapot");
 
 	SceneElement::Path* path = new SceneElement::Path();
@@ -31,7 +32,7 @@ void GlowTestScene::InitializeSubScene()
 	path->Keys.push_back(new SceneElement::Key());
 
 	DecomposeToRibbon* decompose = new DecomposeToRibbon();
-	decompose->Initialize(teapotModel->m_meshParts[0], path, 0, 0.0f, 0.4f);
+	decompose->Initialize(teapotModel->m_meshParts[0], path, 0, 0.0f, 0.4f, 0.1f);
 
 	//m_teapot = new GameObject();
 	//m_teapot->SetRenderable(new Renderable(decompose->GetMesh(), NULL));
@@ -56,6 +57,7 @@ void GlowTestScene::InitializeSubScene()
 
 		decompose->GetMesh()->SetTriangleTransform(i, transform);
 	}
+	*/
 }
 
 bool GlowTestScene::Update(float time, float deltaTime)

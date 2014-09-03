@@ -22,7 +22,8 @@ public:
 		SceneElement::Path* path,
 		int endKeyIndex,
 		float spread,
-		float minScale);
+		float minScale,
+		float maxDelay);
 
 	void Update(float time, float deltaTime);
 
@@ -32,7 +33,6 @@ protected:
 	struct TriangleData
 	{
 		sm::Matrix BaseTransform;
-		float Time;
 
 		int LastKeyframeIndex;
 		AnimationCurve<sm::Vec3>* Curve;
@@ -44,7 +44,8 @@ protected:
 		const sm::Vec3& normal,
 		SceneElement::Path* path,
 		int endKeyIndex,
-		float spread) = 0;
+		float spread,
+		float maxDelayOnEachNode) = 0;
 
 	virtual AnimationCurve<float>* CreateScaleCurve(AnimationCurve<sm::Vec3> *transformCurve, float minScale) = 0;
 

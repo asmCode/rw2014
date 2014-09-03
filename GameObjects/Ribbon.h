@@ -22,4 +22,7 @@ private:
 
 	StaticTriangledMesh* m_staticSource;
 	StaticTriangledMesh* m_staticDestination;
+
+	float m_startDecomposeTime;
+	float m_finishComposeTime;
 };

@@ -22,12 +22,23 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 	m_decomposeAndFly(NULL),
 	m_composeFromRibbon(NULL),
 	m_staticSource(NULL),
-	m_staticDestination(NULL)
+	m_staticDestination(NULL),
+	m_startDecomposeTime(0.0f),
+	m_finishComposeTime(0.0f)
 {
+	assert(ribbonData != NULL);
+	assert(ribbonData->Path != NULL);
+	assert(ribbonData->Path->Keys.size() > 0);
+
 	int halfPathKeyIndex = ribbonData->Path->Keys.size() / 2;
 
+	int keysCount = ribbonData->Path->Keys.size();
+	float duration = ribbonData->Path->Keys[keysCount - 1]->Time - ribbonData->Path->Keys[0]->Time;
 	float spread = 1.0f;
 	float minScale = 0.4f;
+	float durationDelay = 0.5f;
+
+	m_startDecomposeTime = ribbonData->Path->Keys[0]->Time;
 
 	Model* model = Content::Instance->Get<Model>(sceneName);
 	assert(model != NULL);
@@ -53,7 +64,8 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			ribbonData->Path,
 			halfPathKeyIndex,
 			spread,
-			minScale);
+			minScale,
+			durationDelay);
 
 		m_renderables.push_back(new Renderable(m_decomposeAndFly->GetMesh(), material));
 	}
@@ -70,7 +82,8 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			ribbonData->Path,
 			halfPathKeyIndex,
 			spread,
-			minScale);
+			minScale,
+			durationDelay);
 
 		m_renderables.push_back(new Renderable(m_composeFromRibbon->GetMesh(), material));
 	}

@@ -21,7 +21,8 @@ void TrianglesRibbon::Initialize(
 	SceneElement::Path* path,
 	int endKeyIndex,
 	float spread,
-	float minScale)
+	float minScale,
+	float maxDelay)
 {
 	static Randomizer random;
 
@@ -37,7 +38,6 @@ void TrianglesRibbon::Initialize(
 		m_trianglesData[i] = new TriangleData();
 		//m_trianglesData[i]->BaseTransform = m_triangledMesh->GetBaseTransform(i);
 		//m_trianglesData[i]->BaseTransform = sm::Matrix::IdentityMatrix();
-		m_trianglesData[i]->Time = 0.0f;
 
 		m_trianglesData[i]->LastKeyframeIndex = 0;
 		m_trianglesData[i]->Curve = CreateCurve(
@@ -45,7 +45,8 @@ void TrianglesRibbon::Initialize(
 			(m_triangledMesh->GetBaseRotation(i) * sm::Vec3(0, 0, 1)).GetNormalized(),
 			path,
 			endKeyIndex,
-			spread);
+			spread,
+			maxDelay);
 
 		m_trianglesData[i]->ScaleCurve = CreateScaleCurve(m_trianglesData[i]->Curve, minScale);
 	}
@@ -60,8 +61,6 @@ void TrianglesRibbon::Update(float time, float deltaTime)
 
 	for (int i = 0; i < m_trianglesCount; i++)
 	{
-		m_trianglesData[i]->Time += deltaTime;
-
 		//m_trianglesData[i]->LastKeyframeIndex = m_trianglesData[i]->Curve->GetValue(time, position, m_trianglesData[i]->LastKeyframeIndex);
 		position = m_trianglesData[i]->Curve->Evaluate(time);
 		scale = m_trianglesData[i]->ScaleCurve->Evaluate(time);

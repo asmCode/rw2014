@@ -23,53 +23,30 @@ AnimationCurve<sm::Vec3>* ComposeFromRibbon::CreateCurve(
 	const sm::Vec3& normal,
 	SceneElement::Path* path,
 	int endKeyIndex,
-	float spread)
-{	
-	
+	float spread,
+	float maxDelay)
+{		
 	static Randomizer random;
 
+	const std::vector<SceneElement::Key*>& keys = path->Keys;
+
+	float endTime = path->Keys[path->Keys.size() - 1]->Time;
+	float timeScale = random.GetFloat(1.0f, (endTime + maxDelay) / endTime);
+
 	AnimationCurve<sm::Vec3>* curve = new AnimationCurve<sm::Vec3>();
-	/*
-	std::vector<sm::Vec3> pathExt;
 
-	pathExt.insert(pathExt.begin(), path.begin(), path.end());
-	pathExt.push_back(basePosition + DemoUtils::GetRandomVector() * random.GetFloat(0.5f, 1.5f));
-	pathExt.push_back(basePosition);
-
-	float time = startTime;
-
-	float pathLength = DemoUtils::GetPathLength(pathExt);
-	float durationPerUnit = duration / pathLength;
-
-	for (uint32_t i = 0; i < pathExt.size(); i++)
-	{
-		if (i > 0)
-			time += (pathExt[i] - pathExt[i - 1]).GetLength() * durationPerUnit;
-
-		time += random.GetFloat(0.0f, 2.0f);
-
-		if (i != pathExt.size() - 1)
-			curve->AddKeyframe(time, pathExt[i] + DemoUtils::GetRandomVector() * random.GetFloat(0, 2.0f));
-		else
-			curve->AddKeyframe(time, pathExt[i]);
-	}
-	*/
-
-	float time = path->Keys[endKeyIndex - 2]->Time + random.GetFloat(0.0f, 2.0f);
 	int keysCount = path->Keys.size();
 
 	for (uint32_t i = endKeyIndex - 2; i < keysCount - 2; i++)
 	{
-		time += (path->Keys[i]->Time - path->Keys[i - 1]->Time) + random.GetFloat(0.0f, 0.5f);
-
-		curve->AddKeyframe(time, path->Keys[i]->Position + DemoUtils::GetRandomVector() * random.GetFloat(0, spread));
+		curve->AddKeyframe(keys[i]->Time * timeScale, path->Keys[i]->Position + DemoUtils::GetRandomVector() * random.GetFloat(0, spread));
 	}
 
 	float firstMoveDistance = random.GetFloat(0.5f, 2.0f);
 	sm::Vec3 firstMovePosition = basePosition + normal * firstMoveDistance;
 
-	curve->AddKeyframe(time += (path->Keys[keysCount - 1]->Time - path->Keys[keysCount - 2]->Time) + random.GetFloat(0.0f, 2.0f), firstMovePosition);
-	curve->AddKeyframe(time += random.GetFloat(0.5f, 1.0f), basePosition);
+	curve->AddKeyframe(keys[keysCount - 2]->Time * timeScale, firstMovePosition);
+	curve->AddKeyframe(keys[keysCount - 1]->Time * timeScale, basePosition);
 
 	curve->SmoothTangents();
 
