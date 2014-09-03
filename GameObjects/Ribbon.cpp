@@ -23,6 +23,10 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 	m_composeFromRibbon(NULL),
 	m_staticSource(NULL),
 	m_staticDestination(NULL),
+	m_decomposeAndFlyRenderable(NULL),
+	m_composeFromRibbonRenderable(NULL),
+	m_staticSourceRenderable(NULL),
+	m_staticDestinationRenderable(NULL),
 	m_startDecomposeTime(0.0f),
 	m_finishComposeTime(0.0f)
 {
@@ -39,6 +43,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 	float durationDelay = 0.5f;
 
 	m_startDecomposeTime = ribbonData->Path->Keys[0]->Time;
+	m_finishComposeTime = ribbonData->Path->Keys[keysCount - 1]->Time + durationDelay;
 
 	Model* model = Content::Instance->Get<Model>(sceneName);
 	assert(model != NULL);
@@ -67,7 +72,8 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			minScale,
 			durationDelay);
 
-		m_renderables.push_back(new Renderable(m_decomposeAndFly->GetMesh(), material));
+		m_decomposeAndFlyRenderable = new Renderable(m_decomposeAndFly->GetMesh(), material);
+		m_renderables.push_back(m_decomposeAndFlyRenderable);
 	}
 
 	if (ribbonData->Destination != NULL)
@@ -85,7 +91,8 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			minScale,
 			durationDelay);
 
-		m_renderables.push_back(new Renderable(m_composeFromRibbon->GetMesh(), material));
+		m_composeFromRibbonRenderable = new Renderable(m_composeFromRibbon->GetMesh(), material);
+		m_renderables.push_back(m_composeFromRibbonRenderable);
 	}
 
 	if (ribbonData->StaticDestination != NULL)
@@ -97,7 +104,8 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 
 		m_staticDestination->Initialize(mesh->meshParts[0]);
 
-		m_renderables.push_back(new Renderable(m_staticDestination, staticMaterial));
+		m_staticDestinationRenderable = new Renderable(m_staticDestination, staticMaterial);
+		m_renderables.push_back(m_staticDestinationRenderable);
 	}
 }
 
@@ -107,6 +115,24 @@ Ribbon::~Ribbon()
 
 void Ribbon::Update(float time, float seconds)
 {
-	m_decomposeAndFly->Update(time, seconds);
-	m_composeFromRibbon->Update(time, seconds);
+	for (uint32_t i = 0; i < m_renderables.size(); i++)
+		m_renderables[i]->SetActive(false);
+
+	if (time >= m_startDecomposeTime && time <= m_finishComposeTime)
+	{
+		m_decomposeAndFlyRenderable->SetActive(true);
+		m_decomposeAndFly->Update(time, seconds);
+
+		m_composeFromRibbonRenderable->SetActive(true);
+		m_composeFromRibbon->Update(time, seconds);
+	}
+	else if (time < m_startDecomposeTime && m_staticSourceRenderable != NULL)
+	{
+		m_staticSourceRenderable->SetActive(true);
+	}
+
+	else if (time > m_finishComposeTime && m_staticDestinationRenderable != NULL)
+	{
+		m_staticDestinationRenderable->SetActive(true);
+	}
 }
