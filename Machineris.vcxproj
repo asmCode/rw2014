@@ -332,6 +332,8 @@ exit /B 0
     <ClInclude Include="SceneElement\RibbonData.h" />
     <ClInclude Include="SceneElement\Source.h" />
     <ClInclude Include="SceneElement\StaticData.h" />
+    <ClInclude Include="SceneElement\StaticDestination.h" />
+    <ClInclude Include="SceneElement\StaticSource.h" />
     <ClInclude Include="SceneLoader.h" />
     <ClInclude Include="Scenes\GlowTestScene.h" />
     <ClInclude Include="SceneUtils.h" />

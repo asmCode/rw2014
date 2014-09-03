@@ -3,10 +3,14 @@
 #include "../ComposeFromRibbon.h"
 #include "../Renderable.h"
 #include "../Materials/GlowTransparencySpecullar.h"
+#include "../Materials/StaticGlowTransparencySpecullar.h"
 #include "../UniqueTriangledMesh.h"
+#include "../StaticTriangledMesh.h"
 #include "../SceneElement/Path.h"
 #include "../SceneElement/Source.h"
 #include "../SceneElement/Destination.h"
+#include "../SceneElement/StaticSource.h"
+#include "../SceneElement/StaticDestination.h"
 #include "../SceneElement/Key.h"
 #include <Graphics/MeshPart.h>
 #include <Graphics/Model.h>
@@ -16,7 +20,9 @@
 
 Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonData) :
 	m_decomposeAndFly(NULL),
-	m_composeFromRibbon(NULL)
+	m_composeFromRibbon(NULL),
+	m_staticSource(NULL),
+	m_staticDestination(NULL)
 {
 	int halfPathKeyIndex = ribbonData->Path->Keys.size() / 2;
 
@@ -25,6 +31,15 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 
 	Model* model = Content::Instance->Get<Model>(sceneName);
 	assert(model != NULL);
+
+	Shader* glowSpecullarShader = Content::Instance->Get<Shader>("SpecularBlur");
+	assert(glowSpecullarShader != NULL);
+
+	Shader* staticGlowSpecullarShader = Content::Instance->Get<Shader>("StaticSpecularBlur");
+	assert(staticGlowSpecullarShader != NULL);
+
+	Material* material = new GlowTransparencySpecullar(glowSpecullarShader);
+	Material* staticMaterial = new StaticGlowTransparencySpecullar(staticGlowSpecullarShader);
 
 	if (ribbonData->Source != NULL)
 	{
@@ -39,6 +54,8 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			halfPathKeyIndex,
 			spread,
 			minScale);
+
+		m_renderables.push_back(new Renderable(m_decomposeAndFly->GetMesh(), material));
 	}
 
 	if (ribbonData->Destination != NULL)
@@ -54,15 +71,21 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			halfPathKeyIndex,
 			spread,
 			minScale);
+
+		m_renderables.push_back(new Renderable(m_composeFromRibbon->GetMesh(), material));
 	}
 
-	Shader* glowSpecullarShader = Content::Instance->Get<Shader>("SpecularBlur");
-	assert(glowSpecullarShader != NULL);
+	if (ribbonData->StaticDestination != NULL)
+	{
+		m_staticDestination = new StaticTriangledMesh();
 
-	Material* material = new GlowTransparencySpecullar(glowSpecullarShader);
+		Mesh* mesh = model->FindMesh(ribbonData->StaticDestination->MeshName);
+		assert(mesh != NULL);
 
-	m_renderables.push_back(new Renderable(m_decomposeAndFly->GetMesh(), material));
-	m_renderables.push_back(new Renderable(m_composeFromRibbon->GetMesh(), material));
+		m_staticDestination->Initialize(mesh->meshParts[0]);
+
+		m_renderables.push_back(new Renderable(m_staticDestination, staticMaterial));
+	}
 }
 
 Ribbon::~Ribbon()

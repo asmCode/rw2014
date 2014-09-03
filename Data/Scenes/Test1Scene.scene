@@ -29,6 +29,7 @@
 		<Ribbon>
 			<Source mesh_name="scene.morph.src.2" />
 			<Destination mesh_name="scene.morph.dst.2" />
+			<StaticDestination mesh_name="scene.morph.dst-static.2" />
 			<Path>
 				<Key time="5" position="0.000000;1.327497;-9.645552" />
 				<Key time="6.40729" position="0.000000;5.515540;-8.761224" />

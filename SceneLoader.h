@@ -11,6 +11,8 @@ namespace SceneElement
 	class RibbonData;
 	class Source;
 	class Destination;
+	class StaticSource;
+	class StaticDestination;
 	class Path;
 	class Key;
 	class StaticData;
@@ -27,6 +29,8 @@ private:
 	static SceneElement::RibbonData* LoadRibbon(XMLNode* node);
 	static SceneElement::Source* LoadSource(XMLNode* node);
 	static SceneElement::Destination* LoadDestination(XMLNode* node);
+	static SceneElement::StaticSource* LoadStaticSource(XMLNode* node);
+	static SceneElement::StaticDestination* LoadStaticDestination(XMLNode* node);
 	static SceneElement::Path* LoadPath(XMLNode* node);
 	static SceneElement::Key* LoadKey(XMLNode* node);
 	static SceneElement::StaticData* LoadStatic(XMLNode* node);

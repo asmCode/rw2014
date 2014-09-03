@@ -9,6 +9,8 @@
 #include "SceneElement/RibbonData.h"
 #include "SceneElement/Source.h"
 #include "SceneElement/Destination.h"
+#include "SceneElement/StaticSource.h"
+#include "SceneElement/StaticDestination.h"
 #include "SceneElement/Path.h"
 #include "SceneElement/Key.h"
 #include "SceneElement/StaticData.h"
@@ -73,6 +75,14 @@ SceneElement::RibbonData* SceneLoader::LoadRibbon(XMLNode* node)
 	if (destinationNode != NULL)
 		ribbon->Destination = LoadDestination(destinationNode);
 
+	XMLNode* staticSourceNode = node->GetChild("StaticSource");
+	if (staticSourceNode != NULL)
+		ribbon->StaticSource = LoadStaticSource(staticSourceNode);
+
+	XMLNode* staticDestinationNode = node->GetChild("StaticDestination");
+	if (staticDestinationNode != NULL)
+		ribbon->StaticDestination = LoadStaticDestination(staticDestinationNode);
+
 	XMLNode* pathNode = node->GetChild("Path");
 	if (pathNode != NULL)
 		ribbon->Path = LoadPath(pathNode);
@@ -90,6 +100,20 @@ SceneElement::Source* SceneLoader::LoadSource(XMLNode* node)
 SceneElement::Destination* SceneLoader::LoadDestination(XMLNode* node)
 {
 	SceneElement::Destination* destination = new SceneElement::Destination();
+	destination->MeshName = node->GetAttribAsString("mesh_name");
+	return destination;
+}
+
+SceneElement::StaticSource* SceneLoader::LoadStaticSource(XMLNode* node)
+{
+	SceneElement::StaticSource* source = new SceneElement::StaticSource();
+	source->MeshName = node->GetAttribAsString("mesh_name");
+	return source;
+}
+
+SceneElement::StaticDestination* SceneLoader::LoadStaticDestination(XMLNode* node)
+{
+	SceneElement::StaticDestination* destination = new SceneElement::StaticDestination();
 	destination->MeshName = node->GetAttribAsString("mesh_name");
 	return destination;
 }

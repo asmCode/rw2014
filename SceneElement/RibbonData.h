@@ -7,6 +7,8 @@ namespace SceneElement
 {
 	class Source;
 	class Destination;
+	class StaticSource;
+	class StaticDestination;
 	class Path;
 
 	class RibbonData
@@ -16,6 +18,8 @@ namespace SceneElement
 
 		Source* Source;
 		Destination* Destination;
+		StaticSource* StaticSource;
+		StaticDestination* StaticDestination;
 		Path* Path;
 	};
 }

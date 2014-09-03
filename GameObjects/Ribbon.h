@@ -6,6 +6,7 @@
 
 class DecomposeToRibbon;
 class ComposeFromRibbon;
+class StaticTriangledMesh;
 
 class Ribbon : public GameObject
 {
@@ -18,4 +19,7 @@ public:
 private:
 	DecomposeToRibbon* m_decomposeAndFly;
 	ComposeFromRibbon* m_composeFromRibbon;
+
+	StaticTriangledMesh* m_staticSource;
+	StaticTriangledMesh* m_staticDestination;
 };
