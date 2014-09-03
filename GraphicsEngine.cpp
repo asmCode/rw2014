@@ -295,6 +295,9 @@ void GraphicsEngine::SortRenderables(
 {
 	for (uint32_t i = 0; i < renderables.size(); i++)
 	{
+		if (!renderables[i]->IsActive())
+			continue;
+
 		Material* material = renderables[i]->GetMaterial();
 		assert(material != NULL);
 

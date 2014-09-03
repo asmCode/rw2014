@@ -4,7 +4,8 @@
 
 Renderable::Renderable(BaseMesh *mesh, Material* material) :
 	m_mesh(mesh),
-	m_material(material)
+	m_material(material),
+	m_isActive(true)
 {
 }
 
@@ -37,4 +38,14 @@ void Renderable::SetMaterial(Material* material)
 Material* Renderable::GetMaterial() const
 {
 	return m_material;
+}
+
+void Renderable::SetActive(bool active)
+{
+	m_isActive = active;
+}
+
+bool Renderable::IsActive() const
+{
+	return m_isActive;
 }

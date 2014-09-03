@@ -22,8 +22,13 @@ public:
 
 	sm::Matrix Transform;
 
+	void SetActive(bool active);
+	bool IsActive() const;
+
 private:
 	BaseMesh* m_mesh;
 	Material* m_material;
+
+	bool m_isActive;
 };
 
