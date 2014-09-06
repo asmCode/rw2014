@@ -193,6 +193,7 @@ exit /B 0
     <ClCompile Include="SceneElement\StaticData.cpp" />
     <ClCompile Include="SceneLoader.cpp" />
     <ClCompile Include="Scenes\BaseScene.cpp" />
+    <ClCompile Include="Scenes\BoneAnimTestScene.cpp" />
     <ClCompile Include="Scenes\GlowTestScene.cpp" />
     <ClCompile Include="SceneUtils.cpp" />
     <ClCompile Include="StaticTriangledMesh.cpp" />
@@ -335,6 +336,7 @@ exit /B 0
     <ClInclude Include="SceneElement\StaticDestination.h" />
     <ClInclude Include="SceneElement\StaticSource.h" />
     <ClInclude Include="SceneLoader.h" />
+    <ClInclude Include="Scenes\BoneAnimTestScene.h" />
     <ClInclude Include="Scenes\GlowTestScene.h" />
     <ClInclude Include="SceneUtils.h" />
     <ClInclude Include="TriangleDataColorGlow.h" />

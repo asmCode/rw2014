@@ -15,7 +15,7 @@ public:
 
 	bool Initialize();
 
-	bool Update(float time, float deltaTime);
+	virtual bool Update(float time, float deltaTime);
 
 	virtual void Enter() {};
 	virtual void Leave() {};
