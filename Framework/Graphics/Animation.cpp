@@ -1,6 +1,7 @@
 #include "Animation.h"
 #include "Model.h"
 #include "Mesh.h"
+#include "../Math/MathUtils.h"
 #include <stdint.h>
 
 Animation::Animation(void) :
@@ -94,12 +95,14 @@ void Animation::Update(float time, const sm::Matrix &transform, float seconds)
 		sm::Vec3 axis;
 
 		if (pos != NULL)
-			m_lastPosKeyframeIndex = pos ->GetValue(time, posVal, m_lastPosKeyframeIndex);
+			//m_lastPosKeyframeIndex = pos ->GetValue(time, posVal, m_lastPosKeyframeIndex);
+			posVal = pos->Evaluate(time, &m_lastPosKeyframeIndex);
 		else
 			posVal = localPos;
 
 		if (rot != NULL)
-			m_lastRotKeyframeIndex = rot ->GetValue(time, rotVal, m_lastRotKeyframeIndex);
+			//m_lastRotKeyframeIndex = rot ->GetValue(time, rotVal, m_lastRotKeyframeIndex);
+			rotVal = rot->Evaluate(time, &m_lastRotKeyframeIndex);
 		else
 			rotVal = localRot;
 
@@ -133,17 +136,20 @@ void Animation::Update(float time, const sm::Matrix &transform, float seconds)
 		sm::Vec3 axis;
 
 		if (pos != NULL)
-			m_lastPosKeyframeIndex = pos ->GetValue(time, posVal, m_lastPosKeyframeIndex);
+			//m_lastPosKeyframeIndex = pos ->GetValue(time, posVal, m_lastPosKeyframeIndex);
+			posVal = pos->Evaluate(time, &m_lastPosKeyframeIndex);
 		else
 			posVal = localPos;
 
 		if (rot != NULL)
-			m_lastRotKeyframeIndex = rot ->GetValue(time, rotVal, m_lastRotKeyframeIndex);
+			//m_lastRotKeyframeIndex = rot ->GetValue(time, rotVal, m_lastRotKeyframeIndex);
+			rotVal = rot->Evaluate(time, &m_lastRotKeyframeIndex);
 		else
 			rotVal = localRot;
 
 		if (scale != NULL)
-			m_lastScaleKeyframeIndex = scale ->GetValue(time, scaleVal, m_lastScaleKeyframeIndex);
+			//m_lastScaleKeyframeIndex = scale ->GetValue(time, scaleVal, m_lastScaleKeyframeIndex);
+			scaleVal = scale->Evaluate(time, &m_lastScaleKeyframeIndex);
 		else
 			scaleVal = localScale;
 
@@ -213,16 +219,12 @@ float Animation::GetAnimLength()
 	float rotTime = 0.0f;
 	float scaleTime = 0.0f;
 
-	sm::Vec3 vdummy;
-	sm::Quat qdummy;
-	bool bdummy;
-
 	if (pos != NULL && pos->GetKeysCount() > 0)
-		pos->GetKeyframe(pos->GetKeysCount() - 1, posTime, vdummy, bdummy);
+		posTime = pos->GetEndTime();
 	if (rot != NULL && rot->GetKeysCount() > 0)
-		rot->GetKeyframe(rot->GetKeysCount() - 1, rotTime, qdummy, bdummy);
+		rotTime = rot->GetEndTime();
 	if (scale != NULL && scale->GetKeysCount() > 0)
-		scale->GetKeyframe(scale->GetKeysCount() - 1, scaleTime, vdummy, bdummy);
+		scaleTime = scale->GetEndTime();
 
 	float maxAnimLength = 0;
 	for (int i = 0; i < subAnims.size(); i++)
@@ -232,7 +234,7 @@ float Animation::GetAnimLength()
 			maxAnimLength = length;
 	}
 
-	m_animLength = max(max(max(posTime, rotTime), scaleTime), maxAnimLength);
+	m_animLength = MathUtils::Max(MathUtils::Max(MathUtils::Max(posTime, rotTime), scaleTime), maxAnimLength);
 
 	return m_animLength;
 }
@@ -246,18 +248,14 @@ float Animation::GetAnimLengthById(int id)
 	float rotTime = 0.0f;
 	float scaleTime = 0.0f;
 
-	sm::Vec3 vdummy;
-	sm::Quat qdummy;
-	bool bdummy;
+	if (pos != NULL && pos->GetKeysCount() > 0)
+		posTime = pos->GetEndTime();
+	if (rot != NULL && rot->GetKeysCount() > 0)
+		rotTime = rot->GetEndTime();
+	if (scale != NULL && scale->GetKeysCount() > 0)
+		scaleTime = scale->GetEndTime();
 
-	if (anim->pos != NULL && anim->pos->GetKeysCount() > 0)
-		anim->pos->GetKeyframe(anim->pos->GetKeysCount() - 1, posTime, vdummy, bdummy);
-	if (anim->rot != NULL && anim->rot->GetKeysCount() > 0)
-		anim->rot->GetKeyframe(anim->rot->GetKeysCount() - 1, rotTime, qdummy, bdummy);
-	if (anim->scale != NULL && anim->scale->GetKeysCount() > 0)
-		anim->scale->GetKeyframe(anim->scale->GetKeysCount() - 1, scaleTime, vdummy, bdummy);
-
-	return max(max(posTime, rotTime), scaleTime);
+	return MathUtils::Max(MathUtils::Max(posTime, rotTime), scaleTime);
 }
 
 void Animation::ReplaceAnimation(Animation *sourceAnim)
@@ -317,17 +315,17 @@ void Animation::SetAnimationTime(float time, const sm::Matrix &parentTransform)
 	sm::Vec3 axis;
 
 	if (pos != NULL)
-		pos ->GetValue(time, posVal, 0);
+		posVal = pos->Evaluate(time, NULL);
 	else
 		posVal = localPos;
 
 	if (rot != NULL)
-		rot ->GetValue(time, rotVal, 0);
+		rotVal = rot->Evaluate(time, NULL);
 	else
 		rotVal = localRot;
 
 	if (scale != NULL)
-		scale ->GetValue(time, scaleVal, 0);
+		scaleVal = scale->Evaluate(time, NULL);
 	else
 		scaleVal = localScale;
 

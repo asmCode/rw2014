@@ -51,7 +51,7 @@ Animation* AnimationLoader::LoadAnimation(BinaryReader &br)
 	return anim;
 }
 
-IInterpolator<sm::Vec3>* AnimationLoader::LoadVec3Anim(BinaryReader &br, sm::Vec3 &localVec3)
+AnimationCurve<sm::Vec3>* AnimationLoader::LoadVec3Anim(BinaryReader &br, sm::Vec3 &localVec3)
 {
 	int keysCount = br.Read<int>();
 	if (keysCount == 0)
@@ -62,8 +62,7 @@ IInterpolator<sm::Vec3>* AnimationLoader::LoadVec3Anim(BinaryReader &br, sm::Vec
 		return NULL;
 	}
 
-	IInterpolator<sm::Vec3> *inter = InterpolatorFactory::CreateInterpolator<sm::Vec3>(
-		InterpolatorFactory::InterpolationMethod_TCB);
+	AnimationCurve<sm::Vec3> *inter = new AnimationCurve<sm::Vec3>();
 
 	float time;
 	sm::Vec3 pos;
@@ -75,13 +74,15 @@ IInterpolator<sm::Vec3>* AnimationLoader::LoadVec3Anim(BinaryReader &br, sm::Vec
 		pos.y = br.Read<float>();
 		pos.z = br.Read<float>();
 
-		inter ->AddKeyframe(time, pos, false);
+		inter ->AddKeyframe(time, pos);
 	}
+
+	inter->SmoothTangents();
 
 	return inter;
 }
 
-IInterpolator<sm::Quat>* AnimationLoader::LoadQuatAnim(BinaryReader &br, sm::Quat &localQuat, bool &ownAnim, float &angleScale)
+AnimationCurve<sm::Quat>* AnimationLoader::LoadQuatAnim(BinaryReader &br, sm::Quat &localQuat, bool &ownAnim, float &angleScale)
 {
 	ownAnim = false;
 	angleScale = 1.0f;
@@ -99,8 +100,7 @@ IInterpolator<sm::Quat>* AnimationLoader::LoadQuatAnim(BinaryReader &br, sm::Qua
 		return NULL;
 	}
 
-	IInterpolator<sm::Quat> *inter = InterpolatorFactory::CreateInterpolator<sm::Quat>(
-		InterpolatorFactory::InterpolationMethod_TCB);
+	AnimationCurve<sm::Quat> *inter = new AnimationCurve<sm::Quat>();
 
 	float time;
 	float angle;
@@ -179,8 +179,10 @@ IInterpolator<sm::Quat>* AnimationLoader::LoadQuatAnim(BinaryReader &br, sm::Qua
 
 		q.Normalize();
 
-		inter ->AddKeyframe(time, q, false);
+		inter ->AddKeyframe(time, q);
 	}
+
+	inter->SmoothTangents();
 
 	return inter;
 }

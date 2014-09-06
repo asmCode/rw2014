@@ -9,7 +9,7 @@
 
 class BinaryReader;
 class Animation;
-template <typename T> class IInterpolator;
+template <typename T> class AnimationCurve;
 
 class AnimationLoader
 {
@@ -19,8 +19,8 @@ public:
 private:
 	static Animation* LoadAnimation(BinaryReader &br);
 
-	static IInterpolator<sm::Vec3>* LoadVec3Anim(BinaryReader &br, sm::Vec3 &localVec3);
-	static IInterpolator<sm::Quat>* LoadQuatAnim(BinaryReader &br, sm::Quat &localQuat, bool &ownAnim, float &angleScale);
+	static AnimationCurve<sm::Vec3>* LoadVec3Anim(BinaryReader &br, sm::Vec3 &localVec3);
+	static AnimationCurve<sm::Quat>* LoadQuatAnim(BinaryReader &br, sm::Quat &localQuat, bool &ownAnim, float &angleScale);
 	static sm::Matrix LoadMatrix(BinaryReader &br);
 };
 

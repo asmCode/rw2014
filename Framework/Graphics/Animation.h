@@ -5,7 +5,7 @@
 #include <Math\Matrix.h>
 #include <vector>
 
-#include "Interpolators/InterpolatorFactory.h"
+#include "../Math/Animation/AnimationCurve.h"
 
 #include "ITransformable.h"
 
@@ -27,9 +27,9 @@ public:
 	sm::Quat localRot;
 	sm::Vec3 localScale;
 
-	IInterpolator<sm::Vec3> *pos;
-	IInterpolator<sm::Quat> *rot;
-	IInterpolator<sm::Vec3> *scale;
+	AnimationCurve<sm::Vec3> *pos;
+	AnimationCurve<sm::Quat> *rot;
+	AnimationCurve<sm::Vec3> *scale;
 
 	int m_lastPosKeyframeIndex;
 	int m_lastRotKeyframeIndex;

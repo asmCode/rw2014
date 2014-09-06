@@ -17,6 +17,12 @@ namespace sm
 		{
 		}
 
+		Quat(float val)
+		{
+			this->v.Set(val, val, val);
+			this->s = val;
+		}
+
 		Quat(float s, float x, float y, float z)
 		{
 			this ->v.Set(x, y, z);
@@ -62,6 +68,14 @@ namespace sm
 			Quat ret;
 			ret.v = this ->v * s;
 			ret.s = this ->s * s;
+			return ret;
+		}
+
+		Quat operator / (float s)
+		{
+			Quat ret;
+			ret.v = this->v / s;
+			ret.s = this->s / s;
 			return ret;
 		}
 
