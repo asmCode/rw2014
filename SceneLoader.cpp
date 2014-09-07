@@ -4,6 +4,7 @@
 #include "DemoUtils.h"
 #include "GameObjects/Ribbon.h"
 #include "GameObjects/Static.h"
+#include "GameObjects/Guy.h"
 #include "Scenes/BaseScene.h"
 
 #include "SceneElement/RibbonData.h"
@@ -13,6 +14,8 @@
 #include "SceneElement/StaticDestination.h"
 #include "SceneElement/Path.h"
 #include "SceneElement/Key.h"
+#include "SceneElement/IntKey.h"
+#include "SceneElement/GuyData.h"
 #include "SceneElement/StaticData.h"
 
 #include <XML/XMLNode.h>
@@ -55,6 +58,21 @@ bool SceneLoader::LoadFromFile(BaseScene* scene, const std::string& sceneName)
 			Static* staticMesh = CreateStaticFromData(scene->m_name, staticData);
 			if (staticMesh != NULL)
 				scene->m_gameObjects.push_back(staticMesh);
+		}
+	}
+
+	XMLNode* guysNode = node->GetChild("Guys");
+	if (guysNode != NULL)
+	{
+		for (uint32_t i = 0; i < guysNode->GetChildrenCount(); i++)
+		{
+			SceneElement::GuyData* guyData = LoadGuy(guysNode->GetChild(i));
+			if (guyData == NULL)
+				continue;
+
+			Guy* guy = CreateGuyFromData(scene->m_name, guyData);
+			if (guy != NULL)
+				scene->m_gameObjects.push_back(guy);
 		}
 	}
 
@@ -151,6 +169,36 @@ SceneElement::StaticData* SceneLoader::LoadStatic(XMLNode* node)
 	return data;
 }
 
+SceneElement::GuyData* SceneLoader::LoadGuy(XMLNode* node)
+{
+	assert(node->GetName() == "Guy");
+
+	SceneElement::GuyData* guyData = new SceneElement::GuyData();
+	guyData->Id = node->GetAttribAsString("id");
+
+	XMLNode* path = node->GetChild("Path");
+	if (path != NULL)
+		guyData->Path = LoadPath(path);
+
+	XMLNode* animIndexNode = node->GetChild("AnimationIndex");
+	if (animIndexNode != NULL)
+		LoadIntKeys(animIndexNode, guyData->AnimationIndex);
+
+	return guyData;
+}
+
+void SceneLoader::LoadIntKeys(XMLNode* node, std::vector<SceneElement::IntKey*>& keys)
+{
+	for (uint32_t i = 0; i < node->GetChildrenCount(); i++)
+	{
+		SceneElement::IntKey* key = new SceneElement::IntKey();
+		key->Time = node->GetChild(i)->GetAttribAsFloat("time");
+		key->Value = node->GetChild(i)->GetAttribAsInt32("value");
+
+		keys.push_back(key);
+	}
+}
+
 Ribbon* SceneLoader::CreateRibbonFromData(const std::string& sceneName, SceneElement::RibbonData* ribbon)
 {
 	return new Ribbon(sceneName, ribbon);
@@ -159,4 +207,9 @@ Ribbon* SceneLoader::CreateRibbonFromData(const std::string& sceneName, SceneEle
 Static* SceneLoader::CreateStaticFromData(const std::string& sceneName, SceneElement::StaticData* staticData)
 {
 	return new Static(sceneName, staticData);
+}
+
+Guy* SceneLoader::CreateGuyFromData(const std::string& sceneName, SceneElement::GuyData* guyData)
+{
+	return new Guy(sceneName, guyData);
 }

@@ -5,7 +5,6 @@
 
 namespace SceneElement
 {
-
 	class Key
 	{
 	public:
@@ -14,5 +13,4 @@ namespace SceneElement
 		sm::Vec4 Rotation;
 		sm::Vec3 Scale;
 	};
-
 }

@@ -176,6 +176,7 @@ exit /B 0
     <ClCompile Include="Framework\XML\XMLNode.cpp" />
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjects\Guy.cpp" />
     <ClCompile Include="GameObjects\Ribbon.cpp" />
     <ClCompile Include="GameObjects\Static.cpp" />
     <ClCompile Include="GraphicsEngine.cpp" />
@@ -190,12 +191,14 @@ exit /B 0
     <ClCompile Include="Materials\StaticGlowTransparencySpecullar.cpp" />
     <ClCompile Include="MeshUtils.cpp" />
     <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="SceneElement\GuyData.cpp" />
     <ClCompile Include="SceneElement\RibbonData.cpp" />
     <ClCompile Include="SceneElement\StaticData.cpp" />
     <ClCompile Include="SceneLoader.cpp" />
     <ClCompile Include="Scenes\BaseScene.cpp" />
     <ClCompile Include="Scenes\BoneAnimTestScene.cpp" />
     <ClCompile Include="Scenes\GlowTestScene.cpp" />
+    <ClCompile Include="Scenes\GuySceneTest.cpp" />
     <ClCompile Include="SceneUtils.cpp" />
     <ClCompile Include="SkinnedMesh.cpp" />
     <ClCompile Include="StaticTriangledMesh.cpp" />
@@ -311,6 +314,7 @@ exit /B 0
     <ClInclude Include="Framework\XML\XMLNode.h" />
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjects\Guy.h" />
     <ClInclude Include="GameObjects\Ribbon.h" />
     <ClInclude Include="GameObjects\Static.h" />
     <ClInclude Include="GraphicsEngine.h" />
@@ -330,6 +334,8 @@ exit /B 0
     <ClInclude Include="MeshUtils.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="SceneElement\Destination.h" />
+    <ClInclude Include="SceneElement\GuyData.h" />
+    <ClInclude Include="SceneElement\IntKey.h" />
     <ClInclude Include="SceneElement\Key.h" />
     <ClInclude Include="SceneElement\Path.h" />
     <ClInclude Include="SceneElement\RibbonData.h" />
@@ -340,6 +346,7 @@ exit /B 0
     <ClInclude Include="SceneLoader.h" />
     <ClInclude Include="Scenes\BoneAnimTestScene.h" />
     <ClInclude Include="Scenes\GlowTestScene.h" />
+    <ClInclude Include="Scenes\GuySceneTest.h" />
     <ClInclude Include="SceneUtils.h" />
     <ClInclude Include="SkinnedMesh.h" />
     <ClInclude Include="TriangleDataColorGlow.h" />

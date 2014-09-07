@@ -20,6 +20,8 @@ Animation* anim2;
 
 void BoneAnimTestScene::InitializeSubScene()
 {
+	return;
+
 	/*if (!SceneLoader::LoadFromFile(this, "BoneAnimTestScene"))
 	{
 		assert(false);

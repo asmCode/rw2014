@@ -168,6 +168,9 @@ void Animation::SetAnimationTime(float time, const sm::Matrix &parentTransform)
 	if (m_animTransform != NULL)
 		*m_animTransform = m_currentNodeTransform;
 
+	if (m_transform != NULL)
+		*m_transform = m_currentNodeTransform * m_animationData->worldTMInv;
+
 	for (unsigned i = 0; i < subAnims.size(); i++)
 		subAnims[i] ->SetAnimationTime(time, m_currentNodeTransform);
 }

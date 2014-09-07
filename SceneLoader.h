@@ -1,8 +1,10 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 class Ribbon;
+class Guy;
 class Static;
 class BaseScene;
 
@@ -15,7 +17,9 @@ namespace SceneElement
 	class StaticDestination;
 	class Path;
 	class Key;
+	class IntKey;
 	class StaticData;
+	class GuyData;
 }
 
 class XMLNode;
@@ -34,7 +38,10 @@ private:
 	static SceneElement::Path* LoadPath(XMLNode* node);
 	static SceneElement::Key* LoadKey(XMLNode* node);
 	static SceneElement::StaticData* LoadStatic(XMLNode* node);
+	static SceneElement::GuyData* LoadGuy(XMLNode* node);
+	static void LoadIntKeys(XMLNode* node, std::vector<SceneElement::IntKey*>& keys);
 
 	static Ribbon* CreateRibbonFromData(const std::string& sceneName, SceneElement::RibbonData* ribbon);
 	static Static* CreateStaticFromData(const std::string& sceneName, SceneElement::StaticData* staticData);
+	static Guy* CreateGuyFromData(const std::string& sceneName, SceneElement::GuyData* guyData);
 };

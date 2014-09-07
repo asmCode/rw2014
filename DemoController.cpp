@@ -20,6 +20,7 @@
 #include "Scenes/Test1Scene.h"
 #include "Scenes/GlowTestScene.h"
 #include "Scenes/BoneAnimTestScene.h"
+#include "Scenes/GuySceneTest.h"
 #include "GraphicsEngine.h"
 #include "AssemblingScene.h"
 #include <Graphics/Property.h>
@@ -313,8 +314,9 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 	m_scenes.push_back(new Test1Scene());
 	m_scenes.push_back(new GlowTestScene());
 	m_scenes.push_back(new BoneAnimTestScene());
+	m_scenes.push_back(new GuySceneTest());
 
-	m_activeScene = m_scenes[2];
+	m_activeScene = m_scenes[3];
 	
 	return true;
 }
