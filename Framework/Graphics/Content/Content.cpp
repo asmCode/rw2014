@@ -4,6 +4,7 @@
 #include "../MeshPart.h"
 #include "../Material.h"
 #include "../Model.h"
+#include "../SkinnedMeshLoader.h"
 #include <IO/Path.h>
 
 Content* Content::Instance;
@@ -84,6 +85,19 @@ void Content::LoadMaterials(const std::string &fullPath)
 		Path path(fullPath + filesNames[i]);
 
 		m_materials[path.GetFilename()] = m_graphicsEngine->LoadMaterial(path.GetFullPath());
+	}
+}
+
+void Content::LoadSkinnedMeshes(const std::string &fullPath)
+{
+	std::vector<std::string> filesNames;
+	Path::GetAllFiles(filesNames, fullPath, "*.skm");
+
+	for (uint32_t i = 0; i < filesNames.size(); i++)
+	{
+		Path path(fullPath + filesNames[i]);
+
+		m_skinnedMeshes[path.GetFilename()] = SkinnedMeshLoader::LoadFromFile(path.GetFullPath());
 	}
 }
 

@@ -1,6 +1,6 @@
 #include "BoneAnimTestScene.h"
 #include "../GameObject.h"
-#include "../Materials/GlowTransparencySpecullar.h"
+#include "../Materials/SkinnedGlowTransparencySpecullar.h"
 #include "../SceneLoader.h"
 #include <Utils/Randomizer.h>
 #include <Graphics/MeshPart.h>
@@ -14,9 +14,12 @@
 
 Animation* anim2;
 
+#include "../SkinnedMesh.h"
+#include <Graphics/SkinnedMeshData.h>
+
 void BoneAnimTestScene::InitializeSubScene()
 {
-	/*if (!SceneLoader::LoadFromFile(this, "Test1Scene"))
+	/*if (!SceneLoader::LoadFromFile(this, "BoneAnimTestScene"))
 	{
 		assert(false);
 		return;
@@ -26,6 +29,20 @@ void BoneAnimTestScene::InitializeSubScene()
 	assert(anim2 != NULL);
 
 	anim2->SetAnimationTime(0, sm::Matrix::IdentityMatrix());
+
+	SkinnedMeshData* meshData = Content::Instance->Get<SkinnedMeshData>("ludzik ze skinem i szkieletem");
+	assert(meshData != NULL);
+
+	SkinnedMesh* mesh = new SkinnedMesh();
+	mesh->Initialize(meshData);
+
+	Shader* shader = Content::Instance->Get<Shader>("Skinned");
+	assert(shader != NULL);
+	SkinnedGlowTransparencySpecullar* material = new SkinnedGlowTransparencySpecullar(shader);
+
+	Renderable *renderable = new Renderable(mesh, material);
+
+	m_renderables.push_back(renderable);
 }
 
 void DrawSegment(Animation* root)

@@ -1,0 +1,51 @@
+#version 400
+
+layout (location = 0) in vec3 a_position;
+layout (location = 1) in uvec4 a_boneIndex;
+layout (location = 2) in vec4 a_weight;
+
+layout (location = 3) in vec4 a_color;
+layout (location = 4) in float a_glowPower;
+
+uniform mat4 u_viewProjMatrix;
+uniform vec3 u_lightPosition;
+uniform vec3 u_eyePosition;
+uniform mat4 u_boneTransform[41];
+
+varying vec4 o_color;
+varying vec3 o_normal;
+varying vec3 o_lightDirection;
+varying vec3 o_eyeDirection;
+varying float o_glowPower;
+
+void main()
+{	
+	o_color = a_color;
+	o_normal = vec3(1, 0, 0);
+	o_glowPower = a_glowPower;
+	
+	//o_lightDirection = u_lightPosition - worldPosition.xyz;
+	//o_eyeDirection = u_eyePosition - worldPosition.xyz;
+	/*
+	if (a_boneIndex.x == 0)
+		o_color = vec4(1, 0, 0, 1);
+	if (a_boneIndex.x == 1)
+		o_color = vec4(1, 1, 0, 1);
+	if (a_boneIndex.x == 20)
+		o_color = vec4(0, 0, 1, 1);
+	if (a_boneIndex.x == 30)
+		o_color = vec4(1, 0, 1, 1);
+	if (a_boneIndex.x == 4)
+		o_color = vec4(0, 1, 1, 1);
+
+	o_color = vec4(float(a_boneIndex.x) / 40.0, 1, 1, 1);*/
+
+	vec4 worldPosition = vec4(a_position, 1);
+
+	if (a_boneIndex.x == 0)
+	{
+		worldPosition = u_boneTransform[0] * worldPosition;
+	}
+	
+	gl_Position = u_viewProjMatrix * worldPosition;
+}

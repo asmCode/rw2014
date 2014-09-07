@@ -154,6 +154,9 @@ exit /B 0
     <ClCompile Include="Framework\Graphics\Model.cpp" />
     <ClCompile Include="Framework\Graphics\ModelLoader.cpp" />
     <ClCompile Include="Framework\Graphics\Shader.cpp" />
+    <ClCompile Include="Framework\Graphics\SkinnedMeshData.cpp" />
+    <ClCompile Include="Framework\Graphics\SkinnedMeshLoader.cpp" />
+    <ClCompile Include="Framework\Graphics\SkinnedVertex.cpp" />
     <ClCompile Include="Framework\Graphics\SpriteBatch.cpp" />
     <ClCompile Include="Framework\Graphics\TexPart.cpp" />
     <ClCompile Include="Framework\Graphics\Texture.cpp" />
@@ -186,6 +189,7 @@ exit /B 0
     <ClCompile Include="GraphicsLibrary\TimeControl.cpp" />
     <ClCompile Include="GraphicsLog.cpp" />
     <ClCompile Include="Materials\GlowTransparencySpecullar.cpp" />
+    <ClCompile Include="Materials\SkinnedGlowTransparencySpecullar.cpp" />
     <ClCompile Include="Materials\StaticGlowTransparencySpecullar.cpp" />
     <ClCompile Include="MeshUtils.cpp" />
     <ClCompile Include="Quad.cpp" />
@@ -196,6 +200,7 @@ exit /B 0
     <ClCompile Include="Scenes\BoneAnimTestScene.cpp" />
     <ClCompile Include="Scenes\GlowTestScene.cpp" />
     <ClCompile Include="SceneUtils.cpp" />
+    <ClCompile Include="SkinnedMesh.cpp" />
     <ClCompile Include="StaticTriangledMesh.cpp" />
     <ClCompile Include="TriangledMesh.cpp" />
     <ClCompile Include="ParticlesManager.cpp" />
@@ -273,6 +278,9 @@ exit /B 0
     <ClInclude Include="Framework\Graphics\Model.h" />
     <ClInclude Include="Framework\Graphics\ModelLoader.h" />
     <ClInclude Include="Framework\Graphics\Shader.h" />
+    <ClInclude Include="Framework\Graphics\SkinnedMeshData.h" />
+    <ClInclude Include="Framework\Graphics\SkinnedMeshLoader.h" />
+    <ClInclude Include="Framework\Graphics\SkinnedVertex.h" />
     <ClInclude Include="Framework\Graphics\SpriteBatch.h" />
     <ClInclude Include="Framework\Graphics\Texture.h" />
     <ClInclude Include="Framework\Graphics\TextureLoader.h" />
@@ -324,6 +332,7 @@ exit /B 0
     <ClInclude Include="GraphicsLibrary\TimeControl.h" />
     <ClInclude Include="GraphicsLog.h" />
     <ClInclude Include="Materials\GlowTransparencySpecullar.h" />
+    <ClInclude Include="Materials\SkinnedGlowTransparencySpecullar.h" />
     <ClInclude Include="Materials\StaticGlowTransparencySpecullar.h" />
     <ClInclude Include="MeshUtils.h" />
     <ClInclude Include="Quad.h" />
@@ -339,7 +348,9 @@ exit /B 0
     <ClInclude Include="Scenes\BoneAnimTestScene.h" />
     <ClInclude Include="Scenes\GlowTestScene.h" />
     <ClInclude Include="SceneUtils.h" />
+    <ClInclude Include="SkinnedMesh.h" />
     <ClInclude Include="TriangleDataColorGlow.h" />
+    <ClInclude Include="TriangleDataSkinnedColorGlow.h" />
     <ClInclude Include="TriangleDataTransformColorGlow.h" />
     <ClInclude Include="StaticTriangledMesh.h" />
     <ClInclude Include="TriangledMesh.h" />
@@ -401,6 +412,8 @@ exit /B 0
     <None Include="Data\effects\Downsample.vpr" />
     <None Include="Data\effects\HoriBlur.fpr" />
     <None Include="Data\effects\HoriBlur.vpr" />
+    <None Include="Data\effects\Skinned.fpr" />
+    <None Include="Data\effects\Skinned.vpr" />
     <None Include="Data\effects\SpecularBlur.fpr" />
     <None Include="Data\effects\SpecularBlur.vpr" />
     <None Include="Data\effects\SpecularColored.fpr" />

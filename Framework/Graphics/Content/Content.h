@@ -12,6 +12,7 @@ class Shader;
 class Model;
 class Animation;
 class Material;
+class SkinnedMeshData;
 
 class Content
 {
@@ -26,6 +27,7 @@ public:
 	void LoadModels(const std::string &fullPath);
 	void LoadAnimations(const std::string &fullPath);
 	void LoadMaterials(const std::string &fullPath);
+	void LoadSkinnedMeshes(const std::string &fullPath);
 
 	// Assign textures to materials and materials to models
 	void CombineResources();
@@ -66,6 +68,7 @@ private:
 	std::map<std::string, Model*> m_models;
 	std::map<std::string, Animation*> m_animations;
 	std::map<std::string, Material*> m_materials;
+	std::map<std::string, SkinnedMeshData*> m_skinnedMeshes;
 
 	template <typename T>
 	std::map<std::string, T*>& GetContentMap()
@@ -104,8 +107,13 @@ private:
 	{
 		return m_materials;
 	}
+
+	template <>
+	std::map<std::string, SkinnedMeshData*>& GetContentMap<SkinnedMeshData>()
+	{
+		return m_skinnedMeshes;
+	}
 };
 
 #endif // CONTENT
-
 

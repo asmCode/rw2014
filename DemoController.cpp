@@ -345,6 +345,7 @@ bool DemoController::LoadContent(const char *basePath)
 	dc->LoadShaders(m_strBasePath + "effects\\");
 	dc->LoadAnimations(m_strBasePath + "animations\\");
 	dc->LoadMaterials(m_strBasePath + "materials\\");
+	dc->LoadSkinnedMeshes(m_strBasePath + "SkinnedMeshes\\");
 
 	if (!AssignAssets())
 		return false;

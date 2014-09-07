@@ -121,6 +121,14 @@ void Shader::SetMatrixParameter(const char *name, const sm::Matrix &matrix)
 	glUniformMatrix4fv(uniformParam, 1, false, matrix);
 }
 
+void Shader::SetMatrixParameter(const char *name, int count, const sm::Matrix* matrix)
+{
+	int uniformParam = glGetUniformLocation(m_programId, name);
+	assert(uniformParam != -1);
+
+	glUniformMatrix4fv(uniformParam, count, false, reinterpret_cast<const float*>(matrix));
+}
+
 GLuint Shader::CompileShader(GLenum shaderType, const char* file)
 {
 	std::ifstream fileStream(file, std::ios::binary);

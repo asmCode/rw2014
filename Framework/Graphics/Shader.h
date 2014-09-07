@@ -31,6 +31,7 @@ public:
 	void SetParameter(const char *name, const sm::Vec4 &val);
 	void SetTextureParameter(const char *name, unsigned channel, unsigned texId);
 	void SetMatrixParameter(const char *name, const sm::Matrix &matrix);
+	void SetMatrixParameter(const char *name, int count, const sm::Matrix* matrix);
 
 	void LinkProgram();
 	
