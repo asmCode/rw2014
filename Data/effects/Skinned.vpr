@@ -29,7 +29,10 @@ void main()
 
 	vec4 worldPosition = vec4(a_position, 1);
 
-	worldPosition = u_boneTransform[a_boneIndex.x] * worldPosition;
+	vec4 finalWorldPosition = u_boneTransform[a_boneIndex.x] * worldPosition * a_weight.x;
+	finalWorldPosition += u_boneTransform[a_boneIndex.y] * worldPosition * a_weight.y;
+	finalWorldPosition += u_boneTransform[a_boneIndex.z] * worldPosition * a_weight.z;
+	finalWorldPosition += u_boneTransform[a_boneIndex.w] * worldPosition * a_weight.w;
 	
-	gl_Position = u_viewProjMatrix * worldPosition;
+	gl_Position = u_viewProjMatrix * finalWorldPosition;
 }

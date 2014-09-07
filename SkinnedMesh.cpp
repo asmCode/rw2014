@@ -129,7 +129,6 @@ void SkinnedMesh::Draw()
 
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferId);
 	glVertexAttribPointer(0, 3, GL_FLOAT, false, sizeof(SkinnedVertex), 0);
-	//glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, false, sizeof(SkinnedVertex), (void*)offsetof(SkinnedVertex, boneIndex));
 	glVertexAttribIPointer(1, 4, GL_UNSIGNED_BYTE, sizeof(SkinnedVertex), (void*)offsetof(SkinnedVertex, boneIndex));
 	glVertexAttribPointer(2, 4, GL_FLOAT, false, sizeof(SkinnedVertex), (void*)offsetof(SkinnedVertex, weight));
 
