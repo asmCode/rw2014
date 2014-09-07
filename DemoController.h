@@ -10,7 +10,7 @@
 #include <Graphics/Interpolators/InterpolatorFactory.h>
 #include <Graphics/IGraphicsEngine.h>
 #include "GraphicsLibrary/AnimCamera.h"
-#include <Graphics/Animation.h>
+#include <Graphics/AnimationData.h>
 
 #include "GraphicsLibrary\OpenglWindow.h"
 #include "GraphicsLibrary\SteerCamera.h"
@@ -106,9 +106,6 @@ public:
 
 	Texture *m_bgTex;
 	Shader *m_distortShader;
-
-	Model *m_doors;
-	Animation *m_doorsAnim;
 
 	ICamera *m_activeCamera;
 
@@ -306,6 +303,6 @@ public:
 	Shader* LoadShader(const std::string &vertexShaderPath,
 										const std::string &fragmentShaderPath);
 	Model* LoadModel(const std::string &path);
-	Animation* LoadAnimation(const std::string &path);
+	AnimationData* LoadAnimation(const std::string &path);
 	Material* LoadMaterial(const std::string &path);
 };

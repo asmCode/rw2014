@@ -7,7 +7,7 @@
 class Texture;
 class Shader;
 class Model;
-class Animation;
+class AnimationData;
 class Material;
 
 class IGraphicsEngine
@@ -19,7 +19,7 @@ public:
 	virtual Shader* LoadShader(const std::string &vertesShaderPath,
 							   const std::string &fragmentShaderPath) = 0;
 	virtual Model* LoadModel(const std::string &path) = 0;
-	virtual Animation* LoadAnimation(const std::string &path) = 0;
+	virtual AnimationData* LoadAnimation(const std::string &path) = 0;
 	virtual Material* LoadMaterial(const std::string &path) = 0;
 };
 

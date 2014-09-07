@@ -8,19 +8,19 @@
 #include <string>
 
 class BinaryReader;
-class Animation;
+class AnimationData;
 template <typename T> class AnimationCurve;
 
 class AnimationLoader
 {
 public:
-	static Animation* LoadFromFile(const std::string &path);
+	static AnimationData* LoadFromFile(const std::string &path);
 
 private:
-	static Animation* LoadAnimation(BinaryReader &br);
+	static AnimationData* LoadAnimation(BinaryReader &br);
 
 	static AnimationCurve<sm::Vec3>* LoadVec3Anim(BinaryReader &br, sm::Vec3 &localVec3);
-	static AnimationCurve<sm::Quat>* LoadQuatAnim(BinaryReader &br, sm::Quat &localQuat, bool &ownAnim, float &angleScale);
+	static AnimationCurve<sm::Quat>* LoadQuatAnim(BinaryReader &br, sm::Quat &localQuat);
 	static sm::Matrix LoadMatrix(BinaryReader &br);
 };
 

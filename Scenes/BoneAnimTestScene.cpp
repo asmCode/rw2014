@@ -6,6 +6,7 @@
 #include <Graphics/MeshPart.h>
 #include <Graphics/Model.h>
 #include <Graphics/Shader.h>
+#include <Graphics/AnimationData.h>
 #include <Graphics/Animation.h>
 #include <Graphics/Content/Content.h>
 #include "../GraphicsLog.h"
@@ -25,9 +26,10 @@ void BoneAnimTestScene::InitializeSubScene()
 		return;
 	}*/
 
-	anim2 = Content::Instance->Get<Animation>("www");
-	assert(anim2 != NULL);
+	AnimationData* animData = Content::Instance->Get<AnimationData>("www");
+	assert(animData != NULL);
 
+	anim2 = new Animation(animData);
 	anim2->SetAnimationTime(0, sm::Matrix::IdentityMatrix());
 
 	SkinnedMeshData* meshData = Content::Instance->Get<SkinnedMeshData>("ludzik ze skinem i szkieletem");

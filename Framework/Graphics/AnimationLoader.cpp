@@ -1,9 +1,9 @@
 #include "AnimationLoader.h"
-#include "Animation.h"
+#include "AnimationData.h"
 #include <IO\BinaryReader.h>
 #include <IO\Path.h>
 
-Animation* AnimationLoader::LoadFromFile(const std::string &path)
+AnimationData* AnimationLoader::LoadFromFile(const std::string &path)
 {
 	uint8_t *data;
 	uint32_t size;
@@ -13,7 +13,7 @@ Animation* AnimationLoader::LoadFromFile(const std::string &path)
 
 	BinaryReader br(data);
 
-	Animation *anim = new Animation();
+	AnimationData *anim = new AnimationData();
 
 	int subAnimsCount = br.Read<int>();
 	for (int i = 0; i < subAnimsCount; i++)
@@ -24,25 +24,16 @@ Animation* AnimationLoader::LoadFromFile(const std::string &path)
 	return anim;
 }
 
-Animation* AnimationLoader::LoadAnimation(BinaryReader &br)
+AnimationData* AnimationLoader::LoadAnimation(BinaryReader &br)
 {
-	Animation *anim = new Animation();
-
-	bool hasOwnAnim = false;
-	float angleScale;
+	AnimationData *anim = new AnimationData();
 
 	anim ->id = br.Read<int>();
 	anim ->nodeName = br.Read<std::string>();
 	anim ->worldTMInv = LoadMatrix(br);
 	anim ->pos = LoadVec3Anim(br, anim ->localPos);
-	anim ->rot = LoadQuatAnim(br, anim ->localRot, hasOwnAnim, angleScale);
+	anim ->rot = LoadQuatAnim(br, anim ->localRot);
 	anim ->scale = LoadVec3Anim(br, anim ->localScale);
-
-	if (hasOwnAnim)
-	{
-		anim->hasOwnRotate = hasOwnAnim;
-		anim->angleScale = angleScale;
-	}
 
 	int subAnimsCount = br.Read<int>();
 	for (int i = 0; i < subAnimsCount; i++)
@@ -82,11 +73,8 @@ AnimationCurve<sm::Vec3>* AnimationLoader::LoadVec3Anim(BinaryReader &br, sm::Ve
 	return inter;
 }
 
-AnimationCurve<sm::Quat>* AnimationLoader::LoadQuatAnim(BinaryReader &br, sm::Quat &localQuat, bool &ownAnim, float &angleScale)
+AnimationCurve<sm::Quat>* AnimationLoader::LoadQuatAnim(BinaryReader &br, sm::Quat &localQuat)
 {
-	ownAnim = false;
-	angleScale = 1.0f;
-
 	int keysCount = br.Read<int>();
 	if (keysCount == 0)
 	{
@@ -120,57 +108,8 @@ AnimationCurve<sm::Quat>* AnimationLoader::LoadQuatAnim(BinaryReader &br, sm::Qu
 		axis.y = br.Read<float>();
 		axis.Normalize();
 
-		/*if (abs(angle) < 3.1415f)
-		{
-			sm::Quat rot;
-			rot.RotateToQuat(angle, axis);
-
-			if (i == 0)
-				q = rot;
-			else
-				q = q * rot;
-
-			q.Normalize();
-
-			inter ->AddKeyframe(time, q, false);
-		}
-		else
-		{
-			if (lastTime != -1)
-			{
-				float angle_step = abs(angle) / 3.1415f;
-				float time_step = (time - lastTime) / (abs(angle) / 3.1415f);
-				float dupa = 0.0f;
-				for (int j = 0; j < (int)(abs(angle) / 3.1415f); j++)
-				{
-					sm::Quat rot;
-					rot.RotateToQuat(dupa, axis);
-					dupa += angle_step;
-
-					if (i == 0)
-						q = rot;
-					else
-						q = q * rot;
-
-					q.Normalize();
-
-					inter ->AddKeyframe(time + time_step * j, q, false);
-				}
-			}
-		}
-		
-		lastTime = time;
-
-		*/
-
 		sm::Quat rot;
 		rot.RotateToQuat(angle, axis);
-
-		if (abs(angle) > 7.0f)
-		{
-			ownAnim = true;
-			angleScale = abs(angle) / (3.1415f * 8.0f);
-		}
 
 		if (i == 0)
 			q = rot;

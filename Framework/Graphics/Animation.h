@@ -5,55 +5,34 @@
 #include <Math\Matrix.h>
 #include <vector>
 
-#include "../Math/Animation/AnimationCurve.h"
-
-#include "ITransformable.h"
-
-class Model;
-class Mesh;
+#include "AnimationData.h"
 
 class Animation
 {
 public:
-	int id;
-	std::string nodeName;
-
-	sm::Matrix worldTMInv;
-
 	// matrix is updated every time when SetAnimationTime(); is called
 	sm::Matrix m_currentNodeTransform;
-
-	sm::Vec3 localPos;
-	sm::Quat localRot;
-	sm::Vec3 localScale;
-
-	AnimationCurve<sm::Vec3> *pos;
-	AnimationCurve<sm::Quat> *rot;
-	AnimationCurve<sm::Vec3> *scale;
 
 	int m_lastPosKeyframeIndex;
 	int m_lastRotKeyframeIndex;
 	int m_lastScaleKeyframeIndex;
 
+	sm::Matrix* m_transform;
+	sm::Matrix* m_animTransform;
+	AnimationData* m_animationData;
+
 	std::vector<Animation*> subAnims;
-
-	ITransformable *mesh;
-
-	bool hasOwnRotate;
-	float ownAngle;
-	float angleScale;
-
-	float m_animLength;
 
 	std::vector<Animation*> *m_flattenedChilds;
 	void FlattenChilds(std::vector<Animation*> &flattenChilds);
 
 public:
 	Animation(void);
+	Animation(AnimationData* data);
 	~Animation(void);
 
-	void AssignModel(Model *model);
-	void AssignTransformable(ITransformable *transformable);
+	void AttachTransformTarget(sm::Matrix* transform, sm::Matrix* animTransform);
+	
 	void Update(float time, const sm::Matrix &transform, float seconds);
 
 	Animation *GetAnimationById(int id);
@@ -63,13 +42,5 @@ public:
 
 	void ClearLastKeys();
 
-	// podmienia keyframy i transformacje ze zrodlowej animacji.
-	// taki troche hack. przydatne do bindowania postaci do szkieletu.
-	// Po zbindowaniu mozna wsadzac dowolna inna animacje.
-	void ReplaceAnimation(Animation *sourceAnim);
-
 	void SetAnimationTime(float time, const sm::Matrix &parentTransform);
-	Animation *FindAnimationChild(const std::string &nodeName, bool recursively = true);
-
-	void MergeAnimation(Animation *merge);
 };

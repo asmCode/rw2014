@@ -116,9 +116,6 @@ exit /B 0
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AnimationClips\SimpleClip.cpp" />
-    <ClCompile Include="AnimationClips\TrackClip.cpp" />
-    <ClCompile Include="AnimationClips\WheelClip.cpp" />
     <ClCompile Include="AnimCameraManager.cpp" />
     <ClCompile Include="AssemblingScene.cpp" />
     <ClCompile Include="BasicLightingEffect.cpp" />
@@ -129,13 +126,13 @@ exit /B 0
     <ClCompile Include="DecomposeToRibbon.cpp" />
     <ClCompile Include="DemoUtils.cpp" />
     <ClCompile Include="DistortParticleHandler.cpp" />
-    <ClCompile Include="DownsampleMaterial.cpp" />
     <ClCompile Include="Dream.cpp" />
     <ClCompile Include="Environment.cpp" />
     <ClCompile Include="Ext\tinyxml\tinyxml2.cpp" />
     <ClCompile Include="Framework\Graphics\Animation.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\stuff\we-can_2013-demo\code\Framework;D:\stuff\we-can_2013-demo\code\Ext;D:\stuff\we-can_2013-demo\code\Ext\glew-1.9.0\include;d:\stuff\we-can_2013-demo\code\zip\contrib\minizip\;d:\stuff\we-can_2013-demo\code\zip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="Framework\Graphics\AnimationData.cpp" />
     <ClCompile Include="Framework\Graphics\AnimationLoader.cpp" />
     <ClCompile Include="Framework\Graphics\BoundingBox.cpp" />
     <ClCompile Include="Framework\Graphics\BoundingSphere.cpp" />
@@ -209,7 +206,6 @@ exit /B 0
     <ClCompile Include="Renderable.cpp" />
     <ClCompile Include="GeometryBatch.cpp" />
     <ClCompile Include="LoadingScreen.cpp" />
-    <ClCompile Include="MechArm.cpp" />
     <ClCompile Include="PropertySignal.cpp" />
     <ClCompile Include="Scenes\Test1Scene.cpp" />
     <ClCompile Include="ShadowMappingTest.cpp" />
@@ -230,9 +226,6 @@ exit /B 0
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationClips\IAnimationClip.h" />
-    <ClInclude Include="AnimationClips\SimpleClip.h" />
-    <ClInclude Include="AnimationClips\TrackClip.h" />
-    <ClInclude Include="AnimationClips\WheelClip.h" />
     <ClInclude Include="AnimCameraManager.h" />
     <ClInclude Include="AssemblingScene.h" />
     <ClInclude Include="BaseMesh.h" />
@@ -246,11 +239,11 @@ exit /B 0
     <ClInclude Include="DecomposeToRibbon.h" />
     <ClInclude Include="DemoUtils.h" />
     <ClInclude Include="DistortParticleHandler.h" />
-    <ClInclude Include="DownsampleMaterial.h" />
     <ClInclude Include="Dream.h" />
     <ClInclude Include="Environment.h" />
     <ClInclude Include="Ext\tinyxml\tinyxml2.h" />
     <ClInclude Include="Framework\Graphics\Animation.h" />
+    <ClInclude Include="Framework\Graphics\AnimationData.h" />
     <ClInclude Include="Framework\Graphics\AnimationLoader.h" />
     <ClInclude Include="Framework\Graphics\BoundingBox.h" />
     <ClInclude Include="Framework\Graphics\BoundingSphere.h" />
@@ -362,7 +355,6 @@ exit /B 0
     <ClInclude Include="GeometryBatch.h" />
     <ClInclude Include="GlassPart.h" />
     <ClInclude Include="LoadingScreen.h" />
-    <ClInclude Include="MechArm.h" />
     <ClInclude Include="PropertySignal.h" />
     <ClInclude Include="Scenes\BaseScene.h" />
     <ClInclude Include="Scenes\Test1Scene.h" />

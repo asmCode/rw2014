@@ -20,7 +20,6 @@
 #include "Scenes/Test1Scene.h"
 #include "Scenes/GlowTestScene.h"
 #include "Scenes/BoneAnimTestScene.h"
-#include "MechArm.h"
 #include "GraphicsEngine.h"
 #include "AssemblingScene.h"
 #include <Graphics/Property.h>
@@ -112,8 +111,6 @@ DemoController::DemoController() :
 	shadowPass(NULL),
 	m_envTexture(NULL),
 	m_activeScene(NULL),
-	m_doors(NULL),
-	m_doorsAnim(NULL),
 	m_fovSignal(NULL),
 	m_fovPower(0.0f),
 	m_glowTex(NULL)
@@ -1379,7 +1376,7 @@ Model* DemoController::LoadModel(const std::string &path)
 	return ModelLoader::LoadFromFile(path);
 }
 
-Animation* DemoController::LoadAnimation(const std::string &path)
+AnimationData* DemoController::LoadAnimation(const std::string &path)
 {
 	return AnimationLoader::LoadFromFile(path);
 }
