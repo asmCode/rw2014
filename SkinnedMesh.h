@@ -2,6 +2,8 @@
 
 #include "BaseMesh.h"
 #include <Math/Matrix.h>
+#include <map>
+#include <string>
 #include <stdint.h>
 
 class TriangleDataColorGlow;
@@ -15,6 +17,8 @@ public:
 	SkinnedMesh();
 	virtual ~SkinnedMesh();
 
+	sm::Matrix* BoneTransforms;
+
 	void Initialize(SkinnedMeshData* meshData);
 	virtual void Draw();
 
@@ -23,6 +27,10 @@ public:
 	void SetTriangleColor(int index, const sm::Vec4& color);
 	void SetGlowPower(int index, float glowPower);
 
+	void AddAnimation(const std::string& name, Animation* animation);
+
+	int GetBonesCount() const;
+
 protected:
 	uint32_t m_vertexBufferId;
 	uint32_t m_vertexDataBufferId;
@@ -30,6 +38,10 @@ protected:
 
 	int m_trianglesCount;
 	TriangleDataColorGlow* m_triangles;
+
+	SkinnedMeshData* m_meshData;
+
+	std::map<std::string, Animation*> m_animations;
 
 	virtual void Apply();
 	void CreateVertexDataBuffer();

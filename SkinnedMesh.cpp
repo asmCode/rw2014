@@ -4,6 +4,7 @@
 #include "TriangleDataColorGlow.h"
 #include <Graphics/SkinnedMeshData.h>
 #include <Graphics/SkinnedVertex.h>
+#include <Graphics/Animation.h>
 #include "MeshUtils.h"
 #include <Math/Vec2.h>
 #include <GL/glew.h>
@@ -13,7 +14,9 @@ SkinnedMesh::SkinnedMesh() :
 	m_vertexDataBufferId(0),
 	m_indexBufferId(0),
 	m_trianglesCount(0),
-	m_triangles(NULL)
+	m_triangles(NULL),
+	m_meshData(NULL),
+	BoneTransforms(NULL)
 {
 }
 
@@ -32,12 +35,37 @@ SkinnedMesh::~SkinnedMesh()
 
 void SkinnedMesh::Initialize(SkinnedMeshData* meshData)
 {
-	int max = 0;
+	m_meshData = meshData;
+
+	int maxInVertices = 0;
+	int minInVertices = 99999999;
+
+	int bones[50];
+	memset(bones, 0, sizeof(int)* 50);
+
 	for (int i = 0; i < meshData->verticesCount; i++)
 	{
-		if (meshData->vertices[i].boneIndex[0] > max)
-			max = meshData->vertices[i].boneIndex[0];
+		bones[meshData->vertices[i].boneIndex[0]]++;
+
+		if (meshData->vertices[i].boneIndex[0] > maxInVertices)
+			maxInVertices = meshData->vertices[i].boneIndex[0];
+
+		if (meshData->vertices[i].boneIndex[0] < minInVertices)
+			minInVertices = meshData->vertices[i].boneIndex[0];
 	}
+
+	int maxInBones = 0;
+	int minInBones = 9999;
+	for (int i = 0; i < meshData->bonesCount; i++)
+	{
+		if (meshData->bonesIds[i] > maxInBones)
+			maxInBones = meshData->bonesIds[i];
+
+		if (meshData->bonesIds[i] < minInBones)
+			minInBones = meshData->bonesIds[i];
+	}
+
+	BoneTransforms = new sm::Matrix[meshData->bonesCount];
 
 	m_trianglesCount = meshData->verticesCount / 3;
 
@@ -138,4 +166,22 @@ void SkinnedMesh::SetGlowPower(int index, float glowPower)
 	trianglesPointer->GlowPower = glowPower;
 	(trianglesPointer + 1)->GlowPower = glowPower;
 	(trianglesPointer + 2)->GlowPower = glowPower;
+}
+
+void SkinnedMesh::AddAnimation(const std::string& name, Animation* animation)
+{
+	for (int i = 0; i < m_meshData->bonesCount; i++)
+	{
+		Animation* anim = animation->GetAnimationById(m_meshData->bonesIds[i]);
+		assert(anim != NULL);
+
+		anim->AttachTransformTarget(&BoneTransforms[i], NULL);
+
+		m_animations[name] = anim;
+	}
+}
+
+int SkinnedMesh::GetBonesCount() const
+{
+	return m_meshData->bonesCount;
 }

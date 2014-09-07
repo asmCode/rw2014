@@ -26,7 +26,7 @@ void BoneAnimTestScene::InitializeSubScene()
 		return;
 	}*/
 
-	AnimationData* animData = Content::Instance->Get<AnimationData>("www");
+	AnimationData* animData = Content::Instance->Get<AnimationData>("walk");
 	assert(animData != NULL);
 
 	anim2 = new Animation(animData);
@@ -37,10 +37,11 @@ void BoneAnimTestScene::InitializeSubScene()
 
 	SkinnedMesh* mesh = new SkinnedMesh();
 	mesh->Initialize(meshData);
+	mesh->AddAnimation("walk", anim2);
 
 	Shader* shader = Content::Instance->Get<Shader>("Skinned");
 	assert(shader != NULL);
-	SkinnedGlowTransparencySpecullar* material = new SkinnedGlowTransparencySpecullar(shader);
+	SkinnedGlowTransparencySpecullar* material = new SkinnedGlowTransparencySpecullar(shader, mesh);
 
 	Renderable *renderable = new Renderable(mesh, material);
 
@@ -61,7 +62,7 @@ bool BoneAnimTestScene::Update(float time, float deltaTime)
 	this->BaseScene::Update(time, deltaTime);
 
 	if (time >= 5)
-	anim2->SetAnimationTime((time - 5) * 0.1f, sm::Matrix::IdentityMatrix());
+		anim2->Update((time - 5) * 0.1f, sm::Matrix::IdentityMatrix(), deltaTime);
 
 	DrawSegment(anim2->subAnims[0]);
 

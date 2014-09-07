@@ -1,8 +1,10 @@
 #include "SkinnedGlowTransparencySpecullar.h"
 #include "../DrawingRoutines.h"
+#include "../SkinnedMesh.h"
 #include <Graphics/Shader.h>
 
-SkinnedGlowTransparencySpecullar::SkinnedGlowTransparencySpecullar(Shader* shader)
+SkinnedGlowTransparencySpecullar::SkinnedGlowTransparencySpecullar(Shader* shader, SkinnedMesh* skinnedMesh) :
+	m_mesh(skinnedMesh)
 {
 	m_shader = shader;
 }
@@ -39,10 +41,6 @@ void SkinnedGlowTransparencySpecullar::SetupShader()
 	m_shader->UseProgram();
 	m_shader->SetMatrixParameter("u_viewProjMatrix", DrawingRoutines::GetViewProjMatrix());
 
-	sm::Matrix bonesTransforms[41];
-
-	bonesTransforms[0] = sm::Matrix::IdentityMatrix();
-	bonesTransforms[0] = sm::Matrix::RotateAxisMatrix(3.1415f, 0, 1, 0);
-
-	m_shader->SetMatrixParameter("u_boneTransform", 41, bonesTransforms);
+	assert(m_mesh->GetBonesCount() <= 41);
+	m_shader->SetMatrixParameter("u_boneTransform", m_mesh->GetBonesCount(), m_mesh->BoneTransforms);
 }

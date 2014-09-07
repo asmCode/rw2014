@@ -26,26 +26,10 @@ void main()
 	
 	//o_lightDirection = u_lightPosition - worldPosition.xyz;
 	//o_eyeDirection = u_eyePosition - worldPosition.xyz;
-	/*
-	if (a_boneIndex.x == 0)
-		o_color = vec4(1, 0, 0, 1);
-	if (a_boneIndex.x == 1)
-		o_color = vec4(1, 1, 0, 1);
-	if (a_boneIndex.x == 20)
-		o_color = vec4(0, 0, 1, 1);
-	if (a_boneIndex.x == 30)
-		o_color = vec4(1, 0, 1, 1);
-	if (a_boneIndex.x == 4)
-		o_color = vec4(0, 1, 1, 1);
-
-	o_color = vec4(float(a_boneIndex.x) / 40.0, 1, 1, 1);*/
 
 	vec4 worldPosition = vec4(a_position, 1);
 
-	if (a_boneIndex.x == 0)
-	{
-		worldPosition = u_boneTransform[0] * worldPosition;
-	}
+	worldPosition = u_boneTransform[a_boneIndex.x] * worldPosition;
 	
 	gl_Position = u_viewProjMatrix * worldPosition;
 }
