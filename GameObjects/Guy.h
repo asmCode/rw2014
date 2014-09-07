@@ -3,6 +3,7 @@
 #include "../SceneElement/GuyData.h"
 #include "../GameObject.h"
 #include <Math/Vec3.h>
+#include <Graphics/Interpolators/StateInterpolator.h>
 #include <string>
 #include <vector>
 
@@ -24,4 +25,5 @@ private:
 	SkinnedMesh* m_mesh;
 
 	std::vector<Animation*> m_animations;
+	StateInterpolator<int> m_animationIndex;
 };

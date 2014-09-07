@@ -54,6 +54,12 @@ Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
 		SceneElement::Key* key = guyData->Path->Keys[i];
 		m_positionCurve->AddKeyframe(key->Time, key->Position);
 	}
+
+	for (uint32_t i = 0; i < guyData->AnimationIndex.size(); i++)
+	{
+		SceneElement::IntKey* key = guyData->AnimationIndex[i];
+		m_animationIndex.AddKeyframe(key->Time, key->Value, false);
+	}
 }
 
 Guy::~Guy()
@@ -68,7 +74,10 @@ void Guy::Update(float time, float seconds)
 	//if (time >= 5)
 		//m_animations[0]->Update((time - 5) * 0.1f, baseTransform, seconds);
 
-	m_animations[0]->Update(time, baseTransform, seconds);
+	int animationIndex;
+	m_animationIndex.GetValue(time, animationIndex);
+
+	m_animations[animationIndex]->Update(time, baseTransform, seconds);
 
 	/*for (uint32_t i = 0; i < m_renderables.size(); i++)
 		m_renderables[i]->SetActive(false);*/
