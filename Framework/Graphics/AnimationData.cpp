@@ -115,12 +115,12 @@ float AnimationData::GetAnimLengthById(int id)
 	float rotTime = 0.0f;
 	float scaleTime = 0.0f;
 
-	if (pos != NULL && pos->GetKeysCount() > 0)
-		posTime = pos->GetEndTime();
-	if (rot != NULL && rot->GetKeysCount() > 0)
-		rotTime = rot->GetEndTime();
-	if (scale != NULL && scale->GetKeysCount() > 0)
-		scaleTime = scale->GetEndTime();
+	if (anim->pos != NULL && anim->pos->GetKeysCount() > 0)
+		posTime = anim->pos->GetEndTime();
+	if (anim->rot != NULL && anim->rot->GetKeysCount() > 0)
+		rotTime = anim->rot->GetEndTime();
+	if (anim->scale != NULL && anim->scale->GetKeysCount() > 0)
+		scaleTime = anim->scale->GetEndTime();
 
 	return MathUtils::Max(MathUtils::Max(posTime, rotTime), scaleTime);
 }

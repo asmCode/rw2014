@@ -12,6 +12,11 @@ const std::vector<Renderable*>& BaseScene::GetRenderables() const
 	return m_renderables;
 }
 
+ICamera* BaseScene::GetCamera() const
+{
+	return NULL;
+}
+
 bool BaseScene::Initialize()
 {
 	InitializeSubScene();

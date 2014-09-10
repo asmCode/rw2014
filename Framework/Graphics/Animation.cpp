@@ -83,7 +83,8 @@ void Animation::Update(float time, const sm::Matrix &transform, float seconds)
 		*m_animTransform = tr;
 
 	if (m_transform != NULL)
-		*m_transform = tr * m_animationData->worldTMInv;
+		//*m_transform = tr * m_animationData->worldTMInv;
+		*m_transform = tr;
 
 	for (unsigned i = 0; i < subAnims.size(); i++)
 		subAnims[i] ->Update(time, tr, seconds);

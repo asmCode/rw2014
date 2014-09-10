@@ -153,12 +153,19 @@ void AnimCamera::SetLastKeyFrameTime(float time)
 
 sm::Matrix AnimCamera::GetViewMatrix()
 {
-	return view;
+	//return (view * sm::Matrix::RotateAxisMatrix(MathUtils::PI, 0, 0, 1)).GetInversed();
+	//return (view * sm::Matrix::RotateAxisMatrix(MathUtils::PI2, -1, 0, 0)* sm::Matrix::RotateAxisMatrix(MathUtils::PI, 0, 0, 1)).GetInversed();
+	return (
+		view *
+		//sm::Matrix::RotateAxisMatrix(MathUtils::PI, 0, 0, 1) *
+		sm::Matrix::RotateAxisMatrix(MathUtils::PI2, -1, 0, 0) *
+		sm::Matrix::ScaleMatrix(1, -1, 1)).GetInversed();
+	//return (view).GetInversed();
 }
 
 sm::Vec3 AnimCamera::GetPosition()
 {
-	return Transform().GetInversed() * sm::Vec3(0, 0, 0);
+	return Transform() * sm::Vec3(0, 0, 0);
 }
 
 std::string AnimCamera::GetName() const

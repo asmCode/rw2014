@@ -4,6 +4,7 @@
 
 class GameObject;
 class Renderable;
+class ICamera;
 
 class BaseScene
 {
@@ -22,6 +23,8 @@ public:
 
 	const std::vector<GameObject*>& GetGameObjects() const;
 	const std::vector<Renderable*>& GetRenderables() const;
+
+	virtual ICamera* GetCamera() const;
 
 protected:
 	std::string m_name;

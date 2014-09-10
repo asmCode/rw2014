@@ -3,6 +3,7 @@
 #include "Renderable.h"
 #include "DrawingRoutines.h"
 #include "Quad.h"
+#include "GraphicsLibrary/ICamera.h"
 #include <Math/Vec2.h>
 #include <Graphics/Framebuffer.h>
 #include <Graphics/SpriteBatch.h>

@@ -21,6 +21,7 @@
 #include "Scenes/GlowTestScene.h"
 #include "Scenes/BoneAnimTestScene.h"
 #include "Scenes/GuySceneTest.h"
+#include "Scenes/CamsTestScene.h"
 #include "GraphicsEngine.h"
 #include "AssemblingScene.h"
 #include <Graphics/Property.h>
@@ -50,7 +51,7 @@ const float DemoController::GlowBufferWidthRatio = 0.5f;
 const float DemoController::GlowBufferHeightRatio = 0.5f;
 
 #define DISABLE_FRUSTUM_CULLING 1
-#define MAN_CAM 1
+//#define MAN_CAM 1
 #define SHOW_FPS 1
 //#define LOAD_LIGHTMAPS 1
 
@@ -315,8 +316,9 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 	m_scenes.push_back(new GlowTestScene());
 	m_scenes.push_back(new BoneAnimTestScene());
 	m_scenes.push_back(new GuySceneTest());
+	m_scenes.push_back(new CamsTestScene());
 
-	m_activeScene = m_scenes[3];
+	m_activeScene = m_scenes[4];
 	
 	return true;
 }
@@ -492,12 +494,15 @@ bool DemoController::Update(float time, float seconds)
 {
 	m_activeCamera = NULL;
 
+	m_activeScene->Update(time, seconds);
+
 #if MAN_CAM
 	manCam.Process(seconds);
 	m_activeCamera = &manCam;
 #else
-	camerasAnimation->Update(m_greetzDanceTime, sm::Matrix::IdentityMatrix(), seconds);
-	m_activeCamera = animCamsMng.GetActiveCamera(time);
+	//camerasAnimation->Update(m_greetzDanceTime, sm::Matrix::IdentityMatrix(), seconds);
+	//m_activeCamera = animCamsMng.GetActiveCamera(time);
+	m_activeCamera = m_activeScene->GetCamera();
 #endif
 
 	m_view = m_activeCamera->GetViewMatrix();
@@ -508,8 +513,6 @@ bool DemoController::Update(float time, float seconds)
 		m_activeCamera->GetFarClip());
 
 	m_viewProj = m_proj * m_view;
-
-	m_activeScene->Update(time, seconds);
 	return true;
 
 	camerasFactoryAnimation->Update(time, sm::Matrix::IdentityMatrix(), seconds);

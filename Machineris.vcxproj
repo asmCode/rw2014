@@ -197,6 +197,7 @@ exit /B 0
     <ClCompile Include="SceneLoader.cpp" />
     <ClCompile Include="Scenes\BaseScene.cpp" />
     <ClCompile Include="Scenes\BoneAnimTestScene.cpp" />
+    <ClCompile Include="Scenes\CamsTestScene.cpp" />
     <ClCompile Include="Scenes\GlowTestScene.cpp" />
     <ClCompile Include="Scenes\GuySceneTest.cpp" />
     <ClCompile Include="SceneUtils.cpp" />
@@ -345,6 +346,7 @@ exit /B 0
     <ClInclude Include="SceneElement\StaticSource.h" />
     <ClInclude Include="SceneLoader.h" />
     <ClInclude Include="Scenes\BoneAnimTestScene.h" />
+    <ClInclude Include="Scenes\CamsTestScene.h" />
     <ClInclude Include="Scenes\GlowTestScene.h" />
     <ClInclude Include="Scenes\GuySceneTest.h" />
     <ClInclude Include="SceneUtils.h" />

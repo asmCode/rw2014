@@ -29,7 +29,10 @@ void AnimCameraManager::Load(const std::string &path, Animation *anim)
 			float animLen = anim->GetAnimLengthById(cam->GetId());
 			cam->SetLastKeyFrameTime(animLen);
 
-			anim->AttachTransformTarget(&cam->AnimTransform(), NULL);
+			Animation* childAnim = anim->GetAnimationById(cam->GetId());
+			assert(childAnim != NULL);
+
+			childAnim->AttachTransformTarget(&cam->Transform(), NULL);
 		}
 
 		cameras.push_back(cam);

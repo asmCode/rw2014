@@ -79,22 +79,15 @@ Guy::~Guy()
 
 void Guy::Update(float time, float seconds)
 {
-	sm::Vec3 position = m_positionCurve->Evaluate(0);
-	//sm::Matrix baseTransform = sm::Matrix::TranslateMatrix(position);
-	sm::Matrix baseTransform = sm::Matrix::IdentityMatrix();
+	sm::Vec3 position = m_positionCurve->Evaluate(time);
+	sm::Matrix baseTransform = sm::Matrix::TranslateMatrix(position);
 
-	//if (time >= 5)
-		//m_animations[0]->Update((time - 5) * 0.1f, baseTransform, seconds);
-
-	int animationIndex;
-	m_animationIndex.GetValue(time, animationIndex);
-
-	animationIndex = 0;
+	int animationIndex = 0;
 
 	float animLength = m_animations[animationIndex]->GetAnimLength();
 
 	//m_animations[animationIndex]->Update(time, m_mesh->m_meshData->m_worldMatrix, seconds);
-	m_animations[animationIndex]->Update(fmodf(time * 0.1f, animLength), baseTransform, seconds);
+	m_animations[animationIndex]->Update(fmodf(time * 1.0f, animLength), baseTransform, seconds);
 	//m_animations[animationIndex]->Update(animLength * 0.8f, baseTransform, seconds);
 
 	DrawSegment2(m_animations[0]);
