@@ -27,12 +27,22 @@ void main()
 	//o_lightDirection = u_lightPosition - worldPosition.xyz;
 	//o_eyeDirection = u_eyePosition - worldPosition.xyz;
 
+	
 	vec4 worldPosition = vec4(a_position, 1);
 
 	vec4 finalWorldPosition = u_boneTransform[a_boneIndex.x] * worldPosition * a_weight.x;
 	finalWorldPosition += u_boneTransform[a_boneIndex.y] * worldPosition * a_weight.y;
 	finalWorldPosition += u_boneTransform[a_boneIndex.z] * worldPosition * a_weight.z;
-	finalWorldPosition += u_boneTransform[a_boneIndex.w] * worldPosition * a_weight.w;
+	finalWorldPosition += u_boneTransform[a_boneIndex.w] * worldPosition * a_weight.w;	
+	
+	/*
+	mat4 bonesTransform = u_boneTransform[a_boneIndex.x] * a_weight.x;
+	bonesTransform += u_boneTransform[a_boneIndex.y] * a_weight.y;
+	bonesTransform += u_boneTransform[a_boneIndex.z] * a_weight.z;
+	bonesTransform += u_boneTransform[a_boneIndex.w] * a_weight.w;
+
+	vec4 finalWorldPosition = bonesTransform * vec4(a_position, 1);
+	*/
 	
 	gl_Position = u_viewProjMatrix * finalWorldPosition;
 }

@@ -16,7 +16,8 @@ bool SkinnedGlowTransparencySpecullar::IsOpacity() const
 
 void SkinnedGlowTransparencySpecullar::SetupRenderState()
 {
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	///glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);
 
@@ -40,6 +41,9 @@ void SkinnedGlowTransparencySpecullar::SetupShader()
 {
 	m_shader->UseProgram();
 	m_shader->SetMatrixParameter("u_viewProjMatrix", DrawingRoutines::GetViewProjMatrix());
+
+	/*for (int i = 0; i < m_mesh->GetBonesCount(); i++)
+		m_mesh->BoneTransforms[i] = sm::Matrix::IdentityMatrix();*/
 
 	assert(m_mesh->GetBonesCount() <= 41);
 	m_shader->SetMatrixParameter("u_boneTransform", m_mesh->GetBonesCount(), m_mesh->BoneTransforms);

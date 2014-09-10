@@ -124,6 +124,8 @@ void Shader::SetMatrixParameter(const char *name, const sm::Matrix &matrix)
 void Shader::SetMatrixParameter(const char *name, int count, const sm::Matrix* matrix)
 {
 	int uniformParam = glGetUniformLocation(m_programId, name);
+	if (uniformParam == -1)
+		return;
 	assert(uniformParam != -1);
 
 	glUniformMatrix4fv(uniformParam, count, false, reinterpret_cast<const float*>(matrix));

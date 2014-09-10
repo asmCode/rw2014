@@ -25,6 +25,9 @@ public:
 
 	void Initialize();
 
+	sm::Matrix m_worldInverseMatrix;
+	sm::Matrix m_worldMatrix;
+
 public:
 	int verticesCount;
 	SkinnedVertex *vertices;

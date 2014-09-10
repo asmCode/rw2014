@@ -7,6 +7,8 @@
 #include <Graphics/Model.h>
 #include <Graphics/Shader.h>
 #include <Graphics/Content/Content.h>
+#include <Graphics/Animation.h>
+#include "../GraphicsLog.h"
 
 #include "../Renderable.h"
 

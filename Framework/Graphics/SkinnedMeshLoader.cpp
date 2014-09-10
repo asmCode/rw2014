@@ -5,6 +5,7 @@
 
 #include <IO\BinaryReader.h>
 #include <IO\Path.h>
+#include <Utils/Log.h>
 
 #include <sstream>
 
@@ -38,7 +39,7 @@ SkinnedMeshData* SkinnedMeshLoader::LoadFromFile(const std::string &path)
 	}
 
 	int meshesCount = br.Read<int>();
-	assert(meshesCount == 1);
+	//assert(meshesCount == 1);
 
 	SkinnedMeshData *mesh = LoadMesh(br);
 
@@ -55,11 +56,21 @@ SkinnedMeshData* SkinnedMeshLoader::LoadMesh(BinaryReader &br)
 	mesh->name = br.Read<std::string>();
 	mesh->materialName = br.Read<std::string>();
 
+	for (int i = 0; i < 16; i++)
+		mesh->m_worldInverseMatrix.a[i] = br.Read<float>();
+
+	mesh->m_worldMatrix = mesh->m_worldInverseMatrix.GetInversed();
+
 	mesh->bonesCount = br.Read<int>();
 	mesh->bonesIds = new int[mesh->bonesCount];
 	br.ReadBuffer((char*)mesh->bonesIds, sizeof(int)* mesh->bonesCount);
 
-	mesh->verticesCount= br.Read<int>();
+	for (int i = 0; i < mesh->bonesCount; i++)
+	{
+		Log::LogT("Bone index %d = %d", i, mesh->bonesIds[i]);
+	}
+
+	mesh->verticesCount = br.Read<int>();
 	mesh->vertices = new SkinnedVertex[mesh->verticesCount];
 	br.ReadBuffer((char*)mesh->vertices, sizeof(SkinnedVertex) * mesh->verticesCount);
 

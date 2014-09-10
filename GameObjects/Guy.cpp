@@ -12,6 +12,17 @@
 #include <Graphics/Animation.h>
 #include <Graphics/AnimationData.h>
 #include <Graphics/Content/Content.h>
+#include "../GraphicsLog.h"
+
+void DrawSegment2(Animation* root)
+{
+	for (int i = 0; i < root->subAnims.size(); i++)
+	{
+		GraphicsLog::AddSegment(root->m_currentNodeTransform * sm::Vec3(0, 0, 0), root->subAnims[i]->m_currentNodeTransform * sm::Vec3(0, 0, 0));
+		DrawSegment2(root->subAnims[i]);
+	}
+}
+
 
 Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
 	m_positionCurve(NULL),
@@ -34,10 +45,10 @@ Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
 	m_mesh = new SkinnedMesh();
 	m_mesh->Initialize(meshData);
 	m_mesh->AddAnimation("walk", m_animations[0]);
-	m_mesh->AddAnimation("jump", m_animations[1]);
+	//m_mesh->AddAnimation("jump", m_animations[1]);
 
 	//m_animations[1]->SetAnimationTime(0.1f, sm::Matrix::IdentityMatrix());
-	m_animations[0]->Update(0.0f, sm::Matrix::IdentityMatrix(), 0.0f);
+	//m_animations[0]->Update(0.0f, sm::Matrix::IdentityMatrix(), 0.0f);
 
 	Shader* shader = Content::Instance->Get<Shader>("Skinned");
 	assert(shader != NULL);
@@ -68,8 +79,9 @@ Guy::~Guy()
 
 void Guy::Update(float time, float seconds)
 {
-	sm::Vec3 position = m_positionCurve->Evaluate(time);
-	sm::Matrix baseTransform = sm::Matrix::TranslateMatrix(position);
+	sm::Vec3 position = m_positionCurve->Evaluate(0);
+	//sm::Matrix baseTransform = sm::Matrix::TranslateMatrix(position);
+	sm::Matrix baseTransform = sm::Matrix::IdentityMatrix();
 
 	//if (time >= 5)
 		//m_animations[0]->Update((time - 5) * 0.1f, baseTransform, seconds);
@@ -77,7 +89,15 @@ void Guy::Update(float time, float seconds)
 	int animationIndex;
 	m_animationIndex.GetValue(time, animationIndex);
 
-	m_animations[animationIndex]->Update(time, baseTransform, seconds);
+	animationIndex = 0;
+
+	float animLength = m_animations[animationIndex]->GetAnimLength();
+
+	//m_animations[animationIndex]->Update(time, m_mesh->m_meshData->m_worldMatrix, seconds);
+	m_animations[animationIndex]->Update(fmodf(time * 0.1f, animLength), baseTransform, seconds);
+	//m_animations[animationIndex]->Update(animLength * 0.8f, baseTransform, seconds);
+
+	DrawSegment2(m_animations[0]);
 
 	/*for (uint32_t i = 0; i < m_renderables.size(); i++)
 		m_renderables[i]->SetActive(false);*/
