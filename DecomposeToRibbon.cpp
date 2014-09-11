@@ -35,7 +35,7 @@ AnimationCurve<sm::Vec3>* DecomposeToRibbon::CreateCurve(
 	float endTime = path->Keys[endKeyIndex - 1]->Time;
 	float timeScale = random.GetFloat(1.0f, (endTime + maxDelay) / endTime);
 
-	float firstMoveDistance = random.GetFloat(0.5f, 2.0f);
+	float firstMoveDistance = random.GetFloat(1.0f, 4.0f);
 	sm::Vec3 firstMovePosition = basePosition + normal * firstMoveDistance;
 
 	curve->AddKeyframe(keys[0]->Time * timeScale, basePosition);

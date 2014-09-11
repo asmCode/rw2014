@@ -22,6 +22,9 @@
 #include "Scenes/BoneAnimTestScene.h"
 #include "Scenes/GuySceneTest.h"
 #include "Scenes/CamsTestScene.h"
+
+#include "Scenes/Scene01.h"
+
 #include "GraphicsEngine.h"
 #include "AssemblingScene.h"
 #include <Graphics/Property.h>
@@ -51,7 +54,7 @@ const float DemoController::GlowBufferWidthRatio = 0.5f;
 const float DemoController::GlowBufferHeightRatio = 0.5f;
 
 #define DISABLE_FRUSTUM_CULLING 1
-#define MAN_CAM 1
+//#define MAN_CAM 1
 #define SHOW_FPS 1
 //#define LOAD_LIGHTMAPS 1
 
@@ -317,8 +320,9 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 	m_scenes.push_back(new BoneAnimTestScene());
 	m_scenes.push_back(new GuySceneTest());
 	m_scenes.push_back(new CamsTestScene());
+	m_scenes.push_back(new Scene01());
 
-	m_activeScene = m_scenes[4];
+	m_activeScene = m_scenes[5];
 	
 	return true;
 }
@@ -492,6 +496,9 @@ void DemoController::Release()
 static float lastTime;
 bool DemoController::Update(float time, float seconds)
 {
+	time *= 1.0f;
+	seconds *= 1.0f;
+
 	m_activeCamera = NULL;
 
 	m_activeScene->Update(time, seconds);

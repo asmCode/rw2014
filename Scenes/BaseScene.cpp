@@ -1,6 +1,18 @@
 #include "BaseScene.h"
 #include "../GameObject.h"
+#include "../Environment.h"
+#include "../AnimCameraManager.h"
+#include <Graphics/AnimationData.h>
+#include <Graphics/Animation.h>
+#include <Graphics/Content/Content.h>
 #include <stdint.h>
+
+BaseScene::BaseScene() :
+	m_camerasManager(NULL),
+	m_camerasAnimation(NULL),
+	m_activeCamera(NULL)
+{
+};
 
 const std::vector<GameObject*>& BaseScene::GetGameObjects() const
 {
@@ -14,12 +26,14 @@ const std::vector<Renderable*>& BaseScene::GetRenderables() const
 
 ICamera* BaseScene::GetCamera() const
 {
-	return NULL;
+	return m_activeCamera;
 }
 
 bool BaseScene::Initialize()
 {
 	InitializeSubScene();
+
+	LoadCameras();
 
 	for (uint32_t i = 0; i < m_gameObjects.size(); i++)
 	{
@@ -32,8 +46,23 @@ bool BaseScene::Initialize()
 
 bool BaseScene::Update(float time, float deltaTime)
 {
+	m_camerasAnimation->Update(time, sm::Matrix::IdentityMatrix(), deltaTime);
+	m_activeCamera = m_camerasManager->GetActiveCamera(time);
+
 	for (uint32_t i = 0; i < m_gameObjects.size(); i++)
 		m_gameObjects[i]->Update(time, deltaTime);
 
 	return true;
+}
+
+void BaseScene::LoadCameras()
+{
+	AnimationData* camerasAnimationData = Content::Instance->Get<AnimationData>(m_name);
+	if (camerasAnimationData == NULL)
+		return;
+
+	m_camerasAnimation = new Animation(camerasAnimationData);
+
+	m_camerasManager = new AnimCameraManager();
+	m_camerasManager->Load(Environment::GetInstance()->GetBasePath() + "cameras\\" + m_name + ".cam", m_camerasAnimation);
 }

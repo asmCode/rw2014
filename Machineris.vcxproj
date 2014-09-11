@@ -200,6 +200,7 @@ exit /B 0
     <ClCompile Include="Scenes\CamsTestScene.cpp" />
     <ClCompile Include="Scenes\GlowTestScene.cpp" />
     <ClCompile Include="Scenes\GuySceneTest.cpp" />
+    <ClCompile Include="Scenes\Scene01.cpp" />
     <ClCompile Include="SceneUtils.cpp" />
     <ClCompile Include="SkinnedMesh.cpp" />
     <ClCompile Include="StaticTriangledMesh.cpp" />
@@ -349,6 +350,7 @@ exit /B 0
     <ClInclude Include="Scenes\CamsTestScene.h" />
     <ClInclude Include="Scenes\GlowTestScene.h" />
     <ClInclude Include="Scenes\GuySceneTest.h" />
+    <ClInclude Include="Scenes\Scene01.h" />
     <ClInclude Include="SceneUtils.h" />
     <ClInclude Include="SkinnedMesh.h" />
     <ClInclude Include="TriangleDataColorGlow.h" />

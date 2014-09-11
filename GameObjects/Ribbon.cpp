@@ -38,9 +38,9 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 
 	int keysCount = ribbonData->Path->Keys.size();
 	float duration = ribbonData->Path->Keys[keysCount - 1]->Time - ribbonData->Path->Keys[0]->Time;
-	float spread = 1.0f;
+	float spread = 5.0f;
 	float minScale = 0.4f;
-	float durationDelay = 0.5f;
+	float durationDelay = 4.0f;
 
 	m_startDecomposeTime = ribbonData->Path->Keys[0]->Time;
 	m_finishComposeTime = ribbonData->Path->Keys[keysCount - 1]->Time + durationDelay;

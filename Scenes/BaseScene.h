@@ -5,13 +5,15 @@
 class GameObject;
 class Renderable;
 class ICamera;
+class Animation;
+class AnimCameraManager;
 
 class BaseScene
 {
 	friend class SceneLoader;
 
 public:
-	BaseScene() {};
+	BaseScene();
 	virtual ~BaseScene() {}
 
 	bool Initialize();
@@ -32,6 +34,12 @@ protected:
 	std::vector<GameObject*> m_gameObjects;
 	std::vector<Renderable*> m_renderables;
 
+	AnimCameraManager* m_camerasManager;
+	Animation* m_camerasAnimation;
+	ICamera* m_activeCamera;
+
 	virtual void InitializeSubScene() = 0;
+
+	void LoadCameras();
 };
 
