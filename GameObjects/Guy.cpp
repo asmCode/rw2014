@@ -80,7 +80,7 @@ Guy::~Guy()
 void Guy::Update(float time, float seconds)
 {
 	sm::Vec3 position = m_positionCurve->Evaluate(time);
-	sm::Matrix baseTransform = sm::Matrix::TranslateMatrix(position);
+	sm::Matrix baseTransform = sm::Matrix::TranslateMatrix(position) * sm::Matrix::ScaleMatrix(0.02f, 0.02f, 0.02f);
 
 	int animationIndex = 0;
 

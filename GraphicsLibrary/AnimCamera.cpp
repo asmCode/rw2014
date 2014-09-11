@@ -62,7 +62,7 @@ AnimCamera* AnimCamera::FromStream(BinaryReader &br)
 	bool hasFovAnim = br.Read<bool>();
 	if (hasFovAnim)
 	{
-		animCam->fovAnim = InterpolatorFactory::CreateInterpolator<float>(InterpolatorFactory::InterpolationMethod_TCB);
+		animCam->fovAnim = new AnimationCurve<float>();
 
 		int keysCount = br.Read<int>();
 		for (int i = 0; i < keysCount; i++)
@@ -71,6 +71,7 @@ AnimCamera* AnimCamera::FromStream(BinaryReader &br)
 			float val = br.Read<float>();
 			animCam->fovAnim->AddKeyframe(time, val, false);
 		}
+		animCam->fovAnim->SmoothTangents();
 	}
 	else
 	{
@@ -80,7 +81,7 @@ AnimCamera* AnimCamera::FromStream(BinaryReader &br)
 	bool hasDistAnim = br.Read<bool>();
 	if (hasDistAnim)
 	{
-		animCam->distAnim = InterpolatorFactory::CreateInterpolator<float>(InterpolatorFactory::InterpolationMethod_TCB);
+		animCam->distAnim = new AnimationCurve<float>();
 
 		int keysCount = br.Read<int>();
 		for (int i = 0; i < keysCount; i++)
@@ -89,6 +90,7 @@ AnimCamera* AnimCamera::FromStream(BinaryReader &br)
 			float val = br.Read<float>();
 			animCam->distAnim->AddKeyframe(time, val, false);
 		}
+		animCam->distAnim->SmoothTangents();
 	}
 	else
 	{
@@ -123,9 +125,7 @@ float AnimCamera::GetFov(float time)
 		return fov;
 	else
 	{
-		float val;
-		fovAnim->GetValue(time, val);
-		return val;
+		return fovAnim->Evaluate(time, NULL);
 	}
 }
 
@@ -135,9 +135,7 @@ float AnimCamera::GetTargetDistance(float time)
 		return trgDist;
 	else
 	{
-		float val;
-		distAnim->GetValue(time, val);
-		return val;
+		return distAnim->Evaluate(time, NULL);
 	}
 }
 

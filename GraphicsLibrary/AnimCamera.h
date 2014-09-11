@@ -3,8 +3,7 @@
 #include <Math/Matrix.h>
 #include <Graphics/ITransformable.h>
 #include <IO\BinaryReader.h>
-#include <Graphics/Interpolators/IInterpolator.h>
-#include <Graphics/Interpolators/InterpolatorFactory.h>
+#include <Math/Animation/AnimationCurve.h>
 #include "ICamera.h"
 
 class AnimCamera : public ITransformable, public ICamera
@@ -19,8 +18,8 @@ private:
 	float trgDist;
 	float m_nearClip;
 	float m_farClip;
-	IInterpolator<float> *fovAnim;
-	IInterpolator<float> *distAnim;
+	AnimationCurve<float> *fovAnim;
+	AnimationCurve<float> *distAnim;
 	float lastKeyFrameTime;
 
 public:

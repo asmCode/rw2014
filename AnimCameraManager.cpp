@@ -32,7 +32,7 @@ void AnimCameraManager::Load(const std::string &path, Animation *anim)
 			Animation* childAnim = anim->GetAnimationById(cam->GetId());
 			assert(childAnim != NULL);
 
-			childAnim->AttachTransformTarget(&cam->Transform(), NULL);
+			childAnim->AttachTransformTarget(NULL, &cam->Transform());
 		}
 
 		cameras.push_back(cam);
@@ -48,7 +48,7 @@ AnimCamera *AnimCameraManager::GetActiveCamera(float time)
 	while (camIndex < cameras.size() && time > cameras[camIndex]->GetLastKeyFrameTime())
 		camIndex++;
 
-	return cameras[min(camIndex, cameras.size() - 1)];
+	return cameras[MathUtils::Min(camIndex, cameras.size() - 1)];
 }
 
 AnimCamera *AnimCameraManager::GetCameraByName(const std::string &name)
