@@ -20,6 +20,7 @@ namespace SceneElement
 	class IntKey;
 	class StaticData;
 	class GuyData;
+	class Material;
 }
 
 class XMLNode;
@@ -39,6 +40,7 @@ private:
 	static SceneElement::Key* LoadKey(XMLNode* node);
 	static SceneElement::StaticData* LoadStatic(XMLNode* node);
 	static SceneElement::GuyData* LoadGuy(XMLNode* node);
+	static SceneElement::Material* LoadMaterial(XMLNode* node);
 	static void LoadIntKeys(XMLNode* node, std::vector<SceneElement::IntKey*>& keys);
 
 	static Ribbon* CreateRibbonFromData(const std::string& sceneName, SceneElement::RibbonData* ribbon);

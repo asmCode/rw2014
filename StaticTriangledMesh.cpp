@@ -118,6 +118,12 @@ uint32_t StaticTriangledMesh::GetTrianglesCount() const
 	return m_trianglesCount;
 }
 
+void StaticTriangledMesh::SetColor(const sm::Vec4& color)
+{
+	for (uint32_t i = 0; i < m_trianglesCount; i++)
+		SetTriangleColor(i, color);
+}
+
 void StaticTriangledMesh::SetTriangleColor(int index, const sm::Vec4& color)
 {
 	TriangleDataColorGlow* trianglesPointer = m_triangles + index * 3;

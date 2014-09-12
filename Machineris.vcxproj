@@ -339,6 +339,7 @@ exit /B 0
     <ClInclude Include="SceneElement\GuyData.h" />
     <ClInclude Include="SceneElement\IntKey.h" />
     <ClInclude Include="SceneElement\Key.h" />
+    <ClInclude Include="SceneElement\Material.h" />
     <ClInclude Include="SceneElement\Path.h" />
     <ClInclude Include="SceneElement\RibbonData.h" />
     <ClInclude Include="SceneElement\Source.h" />

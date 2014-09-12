@@ -3,6 +3,7 @@
 #include "../Materials/StaticGlowTransparencySpecullar.h"
 #include "../StaticTriangledMesh.h"
 #include "../SceneElement/StaticData.h"
+#include "../SceneElement/Material.h"
 #include <Graphics/MeshPart.h>
 #include <Graphics/Model.h>
 #include <Graphics/Mesh.h>
@@ -20,6 +21,9 @@ Static::Static(const std::string& sceneName, SceneElement::StaticData* staticDat
 
 	m_mesh = new StaticTriangledMesh();
 	m_mesh->Initialize(sceneMesh->meshParts[0]);
+
+	if (staticData->Material != NULL)
+		m_mesh->SetColor(sm::Vec4(staticData->Material->Diffuse, staticData->Material->Opacity));
 
 	Shader* glowSpecullarShader = Content::Instance->Get<Shader>("StaticSpecularBlur");
 	assert(glowSpecullarShader != NULL);

@@ -16,6 +16,7 @@
 #include "SceneElement/Key.h"
 #include "SceneElement/IntKey.h"
 #include "SceneElement/GuyData.h"
+#include "SceneElement/Material.h"
 #include "SceneElement/StaticData.h"
 
 #include <XML/XMLNode.h>
@@ -166,6 +167,11 @@ SceneElement::StaticData* SceneLoader::LoadStatic(XMLNode* node)
 {
 	SceneElement::StaticData* data = new SceneElement::StaticData();
 	data->MeshName = node->GetAttribAsString("mesh_name");
+
+	XMLNode* materialNode = node->GetChild("Material");
+	if (materialNode != NULL)
+		data->Material = LoadMaterial(materialNode);
+
 	return data;
 }
 
@@ -185,6 +191,27 @@ SceneElement::GuyData* SceneLoader::LoadGuy(XMLNode* node)
 		LoadIntKeys(animIndexNode, guyData->AnimationIndex);
 
 	return guyData;
+}
+
+SceneElement::Material* SceneLoader::LoadMaterial(XMLNode* node)
+{
+	assert(node->GetName() == "Material");
+
+	SceneElement::Material* material = new SceneElement::Material();
+
+	XMLNode* diffuseNode = node->GetChild("Diffuse");
+	if (diffuseNode != NULL)
+		material->Diffuse = DemoUtils::ParseVector3(diffuseNode->GetAttribAsString("value"));
+	else
+		material->Diffuse.Set(0.5f, 0.5f, 0.5f);
+
+	XMLNode* opacityNode = node->GetChild("Opacity");
+	if (opacityNode != NULL)
+		material->Opacity = opacityNode->GetAttribAsFloat("value");
+	else
+		material->Opacity = 1.0f;
+
+	return material;
 }
 
 void SceneLoader::LoadIntKeys(XMLNode* node, std::vector<SceneElement::IntKey*>& keys)
