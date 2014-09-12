@@ -7,9 +7,11 @@
 #include "../UniqueTriangledMesh.h"
 #include "../StaticTriangledMesh.h"
 #include "../SceneElement/Path.h"
+#include "../SceneElement/RibbonData.h"
 #include "../SceneElement/Source.h"
 #include "../SceneElement/Destination.h"
 #include "../SceneElement/StaticSource.h"
+#include "../SceneElement/Material.h"
 #include "../SceneElement/StaticDestination.h"
 #include "../SceneElement/Key.h"
 #include <Graphics/MeshPart.h>
@@ -72,6 +74,9 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			minScale,
 			durationDelay);
 
+		if (ribbonData->Source->Material != NULL)
+			m_decomposeAndFly->GetMesh()->SetColor(sm::Vec4(ribbonData->Source->Material->Diffuse, ribbonData->Source->Material->Opacity));
+
 		m_decomposeAndFlyRenderable = new Renderable(m_decomposeAndFly->GetMesh(), material);
 		m_renderables.push_back(m_decomposeAndFlyRenderable);
 	}
@@ -91,8 +96,26 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			minScale,
 			durationDelay);
 
+		if (ribbonData->Destination->Material != NULL)
+			m_composeFromRibbon->GetMesh()->SetColor(sm::Vec4(ribbonData->Destination->Material->Diffuse, ribbonData->Source->Material->Opacity));
+
 		m_composeFromRibbonRenderable = new Renderable(m_composeFromRibbon->GetMesh(), material);
 		m_renderables.push_back(m_composeFromRibbonRenderable);
+	}
+
+	if (ribbonData->StaticSource != NULL)
+	{
+		m_staticSource = new StaticTriangledMesh();
+
+		Mesh* mesh = model->FindMesh(ribbonData->StaticSource->MeshName);
+		assert(mesh != NULL);
+
+		m_staticSource->Initialize(mesh->meshParts[0]);
+		if (ribbonData->StaticSource->Material != NULL)
+			m_staticSource->SetColor(sm::Vec4(ribbonData->StaticSource->Material->Diffuse, ribbonData->StaticSource->Material->Opacity));
+
+		m_staticSourceRenderable = new Renderable(m_staticSource, staticMaterial);
+		m_renderables.push_back(m_staticSourceRenderable);
 	}
 
 	if (ribbonData->StaticDestination != NULL)
@@ -103,6 +126,8 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 		assert(mesh != NULL);
 
 		m_staticDestination->Initialize(mesh->meshParts[0]);
+		if (ribbonData->StaticDestination->Material != NULL)
+			m_staticDestination->SetColor(sm::Vec4(ribbonData->StaticDestination->Material->Diffuse, ribbonData->StaticDestination->Material->Opacity));
 
 		m_staticDestinationRenderable = new Renderable(m_staticDestination, staticMaterial);
 		m_renderables.push_back(m_staticDestinationRenderable);

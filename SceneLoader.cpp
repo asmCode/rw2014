@@ -113,6 +113,7 @@ SceneElement::Source* SceneLoader::LoadSource(XMLNode* node)
 {
 	SceneElement::Source* source = new SceneElement::Source();
 	source->MeshName = node->GetAttribAsString("mesh_name");
+	source->Material = LoadMaterialFromChild(node);
 	return source;
 }
 
@@ -120,6 +121,7 @@ SceneElement::Destination* SceneLoader::LoadDestination(XMLNode* node)
 {
 	SceneElement::Destination* destination = new SceneElement::Destination();
 	destination->MeshName = node->GetAttribAsString("mesh_name");
+	destination->Material = LoadMaterialFromChild(node);
 	return destination;
 }
 
@@ -127,6 +129,7 @@ SceneElement::StaticSource* SceneLoader::LoadStaticSource(XMLNode* node)
 {
 	SceneElement::StaticSource* source = new SceneElement::StaticSource();
 	source->MeshName = node->GetAttribAsString("mesh_name");
+	source->Material = LoadMaterialFromChild(node);
 	return source;
 }
 
@@ -134,6 +137,7 @@ SceneElement::StaticDestination* SceneLoader::LoadStaticDestination(XMLNode* nod
 {
 	SceneElement::StaticDestination* destination = new SceneElement::StaticDestination();
 	destination->MeshName = node->GetAttribAsString("mesh_name");
+	destination->Material = LoadMaterialFromChild(node);
 	return destination;
 }
 
@@ -167,10 +171,7 @@ SceneElement::StaticData* SceneLoader::LoadStatic(XMLNode* node)
 {
 	SceneElement::StaticData* data = new SceneElement::StaticData();
 	data->MeshName = node->GetAttribAsString("mesh_name");
-
-	XMLNode* materialNode = node->GetChild("Material");
-	if (materialNode != NULL)
-		data->Material = LoadMaterial(materialNode);
+	data->Material = LoadMaterialFromChild(node);
 
 	return data;
 }
@@ -193,25 +194,34 @@ SceneElement::GuyData* SceneLoader::LoadGuy(XMLNode* node)
 	return guyData;
 }
 
-SceneElement::Material* SceneLoader::LoadMaterial(XMLNode* node)
+SceneElement::Material* SceneLoader::LoadMaterial(XMLNode* materialNode)
 {
-	assert(node->GetName() == "Material");
+	assert(materialNode->GetName() == "Material");
 
 	SceneElement::Material* material = new SceneElement::Material();
 
-	XMLNode* diffuseNode = node->GetChild("Diffuse");
+	XMLNode* diffuseNode = materialNode->GetChild("Diffuse");
 	if (diffuseNode != NULL)
 		material->Diffuse = DemoUtils::ParseVector3(diffuseNode->GetAttribAsString("value"));
 	else
 		material->Diffuse.Set(0.5f, 0.5f, 0.5f);
 
-	XMLNode* opacityNode = node->GetChild("Opacity");
+	XMLNode* opacityNode = materialNode->GetChild("Opacity");
 	if (opacityNode != NULL)
 		material->Opacity = opacityNode->GetAttribAsFloat("value");
 	else
 		material->Opacity = 1.0f;
 
 	return material;
+}
+
+SceneElement::Material* SceneLoader::LoadMaterialFromChild(XMLNode* node)
+{
+	XMLNode* materialNode = node->GetChild("Material");
+	if (materialNode == NULL)
+		return NULL;
+
+	return LoadMaterial(materialNode);
 }
 
 void SceneLoader::LoadIntKeys(XMLNode* node, std::vector<SceneElement::IntKey*>& keys)

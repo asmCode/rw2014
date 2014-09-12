@@ -77,7 +77,7 @@ void StaticTriangledMesh::CreateVertexDataBuffer()
 	for (uint32_t i = 0; i < m_trianglesCount * 3; i++)
 	{
 		m_triangles[i].Color.Set(0.2f, 0.8f, 0.0f, 0.8f);
-		m_triangles[i].GlowPower = 0.2f;
+		m_triangles[i].GlowPower = 1.0f;
 	}
 
 	glGenBuffers(1, &m_vertexDataBufferId);

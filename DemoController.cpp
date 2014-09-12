@@ -54,7 +54,7 @@ const float DemoController::GlowBufferWidthRatio = 0.5f;
 const float DemoController::GlowBufferHeightRatio = 0.5f;
 
 #define DISABLE_FRUSTUM_CULLING 1
-#define MAN_CAM 1
+//#define MAN_CAM 1
 #define SHOW_FPS 1
 //#define LOAD_LIGHTMAPS 1
 

@@ -23,7 +23,6 @@ void DrawSegment2(Animation* root)
 	}
 }
 
-
 Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
 	m_positionCurve(NULL),
 	m_mesh(NULL)
@@ -81,6 +80,7 @@ void Guy::Update(float time, float seconds)
 {
 	sm::Vec3 position = m_positionCurve->Evaluate(time);
 	sm::Matrix baseTransform = sm::Matrix::TranslateMatrix(position) * sm::Matrix::ScaleMatrix(0.02f, 0.02f, 0.02f);
+	//sm::Matrix baseTransform = sm::Matrix::IdentityMatrix();
 
 	int animationIndex = 0;
 

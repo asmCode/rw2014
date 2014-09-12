@@ -41,11 +41,7 @@ void TriangledMesh::CreateVertexDataBuffer()
 		m_triangles[i].Transform = sm::Matrix::IdentityMatrix();
 
 		m_triangles[i].Color.Set(0.7f, 0.2f, 0.8f, 0.8f);
-
-		if (i >= 1000)
-			m_triangles[i].GlowPower = 1.0f;
-		else
-			m_triangles[i].GlowPower = 0.0f;
+		m_triangles[i].GlowPower = 1.0f;
 	}
 
 	// TEST
@@ -120,6 +116,12 @@ void TriangledMesh::SetTriangleTransform(int index, const sm::Matrix& transform)
 	trianglesPointer->Transform = transform;
 	(trianglesPointer + 1)->Transform = transform;
 	(trianglesPointer + 2)->Transform = transform;
+}
+
+void TriangledMesh::SetColor(const sm::Vec4& color)
+{
+	for (uint32_t i = 0; i < m_trianglesCount; i++)
+		SetTriangleColor(i, color);
 }
 
 void TriangledMesh::SetTriangleColor(int index, const sm::Vec4& color)

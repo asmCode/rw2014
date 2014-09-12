@@ -19,6 +19,7 @@ public:
 
 	void SetTriangleData(int index, const sm::Matrix& transform, const sm::Vec4& color);
 	void SetTriangleTransform(int index, const sm::Matrix& transform);
+	void SetColor(const sm::Vec4& color);
 	void SetTriangleColor(int index, const sm::Vec4& color);
 	void SetGlowPower(int index, float glowPower);
 
