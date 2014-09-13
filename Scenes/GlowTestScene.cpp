@@ -1,5 +1,4 @@
 #include "GlowTestScene.h"
-#include "../DecomposeToRibbon.h"
 #include "../Renderable.h"
 #include "../GameObject.h"
 #include "../UniqueTriangledMesh.h"

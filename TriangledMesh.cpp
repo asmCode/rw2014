@@ -44,6 +44,7 @@ void TriangledMesh::CreateVertexDataBuffer()
 		m_triangles[i].GlowPower = 0.0f;
 	}
 
+#if 0
 	// TEST
 	static Randomizer random;
 	for (int i = 0; i < 20; i++)
@@ -53,6 +54,7 @@ void TriangledMesh::CreateVertexDataBuffer()
 		SetGlowPower(index, 1.0f);
 	}
 	//
+#endif
 
 	glGenBuffers(1, &m_vertexDataBufferId);
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexDataBufferId);

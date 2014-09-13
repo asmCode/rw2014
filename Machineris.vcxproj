@@ -121,9 +121,7 @@ exit /B 0
     <ClCompile Include="BasicLightingEffect.cpp" />
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="BumpAlongNormal.cpp" />
-    <ClCompile Include="ComposeFromRibbon.cpp" />
     <ClCompile Include="DebugUtils.cpp" />
-    <ClCompile Include="DecomposeToRibbon.cpp" />
     <ClCompile Include="DemoUtils.cpp" />
     <ClCompile Include="DistortParticleHandler.cpp" />
     <ClCompile Include="Dream.cpp" />
@@ -193,6 +191,11 @@ exit /B 0
     <ClCompile Include="Materials\StaticGlowTransparencySpecullar.cpp" />
     <ClCompile Include="MeshUtils.cpp" />
     <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="Ribbon\RibbonCurve.cpp" />
+    <ClCompile Include="Ribbon\RibbonCurveDestination.cpp" />
+    <ClCompile Include="Ribbon\RibbonCurveFullDestination.cpp" />
+    <ClCompile Include="Ribbon\RibbonCurveFullSource.cpp" />
+    <ClCompile Include="Ribbon\RibbonCurveSource.cpp" />
     <ClCompile Include="SceneElement\GuyData.cpp" />
     <ClCompile Include="SceneElement\RibbonData.cpp" />
     <ClCompile Include="SceneElement\StaticData.cpp" />
@@ -241,9 +244,8 @@ exit /B 0
     <ClInclude Include="BumpAlongNormal.h" />
     <ClInclude Include="CameraMode.h" />
     <ClInclude Include="common.h" />
-    <ClInclude Include="ComposeFromRibbon.h" />
     <ClInclude Include="DebugUtils.h" />
-    <ClInclude Include="DecomposeToRibbon.h" />
+    <ClInclude Include="DemoOptions.h" />
     <ClInclude Include="DemoUtils.h" />
     <ClInclude Include="DistortParticleHandler.h" />
     <ClInclude Include="Dream.h" />
@@ -345,6 +347,12 @@ exit /B 0
     <ClInclude Include="Materials\StaticGlowTransparencySpecullar.h" />
     <ClInclude Include="MeshUtils.h" />
     <ClInclude Include="Quad.h" />
+    <ClInclude Include="Ribbon\IRibbonCurveBuilder.h" />
+    <ClInclude Include="Ribbon\RibbonCurve.h" />
+    <ClInclude Include="Ribbon\RibbonCurveDestination.h" />
+    <ClInclude Include="Ribbon\RibbonCurveFullDestination.h" />
+    <ClInclude Include="Ribbon\RibbonCurveFullSource.h" />
+    <ClInclude Include="Ribbon\RibbonCurveSource.h" />
     <ClInclude Include="SceneElement\Destination.h" />
     <ClInclude Include="SceneElement\GuyData.h" />
     <ClInclude Include="SceneElement\IntKey.h" />
@@ -397,6 +405,7 @@ exit /B 0
     <ClInclude Include="TrianglesRibbon.h" />
     <ClInclude Include="UniqueTriangledMesh.h" />
     <ClInclude Include="VectorGraphics.h" />
+    <ClInclude Include="XmlWriter.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="rw09.rc" />

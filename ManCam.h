@@ -10,7 +10,7 @@
 
 class ManCam : public ICamera
 {
-private:
+public:
 	float roll;
 	float yaw;
 	float pitch;

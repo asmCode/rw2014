@@ -1,5 +1,5 @@
+#include "DemoOptions.h"
 #include <windows.h>
-
 #include "StartDialog.h"
 #include "DemoController.h"
 #include "Music.h"
@@ -15,15 +15,6 @@
 #include <unzip.h>
 
 std::string baseDataPath;
-
-//#define TIME_SHIFT 200.0f
-//#define TIME_SHIFT 115.0f
-#define TIME_SHIFT 14.0f
-
-#define DISABLE_MUSIC 1
-#define START_IN_WINDOW 1
-#define SKIP_SETUP_DIALOG 1
-#define DONT_USE_ARCHIVE 1
 
 #ifndef DONT_USE_ARCHIVE
 int UnzipData(const std::string &zipFile, const std::string &dstDir)
@@ -225,7 +216,7 @@ void StartNormalMode()
 #ifndef DISABLE_MUSIC
 				time = music->GetPosition();
 #else
-				time = tc.GetTime() + TIME_SHIFT;
+				time = tc.GetTime() * TIME_SCALE + TIME_SHIFT;
 #endif
 				float deltaTime = time - lastTime;
 				lastTime = time;
@@ -255,6 +246,11 @@ void StartNormalMode()
 //#endif
 
 				Input::UpdateState();
+
+				//if (time >= 3.0f)
+//					time = 3.0f;
+
+				deltaTime *= TIME_SCALE;
 
 				if (!demo ->Update(time, deltaTime))
 					done = true;

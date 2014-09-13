@@ -4,8 +4,7 @@
 #include "../GameObject.h"
 #include <string>
 
-class DecomposeToRibbon;
-class ComposeFromRibbon;
+class TrianglesRibbon;
 class StaticTriangledMesh;
 class Renderable;
 
@@ -18,8 +17,8 @@ public:
 	void Update(float time, float seconds);
 
 private:
-	DecomposeToRibbon* m_decomposeAndFly;
-	ComposeFromRibbon* m_composeFromRibbon;
+	TrianglesRibbon* m_decomposeAndFly;
+	TrianglesRibbon* m_composeFromRibbon;
 
 	StaticTriangledMesh* m_staticSource;
 	StaticTriangledMesh* m_staticDestination;

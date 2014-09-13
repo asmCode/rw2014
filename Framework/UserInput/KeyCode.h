@@ -44,6 +44,8 @@ enum KeyCode
 	KeyCode_Num9,
 
 	KeyCode_Escape,
+	KeyCode_LShift,
+	KeyCode_LCtrl,
 
 	Count
 };

@@ -1,11 +1,10 @@
 #include "Ribbon.h"
-#include "../DecomposeToRibbon.h"
-#include "../ComposeFromRibbon.h"
 #include "../Renderable.h"
 #include "../Materials/GlowTransparencySpecullar.h"
 #include "../Materials/StaticGlowTransparencySpecullar.h"
 #include "../UniqueTriangledMesh.h"
 #include "../StaticTriangledMesh.h"
+#include "../TrianglesRibbon.h"
 #include "../SceneElement/Path.h"
 #include "../SceneElement/RibbonData.h"
 #include "../SceneElement/Source.h"
@@ -14,6 +13,9 @@
 #include "../SceneElement/Material.h"
 #include "../SceneElement/StaticDestination.h"
 #include "../SceneElement/Key.h"
+#include "../Ribbon/RibbonCurveFullSource.h"
+#include "../Ribbon/RibbonCurveFullDestination.h"
+#include "../Ribbon/RibbonCurveDestination.h"
 #include <Graphics/MeshPart.h>
 #include <Graphics/Model.h>
 #include <Graphics/Mesh.h>
@@ -40,9 +42,9 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 
 	int keysCount = ribbonData->Path->Keys.size();
 	float duration = ribbonData->Path->Keys[keysCount - 1]->Time - ribbonData->Path->Keys[0]->Time;
-	float spread = 5.0f;
+	float spread = 10.0f;
 	float minScale = 0.4f;
-	float durationDelay = 4.0f;
+	float durationDelay = 2.0f;
 
 	m_startDecomposeTime = ribbonData->Path->Keys[0]->Time;
 	m_finishComposeTime = ribbonData->Path->Keys[keysCount - 1]->Time + durationDelay;
@@ -59,14 +61,37 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 	Material* material = new GlowTransparencySpecullar(glowSpecullarShader);
 	Material* staticMaterial = new StaticGlowTransparencySpecullar(staticGlowSpecullarShader);
 
-	if (ribbonData->Source != NULL)
+	if (ribbonData->Source == NULL && ribbonData->Destination != NULL)
 	{
-		m_decomposeAndFly = new DecomposeToRibbon();
+		m_composeFromRibbon = new TrianglesRibbon();
+
+		Mesh* mesh = model->FindMesh(ribbonData->Destination->MeshName);
+		assert(mesh != NULL);
+
+		m_composeFromRibbon->Initialize(
+			new RibbonCurveDestination(),
+			mesh->meshParts[0],
+			ribbonData->Path,
+			halfPathKeyIndex,
+			spread,
+			minScale,
+			durationDelay);
+
+		if (ribbonData->Destination->Material != NULL)
+			m_composeFromRibbon->GetMesh()->SetColor(sm::Vec4(ribbonData->Destination->Material->Diffuse, ribbonData->Destination->Material->Opacity));
+
+		m_composeFromRibbonRenderable = new Renderable(m_composeFromRibbon->GetMesh(), material);
+		m_renderables.push_back(m_composeFromRibbonRenderable);
+	}
+	else if (ribbonData->Source != NULL && ribbonData->Destination != NULL)
+	{
+		m_decomposeAndFly = new TrianglesRibbon();
 
 		Mesh* mesh = model->FindMesh(ribbonData->Source->MeshName);
 		assert(mesh != NULL);
 
 		m_decomposeAndFly->Initialize(
+			new RibbonCurveFullSource(),
 			mesh->meshParts[0],
 			ribbonData->Path,
 			halfPathKeyIndex,
@@ -79,16 +104,14 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 
 		m_decomposeAndFlyRenderable = new Renderable(m_decomposeAndFly->GetMesh(), material);
 		m_renderables.push_back(m_decomposeAndFlyRenderable);
-	}
+	
+		m_composeFromRibbon = new TrianglesRibbon();
 
-	if (ribbonData->Destination != NULL)
-	{
-		m_composeFromRibbon = new ComposeFromRibbon();
-
-		Mesh* mesh = model->FindMesh(ribbonData->Destination->MeshName);
+		mesh = model->FindMesh(ribbonData->Destination->MeshName);
 		assert(mesh != NULL);
 
 		m_composeFromRibbon->Initialize(
+			new RibbonCurveFullDestination(),
 			mesh->meshParts[0],
 			ribbonData->Path,
 			halfPathKeyIndex,
@@ -145,8 +168,10 @@ void Ribbon::Update(float time, float seconds)
 
 	if (time >= m_startDecomposeTime && time <= m_finishComposeTime + 1.0f)
 	{
-		m_decomposeAndFlyRenderable->SetActive(true);
-		m_decomposeAndFly->Update(time, seconds);
+		if (m_decomposeAndFlyRenderable != NULL)
+			m_decomposeAndFlyRenderable->SetActive(true);
+		if (m_decomposeAndFly!= NULL)
+			m_decomposeAndFly->Update(time, seconds);
 
 		m_composeFromRibbonRenderable->SetActive(true);
 		m_composeFromRibbon->Update(time, seconds);

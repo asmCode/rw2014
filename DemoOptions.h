@@ -1,0 +1,11 @@
+#define TIME_SCALE 0.4f
+#define TIME_SHIFT 2.5f
+
+#define MAN_CAM 1
+#define DISABLE_FRUSTUM_CULLING 1
+#define SHOW_FPS 1
+//#define LOAD_LIGHTMAPS 1
+#define DISABLE_MUSIC 1
+#define START_IN_WINDOW 1
+#define SKIP_SETUP_DIALOG 1
+#define DONT_USE_ARCHIVE 1

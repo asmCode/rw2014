@@ -1,6 +1,7 @@
 #include "TrianglesRibbon.h"
 #include "UniqueTriangledMesh.h"
 #include "TriangleDataTransformColorGlow.h"
+#include "Ribbon/IRibbonCurveBuilder.h"
 #include "DemoUtils.h"
 #include "DebugUtils.h"
 #include <Utils/Randomizer.h>
@@ -17,6 +18,7 @@ TrianglesRibbon::~TrianglesRibbon()
 }
 
 void TrianglesRibbon::Initialize(
+	IRibbonCurveBuilder* ribbinCurveBuilder,
 	MeshPart* meshPart,
 	SceneElement::Path* path,
 	int endKeyIndex,
@@ -24,6 +26,8 @@ void TrianglesRibbon::Initialize(
 	float minScale,
 	float maxDelay)
 {
+	assert(ribbinCurveBuilder != NULL);
+
 	static Randomizer random;
 
 	m_trianglesCount = meshPart->GetVerticesCount() / 3;
@@ -40,7 +44,7 @@ void TrianglesRibbon::Initialize(
 		//m_trianglesData[i]->BaseTransform = sm::Matrix::IdentityMatrix();
 
 		m_trianglesData[i]->LastKeyframeIndex = 0;
-		m_trianglesData[i]->Curve = CreateCurve(
+		m_trianglesData[i]->Curve = ribbinCurveBuilder->CreateCurve(
 			m_triangledMesh->GetBasePosition(i),
 			(m_triangledMesh->GetBaseRotation(i) * sm::Vec3(0, 0, 1)).GetNormalized(),
 			path,
@@ -48,7 +52,7 @@ void TrianglesRibbon::Initialize(
 			spread,
 			maxDelay);
 
-		m_trianglesData[i]->ScaleCurve = CreateScaleCurve(m_trianglesData[i]->Curve, minScale);
+		m_trianglesData[i]->ScaleCurve = ribbinCurveBuilder->CreateScaleCurve(m_trianglesData[i]->Curve, minScale);
 	}
 }
 
@@ -61,6 +65,8 @@ void TrianglesRibbon::Update(float time, float deltaTime)
 
 	for (int i = 0; i < m_trianglesCount; i++)
 	{
+		//DebugUtils::DrawCurve(*m_trianglesData[i]->Curve, 0.1f, sm::Vec3(0, 0, 1));
+
 		//m_trianglesData[i]->LastKeyframeIndex = m_trianglesData[i]->Curve->GetValue(time, position, m_trianglesData[i]->LastKeyframeIndex);
 		position = m_trianglesData[i]->Curve->Evaluate(time);
 		scale = m_trianglesData[i]->ScaleCurve->Evaluate(time);

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "DemoOptions.h"
 #include "CameraMode.h"
 #include "GraphicsLibrary\CubeTexture.h"
 

@@ -1,35 +1,19 @@
-#include "ComposeFromRibbon.h"
-#include "TriangledMesh.h"
-#include "UniqueTriangledMesh.h"
-#include "Triangle.h"
-#include "DemoUtils.h"
-#include "DebugUtils.h"
-#include "SceneElement/Path.h"
-#include "SceneElement/Key.h"
-#include <Math/Animation/QuarticOut.h>
+#include "RibbonCurveFullSource.h"
+#include "../SceneElement/Key.h"
+#include "../DemoUtils.h"
 #include <Utils/Randomizer.h>
-#include <Graphics/Interpolators/TCBInterpolator.h>
 #include <Math/Animation/AnimationCurve.h>
-#include <Math/Animation/QuadOut.h>
-#include <Math/Animation/LinearCurve.h>
-#include <Math/Animation/Custom/BlinkCurve.h>
+#include <Math/MathUtils.h>
+#include <stdint.h>
 
-ComposeFromRibbon::ComposeFromRibbon()
-{
-}
-
-ComposeFromRibbon::~ComposeFromRibbon()
-{
-}
-
-AnimationCurve<sm::Vec3>* ComposeFromRibbon::CreateCurve(
+AnimationCurve<sm::Vec3>* RibbonCurveFullSource::CreateCurve(
 	const sm::Vec3& basePosition,
 	const sm::Vec3& normal,
 	SceneElement::Path* path,
 	int endKeyIndex,
 	float spread,
 	float maxDelay)
-{		
+{
 	static Randomizer random;
 
 	const std::vector<SceneElement::Key*>& keys = path->Keys;
@@ -41,7 +25,7 @@ AnimationCurve<sm::Vec3>* ComposeFromRibbon::CreateCurve(
 
 	int keysCount = path->Keys.size();
 
-	for (uint32_t i = endKeyIndex - 2; i < keysCount - 2; i++)
+	for (int i = endKeyIndex - 2; i < keysCount - 2; i++)
 	{
 		curve->AddKeyframe(keys[i]->Time * timeScale, path->Keys[i]->Position + DemoUtils::GetRandomVector() * random.GetFloat(0, spread));
 	}
@@ -60,7 +44,7 @@ AnimationCurve<sm::Vec3>* ComposeFromRibbon::CreateCurve(
 	return curve;
 }
 
-AnimationCurve<float>* ComposeFromRibbon::CreateScaleCurve(AnimationCurve<sm::Vec3> *transformCurve, float minScale)
+AnimationCurve<float>* RibbonCurveFullSource::CreateScaleCurve(AnimationCurve<sm::Vec3> *transformCurve, float minScale)
 {
 	AnimationCurve<float>* curve = new AnimationCurve<float>();
 
@@ -79,34 +63,4 @@ AnimationCurve<float>* ComposeFromRibbon::CreateScaleCurve(AnimationCurve<sm::Ve
 	//curve->SmoothTangents();
 
 	return curve;
-}
-
-void ComposeFromRibbon::Update(float time, float deltaTime)
-{
-	this->TrianglesRibbon::Update(time, deltaTime);
-}
-
-void ComposeFromRibbon::ProcessTriangle(float time, int i)
-{
-	/*
-	float timeToFinish = m_trianglesData[i]->Curve->GetEndTime() - time;
-	if (timeToFinish < 0.0f)
-		return;
-
-	if (timeToFinish < 1.0f)
-	{
-		BlinkCurve<float, QuadOut<float>, LinearCurve<float>> curve(0.1f);
-		m_triangledMesh->SetGlowPower(i, curve.Evaluate(0, 1, timeToFinish));
-	}
-	*/
-
-	float timeAfterFinish = time - m_trianglesData[i]->Curve->GetEndTime();
-	timeAfterFinish = MathUtils::Clamp(timeAfterFinish, 0.0f, 1.0f);
-
-	//if (timeToFinish < 1.0f)
-	{
-		//BlinkCurve<float, QuadOut<float>, LinearCurve<float>> curve(1.0f);
-		QuadOut<float> curve;
-		m_triangledMesh->SetGlowPower(i, curve.Evaluate(0, 1, timeAfterFinish / 0.2f));
-	}
 }

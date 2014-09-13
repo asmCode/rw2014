@@ -1,17 +1,10 @@
 #pragma once
 
-#include "TrianglesRibbon.h"
-#include <Math/Vec3.h>
-#include <Math/Animation/AnimationCurve.h>
-#include <vector>
+#include "IRibbonCurveBuilder.h"
 
-class DecomposeToRibbon : public TrianglesRibbon
+class RibbonCurveSource : public IRibbonCurveBuilder
 {
 public:
-	DecomposeToRibbon();
-	~DecomposeToRibbon();
-
-private:
 	AnimationCurve<sm::Vec3>* CreateCurve(
 		const sm::Vec3& basePosition,
 		const sm::Vec3& normal,

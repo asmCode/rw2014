@@ -1,21 +1,10 @@
 #pragma once
 
-#include "TrianglesRibbon.h"
-#include <Math/Vec3.h>
-#include <Math/Animation/AnimationCurve.h>
-#include <vector>
+#include "IRibbonCurveBuilder.h"
 
-class ComposeFromRibbon : public TrianglesRibbon
+class RibbonCurve : public IRibbonCurveBuilder
 {
 public:
-	ComposeFromRibbon();
-	~ComposeFromRibbon();
-
-	void Update(float time, float deltaTime);
-
-	void ProcessTriangle(float time, int i);
-
-private:
 	AnimationCurve<sm::Vec3>* CreateCurve(
 		const sm::Vec3& basePosition,
 		const sm::Vec3& normal,

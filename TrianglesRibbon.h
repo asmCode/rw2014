@@ -8,6 +8,7 @@
 class UniqueTriangledMesh;
 class MeshPart;
 class TriangleDataColor;
+class IRibbonCurveBuilder;
 
 namespace SceneElement { class Path; }
 
@@ -18,6 +19,7 @@ public:
 	virtual ~TrianglesRibbon();
 
 	void Initialize(
+		IRibbonCurveBuilder* ribbonCurveBuilder,
 		MeshPart* meshPart,
 		SceneElement::Path* path,
 		int endKeyIndex,
@@ -39,19 +41,21 @@ protected:
 		AnimationCurve<float>* ScaleCurve;
 	};
 
-	virtual AnimationCurve<sm::Vec3>* CreateCurve(
-		const sm::Vec3& basePosition,
-		const sm::Vec3& normal,
-		SceneElement::Path* path,
-		int endKeyIndex,
-		float spread,
-		float maxDelayOnEachNode) = 0;
-
 	virtual void ProcessTriangle(float time, int i) {};
-
-	virtual AnimationCurve<float>* CreateScaleCurve(AnimationCurve<sm::Vec3> *transformCurve, float minScale) = 0;
 
 	UniqueTriangledMesh* m_triangledMesh;
 	int m_trianglesCount;
 	TriangleData** m_trianglesData;
 };
+
+
+/* KOMPIA KODU CO ZASWIECA TROJKAT JAK JUZ SIE NZAJDZIE NA MIEJSCU
+void ComposeFromRibbon::ProcessTriangle(float time, int i)
+{
+	float timeAfterFinish = time - m_trianglesData[i]->Curve->GetEndTime();
+	timeAfterFinish = MathUtils::Clamp(timeAfterFinish, 0.0f, 1.0f);
+
+	QuadOut<float> curve;
+	m_triangledMesh->SetGlowPower(i, curve.Evaluate(0, 1, timeAfterFinish / 0.2f));
+}
+*/

@@ -1,3 +1,4 @@
+#include "../DemoOptions.h"
 #include <windows.h>
 #include <AtlConv.h>
 

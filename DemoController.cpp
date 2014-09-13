@@ -1,4 +1,3 @@
-
 #include "DemoController.h"
 #include <Utils/Log.h>
 #include "BasicLightingEffect.h"
@@ -12,6 +11,7 @@
 #include <Graphics/Shader.h>
 #include "Blur.h"
 #include "ManCam.h"
+#include "XmlWriter.h"
 #include <Graphics/DepthTexture.h>
 #include <Graphics/MeshPart.h>
 #include "Frustum.h"
@@ -22,6 +22,7 @@
 #include "Scenes/BoneAnimTestScene.h"
 #include "Scenes/GuySceneTest.h"
 #include "Scenes/CamsTestScene.h"
+#include "DemoUtils.h"
 
 #include "Scenes/Scene01.h"
 
@@ -40,6 +41,7 @@
 #include "VectorGraphics.h"
 #include "GraphicsLog.h"
 
+#include <UserInput\Input.h>
 #include <Graphics/TextureLoader.h>
 #include <Graphics/ModelLoader.h>
 #include <Graphics/MaterialLoader.h>
@@ -52,11 +54,6 @@
 
 const float DemoController::GlowBufferWidthRatio = 0.5f;
 const float DemoController::GlowBufferHeightRatio = 0.5f;
-
-#define DISABLE_FRUSTUM_CULLING 1
-#define MAN_CAM 1
-#define SHOW_FPS 1
-//#define LOAD_LIGHTMAPS 1
 
 Texture *blackTex;
 LinearInterpolator<float> fadeAnim;
@@ -496,8 +493,11 @@ void DemoController::Release()
 static float lastTime;
 bool DemoController::Update(float time, float seconds)
 {
-	time *= 1.0f;
-	seconds *= 1.0f;
+	if (Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_Num1))
+		DemoUtils::SaveCamera(&manCam, 0);
+
+	if (!Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_Num1))
+		DemoUtils::LoadCamera(&manCam, 0);
 
 	m_activeCamera = NULL;
 
@@ -1397,3 +1397,4 @@ Material* DemoController::LoadMaterial(const std::string &path)
 {
 	return MaterialLoader::LoadFromFile(path);
 }
+

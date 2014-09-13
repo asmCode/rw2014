@@ -54,6 +54,8 @@ bool Input::Constructor()
 	Input::m_keyMap[KeyCode_Num9] = '9';
 
 	Input::m_keyMap[KeyCode_Escape] = VK_ESCAPE;
+	Input::m_keyMap[KeyCode_LShift] = VK_LSHIFT;
+	Input::m_keyMap[KeyCode_LCtrl] = VK_LCONTROL;
 
 	return true;
 }
