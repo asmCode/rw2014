@@ -24,6 +24,7 @@ public:
 
 	uint32_t GetTrianglesCount() const;
 
+	void SetColor(const sm::Vec4& color);
 	void SetTriangleColor(int index, const sm::Vec4& color);
 	void SetGlowPower(int index, float glowPower);
 

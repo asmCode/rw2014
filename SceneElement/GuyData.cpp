@@ -3,7 +3,8 @@
 namespace SceneElement
 {
 	GuyData::GuyData() :
-		Path(NULL)
+		Path(NULL),
+		Material(NULL)
 	{
 	}
 }

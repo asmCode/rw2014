@@ -97,7 +97,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			durationDelay);
 
 		if (ribbonData->Destination->Material != NULL)
-			m_composeFromRibbon->GetMesh()->SetColor(sm::Vec4(ribbonData->Destination->Material->Diffuse, ribbonData->Source->Material->Opacity));
+			m_composeFromRibbon->GetMesh()->SetColor(sm::Vec4(ribbonData->Destination->Material->Diffuse, ribbonData->Destination->Material->Opacity));
 
 		m_composeFromRibbonRenderable = new Renderable(m_composeFromRibbon->GetMesh(), material);
 		m_renderables.push_back(m_composeFromRibbonRenderable);

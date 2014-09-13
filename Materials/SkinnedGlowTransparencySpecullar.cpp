@@ -16,17 +16,17 @@ bool SkinnedGlowTransparencySpecullar::IsOpacity() const
 
 void SkinnedGlowTransparencySpecullar::SetupRenderState()
 {
-	///glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);
 
-	//glEnable(GL_BLEND);
-	glDisable(GL_BLEND);
+	glEnable(GL_BLEND);
+	//glDisable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glColorMask(true, true, true, true);
-	glDepthMask(true);
+	glDepthMask(false);
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);

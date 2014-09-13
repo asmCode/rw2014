@@ -182,6 +182,7 @@ SceneElement::GuyData* SceneLoader::LoadGuy(XMLNode* node)
 
 	SceneElement::GuyData* guyData = new SceneElement::GuyData();
 	guyData->Id = node->GetAttribAsString("id");
+	guyData->Material = LoadMaterialFromChild(node);
 
 	XMLNode* path = node->GetChild("Path");
 	if (path != NULL)

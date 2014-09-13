@@ -7,6 +7,7 @@ namespace SceneElement
 {
 	class Path;
 	class IntKey;
+	class Material;
 
 	class GuyData
 	{
@@ -14,6 +15,7 @@ namespace SceneElement
 		GuyData();
 
 		std::string Id;
+		Material* Material;
 		Path* Path;
 		std::vector<IntKey*> AnimationIndex;
 	};

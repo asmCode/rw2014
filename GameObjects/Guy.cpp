@@ -4,6 +4,7 @@
 #include "../SceneElement/Path.h"
 #include "../SceneElement/Key.h"
 #include "../SceneElement/IntKey.h"
+#include "../SceneElement/Material.h"
 #include "../SkinnedMesh.h"
 #include <Math/Animation/AnimationCurve.h>
 #include <Graphics/Shader.h>
@@ -43,6 +44,8 @@ Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
 
 	m_mesh = new SkinnedMesh();
 	m_mesh->Initialize(meshData);
+	if (guyData->Material != NULL)
+		m_mesh->SetColor(sm::Vec4(guyData->Material->Diffuse, guyData->Material->Opacity));
 	m_mesh->AddAnimation("walk", m_animations[0]);
 	//m_mesh->AddAnimation("jump", m_animations[1]);
 
