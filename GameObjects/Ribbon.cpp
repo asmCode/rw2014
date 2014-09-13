@@ -143,7 +143,7 @@ void Ribbon::Update(float time, float seconds)
 	for (uint32_t i = 0; i < m_renderables.size(); i++)
 		m_renderables[i]->SetActive(false);
 
-	if (time >= m_startDecomposeTime && time <= m_finishComposeTime)
+	if (time >= m_startDecomposeTime && time <= m_finishComposeTime + 1.0f)
 	{
 		m_decomposeAndFlyRenderable->SetActive(true);
 		m_decomposeAndFly->Update(time, seconds);

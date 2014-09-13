@@ -19,6 +19,8 @@ Static::Static(const std::string& sceneName, SceneElement::StaticData* staticDat
 	Mesh* sceneMesh = model->FindMesh(staticData->MeshName);
 	assert(sceneMesh != NULL);
 
+	m_name = staticData->MeshName;
+
 	m_mesh = new StaticTriangledMesh();
 	m_mesh->Initialize(sceneMesh->meshParts[0]);
 
@@ -28,8 +30,12 @@ Static::Static(const std::string& sceneName, SceneElement::StaticData* staticDat
 	Shader* glowSpecullarShader = Content::Instance->Get<Shader>("StaticSpecularBlur");
 	assert(glowSpecullarShader != NULL);
 
-	Material* material = new StaticGlowTransparencySpecullar(glowSpecullarShader);
+	StaticGlowTransparencySpecullar* material = new StaticGlowTransparencySpecullar(glowSpecullarShader);
+	material->SetGlowMultiplier(0.0f);
+	StaticGlowTransparencySpecullar* materialWire = new StaticGlowTransparencySpecullar(glowSpecullarShader);
+	materialWire->SetPolygonMode(StaticGlowTransparencySpecullar::PolygonMode_Lines);
 
+	m_renderables.push_back(new Renderable(m_mesh, materialWire));
 	m_renderables.push_back(new Renderable(m_mesh, material));
 }
 
@@ -39,4 +45,9 @@ Static::~Static()
 
 void Static::Update(float time, float seconds)
 {
+}
+
+StaticTriangledMesh* Static::GetMesh() const
+{
+	return m_mesh;
 }

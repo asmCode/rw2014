@@ -60,7 +60,7 @@ AnimationCurve<float>* DecomposeToRibbon::CreateScaleCurve(AnimationCurve<sm::Ve
 
 	curve->AddKeyframe(startTime, 1.0f);
 	curve->AddKeyframe(startTime + 3.0f, minScale);
-	//curve->AddKeyframe((endTime + startTime) / 2.0f, 0.2f);
+	curve->AddKeyframe((endTime + startTime) / 2.0f, minScale);
 	curve->AddKeyframe(endTime - 3.0f, minScale);
 	curve->AddKeyframe(endTime, 0.0f);
 	//curve->SmoothTangents();

@@ -41,5 +41,7 @@ protected:
 	virtual void InitializeSubScene() = 0;
 
 	void LoadCameras();
+
+	GameObject* FindGameObject(const std::string& name);
 };
 

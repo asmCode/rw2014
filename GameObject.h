@@ -20,9 +20,12 @@ public:
 
 	bool IsActive() const;
 
+	const std::string& GetName() const;
+
 protected:
 	std::vector<Renderable*> m_renderables;
 
 	bool m_isActive;
+	std::string m_name;
 };
 

@@ -11,13 +11,14 @@
 #include <fstream>
 #include <string>
 #include "GraphicsLibrary\TimeControl.h"
+#include <UserInput/Input.h>
 #include <unzip.h>
 
 std::string baseDataPath;
 
 //#define TIME_SHIFT 200.0f
 //#define TIME_SHIFT 115.0f
-#define TIME_SHIFT 0
+#define TIME_SHIFT 14.0f
 
 #define DISABLE_MUSIC 1
 #define START_IN_WINDOW 1
@@ -252,6 +253,8 @@ void StartNormalMode()
 				}
 #else
 //#endif
+
+				Input::UpdateState();
 
 				if (!demo ->Update(time, deltaTime))
 					done = true;

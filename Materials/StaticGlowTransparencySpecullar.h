@@ -1,16 +1,12 @@
 #pragma once
 
-#include <Graphics/Material.h>
+#include "BaseGlowTransparencySpecullar.h"
 #include <stdint.h>
 
-class StaticGlowTransparencySpecullar : public Material
+class StaticGlowTransparencySpecullar : public BaseGlowTransparencySpecullar
 {
 public:
 	StaticGlowTransparencySpecullar(Shader* shader);
 
-	bool IsOpacity() const;
 	void SetupRenderState();
-	void SetupShader();
-
-private:
 };

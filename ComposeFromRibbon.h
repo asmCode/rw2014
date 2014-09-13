@@ -11,6 +11,10 @@ public:
 	ComposeFromRibbon();
 	~ComposeFromRibbon();
 
+	void Update(float time, float deltaTime);
+
+	void ProcessTriangle(float time, int i);
+
 private:
 	AnimationCurve<sm::Vec3>* CreateCurve(
 		const sm::Vec3& basePosition,

@@ -169,6 +169,7 @@ exit /B 0
     <ClCompile Include="Framework\Math\Animation\LinearCurve.cpp" />
     <ClCompile Include="Framework\Math\Animation\QuarticOut.cpp" />
     <ClCompile Include="Framework\Math\MathUtils.cpp" />
+    <ClCompile Include="Framework\UserInput\Input.cpp" />
     <ClCompile Include="Framework\Utils\Log.cpp" />
     <ClCompile Include="Framework\Utils\Randomizer.cpp" />
     <ClCompile Include="Framework\Utils\StringUtils.cpp" />
@@ -186,6 +187,7 @@ exit /B 0
     <ClCompile Include="GraphicsLibrary\SteerCamera.cpp" />
     <ClCompile Include="GraphicsLibrary\TimeControl.cpp" />
     <ClCompile Include="GraphicsLog.cpp" />
+    <ClCompile Include="Materials\BaseGlowTransparencySpecullar.cpp" />
     <ClCompile Include="Materials\GlowTransparencySpecullar.cpp" />
     <ClCompile Include="Materials\SkinnedGlowTransparencySpecullar.cpp" />
     <ClCompile Include="Materials\StaticGlowTransparencySpecullar.cpp" />
@@ -296,11 +298,16 @@ exit /B 0
     <ClInclude Include="Framework\IO\BinaryReader.h" />
     <ClInclude Include="Framework\IO\BinaryWriter.h" />
     <ClInclude Include="Framework\IO\Path.h" />
+    <ClInclude Include="Framework\Math\Animation\Custom\BlinkCurve.h" />
+    <ClInclude Include="Framework\Math\Animation\Custom\QuadBlinkCurve.h" />
+    <ClInclude Include="Framework\Math\Animation\ExpOut.h" />
     <ClInclude Include="Framework\Math\Animation\Keyframe.h" />
     <ClInclude Include="Framework\Math\Animation\AnimationCurve.h" />
     <ClInclude Include="Framework\Math\Animation\BackOut.h" />
     <ClInclude Include="Framework\Math\Animation\IAnimationCurve.h" />
     <ClInclude Include="Framework\Math\Animation\LinearCurve.h" />
+    <ClInclude Include="Framework\Math\Animation\QuadIn.h" />
+    <ClInclude Include="Framework\Math\Animation\QuadOut.h" />
     <ClInclude Include="Framework\Math\Animation\QuarticOut.h" />
     <ClInclude Include="Framework\Math\MathUtils.h" />
     <ClInclude Include="Framework\Math\Matrix.h" />
@@ -309,6 +316,8 @@ exit /B 0
     <ClInclude Include="Framework\Math\Vec2.h" />
     <ClInclude Include="Framework\Math\Vec3.h" />
     <ClInclude Include="Framework\Math\Vec4.h" />
+    <ClInclude Include="Framework\UserInput\Input.h" />
+    <ClInclude Include="Framework\UserInput\KeyCode.h" />
     <ClInclude Include="Framework\Utils\Log.h" />
     <ClInclude Include="Framework\Utils\Randomizer.h" />
     <ClInclude Include="Framework\Utils\StringUtils.h" />
@@ -330,6 +339,7 @@ exit /B 0
     <ClInclude Include="GraphicsLibrary\SteerCamera.h" />
     <ClInclude Include="GraphicsLibrary\TimeControl.h" />
     <ClInclude Include="GraphicsLog.h" />
+    <ClInclude Include="Materials\BaseGlowTransparencySpecullar.h" />
     <ClInclude Include="Materials\GlowTransparencySpecullar.h" />
     <ClInclude Include="Materials\SkinnedGlowTransparencySpecullar.h" />
     <ClInclude Include="Materials\StaticGlowTransparencySpecullar.h" />

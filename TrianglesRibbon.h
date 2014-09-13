@@ -25,7 +25,7 @@ public:
 		float minScale,
 		float maxDelay);
 
-	void Update(float time, float deltaTime);
+	virtual void Update(float time, float deltaTime);
 
 	UniqueTriangledMesh* GetMesh() const;
 
@@ -46,6 +46,8 @@ protected:
 		int endKeyIndex,
 		float spread,
 		float maxDelayOnEachNode) = 0;
+
+	virtual void ProcessTriangle(float time, int i) {};
 
 	virtual AnimationCurve<float>* CreateScaleCurve(AnimationCurve<sm::Vec3> *transformCurve, float minScale) = 0;
 

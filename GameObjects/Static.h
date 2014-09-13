@@ -14,6 +14,8 @@ public:
 
 	void Update(float time, float seconds);
 
+	StaticTriangledMesh* GetMesh() const;
+
 private:
 	StaticTriangledMesh* m_mesh;
 };

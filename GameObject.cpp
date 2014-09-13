@@ -30,3 +30,7 @@ bool GameObject::IsActive() const
 	return m_isActive;
 }
 
+const std::string& GameObject::GetName() const
+{
+	return m_name;
+}

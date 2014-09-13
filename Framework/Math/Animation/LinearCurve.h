@@ -2,8 +2,16 @@
 
 #include "IAnimationCurve.h"
 
-class LinearCurve : public IAnimationCurve<float>
+template <typename T>
+class LinearCurve : public IAnimationCurve<T>
 {
 public:
-	float Evaluate(float begin, float end, float time);
+	float Evaluate(const T& begin, const T& end, float time)
+	{
+		time = MathUtils::Clamp(time, 0.0f, 1.0f);
+
+		T change = end - begin;
+
+		return change * time + begin;
+	}
 };

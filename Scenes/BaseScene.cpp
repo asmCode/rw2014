@@ -66,3 +66,14 @@ void BaseScene::LoadCameras()
 	m_camerasManager = new AnimCameraManager();
 	m_camerasManager->Load(Environment::GetInstance()->GetBasePath() + "cameras\\" + m_name + ".cam", m_camerasAnimation);
 }
+
+GameObject* BaseScene::FindGameObject(const std::string& name)
+{
+	for (uint32_t i = 0; i < m_gameObjects.size(); i++)
+	{
+		if (m_gameObjects[i]->GetName() == name)
+			return m_gameObjects[i];
+	}
+
+	return NULL;
+}
