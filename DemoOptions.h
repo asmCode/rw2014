@@ -1,5 +1,5 @@
-#define TIME_SCALE 0.4f
-#define TIME_SHIFT 2.5f
+#define TIME_SCALE 1.0f
+#define TIME_SHIFT 10.0f
 
 #define MAN_CAM 1
 #define DISABLE_FRUSTUM_CULLING 1

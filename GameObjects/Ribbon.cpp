@@ -16,6 +16,8 @@
 #include "../Ribbon/RibbonCurveFullSource.h"
 #include "../Ribbon/RibbonCurveFullDestination.h"
 #include "../Ribbon/RibbonCurveDestination.h"
+#include "../Ribbon/RibbonCurveSource.h"
+#include "../Ribbon/Modificators/BlinkAtStartAndEnd.h"
 #include <Graphics/MeshPart.h>
 #include <Graphics/Model.h>
 #include <Graphics/Mesh.h>
@@ -42,9 +44,9 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 
 	int keysCount = ribbonData->Path->Keys.size();
 	float duration = ribbonData->Path->Keys[keysCount - 1]->Time - ribbonData->Path->Keys[0]->Time;
-	float spread = 10.0f;
-	float minScale = 0.4f;
-	float durationDelay = 2.0f;
+	float spread = 3.0f;
+	float minScale = 0.8f;
+	float durationDelay = 4.0f;
 
 	m_startDecomposeTime = ribbonData->Path->Keys[0]->Time;
 	m_finishComposeTime = ribbonData->Path->Keys[keysCount - 1]->Time + durationDelay;
@@ -82,6 +84,31 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 
 		m_composeFromRibbonRenderable = new Renderable(m_composeFromRibbon->GetMesh(), material);
 		m_renderables.push_back(m_composeFromRibbonRenderable);
+	}
+	else if (ribbonData->Source != NULL && ribbonData->Destination == NULL)
+	{
+		m_decomposeAndFly = new TrianglesRibbon();
+
+		Mesh* mesh = model->FindMesh(ribbonData->Source->MeshName);
+		assert(mesh != NULL);
+
+		m_decomposeAndFly->Initialize(
+			new RibbonCurveSource(),
+			mesh->meshParts[0],
+			ribbonData->Path,
+			halfPathKeyIndex,
+			spread,
+			minScale,
+			durationDelay);
+
+		m_decomposeAndFly->SetTriangleModificator(BlinkAtStartAndEnd::GetInstance());
+
+		m_decomposeAndFly->GetMesh()->SetGlowPower(0.4f);
+		if (ribbonData->Source->Material != NULL)
+			m_decomposeAndFly->GetMesh()->SetColor(sm::Vec4(ribbonData->Source->Material->Diffuse, ribbonData->Source->Material->Opacity));
+
+		m_decomposeAndFlyRenderable = new Renderable(m_decomposeAndFly->GetMesh(), material);
+		m_renderables.push_back(m_decomposeAndFlyRenderable);
 	}
 	else if (ribbonData->Source != NULL && ribbonData->Destination != NULL)
 	{
@@ -173,8 +200,10 @@ void Ribbon::Update(float time, float seconds)
 		if (m_decomposeAndFly!= NULL)
 			m_decomposeAndFly->Update(time, seconds);
 
-		m_composeFromRibbonRenderable->SetActive(true);
-		m_composeFromRibbon->Update(time, seconds);
+		if (m_composeFromRibbonRenderable != NULL)
+			m_composeFromRibbonRenderable->SetActive(true);
+		if (m_composeFromRibbon != NULL)
+			m_composeFromRibbon->Update(time, seconds);
 	}
 	else if (time < m_startDecomposeTime && m_staticSourceRenderable != NULL)
 	{

@@ -126,6 +126,12 @@ void TriangledMesh::SetColor(const sm::Vec4& color)
 		SetTriangleColor(i, color);
 }
 
+void TriangledMesh::SetGlowPower(float glowPower)
+{
+	for (uint32_t i = 0; i < m_trianglesCount; i++)
+		SetGlowPower(i, glowPower);
+}
+
 void TriangledMesh::SetTriangleColor(int index, const sm::Vec4& color)
 {
 	TriangleDataTransformColorGlow* trianglesPointer = m_triangles + index * 3;

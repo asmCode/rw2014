@@ -25,6 +25,7 @@
 #include "DemoUtils.h"
 
 #include "Scenes/Scene01.h"
+#include "Scenes/Scene03.h"
 
 #include "GraphicsEngine.h"
 #include "AssemblingScene.h"
@@ -312,14 +313,18 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 
 	//m_lightProjMatrix = sm::Matrix::Ortho2DMatrix(-10, 10, -10, 10);
 
-	m_scenes.push_back(new Test1Scene());
+	m_activeScene = new Scene01();
+	m_scenes.push_back(m_activeScene);
+
+	/*m_scenes.push_back(new Test1Scene());
 	m_scenes.push_back(new GlowTestScene());
 	m_scenes.push_back(new BoneAnimTestScene());
 	m_scenes.push_back(new GuySceneTest());
 	m_scenes.push_back(new CamsTestScene());
 	m_scenes.push_back(new Scene01());
+	m_scenes.push_back(new Scene03());
 
-	m_activeScene = m_scenes[5];
+	m_activeScene = m_scenes[5];*/
 	
 	return true;
 }
@@ -923,7 +928,7 @@ void DemoController::SetOpenglParams()
 
 	glShadeModel(GL_SMOOTH);
 
-	glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+	glClearColor(0.03f, 0.03f, 0.07f, 1.0f);
 	//glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClearDepth(1.0f);
 	glEnable(GL_DEPTH_TEST);

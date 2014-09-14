@@ -191,6 +191,7 @@ exit /B 0
     <ClCompile Include="Materials\StaticGlowTransparencySpecullar.cpp" />
     <ClCompile Include="MeshUtils.cpp" />
     <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="Ribbon\Modificators\BlinkAtStartAndEnd.cpp" />
     <ClCompile Include="Ribbon\RibbonCurve.cpp" />
     <ClCompile Include="Ribbon\RibbonCurveDestination.cpp" />
     <ClCompile Include="Ribbon\RibbonCurveFullDestination.cpp" />
@@ -206,6 +207,7 @@ exit /B 0
     <ClCompile Include="Scenes\GlowTestScene.cpp" />
     <ClCompile Include="Scenes\GuySceneTest.cpp" />
     <ClCompile Include="Scenes\Scene01.cpp" />
+    <ClCompile Include="Scenes\Scene03.cpp" />
     <ClCompile Include="SceneUtils.cpp" />
     <ClCompile Include="SkinnedMesh.cpp" />
     <ClCompile Include="StaticTriangledMesh.cpp" />
@@ -348,6 +350,8 @@ exit /B 0
     <ClInclude Include="MeshUtils.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Ribbon\IRibbonCurveBuilder.h" />
+    <ClInclude Include="Ribbon\Modificators\BlinkAtStartAndEnd.h" />
+    <ClInclude Include="Ribbon\Modificators\ITriangleModificator.h" />
     <ClInclude Include="Ribbon\RibbonCurve.h" />
     <ClInclude Include="Ribbon\RibbonCurveDestination.h" />
     <ClInclude Include="Ribbon\RibbonCurveFullDestination.h" />
@@ -370,6 +374,7 @@ exit /B 0
     <ClInclude Include="Scenes\GlowTestScene.h" />
     <ClInclude Include="Scenes\GuySceneTest.h" />
     <ClInclude Include="Scenes\Scene01.h" />
+    <ClInclude Include="Scenes\Scene03.h" />
     <ClInclude Include="SceneUtils.h" />
     <ClInclude Include="SkinnedMesh.h" />
     <ClInclude Include="TriangleDataColorGlow.h" />

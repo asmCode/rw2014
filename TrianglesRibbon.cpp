@@ -2,6 +2,7 @@
 #include "UniqueTriangledMesh.h"
 #include "TriangleDataTransformColorGlow.h"
 #include "Ribbon/IRibbonCurveBuilder.h"
+#include "Ribbon/Modificators/ITriangleModificator.h"
 #include "DemoUtils.h"
 #include "DebugUtils.h"
 #include <Utils/Randomizer.h>
@@ -9,7 +10,8 @@
 #include <Graphics/VertexInformation.h>
 #include <Math/Animation/AnimationCurve.h>
 
-TrianglesRibbon::TrianglesRibbon()
+TrianglesRibbon::TrianglesRibbon() :
+	m_triangleModificator(NULL)
 {
 }
 
@@ -56,6 +58,11 @@ void TrianglesRibbon::Initialize(
 	}
 }
 
+void TrianglesRibbon::SetTriangleModificator(ITriangleModificator* triangleModificator)
+{
+	m_triangleModificator = triangleModificator;
+}
+
 void TrianglesRibbon::Update(float time, float deltaTime)
 {
 	sm::Vec3 position;
@@ -78,6 +85,8 @@ void TrianglesRibbon::Update(float time, float deltaTime)
 			//sm::Matrix::RotateAxisMatrix(m_trianglesData[i]->Time, 0, 0, 1) *
 			sm::Matrix::ScaleMatrix(scale, scale, scale));
 
+		if (m_triangleModificator != NULL)
+			m_triangleModificator->ProcessTriangle(time, this, i);
 		ProcessTriangle(time, i);
 	}
 }
@@ -85,4 +94,9 @@ void TrianglesRibbon::Update(float time, float deltaTime)
 UniqueTriangledMesh* TrianglesRibbon::GetMesh() const
 {
 	return m_triangledMesh;
+}
+
+TrianglesRibbon::TriangleData* TrianglesRibbon::GetTriangleData(int index) const
+{
+	return m_trianglesData[index];
 }

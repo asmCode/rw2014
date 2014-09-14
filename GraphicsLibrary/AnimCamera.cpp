@@ -57,7 +57,7 @@ AnimCamera* AnimCamera::FromStream(BinaryReader &br)
 
 	br.ReadBuffer(reinterpret_cast<char*>(animCam->view.a), sizeof(float) * 16);
 
-	animCam->view = sm::Matrix::RotateAxisMatrix(MathUtils::PI2, 1, 0, 0) * animCam->view;
+	//animCam->view = sm::Matrix::RotateAxisMatrix(MathUtils::PI2, 1, 0, 0) * animCam->view;
 
 	bool hasFovAnim = br.Read<bool>();
 	if (hasFovAnim)

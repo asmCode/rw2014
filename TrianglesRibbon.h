@@ -9,12 +9,22 @@ class UniqueTriangledMesh;
 class MeshPart;
 class TriangleDataColor;
 class IRibbonCurveBuilder;
+class ITriangleModificator;
 
 namespace SceneElement { class Path; }
 
 class TrianglesRibbon
 {
 public:
+	struct TriangleData
+	{
+		sm::Matrix BaseTransform;
+
+		int LastKeyframeIndex;
+		AnimationCurve<sm::Vec3>* Curve;
+		AnimationCurve<float>* ScaleCurve;
+	};
+
 	TrianglesRibbon();
 	virtual ~TrianglesRibbon();
 
@@ -27,35 +37,19 @@ public:
 		float minScale,
 		float maxDelay);
 
+	void SetTriangleModificator(ITriangleModificator* triangleModificator);
+
 	virtual void Update(float time, float deltaTime);
 
 	UniqueTriangledMesh* GetMesh() const;
+	TriangleData* GetTriangleData(int index) const;
 
 protected:
-	struct TriangleData
-	{
-		sm::Matrix BaseTransform;
-
-		int LastKeyframeIndex;
-		AnimationCurve<sm::Vec3>* Curve;
-		AnimationCurve<float>* ScaleCurve;
-	};
-
 	virtual void ProcessTriangle(float time, int i) {};
 
 	UniqueTriangledMesh* m_triangledMesh;
 	int m_trianglesCount;
 	TriangleData** m_trianglesData;
+
+	ITriangleModificator* m_triangleModificator;
 };
-
-
-/* KOMPIA KODU CO ZASWIECA TROJKAT JAK JUZ SIE NZAJDZIE NA MIEJSCU
-void ComposeFromRibbon::ProcessTriangle(float time, int i)
-{
-	float timeAfterFinish = time - m_trianglesData[i]->Curve->GetEndTime();
-	timeAfterFinish = MathUtils::Clamp(timeAfterFinish, 0.0f, 1.0f);
-
-	QuadOut<float> curve;
-	m_triangledMesh->SetGlowPower(i, curve.Evaluate(0, 1, timeAfterFinish / 0.2f));
-}
-*/
