@@ -30,9 +30,13 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 	m_staticSource(NULL),
 	m_staticDestination(NULL),
 	m_decomposeAndFlyRenderable(NULL),
+	m_decomposeAndFlyRenderableWire(NULL),
 	m_composeFromRibbonRenderable(NULL),
+	m_composeFromRibbonRenderableWire(NULL),
 	m_staticSourceRenderable(NULL),
+	m_staticSourceRenderableWire(NULL),
 	m_staticDestinationRenderable(NULL),
+	m_staticDestinationRenderableWire(NULL),
 	m_startDecomposeTime(0.0f),
 	m_finishComposeTime(0.0f)
 {
@@ -44,8 +48,8 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 
 	int keysCount = ribbonData->Path->Keys.size();
 	float duration = ribbonData->Path->Keys[keysCount - 1]->Time - ribbonData->Path->Keys[0]->Time;
-	float spread = 3.0f;
-	float minScale = 0.8f;
+	float spread = 2.0f;
+	float minScale = 0.6f;
 	float durationDelay = 4.0f;
 
 	m_startDecomposeTime = ribbonData->Path->Keys[0]->Time;
@@ -60,7 +64,11 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 	Shader* staticGlowSpecullarShader = Content::Instance->Get<Shader>("StaticSpecularBlur");
 	assert(staticGlowSpecullarShader != NULL);
 
-	Material* material = new GlowTransparencySpecullar(glowSpecullarShader);
+	GlowTransparencySpecullar* material = new GlowTransparencySpecullar(glowSpecullarShader);
+	material->SetGlowMultiplier(1.0f);
+	GlowTransparencySpecullar* materialWire = new GlowTransparencySpecullar(glowSpecullarShader);
+	materialWire->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
+	materialWire->SetGlowMultiplier(1.0f);
 	Material* staticMaterial = new StaticGlowTransparencySpecullar(staticGlowSpecullarShader);
 
 	if (ribbonData->Source == NULL && ribbonData->Destination != NULL)
@@ -126,11 +134,17 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			minScale,
 			durationDelay);
 
+		m_decomposeAndFly->SetTriangleModificator(BlinkAtStartAndEnd::GetInstance());
+
+		m_decomposeAndFly->GetMesh()->SetGlowPower(0.4f);
+
 		if (ribbonData->Source->Material != NULL)
 			m_decomposeAndFly->GetMesh()->SetColor(sm::Vec4(ribbonData->Source->Material->Diffuse, ribbonData->Source->Material->Opacity));
 
 		m_decomposeAndFlyRenderable = new Renderable(m_decomposeAndFly->GetMesh(), material);
+		m_decomposeAndFlyRenderableWire = new Renderable(m_decomposeAndFly->GetMesh(), materialWire);
 		m_renderables.push_back(m_decomposeAndFlyRenderable);
+		m_renderables.push_back(m_decomposeAndFlyRenderableWire);
 	
 		m_composeFromRibbon = new TrianglesRibbon();
 
@@ -146,11 +160,15 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			minScale,
 			durationDelay);
 
+		m_composeFromRibbon->GetMesh()->SetGlowPower(0.4f);
+
 		if (ribbonData->Destination->Material != NULL)
 			m_composeFromRibbon->GetMesh()->SetColor(sm::Vec4(ribbonData->Destination->Material->Diffuse, ribbonData->Destination->Material->Opacity));
 
 		m_composeFromRibbonRenderable = new Renderable(m_composeFromRibbon->GetMesh(), material);
+		m_composeFromRibbonRenderableWire = new Renderable(m_composeFromRibbon->GetMesh(), materialWire);
 		m_renderables.push_back(m_composeFromRibbonRenderable);
+		m_renderables.push_back(m_composeFromRibbonRenderableWire);
 	}
 
 	if (ribbonData->StaticSource != NULL)
@@ -197,21 +215,27 @@ void Ribbon::Update(float time, float seconds)
 	{
 		if (m_decomposeAndFlyRenderable != NULL)
 			m_decomposeAndFlyRenderable->SetActive(true);
+		if (m_decomposeAndFlyRenderableWire != NULL)
+			m_decomposeAndFlyRenderableWire->SetActive(true);
 		if (m_decomposeAndFly!= NULL)
 			m_decomposeAndFly->Update(time, seconds);
 
 		if (m_composeFromRibbonRenderable != NULL)
 			m_composeFromRibbonRenderable->SetActive(true);
+		if (m_composeFromRibbonRenderableWire != NULL)
+			m_composeFromRibbonRenderableWire->SetActive(true);
 		if (m_composeFromRibbon != NULL)
 			m_composeFromRibbon->Update(time, seconds);
 	}
 	else if (time < m_startDecomposeTime && m_staticSourceRenderable != NULL)
 	{
 		m_staticSourceRenderable->SetActive(true);
+		m_staticSourceRenderableWire->SetActive(true);
 	}
 
 	else if (time > m_finishComposeTime && m_staticDestinationRenderable != NULL)
 	{
 		m_staticDestinationRenderable->SetActive(true);
+		m_staticDestinationRenderableWire->SetActive(true);
 	}
 }

@@ -24,9 +24,13 @@ private:
 	StaticTriangledMesh* m_staticDestination;
 
 	Renderable* m_decomposeAndFlyRenderable;
+	Renderable* m_decomposeAndFlyRenderableWire;
 	Renderable* m_composeFromRibbonRenderable;
+	Renderable* m_composeFromRibbonRenderableWire;
 	Renderable* m_staticSourceRenderable;
+	Renderable* m_staticSourceRenderableWire;
 	Renderable* m_staticDestinationRenderable;
+	Renderable* m_staticDestinationRenderableWire;
 
 	float m_startDecomposeTime;
 	float m_finishComposeTime;

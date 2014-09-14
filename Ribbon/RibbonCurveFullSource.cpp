@@ -50,11 +50,11 @@ AnimationCurve<float>* RibbonCurveFullSource::CreateScaleCurve(AnimationCurve<sm
 
 	float startTimeShift = random.GetFloat(transformCurve->GetKeyframe(0).Time, transformCurve->GetKeyframe(1).Time);
 
-	curve->AddKeyframe(startTimeShift, 0.0f);
-	curve->AddKeyframe(startTimeShift + 3.0f, minScale);
+	curve->AddKeyframe(startTimeShift, 1.0f);
+	curve->AddKeyframe(startTimeShift + 0.5f, minScale);
 	curve->AddKeyframe((endTime + startTime) / 2.0f, minScale);
-	curve->AddKeyframe(endTime - 3.0f, minScale);
-	curve->AddKeyframe(endTime, 1.0f);
+	curve->AddKeyframe(endTime - 0.5f, minScale);
+	curve->AddKeyframe(endTime, 0.0f);
 	//curve->SmoothTangents();
 
 	return curve;
