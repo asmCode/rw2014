@@ -1,0 +1,122 @@
+<Scene name="Scene01">
+	<Ribbons>
+		<Ribbon>
+			<Source mesh_name="scene.morph.src.biter">
+				<Material>
+					<Diffuse value="0.494118;0.027451;0.035294" />
+					<Opacity value="0.2" />
+				</Material>
+			</Source>
+			<Destination mesh_name="scene.morph.dst.biter">
+				<Material>
+					<Diffuse value="0.494118;0.027451;0.035294" />
+					<Opacity value="0.2" />
+				</Material>
+			</Destination>
+			<Path>
+				<Key time="14.9" position="5.020459;186.412659;11.104912" />
+				<Key time="15.9" position="-0.427110;186.499222;10.591385" />
+				<Key time="17" position="-3.093294;186.271454;13.464230" />
+				<Key time="18.1333" position="5.618948;185.346771;23.682051" />
+				<Key time="19.2333" position="4.920564;184.555069;31.497093" />
+				<Key time="20.1333" position="-2.730868;184.301422;28.510647" />
+				<Key time="20.9333" position="-4.215903;184.227325;28.069447" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Source mesh_name="scene.morph.src.ground">
+				<Material>
+					<Diffuse value="0.494118;0.027451;0.035294" />
+					<Opacity value="0.2" />
+				</Material>
+			</Source>
+			<Destination mesh_name="scene.morph.dst.ground">
+				<Material>
+					<Diffuse value="0.494118;0.027451;0.035294" />
+					<Opacity value="0.2" />
+				</Material>
+			</Destination>
+			<Path>
+				<Key time="25.9333" position="-4.256778;184.250412;28.069580" />
+				<Key time="27.4" position="-1.784984;180.987137;26.480888" />
+				<Key time="28.0333" position="2.313264;171.513290;23.094791" />
+				<Key time="28.9667" position="-4.713583;159.357437;23.644360" />
+				<Key time="29.9" position="1.941004;147.847000;31.231956" />
+				<Key time="30.7333" position="-3.524808;136.128525;28.836378" />
+				<Key time="31.6667" position="1.061411;124.142174;22.837761" />
+				<Key time="32.6" position="-6.827201;111.483604;24.495003" />
+				<Key time="33.5333" position="-1.656646;98.941978;29.214806" />
+				<Key time="35.1" position="-1.656646;93.628166;29.214806" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Source mesh_name="scene.morph.src.majak">
+				<Material>
+					<Diffuse value="0.494118;0.027451;0.035294" />
+					<Opacity value="0.2" />
+				</Material>
+			</Source>
+			<Destination mesh_name="scene.morph.dst.majak">
+				<Material>
+					<Diffuse value="0.494118;0.027451;0.035294" />
+					<Opacity value="0.2" />
+				</Material>
+			</Destination>
+			<StaticSource mesh_name="scene.morph.src-static.majak">
+				<Material>
+					<Diffuse value="0.494118;0.027451;0.035294" />
+					<Opacity value="0.2" />
+				</Material>
+			</StaticSource>
+			<Path>
+				<Key time="3.3" position="-17.095360;185.568573;1.663845" />
+				<Key time="5" position="-13.855139;185.434677;3.110507" />
+				<Key time="5.96667" position="-10.905519;185.411346;3.774002" />
+				<Key time="6.83333" position="-8.107492;185.325623;4.540393" />
+				<Key time="7.56667" position="-5.823612;185.121414;5.436291" />
+				<Key time="8.13333" position="-1.762867;185.023514;7.136531" />
+				<Key time="8.9" position="0.992967;185.122726;8.880299" />
+				<Key time="9.9" position="3.416125;186.412659;10.904973" />
+			</Path>
+		</Ribbon>
+	</Ribbons>
+	<StaticMeshes>
+		<Static mesh_name="Text008">
+			<Material>
+				<Diffuse value="0.854902;0.854902;0.854902" />
+				<Opacity value="0.2" />
+			</Material>
+		</Static>
+		<Static mesh_name="Text010">
+			<Material>
+				<Diffuse value="0.854902;0.854902;0.854902" />
+				<Opacity value="0.2" />
+			</Material>
+		</Static>
+		<Static mesh_name="Text011">
+			<Material>
+				<Diffuse value="0.854902;0.854902;0.854902" />
+				<Opacity value="0.2" />
+			</Material>
+		</Static>
+		<Static mesh_name="Text013">
+			<Material>
+				<Diffuse value="0.854902;0.854902;0.854902" />
+				<Opacity value="0.2" />
+			</Material>
+		</Static>
+		<Static mesh_name="Text017">
+			<Material>
+				<Diffuse value="0.854902;0.854902;0.854902" />
+				<Opacity value="0.2" />
+			</Material>
+		</Static>
+		<Static mesh_name="Text018">
+			<Material>
+				<Diffuse value="0.854902;0.854902;0.854902" />
+				<Opacity value="0.2" />
+			</Material>
+		</Static>
+	</StaticMeshes>
+	<Guys />
+</Scene>
