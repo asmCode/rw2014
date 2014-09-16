@@ -34,6 +34,6 @@ void BlinkAtStartAndEnd::ProcessTriangle(float time, TrianglesRibbon* trianglesR
 	TriangledMesh* triangledMesh = trianglesRibbon->GetMesh();
 
 	BlinkCurve<float, QuadOut<float>, LinearCurve<float> > curve(0.05f);
-	triangledMesh->SetGlowPower(i, curve.Evaluate(0.4f, 2, blinkTimeNorm));
+	triangledMesh->SetGlowPower(i, curve.Evaluate(0.8f, 2, blinkTimeNorm));
 }
 

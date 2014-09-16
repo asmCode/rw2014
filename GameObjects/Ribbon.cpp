@@ -69,7 +69,9 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 	GlowTransparencySpecullar* materialWire = new GlowTransparencySpecullar(glowSpecullarShader);
 	materialWire->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 	materialWire->SetGlowMultiplier(1.0f);
-	Material* staticMaterial = new StaticGlowTransparencySpecullar(staticGlowSpecullarShader);
+	StaticGlowTransparencySpecullar* staticMaterial = new StaticGlowTransparencySpecullar(staticGlowSpecullarShader);
+	StaticGlowTransparencySpecullar* staticMaterialWire = new StaticGlowTransparencySpecullar(staticGlowSpecullarShader);
+	staticMaterialWire->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 
 	if (ribbonData->Source == NULL && ribbonData->Destination != NULL)
 	{
@@ -136,7 +138,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 
 		m_decomposeAndFly->SetTriangleModificator(BlinkAtStartAndEnd::GetInstance());
 
-		m_decomposeAndFly->GetMesh()->SetGlowPower(0.4f);
+		m_decomposeAndFly->GetMesh()->SetGlowPower(0.8f);
 
 		if (ribbonData->Source->Material != NULL)
 			m_decomposeAndFly->GetMesh()->SetColor(sm::Vec4(ribbonData->Source->Material->Diffuse, ribbonData->Source->Material->Opacity));
@@ -160,7 +162,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			minScale,
 			durationDelay);
 
-		m_composeFromRibbon->GetMesh()->SetGlowPower(0.4f);
+		m_composeFromRibbon->GetMesh()->SetGlowPower(0.8f);
 
 		if (ribbonData->Destination->Material != NULL)
 			m_composeFromRibbon->GetMesh()->SetColor(sm::Vec4(ribbonData->Destination->Material->Diffuse, ribbonData->Destination->Material->Opacity));
@@ -183,7 +185,9 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			m_staticSource->SetColor(sm::Vec4(ribbonData->StaticSource->Material->Diffuse, ribbonData->StaticSource->Material->Opacity));
 
 		m_staticSourceRenderable = new Renderable(m_staticSource, staticMaterial);
+		m_staticSourceRenderableWire = new Renderable(m_staticSource, staticMaterialWire);
 		m_renderables.push_back(m_staticSourceRenderable);
+		m_renderables.push_back(m_staticSourceRenderableWire);
 	}
 
 	if (ribbonData->StaticDestination != NULL)
