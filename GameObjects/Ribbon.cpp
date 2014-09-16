@@ -65,13 +65,15 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 	assert(staticGlowSpecullarShader != NULL);
 
 	GlowTransparencySpecullar* material = new GlowTransparencySpecullar(glowSpecullarShader);
-	material->SetGlowMultiplier(1.0f);
+	material->SetGlowMultiplier(0.8f);
 	GlowTransparencySpecullar* materialWire = new GlowTransparencySpecullar(glowSpecullarShader);
 	materialWire->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
-	materialWire->SetGlowMultiplier(1.0f);
+	materialWire->SetGlowMultiplier(1.2f);
 	StaticGlowTransparencySpecullar* staticMaterial = new StaticGlowTransparencySpecullar(staticGlowSpecullarShader);
+	staticMaterial->SetGlowMultiplier(0.8f);
 	StaticGlowTransparencySpecullar* staticMaterialWire = new StaticGlowTransparencySpecullar(staticGlowSpecullarShader);
 	staticMaterialWire->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
+	staticMaterialWire->SetGlowMultiplier(1.2f);
 
 	if (ribbonData->Source == NULL && ribbonData->Destination != NULL)
 	{
@@ -89,11 +91,15 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			minScale,
 			durationDelay);
 
+		m_composeFromRibbon->GetMesh()->SetGlowPower(0.8f);
+
 		if (ribbonData->Destination->Material != NULL)
 			m_composeFromRibbon->GetMesh()->SetColor(sm::Vec4(ribbonData->Destination->Material->Diffuse, ribbonData->Destination->Material->Opacity));
 
 		m_composeFromRibbonRenderable = new Renderable(m_composeFromRibbon->GetMesh(), material);
+		m_composeFromRibbonRenderableWire = new Renderable(m_composeFromRibbon->GetMesh(), materialWire);
 		m_renderables.push_back(m_composeFromRibbonRenderable);
+		m_renderables.push_back(m_composeFromRibbonRenderableWire);
 	}
 	else if (ribbonData->Source != NULL && ribbonData->Destination == NULL)
 	{
@@ -113,12 +119,14 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 
 		m_decomposeAndFly->SetTriangleModificator(BlinkAtStartAndEnd::GetInstance());
 
-		m_decomposeAndFly->GetMesh()->SetGlowPower(0.4f);
+		m_decomposeAndFly->GetMesh()->SetGlowPower(0.8f);
 		if (ribbonData->Source->Material != NULL)
 			m_decomposeAndFly->GetMesh()->SetColor(sm::Vec4(ribbonData->Source->Material->Diffuse, ribbonData->Source->Material->Opacity));
 
 		m_decomposeAndFlyRenderable = new Renderable(m_decomposeAndFly->GetMesh(), material);
+		m_decomposeAndFlyRenderableWire = new Renderable(m_decomposeAndFly->GetMesh(), materialWire);
 		m_renderables.push_back(m_decomposeAndFlyRenderable);
+		m_renderables.push_back(m_decomposeAndFlyRenderableWire);
 	}
 	else if (ribbonData->Source != NULL && ribbonData->Destination != NULL)
 	{
