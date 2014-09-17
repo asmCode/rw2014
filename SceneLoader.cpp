@@ -200,18 +200,48 @@ SceneElement::Material* SceneLoader::LoadMaterial(XMLNode* materialNode)
 	assert(materialNode->GetName() == "Material");
 
 	SceneElement::Material* material = new SceneElement::Material();
+	material->Diffuse.Set(0.5f, 0.5f, 0.5f);
+	material->Opacity = 1.0f;
+	material->UseSolid = true;
+	material->UseWire = true;
+	material->SolidGlowPower = 1.0f;
+	material->SolidGlowMultiplier = 1.0f;
+	material->WireGlowPower = 1.0f;
+	material->WireGlowMultiplier = 1.0f;
 
-	XMLNode* diffuseNode = materialNode->GetChild("Diffuse");
-	if (diffuseNode != NULL)
-		material->Diffuse = DemoUtils::ParseVector3(diffuseNode->GetAttribAsString("value"));
-	else
-		material->Diffuse.Set(0.5f, 0.5f, 0.5f);
+	XMLNode* paramNode = NULL;
+	
+	paramNode = materialNode->GetChild("Diffuse");
+	if (paramNode != NULL)
+		material->Diffuse = DemoUtils::ParseVector3(paramNode->GetAttribAsString("value"));
 
-	XMLNode* opacityNode = materialNode->GetChild("Opacity");
-	if (opacityNode != NULL)
-		material->Opacity = opacityNode->GetAttribAsFloat("value");
-	else
-		material->Opacity = 1.0f;
+	paramNode = materialNode->GetChild("Opacity");
+	if (paramNode != NULL)
+		material->Opacity = paramNode->GetAttribAsFloat("value");
+
+	paramNode = materialNode->GetChild("UseSolid");
+	if (paramNode != NULL)
+		material->UseSolid = paramNode->GetAttribAsBool("value");
+
+	paramNode = materialNode->GetChild("UseWire");
+	if (paramNode != NULL)
+		material->UseWire = paramNode->GetAttribAsBool("value");
+
+	paramNode = materialNode->GetChild("SolidGlowPower");
+	if (paramNode != NULL)
+		material->SolidGlowPower = paramNode->GetAttribAsFloat("value");
+
+	paramNode = materialNode->GetChild("SolidGlowMultiplier");
+	if (paramNode != NULL)
+		material->SolidGlowMultiplier = paramNode->GetAttribAsFloat("value");
+
+	paramNode = materialNode->GetChild("WireGlowPower");
+	if (paramNode != NULL)
+		material->WireGlowPower = paramNode->GetAttribAsFloat("value");
+
+	paramNode = materialNode->GetChild("WireGlowMultiplier");
+	if (paramNode != NULL)
+		material->WireGlowMultiplier = paramNode->GetAttribAsFloat("value");
 
 	return material;
 }

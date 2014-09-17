@@ -10,5 +10,11 @@ namespace SceneElement
 	public:
 		sm::Vec3 Diffuse;
 		float Opacity;
+		bool UseSolid;
+		bool UseWire;
+		float SolidGlowPower;
+		float SolidGlowMultiplier;
+		float WireGlowPower;
+		float WireGlowMultiplier;
 	};
 }

@@ -25,6 +25,7 @@
 #include "DemoUtils.h"
 
 #include "Scenes/Scene01.h"
+#include "Scenes/Scene02.h"
 #include "Scenes/Scene03.h"
 
 #include "GraphicsEngine.h"
@@ -313,7 +314,7 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 
 	//m_lightProjMatrix = sm::Matrix::Ortho2DMatrix(-10, 10, -10, 10);
 
-	m_activeScene = new Scene01();
+	m_activeScene = new Scene02();
 	m_scenes.push_back(m_activeScene);
 
 	/*m_scenes.push_back(new Test1Scene());
