@@ -25,7 +25,7 @@
 					<WireGlowMultiplier value="1.2" />
 				</Material>
 			</Destination>
-			<Path>
+			<Path spread="1">
 				<Key time="14.9" position="5.020459;186.412659;11.104912" />
 				<Key time="15.9" position="-0.427110;186.499222;10.591385" />
 				<Key time="17" position="-3.093294;186.271454;13.464230" />
@@ -60,7 +60,7 @@
 					<WireGlowMultiplier value="1.2" />
 				</Material>
 			</Destination>
-			<Path>
+			<Path spread="1">
 				<Key time="25.9333" position="-4.256778;184.250412;28.069580" />
 				<Key time="27.4" position="-1.784984;180.987137;26.480888" />
 				<Key time="28.0333" position="2.313264;171.513290;23.094791" />
@@ -110,7 +110,7 @@
 					<WireGlowMultiplier value="1.2" />
 				</Material>
 			</StaticSource>
-			<Path>
+			<Path spread="1">
 				<Key time="3.3" position="-17.095360;185.568573;1.663845" />
 				<Key time="5" position="-13.855139;185.434677;3.110507" />
 				<Key time="5.96667" position="-10.905519;185.411346;3.774002" />

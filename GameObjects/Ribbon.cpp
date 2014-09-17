@@ -48,7 +48,6 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 
 	int keysCount = ribbonData->Path->Keys.size();
 	float duration = ribbonData->Path->Keys[keysCount - 1]->Time - ribbonData->Path->Keys[0]->Time;
-	float spread = 2.0f;
 	float minScale = 0.6f;
 	float durationDelay = 4.0f;
 
@@ -100,7 +99,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			mesh->meshParts[0],
 			ribbonData->Path,
 			halfPathKeyIndex,
-			spread,
+			ribbonData->Path->Spread,
 			minScale,
 			durationDelay);
 
@@ -144,7 +143,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			mesh->meshParts[0],
 			ribbonData->Path,
 			halfPathKeyIndex,
-			spread,
+			ribbonData->Path->Spread,
 			minScale,
 			durationDelay);
 

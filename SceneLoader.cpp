@@ -145,6 +145,8 @@ SceneElement::Path* SceneLoader::LoadPath(XMLNode* node)
 {
 	SceneElement::Path* path = new SceneElement::Path();
 
+	path->Spread = node->GetAttribAsFloat("spread", 1.0f);
+
 	for (uint32_t i = 0; i < node->GetChildrenCount(); i++)
 	{
 		SceneElement::Key *key = LoadKey(node->GetChild(i));
