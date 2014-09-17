@@ -5,12 +5,24 @@
 				<Material>
 					<Diffuse value="0.494118;0.027451;0.035294" />
 					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.8" />
+					<SolidGlowMultiplier value="0.8" />
+					<WireGlowPower value="0.8" />
+					<WireGlowMultiplier value="1.2" />
 				</Material>
 			</Source>
 			<Destination mesh_name="scene.morph.dst.biter">
 				<Material>
 					<Diffuse value="0.494118;0.027451;0.035294" />
 					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.8" />
+					<SolidGlowMultiplier value="0.8" />
+					<WireGlowPower value="0.8" />
+					<WireGlowMultiplier value="1.2" />
 				</Material>
 			</Destination>
 			<Path>
@@ -28,12 +40,24 @@
 				<Material>
 					<Diffuse value="0.494118;0.027451;0.035294" />
 					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.8" />
+					<SolidGlowMultiplier value="0.8" />
+					<WireGlowPower value="0.8" />
+					<WireGlowMultiplier value="1.2" />
 				</Material>
 			</Source>
 			<Destination mesh_name="scene.morph.dst.ground">
 				<Material>
 					<Diffuse value="0.494118;0.027451;0.035294" />
 					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.8" />
+					<SolidGlowMultiplier value="0.8" />
+					<WireGlowPower value="0.8" />
+					<WireGlowMultiplier value="1.2" />
 				</Material>
 			</Destination>
 			<Path>
@@ -54,18 +78,36 @@
 				<Material>
 					<Diffuse value="0.494118;0.027451;0.035294" />
 					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.8" />
+					<SolidGlowMultiplier value="0.8" />
+					<WireGlowPower value="0.8" />
+					<WireGlowMultiplier value="1.2" />
 				</Material>
 			</Source>
 			<Destination mesh_name="scene.morph.dst.majak">
 				<Material>
 					<Diffuse value="0.494118;0.027451;0.035294" />
 					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.8" />
+					<SolidGlowMultiplier value="0.8" />
+					<WireGlowPower value="0.8" />
+					<WireGlowMultiplier value="1.2" />
 				</Material>
 			</Destination>
 			<StaticSource mesh_name="scene.morph.src-static.majak">
 				<Material>
 					<Diffuse value="0.494118;0.027451;0.035294" />
 					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.8" />
+					<SolidGlowMultiplier value="0.8" />
+					<WireGlowPower value="0.8" />
+					<WireGlowMultiplier value="1.2" />
 				</Material>
 			</StaticSource>
 			<Path>
@@ -85,36 +127,72 @@
 			<Material>
 				<Diffuse value="0.854902;0.854902;0.854902" />
 				<Opacity value="0.2" />
+				<UseSolid value="1" />
+				<UseWire value="1" />
+				<SolidGlowPower value="0.8" />
+				<SolidGlowMultiplier value="0" />
+				<WireGlowPower value="0.8" />
+				<WireGlowMultiplier value="0.9" />
 			</Material>
 		</Static>
 		<Static mesh_name="Text010">
 			<Material>
 				<Diffuse value="0.854902;0.854902;0.854902" />
 				<Opacity value="0.2" />
+				<UseSolid value="1" />
+				<UseWire value="1" />
+				<SolidGlowPower value="0.8" />
+				<SolidGlowMultiplier value="0" />
+				<WireGlowPower value="0.8" />
+				<WireGlowMultiplier value="0.9" />
 			</Material>
 		</Static>
 		<Static mesh_name="Text011">
 			<Material>
 				<Diffuse value="0.854902;0.854902;0.854902" />
 				<Opacity value="0.2" />
+				<UseSolid value="1" />
+				<UseWire value="1" />
+				<SolidGlowPower value="0.8" />
+				<SolidGlowMultiplier value="0" />
+				<WireGlowPower value="0.8" />
+				<WireGlowMultiplier value="0.9" />
 			</Material>
 		</Static>
 		<Static mesh_name="Text013">
 			<Material>
 				<Diffuse value="0.854902;0.854902;0.854902" />
 				<Opacity value="0.2" />
+				<UseSolid value="1" />
+				<UseWire value="1" />
+				<SolidGlowPower value="0.8" />
+				<SolidGlowMultiplier value="0" />
+				<WireGlowPower value="0.8" />
+				<WireGlowMultiplier value="0.9" />
 			</Material>
 		</Static>
 		<Static mesh_name="Text017">
 			<Material>
 				<Diffuse value="0.854902;0.854902;0.854902" />
 				<Opacity value="0.2" />
+				<UseSolid value="1" />
+				<UseWire value="1" />
+				<SolidGlowPower value="0.8" />
+				<SolidGlowMultiplier value="0" />
+				<WireGlowPower value="0.8" />
+				<WireGlowMultiplier value="0.9" />
 			</Material>
 		</Static>
 		<Static mesh_name="Text018">
 			<Material>
 				<Diffuse value="0.854902;0.854902;0.854902" />
 				<Opacity value="0.2" />
+				<UseSolid value="1" />
+				<UseWire value="1" />
+				<SolidGlowPower value="0.8" />
+				<SolidGlowMultiplier value="0" />
+				<WireGlowPower value="0.8" />
+				<WireGlowMultiplier value="0.9" />
 			</Material>
 		</Static>
 	</StaticMeshes>

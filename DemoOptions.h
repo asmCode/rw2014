@@ -1,7 +1,7 @@
 #define TIME_SCALE 1.0f
 #define TIME_SHIFT 0.0f
 
-#define MAN_CAM 1
+//#define MAN_CAM 1
 #define DISABLE_FRUSTUM_CULLING 1
 #define SHOW_FPS 1
 //#define LOAD_LIGHTMAPS 1

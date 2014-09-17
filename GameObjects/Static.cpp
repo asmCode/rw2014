@@ -13,6 +13,10 @@
 Static::Static(const std::string& sceneName, SceneElement::StaticData* staticData) :
 	m_mesh(NULL)
 {
+	assert(staticData != NULL);
+	assert(staticData->Material != NULL);
+	assert(staticData->Material->UseSolid || staticData->Material->UseWire);
+
 	Model* model = Content::Instance->Get<Model>(sceneName);
 	assert(model != NULL);
 
@@ -24,19 +28,30 @@ Static::Static(const std::string& sceneName, SceneElement::StaticData* staticDat
 	m_mesh = new StaticTriangledMesh();
 	m_mesh->Initialize(sceneMesh->meshParts[0]);
 
-	if (staticData->Material != NULL)
-		m_mesh->SetColor(sm::Vec4(staticData->Material->Diffuse, staticData->Material->Opacity));
+	m_mesh->SetColor(sm::Vec4(staticData->Material->Diffuse, staticData->Material->Opacity));
+	m_mesh->SetGlowPower(staticData->Material->SolidGlowPower);
 
 	Shader* glowSpecullarShader = Content::Instance->Get<Shader>("StaticSpecularBlur");
 	assert(glowSpecullarShader != NULL);
 
-	StaticGlowTransparencySpecullar* material = new StaticGlowTransparencySpecullar(glowSpecullarShader);
-	material->SetGlowMultiplier(0.0f);
-	StaticGlowTransparencySpecullar* materialWire = new StaticGlowTransparencySpecullar(glowSpecullarShader);
-	materialWire->SetPolygonMode(StaticGlowTransparencySpecullar::PolygonMode_Lines);
+	if (staticData->Material->UseSolid)
+	{
+		StaticGlowTransparencySpecullar* material = new StaticGlowTransparencySpecullar(glowSpecullarShader);
+		material->SetGlowMultiplier(staticData->Material->SolidGlowMultiplier);
 
-	m_renderables.push_back(new Renderable(m_mesh, materialWire));
-	m_renderables.push_back(new Renderable(m_mesh, material));
+		Renderable* renderable = new Renderable(m_mesh, material);
+		m_renderables.push_back(renderable);
+	}
+
+	if (staticData->Material->UseWire)
+	{
+		StaticGlowTransparencySpecullar* material = new StaticGlowTransparencySpecullar(glowSpecullarShader);
+		material->SetGlowMultiplier(staticData->Material->WireGlowMultiplier);
+		material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
+
+		Renderable* renderable = new Renderable(m_mesh, material);
+		m_renderables.push_back(renderable);
+	}
 }
 
 Static::~Static()

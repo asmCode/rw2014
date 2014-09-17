@@ -109,9 +109,11 @@ bool XMLNode::GetAttribAsBool(const std::string &name, bool default)
 	if (!HasAttrib(name))
 		return default;
 
-	if (StringUtils::LowerCase(m_attribs[name]) == "true" || m_value == "1")
+	std::string attrilValue = StringUtils::LowerCase(m_attribs[name]);
+
+	if (attrilValue == "true" || attrilValue == "1")
 		return true;
-	else if (StringUtils::LowerCase(m_attribs[name]) == "false" || m_value == "0")
+	else if (attrilValue == "false" || attrilValue == "0")
 		return false;
 	else
 	{

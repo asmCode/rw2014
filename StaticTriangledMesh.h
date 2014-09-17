@@ -22,6 +22,7 @@ public:
 	void SetColor(const sm::Vec4& color);
 	void SetTriangleColor(int index, const sm::Vec4& color);
 	void SetGlowPower(int index, float glowPower);
+	void SetGlowPower(float glowPower);
 
 protected:
 	uint32_t m_vertexBufferId;

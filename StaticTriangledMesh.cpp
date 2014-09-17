@@ -141,3 +141,9 @@ void StaticTriangledMesh::SetGlowPower(int index, float glowPower)
 	(trianglesPointer + 1)->GlowPower = glowPower;
 	(trianglesPointer + 2)->GlowPower = glowPower;
 }
+
+void StaticTriangledMesh::SetGlowPower(float glowPower)
+{
+	for (uint32_t i = 0; i < m_trianglesCount; i++)
+		SetGlowPower(i, glowPower);
+}
