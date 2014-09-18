@@ -122,6 +122,7 @@ SceneElement::Destination* SceneLoader::LoadDestination(XMLNode* node)
 	SceneElement::Destination* destination = new SceneElement::Destination();
 	destination->MeshName = node->GetAttribAsString("mesh_name");
 	destination->Material = LoadMaterialFromChild(node);
+	destination->Stay = node->GetAttribAsBool("stay");
 	return destination;
 }
 
@@ -147,6 +148,7 @@ SceneElement::Path* SceneLoader::LoadPath(XMLNode* node)
 
 	path->Spread = node->GetAttribAsFloat("spread", 1.0f);
 	path->TriangleScale = node->GetAttribAsFloat("triangle_scale", 0.5f);
+	path->Delay = node->GetAttribAsFloat("delay", 4.0f);
 
 	for (uint32_t i = 0; i < node->GetChildrenCount(); i++)
 	{

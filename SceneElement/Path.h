@@ -12,5 +12,6 @@ namespace SceneElement
 		std::vector<Key*> Keys;
 		float Spread;
 		float TriangleScale;
+		float Delay;
 	};
 }

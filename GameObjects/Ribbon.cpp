@@ -48,10 +48,9 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 
 	int keysCount = ribbonData->Path->Keys.size();
 	float duration = ribbonData->Path->Keys[keysCount - 1]->Time - ribbonData->Path->Keys[0]->Time;
-	float durationDelay = 4.0f;
 
 	m_startDecomposeTime = ribbonData->Path->Keys[0]->Time;
-	m_finishComposeTime = ribbonData->Path->Keys[keysCount - 1]->Time + durationDelay;
+	m_finishComposeTime = ribbonData->Path->Keys[keysCount - 1]->Time + ribbonData->Path->Delay;
 
 	Model* model = Content::Instance->Get<Model>(sceneName);
 	assert(model != NULL);
@@ -61,14 +60,6 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 
 	Shader* staticGlowSpecullarShader = Content::Instance->Get<Shader>("StaticSpecularBlur");
 	assert(staticGlowSpecullarShader != NULL);
-
-	/*
-	StaticGlowTransparencySpecullar* staticMaterial = new StaticGlowTransparencySpecullar(staticGlowSpecullarShader);
-	staticMaterial->SetGlowMultiplier(0.8f);
-	StaticGlowTransparencySpecullar* staticMaterialWire = new StaticGlowTransparencySpecullar(staticGlowSpecullarShader);
-	staticMaterialWire->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
-	staticMaterialWire->SetGlowMultiplier(1.2f);
-	*/
 
 	IRibbonCurveBuilder* sourceCurveBuilder = NULL;
 	IRibbonCurveBuilder* destinationCurveBuilder = NULL;
@@ -100,7 +91,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			halfPathKeyIndex,
 			ribbonData->Path->Spread,
 			ribbonData->Path->TriangleScale,
-			durationDelay);
+			ribbonData->Path->Delay / (ribbonData->Source == NULL ? 1.0f : 2.0f));
 
 		m_decomposeAndFly->SetTriangleModificator(BlinkAtStartAndEnd::GetInstance());
 
@@ -144,7 +135,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			halfPathKeyIndex,
 			ribbonData->Path->Spread,
 			ribbonData->Path->TriangleScale,
-			durationDelay);
+			ribbonData->Path->Delay);
 
 		m_composeFromRibbon->GetMesh()->SetGlowPower(ribbonData->Destination->Material->SolidGlowPower); // wspolne dla solid i wire
 		m_composeFromRibbon->GetMesh()->SetColor(sm::Vec4(ribbonData->Destination->Material->Diffuse, ribbonData->Destination->Material->Opacity));
@@ -203,33 +194,37 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 		}
 	}
 
-	if (ribbonData->StaticDestination != NULL)
+	if (ribbonData->StaticDestination != NULL ||
+		(ribbonData->Destination != NULL) && ribbonData->Destination->Stay)
 	{
-		assert(ribbonData->StaticDestination->Material != NULL);
-		assert(ribbonData->StaticDestination->Material->UseSolid || ribbonData->StaticDestination->Material->UseWire);
+		SceneElement::Material* materialData = (ribbonData->StaticDestination != NULL ? ribbonData->StaticDestination->Material : ribbonData->Destination->Material);
+		std::string meshName = (ribbonData->StaticDestination != NULL ? ribbonData->StaticDestination->MeshName : ribbonData->Destination->MeshName);
 
-		Mesh* mesh = model->FindMesh(ribbonData->StaticDestination->MeshName);
+		assert(materialData != NULL);
+		assert(materialData->UseSolid || materialData->UseWire);
+
+		Mesh* mesh = model->FindMesh(meshName);
 		assert(mesh != NULL);
 
 		m_staticDestination = new StaticTriangledMesh();
 		m_staticDestination->Initialize(mesh->meshParts[0]);
 
-		m_staticDestination->SetGlowPower(ribbonData->StaticDestination->Material->SolidGlowPower); // wspolne dla solid i wire
-		m_staticDestination->SetColor(sm::Vec4(ribbonData->StaticDestination->Material->Diffuse, ribbonData->StaticDestination->Material->Opacity)); // wspolne dla wire i solid
+		m_staticDestination->SetGlowPower(materialData->SolidGlowPower); // wspolne dla solid i wire
+		m_staticDestination->SetColor(sm::Vec4(materialData->Diffuse, materialData->Opacity)); // wspolne dla wire i solid
 
-		if (ribbonData->StaticDestination->Material->UseSolid)
+		if (materialData->UseSolid)
 		{
 			StaticGlowTransparencySpecullar* material = new StaticGlowTransparencySpecullar(staticGlowSpecullarShader);
-			material->SetGlowMultiplier(ribbonData->StaticDestination->Material->SolidGlowMultiplier);
+			material->SetGlowMultiplier(materialData->SolidGlowMultiplier);
 
 			m_staticDestinationRenderable = new Renderable(m_staticDestination, material);
 			m_renderables.push_back(m_staticDestinationRenderable);
 		}
 
-		if (ribbonData->StaticDestination->Material->UseWire)
+		if (materialData->UseWire)
 		{
 			StaticGlowTransparencySpecullar* material = new StaticGlowTransparencySpecullar(staticGlowSpecullarShader);
-			material->SetGlowMultiplier(ribbonData->StaticDestination->Material->WireGlowMultiplier);
+			material->SetGlowMultiplier(materialData->WireGlowMultiplier);
 			material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 
 			m_staticDestinationRenderableWire = new Renderable(m_staticDestination, material);

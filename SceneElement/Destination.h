@@ -11,5 +11,6 @@ namespace SceneElement
 	public:
 		std::string MeshName;
 		Material* Material;
+		bool Stay;
 	};
 }

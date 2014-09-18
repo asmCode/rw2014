@@ -36,7 +36,7 @@ void TriangledMesh::CreateVertexDataBuffer()
 
 	m_triangles = new TriangleDataTransformColorGlow[m_trianglesCount * 3];
 
-	for (uint16_t i = 0; i < m_trianglesCount * 3; i++)
+	for (uint32_t i = 0; i < m_trianglesCount * 3; i++)
 	{
 		m_triangles[i].Transform = sm::Matrix::IdentityMatrix();
 
