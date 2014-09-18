@@ -27,6 +27,8 @@
 #include "Scenes/Scene01.h"
 #include "Scenes/Scene02.h"
 #include "Scenes/Scene03.h"
+#include "Scenes/Scene04.h"
+#include "Scenes/Scene06.h"
 
 #include "GraphicsEngine.h"
 #include "AssemblingScene.h"
@@ -314,9 +316,6 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 
 	//m_lightProjMatrix = sm::Matrix::Ortho2DMatrix(-10, 10, -10, 10);
 
-	m_activeScene = new Scene03();
-	m_scenes.push_back(m_activeScene);
-
 	/*m_scenes.push_back(new Test1Scene());
 	m_scenes.push_back(new GlowTestScene());
 	m_scenes.push_back(new BoneAnimTestScene());
@@ -456,8 +455,13 @@ bool DemoController::LoadContent(const char *basePath)
 	m_graphicsEngine = new GraphicsEngine(width, height);
 	m_graphicsEngine->Initialize();
 
+	m_activeScene = new Scene06();
+	m_scenes.push_back(m_activeScene);
+
 	for (uint32_t i = 0; i < m_scenes.size(); i++)
 		m_scenes[i]->Initialize();
+
+	m_graphicsEngine->SetRenderables(m_activeScene->GetRenderables());
 
 	return true;
 }
@@ -770,7 +774,7 @@ bool DemoController::Draw(float time, float seconds)
 
 	//DrawingRoutines::DrawWithMaterial(m_content->Get<Model>("teapot")->m_meshParts);
 
-	m_graphicsEngine->RenderGameObjects(m_activeScene->GetRenderables());
+	m_graphicsEngine->RenderGameObjects();
 
 #if 0
 
@@ -929,8 +933,8 @@ void DemoController::SetOpenglParams()
 
 	glShadeModel(GL_SMOOTH);
 
-	glClearColor(0.01f, 0.01f, 0.04f, 1.0f);
-	//glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	//glClearColor(0.01f, 0.01f, 0.04f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClearDepth(1.0f);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);

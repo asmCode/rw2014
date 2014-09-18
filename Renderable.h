@@ -9,7 +9,7 @@ class Material;
 class Renderable
 {
 public:
-	Renderable(BaseMesh *mesh, Material* material);
+	Renderable(BaseMesh *mesh, Material* material, int order = 0);
 	virtual ~Renderable();
 
 	virtual void Draw();
@@ -24,11 +24,13 @@ public:
 
 	void SetActive(bool active);
 	bool IsActive() const;
+	int GetOrder() const;
 
 private:
 	BaseMesh* m_mesh;
 	Material* m_material;
 
 	bool m_isActive;
+	int m_order;
 };
 

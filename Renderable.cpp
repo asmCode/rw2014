@@ -2,10 +2,11 @@
 #include "BaseMesh.h"
 #include <Graphics/Material.h>
 
-Renderable::Renderable(BaseMesh *mesh, Material* material) :
+Renderable::Renderable(BaseMesh *mesh, Material* material, int order) :
 	m_mesh(mesh),
 	m_material(material),
-	m_isActive(true)
+	m_isActive(true),
+	m_order(order)
 {
 }
 
@@ -48,4 +49,9 @@ void Renderable::SetActive(bool active)
 bool Renderable::IsActive() const
 {
 	return m_isActive;
+}
+
+int Renderable::GetOrder() const
+{
+	return m_order;
 }

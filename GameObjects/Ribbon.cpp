@@ -44,6 +44,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 	assert(ribbonData->Path != NULL);
 	assert(ribbonData->Path->Keys.size() > 0);
 
+	int order = 1;
 	int halfPathKeyIndex = ribbonData->Path->Keys.size() / 2;
 
 	int keysCount = ribbonData->Path->Keys.size();
@@ -103,7 +104,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			GlowTransparencySpecullar* material = new GlowTransparencySpecullar(glowSpecullarShader);
 			material->SetGlowMultiplier(ribbonData->Source->Material->SolidGlowMultiplier);
 
-			m_decomposeAndFlyRenderable = new Renderable(m_decomposeAndFly->GetMesh(), material);
+			m_decomposeAndFlyRenderable = new Renderable(m_decomposeAndFly->GetMesh(), material, order);
 			m_renderables.push_back(m_decomposeAndFlyRenderable);
 		}
 
@@ -113,7 +114,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			material->SetGlowMultiplier(ribbonData->Source->Material->WireGlowMultiplier);
 			material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 
-			m_decomposeAndFlyRenderableWire = new Renderable(m_decomposeAndFly->GetMesh(), material);
+			m_decomposeAndFlyRenderableWire = new Renderable(m_decomposeAndFly->GetMesh(), material, order);
 			m_renderables.push_back(m_decomposeAndFlyRenderableWire);
 		}
 	}
@@ -145,7 +146,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			GlowTransparencySpecullar* material = new GlowTransparencySpecullar(glowSpecullarShader);
 			material->SetGlowMultiplier(ribbonData->Destination->Material->SolidGlowMultiplier);
 
-			m_composeFromRibbonRenderable = new Renderable(m_composeFromRibbon->GetMesh(), material);
+			m_composeFromRibbonRenderable = new Renderable(m_composeFromRibbon->GetMesh(), material, order);
 			m_renderables.push_back(m_composeFromRibbonRenderable);
 		}
 
@@ -155,7 +156,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			material->SetGlowMultiplier(ribbonData->Destination->Material->WireGlowMultiplier);
 			material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 
-			m_composeFromRibbonRenderableWire = new Renderable(m_composeFromRibbon->GetMesh(), material);
+			m_composeFromRibbonRenderableWire = new Renderable(m_composeFromRibbon->GetMesh(), material, order);
 			m_renderables.push_back(m_composeFromRibbonRenderableWire);
 		}
 	}
@@ -179,7 +180,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			StaticGlowTransparencySpecullar* material = new StaticGlowTransparencySpecullar(staticGlowSpecullarShader);
 			material->SetGlowMultiplier(ribbonData->StaticSource->Material->SolidGlowMultiplier);
 
-			m_staticSourceRenderable = new Renderable(m_staticSource, material);
+			m_staticSourceRenderable = new Renderable(m_staticSource, material, order);
 			m_renderables.push_back(m_staticSourceRenderable);
 		}
 
@@ -189,7 +190,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			material->SetGlowMultiplier(ribbonData->StaticSource->Material->WireGlowMultiplier);
 			material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 
-			m_staticSourceRenderableWire = new Renderable(m_staticSource, material);
+			m_staticSourceRenderableWire = new Renderable(m_staticSource, material, order);
 			m_renderables.push_back(m_staticSourceRenderableWire);
 		}
 	}
@@ -217,7 +218,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			StaticGlowTransparencySpecullar* material = new StaticGlowTransparencySpecullar(staticGlowSpecullarShader);
 			material->SetGlowMultiplier(materialData->SolidGlowMultiplier);
 
-			m_staticDestinationRenderable = new Renderable(m_staticDestination, material);
+			m_staticDestinationRenderable = new Renderable(m_staticDestination, material, order);
 			m_renderables.push_back(m_staticDestinationRenderable);
 		}
 
@@ -227,7 +228,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			material->SetGlowMultiplier(materialData->WireGlowMultiplier);
 			material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 
-			m_staticDestinationRenderableWire = new Renderable(m_staticDestination, material);
+			m_staticDestinationRenderableWire = new Renderable(m_staticDestination, material, order);
 			m_renderables.push_back(m_staticDestinationRenderableWire);
 		}
 	}
@@ -242,7 +243,7 @@ void Ribbon::Update(float time, float seconds)
 	for (uint32_t i = 0; i < m_renderables.size(); i++)
 		m_renderables[i]->SetActive(false);
 
-	if (time >= m_startDecomposeTime && time <= m_finishComposeTime + 1.0f)
+	if (time >= m_startDecomposeTime && time <= m_finishComposeTime + 0.0f) // TODO: + 1 to czas na blinkniecie
 	{
 		if (m_decomposeAndFlyRenderable != NULL)
 			m_decomposeAndFlyRenderable->SetActive(true);

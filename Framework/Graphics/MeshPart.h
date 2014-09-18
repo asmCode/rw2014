@@ -13,7 +13,7 @@ class ITransformable;
 class MeshPart
 {
 public:
-	uint32_t vboId;
+	//uint32_t vboId;
 	Material *material;
 	Texture *m_lightmap;
 

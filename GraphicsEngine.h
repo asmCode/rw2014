@@ -17,7 +17,8 @@ public:
 
 	void Initialize();
 
-	void RenderGameObjects(const std::vector<Renderable*>& renderables);
+	void SetRenderables(const std::vector<Renderable*>& renderables);
+	void RenderGameObjects();
 
 private:
 	int m_screenWidth;
@@ -39,6 +40,9 @@ private:
 	Shader* m_horiBlurShader;
 	Shader* m_vertBlurShader;
 	Shader* m_addShader;
+
+	std::vector<Renderable*> m_solidRenderables;
+	std::vector<Renderable*> m_transparentRenderables;
 
 	void Downsample(Texture* srcTexture);
 	void Blur(Texture* srcTexture);

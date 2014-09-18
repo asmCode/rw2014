@@ -3,6 +3,7 @@
 #include "Renderable.h"
 #include "DrawingRoutines.h"
 #include "Quad.h"
+#include "RenderableSort.h"
 #include "GraphicsLibrary/ICamera.h"
 #include <Math/Vec2.h>
 #include <Graphics/Framebuffer.h>
@@ -12,6 +13,7 @@
 #include <Graphics/Shader.h>
 #include <Graphics/Content/Content.h>
 #include <GL/glew.h>
+#include <algorithm>
 #include <stdint.h>
 
 GraphicsEngine::GraphicsEngine(int screenWidth, int screenHeight) :
@@ -118,15 +120,15 @@ void GraphicsEngine::Initialize()
 	assert(m_addShader != NULL);
 }
 
-void GraphicsEngine::RenderGameObjects(const std::vector<Renderable*>& renderables)
+void GraphicsEngine::SetRenderables(const std::vector<Renderable*>& renderables)
 {
-	std::vector<Renderable*> solidRenderables;
-	solidRenderables.reserve(renderables.size());
-	std::vector<Renderable*> transparentRenderables;
-	transparentRenderables.reserve(renderables.size());
+	m_solidRenderables.clear();
+	m_transparentRenderables.clear();
+	SortRenderables(renderables, m_solidRenderables, m_transparentRenderables);
+}
 
-	SortRenderables(renderables, solidRenderables, transparentRenderables);
-
+void GraphicsEngine::RenderGameObjects()
+{
 	m_mainFrame->BindFramebuffer();
 	glViewport(0, 0, m_screenWidth, m_screenHeight);
 
@@ -142,18 +144,24 @@ void GraphicsEngine::RenderGameObjects(const std::vector<Renderable*>& renderabl
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
 
-	for (uint32_t i = 0; i < solidRenderables.size(); i++)
+	for (uint32_t i = 0; i < m_solidRenderables.size(); i++)
 	{
-		Material* material = solidRenderables[i]->GetMaterial();
+		if (!m_solidRenderables[i]->IsActive())
+			continue;
+
+		Material* material = m_solidRenderables[i]->GetMaterial();
 		material->SetupMaterial();
-		solidRenderables[i]->Draw();
+		m_solidRenderables[i]->Draw();
 	}
 
-	for (uint32_t i = 0; i < transparentRenderables.size(); i++)
+	for (uint32_t i = 0; i < m_transparentRenderables.size(); i++)
 	{
-		Material* material = transparentRenderables[i]->GetMaterial();
+		if (!m_transparentRenderables[i]->IsActive())
+			continue;
+
+		Material* material = m_transparentRenderables[i]->GetMaterial();
 		material->SetupMaterial();
-		transparentRenderables[i]->Draw();
+		m_transparentRenderables[i]->Draw();
 	}
 
 	/*
@@ -296,9 +304,6 @@ void GraphicsEngine::SortRenderables(
 {
 	for (uint32_t i = 0; i < renderables.size(); i++)
 	{
-		if (!renderables[i]->IsActive())
-			continue;
-
 		Material* material = renderables[i]->GetMaterial();
 		assert(material != NULL);
 
@@ -307,4 +312,8 @@ void GraphicsEngine::SortRenderables(
 		else
 			solid.push_back(renderables[i]);
 	}
+
+	static RenderableSort renderableSort;
+	std::sort(solid.begin(), solid.end(), renderableSort);
+	std::sort(transparent.begin(), transparent.end(), renderableSort);
 }

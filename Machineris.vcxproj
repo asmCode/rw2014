@@ -191,6 +191,7 @@ exit /B 0
     <ClCompile Include="Materials\StaticGlowTransparencySpecullar.cpp" />
     <ClCompile Include="MeshUtils.cpp" />
     <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="RenderableSort.cpp" />
     <ClCompile Include="Ribbon\Modificators\BlinkAtStartAndEnd.cpp" />
     <ClCompile Include="Ribbon\RibbonCurve.cpp" />
     <ClCompile Include="Ribbon\RibbonCurveDestination.cpp" />
@@ -209,8 +210,11 @@ exit /B 0
     <ClCompile Include="Scenes\Scene01.cpp" />
     <ClCompile Include="Scenes\Scene02.cpp" />
     <ClCompile Include="Scenes\Scene03.cpp" />
+    <ClCompile Include="Scenes\Scene04.cpp" />
+    <ClCompile Include="Scenes\Scene06.cpp" />
     <ClCompile Include="SceneUtils.cpp" />
     <ClCompile Include="SkinnedMesh.cpp" />
+    <ClCompile Include="SkinnedRibbonMesh.cpp" />
     <ClCompile Include="StaticTriangledMesh.cpp" />
     <ClCompile Include="TriangledMesh.cpp" />
     <ClCompile Include="ParticlesManager.cpp" />
@@ -350,6 +354,7 @@ exit /B 0
     <ClInclude Include="Materials\StaticGlowTransparencySpecullar.h" />
     <ClInclude Include="MeshUtils.h" />
     <ClInclude Include="Quad.h" />
+    <ClInclude Include="RenderableSort.h" />
     <ClInclude Include="Ribbon\IRibbonCurveBuilder.h" />
     <ClInclude Include="Ribbon\Modificators\BlinkAtStartAndEnd.h" />
     <ClInclude Include="Ribbon\Modificators\ITriangleModificator.h" />
@@ -377,10 +382,12 @@ exit /B 0
     <ClInclude Include="Scenes\Scene01.h" />
     <ClInclude Include="Scenes\Scene02.h" />
     <ClInclude Include="Scenes\Scene03.h" />
+    <ClInclude Include="Scenes\Scene04.h" />
+    <ClInclude Include="Scenes\Scene06.h" />
     <ClInclude Include="SceneUtils.h" />
     <ClInclude Include="SkinnedMesh.h" />
+    <ClInclude Include="SkinnedRibbonMesh.h" />
     <ClInclude Include="TriangleDataColorGlow.h" />
-    <ClInclude Include="TriangleDataSkinnedColorGlow.h" />
     <ClInclude Include="TriangleDataTransformColorGlow.h" />
     <ClInclude Include="StaticTriangledMesh.h" />
     <ClInclude Include="TriangledMesh.h" />
@@ -444,6 +451,8 @@ exit /B 0
     <None Include="Data\effects\HoriBlur.vpr" />
     <None Include="Data\effects\Skinned.fpr" />
     <None Include="Data\effects\Skinned.vpr" />
+    <None Include="Data\effects\SkinnedRibbon.fpr" />
+    <None Include="Data\effects\SkinnedRibbon.vpr" />
     <None Include="Data\effects\SpecularBlur.fpr" />
     <None Include="Data\effects\SpecularBlur.vpr" />
     <None Include="Data\effects\SpecularColored.fpr" />

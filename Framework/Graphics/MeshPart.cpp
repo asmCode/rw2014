@@ -26,10 +26,12 @@ MeshPart::MeshPart(int verticesCount, void *vertices, Mesh *mesh, uint8_t vertex
 	this ->verticesCount = verticesCount;
 	this ->vertices = vertices;
 	
+	/*
 	glGenBuffers(1, &vboId);
 	glBindBuffer(GL_ARRAY_BUFFER, vboId);
 	glBufferData(GL_ARRAY_BUFFER, verticesCount * VertexInformation::GetStride(m_vertexType), vertices, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	*/
 
 	material = NULL;
 }
@@ -41,8 +43,10 @@ bool& MeshPart::IsAlvaysVisible()
 
 MeshPart::~MeshPart()
 {
+	/*
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 	glDeleteBuffersARB(1, &vboId);
+	*/
 
 	delete [] vertices;
 	delete bbox;
@@ -51,11 +55,13 @@ MeshPart::~MeshPart()
 
 void MeshPart::Draw()
 {
+	/*
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, vboId);
 	SetupVertexPointers();
 	glDrawArrays(GL_TRIANGLES, 0, verticesCount);
 
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
+	*/
 }
 
 void MeshPart::SetMaterial(Material *material)
