@@ -48,7 +48,7 @@ void DebugUtils::DrawCurve(AnimationCurve<sm::Vec3>& curve, float timeStep, cons
 		Keyframe<sm::Vec3>& k = curve.GetKeyframe(i);
 
 		sm::Vec3 val = k.Value;
-		GraphicsLog::AddSegment(val, val + sm::Vec3(0, 5.0f, 0), color);
-		GraphicsLog::AddSegment(val, val + sm::Vec3(5.0f, 0.0f, 0), color);
+		GraphicsLog::AddSegment(val, val + sm::Vec3(0, 0.5f, 0), color);
+		GraphicsLog::AddSegment(val, val + sm::Vec3(0.5f, 0.0f, 0), color);
 	}
 }

@@ -32,7 +32,7 @@ AnimationCurve<sm::Vec3>* RibbonCurveDestination::CreateCurve(
 
 	int keysCount = path->Keys.size();
 
-	spread = 0.0f;
+	//spread = 0.0f;
 
 	//float firstKeyTimeShift = keys[0]->Time * (maxTimeScale - timeScale + 1);
 	float firstKeyTimeShift = keys[0]->Time + (maxDelay * (1.0f - ((timeScale - 1.0f) / (maxTimeScale - 1.0f))));
@@ -49,16 +49,16 @@ AnimationCurve<sm::Vec3>* RibbonCurveDestination::CreateCurve(
 				a = true;
 				float t = keys[i]->Time * timeScale;
 				float d = keys[i]->Time - firstKeyTimeShift;
-				curve->AddKeyframe((keys[0]->Time + ((keys[i]->Time * timeScale )- firstKeyTimeShift)), path->Keys[i]->Position + DemoUtils::GetRandomVector() * random.GetFloat(0, spread));
+				curve->AddKeyframe((keys[0]->Time + ((keys[i]->Time * timeScale )- firstKeyTimeShift)), path->Keys[i]->Position + (DemoUtils::GetRandomVector() * random.GetFloat(0, spread)));
 			}
 			else
 			{
-				curve->AddKeyframe(keys[i]->Time * timeScale, path->Keys[i]->Position + DemoUtils::GetRandomVector() * random.GetFloat(0, spread));
+				curve->AddKeyframe(keys[i]->Time * timeScale, path->Keys[i]->Position + (DemoUtils::GetRandomVector() * random.GetFloat(0, spread)));
 			}	
 		}
 	}
 
-	float firstMoveDistance = random.GetFloat(5.0f, 20.0f);
+	float firstMoveDistance = random.GetFloat(0.5f, 2.0f);
 	sm::Vec3 firstMovePosition = basePosition + normal * firstMoveDistance;
 
 	curve->AddKeyframe(keys[keysCount - 2]->Time * timeScale, firstMovePosition);

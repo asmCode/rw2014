@@ -48,7 +48,6 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 
 	int keysCount = ribbonData->Path->Keys.size();
 	float duration = ribbonData->Path->Keys[keysCount - 1]->Time - ribbonData->Path->Keys[0]->Time;
-	float minScale = 0.6f;
 	float durationDelay = 4.0f;
 
 	m_startDecomposeTime = ribbonData->Path->Keys[0]->Time;
@@ -100,7 +99,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			ribbonData->Path,
 			halfPathKeyIndex,
 			ribbonData->Path->Spread,
-			minScale,
+			ribbonData->Path->TriangleScale,
 			durationDelay);
 
 		m_decomposeAndFly->SetTriangleModificator(BlinkAtStartAndEnd::GetInstance());
@@ -144,7 +143,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			ribbonData->Path,
 			halfPathKeyIndex,
 			ribbonData->Path->Spread,
-			minScale,
+			ribbonData->Path->TriangleScale,
 			durationDelay);
 
 		m_composeFromRibbon->GetMesh()->SetGlowPower(ribbonData->Destination->Material->SolidGlowPower); // wspolne dla solid i wire

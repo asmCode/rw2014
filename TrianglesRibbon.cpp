@@ -68,7 +68,7 @@ void TrianglesRibbon::Update(float time, float deltaTime)
 	sm::Vec3 position;
 	float scale;
 
-	DebugUtils::DrawCurve(*m_trianglesData[0]->Curve, 0.1f, sm::Vec3(0, 0, 1));
+	//DebugUtils::DrawCurve(*m_trianglesData[0]->Curve, 0.1f, sm::Vec3(0, 0, 1));
 
 	for (int i = 0; i < m_trianglesCount; i++)
 	{
