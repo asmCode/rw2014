@@ -17,15 +17,15 @@ ScenesManager::ScenesManager() :
 
 void ScenesManager::Initialize()
 {
-	m_scenes.push_back(new Scene01());
-	m_scenes.push_back(new Scene02());
-	m_scenes.push_back(new Scene03());
+	//m_scenes.push_back(new Scene01());
+	//m_scenes.push_back(new Scene02());
+	//m_scenes.push_back(new Scene03());
+	m_scenes.push_back(new Scene04());
 	//m_scenes.push_back(new Scene05());
-	//m_scenes.push_back(new Scene04());
 	//m_scenes.push_back(new Scene06());
-	m_scenes.push_back(new Scene07());
-	m_scenes.push_back(new Scene08());
-	m_scenes.push_back(new Scene09());
+	//m_scenes.push_back(new Scene07());
+	//m_scenes.push_back(new Scene08());
+	//m_scenes.push_back(new Scene09());
 
 	m_isSceneChanged = true;
 	m_activeSceneIndex = 0;

@@ -4,7 +4,7 @@
 //#define TIME_SHIFT 60 * 3 + 30 // po greetz
 //#define TIME_SHIFT 60 * 5 + 30 // biegacze
 
-//#define MAN_CAM 1
+#define MAN_CAM 1
 //#define DISABLE_FRUSTUM_CULLING 1
 #define SHOW_FPS 1
 //#define LOAD_LIGHTMAPS 1

@@ -11,7 +11,7 @@ SkinnedGlowTransparencySpecullar::SkinnedGlowTransparencySpecullar(Shader* shade
 
 void SkinnedGlowTransparencySpecullar::SetupRenderState()
 {
-	this->BaseGlowTransparencySpecullar::SetupShader();
+	this->BaseGlowTransparencySpecullar::SetupRenderState();
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);

@@ -84,6 +84,8 @@ Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
 		m_positionCurve->AddKeyframe(key->Time, key->Position);
 	}
 
+	m_positionCurve->SmoothTangents();
+
 	for (uint32_t i = 0; i < guyData->AnimationIndex.size(); i++)
 	{
 		SceneElement::IntKey* key = guyData->AnimationIndex[i];
@@ -98,7 +100,18 @@ Guy::~Guy()
 void Guy::Update(float time, float seconds)
 {
 	sm::Vec3 position = m_positionCurve->Evaluate(time);
-	sm::Matrix baseTransform = sm::Matrix::TranslateMatrix(position) * sm::Matrix::ScaleMatrix(0.02f, 0.02f, 0.02f);
+	sm::Vec3 nextPosition = m_positionCurve->Evaluate(time + 0.05f);
+
+	sm::Vec3 direction(0, 0, 1);
+
+	if (position != nextPosition)
+		direction = (nextPosition - position).GetNormalized();
+
+	sm::Matrix baseTransform =
+		sm::Matrix::TranslateMatrix(position) *
+		sm::Matrix::CreateLookAt(direction, sm::Vec3(0, 1, 0)) *
+		sm::Matrix::ScaleMatrix(0.02f, 0.02f, 0.02f);
+
 	//sm::Matrix baseTransform = sm::Matrix::IdentityMatrix();
 
 	int animationIndex = 0;

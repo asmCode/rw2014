@@ -7,6 +7,7 @@ uniform vec4 u_diffuseColor; // 'w' component as opacity
 uniform vec3 u_specularColor;
 uniform float u_glossiness; // 0.0 - 256.0 
 uniform float u_specularLevel; // 0.0 - 10.0
+uniform float u_glowMultiplier;
 
 varying vec4 o_color;
 varying vec3 o_normal;
@@ -32,6 +33,6 @@ void main()
 	FragColor =	(diffuseColor * 0.001) + vec4(100, 0, 0, 1);
 	FragColor =	o_color;
 	//BlurFragColor = vec4(o_color.xyz * o_glowPower, o_color.w);
-	BlurFragColor = o_color * o_glowPower;
+	BlurFragColor = o_color * o_glowPower * u_glowMultiplier;
 }
 
