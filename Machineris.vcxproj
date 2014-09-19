@@ -443,6 +443,8 @@ exit /B 0
     <None Include="Data\effects\Black.vpr" />
     <None Include="Data\effects\Blit.fpr" />
     <None Include="Data\effects\Blit.vpr" />
+    <None Include="Data\effects\BlitOpacity.fpr" />
+    <None Include="Data\effects\BlitOpacity.vpr" />
     <None Include="Data\effects\Color.fpr" />
     <None Include="Data\effects\Color.vpr" />
     <None Include="Data\effects\Diff.fpr" />

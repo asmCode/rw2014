@@ -29,6 +29,7 @@ GraphicsEngine::GraphicsEngine(int screenWidth, int screenHeight) :
 	m_blurTextureStep2(NULL),
 	m_downsampleShader(NULL),
 	m_blitShader(NULL),
+	m_blitOpacityShader(NULL),
 	m_horiBlurShader(NULL),
 	m_vertBlurShader(NULL),
 	m_addShader(NULL)
@@ -109,6 +110,9 @@ void GraphicsEngine::Initialize()
 
 	m_blitShader = Content::Instance->Get<Shader>("Blit");
 	assert(m_blitShader != NULL);
+
+	m_blitOpacityShader = Content::Instance->Get<Shader>("BlitOpacity");
+	assert(m_blitOpacityShader != NULL);
 
 	m_horiBlurShader = Content::Instance->Get<Shader>("HoriBlur");
 	assert(m_horiBlurShader != NULL);
@@ -316,4 +320,25 @@ void GraphicsEngine::SortRenderables(
 	static RenderableSort renderableSort;
 	std::sort(solid.begin(), solid.end(), renderableSort);
 	std::sort(transparent.begin(), transparent.end(), renderableSort);
+}
+
+void GraphicsEngine::RenderFullScreenTexture(Texture* texture, float opacity)
+{
+	glViewport(0, 0, m_screenWidth, m_screenHeight);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glDepthMask(false);
+	glColorMask(true, true, true, true);
+	glDisable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	m_blitOpacityShader->UseProgram();
+	m_blitOpacityShader->SetTextureParameter("u_tex", 0, texture->GetId());
+	m_blitOpacityShader->SetParameter("u_opacity", opacity);
+
+	glViewport(0, 0, m_screenWidth, m_screenHeight);
+
+	Quad::Setup();
+	m_quad->Draw();
+	Quad::Clean();
 }

@@ -20,6 +20,8 @@ public:
 	void SetRenderables(const std::vector<Renderable*>& renderables);
 	void RenderGameObjects();
 
+	void RenderFullScreenTexture(Texture* texture, float opacity);
+
 private:
 	int m_screenWidth;
 	int m_screenHeight;
@@ -37,6 +39,7 @@ private:
 
 	Shader* m_downsampleShader;
 	Shader* m_blitShader;
+	Shader* m_blitOpacityShader;
 	Shader* m_horiBlurShader;
 	Shader* m_vertBlurShader;
 	Shader* m_addShader;

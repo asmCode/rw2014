@@ -281,6 +281,10 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 	blurFbo = new Framebuffer();
 	blurFbo ->Initialize(width / 2, height / 2, 32);
 
+	float fadeTexData[2 * 2 * 4 * sizeof(float)];
+	memset(fadeTexData, 0, 2 * 2 * 4 * sizeof(float));
+	m_fadeTex = new Texture(2, 2, 32, fadeTexData, Texture::Wrap_ClampToEdge, Texture::Filter_Nearest, Texture::Filter_Nearest, false);
+
 	m_shadowMapTexture = new DepthTexture(width, height);
 	m_dummyColorTexture = new Texture(width, height, 32, NULL, Texture::Wrap_ClampToEdge,
 		Texture::Filter_Nearest, Texture::Filter_Nearest, false);
@@ -369,6 +373,20 @@ bool DemoController::LoadContent(const char *basePath)
 	m_spriteShader->LinkProgram();
 
 	m_spriteBatch = new SpriteBatch(m_spriteShader, sm::Matrix::Ortho2DMatrix(0, width, 0, height));
+
+	m_endScreen = Content::Instance->Get<Texture>("end");
+	assert(m_endScreen != NULL);
+
+	m_startScreen = Content::Instance->Get<Texture>("loader");
+	assert(m_startScreen != NULL);
+
+	m_endScreenAnim.AddKeyframe(5 * 60 + 56, 0);
+	m_endScreenAnim.AddKeyframe(5 * 60 + 58, 1);
+	m_endScreenAnim.SmoothTangents();
+
+	m_startScreenAnim.AddKeyframe(0, 1);
+	m_startScreenAnim.AddKeyframe(1.5f, 0);
+	m_startScreenAnim.SmoothTangents();
 
 	/*
 	blackTex = dc->Get<Texture>("black");
@@ -714,7 +732,7 @@ bool DemoController::Update(float time, float seconds)
 	return true;
 }
 
-static float fadeDir = 0.05f;
+static float fadeDir = 0.0f;
 
 void DemoController::InitElectroNoise()
 {
@@ -738,27 +756,26 @@ void DemoController::InitElectroNoise()
 
 float DemoController::CalcFlash(float time, float ms)
 {
-	time /= 1000.0f;
-
 	AnimCamera *cam =
-		dynamic_cast<AnimCamera*>(currentCamera);
+		dynamic_cast<AnimCamera*>(m_activeCamera);
 
 	if (cam == NULL)
-		return 1.0f;
+		return 0.0f;
 
 	if (time > cam->GetLastKeyFrameTime() - 0.3f)
-		fadeDir = -1;
+		fadeDir = 1.0f / 0.3f;
 
-	fade = fade + ((ms / 300.0f) * fadeDir);
+	fade = fade + (ms * fadeDir);
 
 	if (fade >= 1.0f)
 	{
 		fade = 1.0f;
+		fadeDir = -0.4f;
 	}
 	else if (fade <= 0.0f)
 	{
 		fade = 0.0f;
-		fadeDir = 0.2f;
+		fadeDir = 0.0f;
 	}
 
 	return fade;
@@ -778,6 +795,21 @@ bool DemoController::Draw(float time, float seconds)
 	//DrawingRoutines::DrawWithMaterial(m_content->Get<Model>("teapot")->m_meshParts);
 
 	m_graphicsEngine->RenderGameObjects();
+
+	float fade = CalcFlash(time, seconds);
+
+	if (fade > 0.0f)
+		m_graphicsEngine->RenderFullScreenTexture(m_fadeTex, fade);
+
+	if (time >= m_endScreenAnim.GetStartTime())
+	{
+		m_graphicsEngine->RenderFullScreenTexture(m_endScreen, m_endScreenAnim.Evaluate(time));
+	}
+
+	if (time <= m_startScreenAnim.GetEndTime())
+	{
+		m_graphicsEngine->RenderFullScreenTexture(m_startScreen, m_startScreenAnim.Evaluate(time));
+	}
 
 #if 0
 
@@ -912,6 +944,8 @@ bool DemoController::Draw(float time, float seconds)
 
 	sprintf(fpsText, "time: %.2f", time);
 	DrawText(fpsText, 4, height - 160, 255, 0, 0);
+	sprintf(fpsText, "fade: %.2f", fade);
+	DrawText(fpsText, 4, height - 180, 255, 0, 0);
 #endif
 
 	VectorGraphics::SetViewProjMatrix(m_viewProj);

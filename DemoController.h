@@ -186,7 +186,6 @@ public:
 
 	bool firstupdate;
 
-	Texture *m_endScreen;
 	float m_endScreenOpacity;
 
 	DepthTexture *m_shadowMapTexture;
@@ -306,4 +305,12 @@ public:
 	Model* LoadModel(const std::string &path);
 	AnimationData* LoadAnimation(const std::string &path);
 	Material* LoadMaterial(const std::string &path);
+
+	AnimationCurve<float> m_endScreenAnim;
+	AnimationCurve<float> m_startScreenAnim;
+	AnimCamera* m_prevCamera;
+	float nextFadeTime;
+	Texture* m_fadeTex;
+	Texture* m_endScreen;
+	Texture* m_startScreen;
 };

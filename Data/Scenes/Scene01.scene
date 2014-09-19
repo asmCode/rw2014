@@ -1,7 +1,7 @@
 <Scene name="Scene01">
 	<Ribbons>
 		<Ribbon>
-			<Source mesh_name="scene.morph.src.biter">
+			<Source mesh_name="scene.morph.src.biter" destroy="0" stay="0">
 				<Material>
 					<Diffuse value="0.494118;0.027451;0.035294" />
 					<Opacity value="0.2" />
@@ -188,7 +188,7 @@
 			</Path>
 		</Ribbon>
 		<Ribbon>
-			<Source mesh_name="scene.morph.src.ground">
+			<Source mesh_name="scene.morph.src.ground" destroy="0" stay="0">
 				<Material>
 					<Diffuse value="0.494118;0.027451;0.035294" />
 					<Opacity value="0.2" />
@@ -224,7 +224,7 @@
 			</Path>
 		</Ribbon>
 		<Ribbon>
-			<Source mesh_name="scene.morph.src.majak">
+			<Source mesh_name="scene.morph.src.majak" destroy="0" stay="0">
 				<Material>
 					<Diffuse value="0.494118;0.027451;0.035294" />
 					<Opacity value="0.2" />
