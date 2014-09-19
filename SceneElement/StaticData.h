@@ -13,5 +13,6 @@ namespace SceneElement
 
 		std::string MeshName;
 		Material* Material;
+		int Order;
 	};
 }

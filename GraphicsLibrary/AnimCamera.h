@@ -21,6 +21,7 @@ private:
 	AnimationCurve<float> *fovAnim;
 	AnimationCurve<float> *distAnim;
 	float lastKeyFrameTime;
+	float startTime;
 
 public:
 	AnimCamera(int id);
@@ -30,7 +31,9 @@ public:
 	static AnimCamera* FromFile(const std::string &path);
 
 	void SetLastKeyFrameTime(float time);
+	void SetFirstKeyFrameTime(float time);
 	float GetLastKeyFrameTime();
+	float GetStartTime();
 	bool IsCam();
 	int GetId();
 	std::string GetName() const;

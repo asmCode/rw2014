@@ -176,6 +176,7 @@ SceneElement::StaticData* SceneLoader::LoadStatic(XMLNode* node)
 {
 	SceneElement::StaticData* data = new SceneElement::StaticData();
 	data->MeshName = node->GetAttribAsString("mesh_name");
+	data->Order = node->GetAttribAsInt32("order");
 	data->Material = LoadMaterialFromChild(node);
 
 	return data;

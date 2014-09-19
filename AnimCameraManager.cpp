@@ -27,7 +27,9 @@ void AnimCameraManager::Load(const std::string &path, Animation *anim)
 		if (anim != NULL)
 		{
 			float animLen = anim->GetAnimLengthById(cam->GetId());
+			float animStart = anim->GetAnimStartById(cam->GetId());
 			cam->SetLastKeyFrameTime(animLen);
+			cam->SetFirstKeyFrameTime(animStart);
 
 			Animation* childAnim = anim->GetAnimationById(cam->GetId());
 			assert(childAnim != NULL);
@@ -60,3 +62,14 @@ AnimCamera *AnimCameraManager::GetCameraByName(const std::string &name)
 	return NULL;
 }
 
+int AnimCameraManager::GetCamerasCount() const
+{
+	return cameras.size();
+}
+
+AnimCamera* AnimCameraManager::GetCamera(int index)
+{
+	assert(index < cameras.size());
+
+	return cameras[index];
+}

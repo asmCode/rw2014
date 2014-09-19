@@ -28,6 +28,9 @@ public:
 
 	virtual ICamera* GetCamera() const;
 
+	virtual float GetStartTime() const;
+	virtual float GetEndTime() const;
+
 protected:
 	std::string m_name;
 

@@ -173,6 +173,12 @@ void SkinnedMesh::SetGlowPower(int index, float glowPower)
 	(trianglesPointer + 2)->GlowPower = glowPower;
 }
 
+void SkinnedMesh::SetGlowPower(float glowPower)
+{
+	for (uint32_t i = 0; i < m_trianglesCount; i++)
+		SetGlowPower(i, glowPower);
+}
+
 void SkinnedMesh::AddAnimation(const std::string& name, Animation* animation)
 {
 	for (int i = 0; i < m_meshData->bonesCount; i++)

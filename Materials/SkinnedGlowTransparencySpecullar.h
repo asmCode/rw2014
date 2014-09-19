@@ -1,16 +1,15 @@
 #pragma once
 
-#include <Graphics/Material.h>
+#include "BaseGlowTransparencySpecullar.h"
 #include <stdint.h>
 
 class SkinnedMesh;
 
-class SkinnedGlowTransparencySpecullar : public Material
+class SkinnedGlowTransparencySpecullar : public BaseGlowTransparencySpecullar
 {
 public:
 	SkinnedGlowTransparencySpecullar(Shader* shader, SkinnedMesh* skinnedMesh);
 
-	bool IsOpacity() const;
 	void SetupRenderState();
 	void SetupShader();
 

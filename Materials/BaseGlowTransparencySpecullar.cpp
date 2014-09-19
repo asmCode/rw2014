@@ -3,10 +3,16 @@
 #include <Graphics/Shader.h>
 
 BaseGlowTransparencySpecullar::BaseGlowTransparencySpecullar(Shader* shader) :
+	m_worldMatrix(NULL),
 	m_polygonMode(GL_FILL),
 	m_glowMultiplier(1.0f)
 {
 	m_shader = shader;
+}
+
+void BaseGlowTransparencySpecullar::SetWorldMatrix(const sm::Matrix* worldMatrix)
+{
+	m_worldMatrix = worldMatrix;
 }
 
 void BaseGlowTransparencySpecullar::SetPolygonMode(PolygonMode polygonMode)
@@ -50,6 +56,9 @@ void BaseGlowTransparencySpecullar::SetupRenderState()
 void BaseGlowTransparencySpecullar::SetupShader()
 {
 	m_shader->UseProgram();
-	m_shader->SetMatrixParameter("u_viewProjMatrix", DrawingRoutines::GetViewProjMatrix());
+	if (m_worldMatrix != NULL)
+		m_shader->SetMatrixParameter("u_viewProjMatrix", DrawingRoutines::GetViewProjMatrix() * (*m_worldMatrix));
+	else
+		m_shader->SetMatrixParameter("u_viewProjMatrix", DrawingRoutines::GetViewProjMatrix());
 	m_shader->SetParameter("u_glowMultiplier", m_glowMultiplier);
 }

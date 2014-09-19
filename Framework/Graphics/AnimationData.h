@@ -38,4 +38,5 @@ public:
 	AnimationData *GetAnimationByNodeName(const std::string &name);
 	float GetAnimLength();
 	float GetAnimLengthById(int id);
+	float GetAnimStartById(int id);
 };

@@ -57,7 +57,9 @@ AnimationCurve<float>* RibbonCurveFullDestination::CreateScaleCurve(AnimationCur
 
 	curve->AddKeyframe(startTimeShift, 0.0f);
 	curve->AddKeyframe(startTimeShift + 0.5f, minScale);
+	curve->AddKeyframe(startTimeShift + 0.6f, minScale);
 	curve->AddKeyframe((endTime + startTime) / 2.0f, minScale);
+	curve->AddKeyframe(endTime - 0.6f, minScale);
 	curve->AddKeyframe(endTime - 0.5f, minScale);
 	curve->AddKeyframe(endTime, 1.0f);
 	//curve->SmoothTangents();

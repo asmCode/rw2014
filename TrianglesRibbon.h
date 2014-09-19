@@ -23,6 +23,10 @@ public:
 		int LastKeyframeIndex;
 		AnimationCurve<sm::Vec3>* Curve;
 		AnimationCurve<float>* ScaleCurve;
+
+		sm::Vec3 Axis;
+		float Angle;
+		float AngleSpeed;
 	};
 
 	TrianglesRibbon();

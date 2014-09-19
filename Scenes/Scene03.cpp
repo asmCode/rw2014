@@ -32,7 +32,20 @@ void Scene03::InitializeSubScene()
 
 bool Scene03::Update(float time, float deltaTime)
 {
+	time -= GetStartTime();
+
 	this->BaseScene::Update(time, deltaTime);
 
 	return true;
+}
+
+float Scene03::GetStartTime() const
+{
+	return 25 + 37;
+}
+
+float Scene03::GetEndTime() const
+{
+	assert(false);
+	return 0.0f;
 }

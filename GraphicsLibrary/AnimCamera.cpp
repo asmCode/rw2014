@@ -11,6 +11,7 @@ AnimCamera::AnimCamera(int id)
 	fovAnim = NULL;
 	distAnim = NULL;
 	lastKeyFrameTime = 0;
+	startTime = 0.0f;
 }
 
 AnimCamera::~AnimCamera(void)
@@ -144,9 +145,19 @@ float AnimCamera::GetLastKeyFrameTime()
 	return lastKeyFrameTime;
 }
 
+float AnimCamera::GetStartTime()
+{
+	return startTime;
+}
+
 void AnimCamera::SetLastKeyFrameTime(float time)
 {
 	this->lastKeyFrameTime = time;
+}
+
+void AnimCamera::SetFirstKeyFrameTime(float time)
+{
+	this->startTime = time;
 }
 
 sm::Matrix AnimCamera::GetViewMatrix()

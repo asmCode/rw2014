@@ -133,6 +133,11 @@ float Animation::GetAnimLengthById(int id)
 	return m_animationData->GetAnimLengthById(id);
 }
 
+float Animation::GetAnimStartById(int id)
+{
+	return m_animationData->GetAnimStartById(id);
+}
+
 void Animation::SetAnimationTime(float time, const sm::Matrix &parentTransform)
 {
 	sm::Vec3 posVal;

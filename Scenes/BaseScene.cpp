@@ -44,6 +44,16 @@ bool BaseScene::Initialize()
 	return true;
 }
 
+float BaseScene::GetStartTime() const
+{
+	return m_camerasManager->GetCamera(0)->GetStartTime();
+}
+
+float BaseScene::GetEndTime() const
+{
+	return m_camerasManager->GetCamera(m_camerasManager->GetCamerasCount() - 1)->GetLastKeyFrameTime();
+}
+
 bool BaseScene::Update(float time, float deltaTime)
 {
 	m_camerasAnimation->Update(time, sm::Matrix::IdentityMatrix(), deltaTime);

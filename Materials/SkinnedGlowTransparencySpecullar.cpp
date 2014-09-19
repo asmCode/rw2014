@@ -4,29 +4,14 @@
 #include <Graphics/Shader.h>
 
 SkinnedGlowTransparencySpecullar::SkinnedGlowTransparencySpecullar(Shader* shader, SkinnedMesh* skinnedMesh) :
+	BaseGlowTransparencySpecullar(shader),
 	m_mesh(skinnedMesh)
 {
-	m_shader = shader;
-}
-
-bool SkinnedGlowTransparencySpecullar::IsOpacity() const
-{
-	return true;
 }
 
 void SkinnedGlowTransparencySpecullar::SetupRenderState()
 {
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	glEnable(GL_DEPTH_TEST);
-	glDisable(GL_CULL_FACE);
-
-	glEnable(GL_BLEND);
-	//glDisable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	glColorMask(true, true, true, true);
-	glDepthMask(false);
+	this->BaseGlowTransparencySpecullar::SetupShader();
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
@@ -39,8 +24,7 @@ void SkinnedGlowTransparencySpecullar::SetupRenderState()
 
 void SkinnedGlowTransparencySpecullar::SetupShader()
 {
-	m_shader->UseProgram();
-	m_shader->SetMatrixParameter("u_viewProjMatrix", DrawingRoutines::GetViewProjMatrix());
+	this->BaseGlowTransparencySpecullar::SetupShader();
 
 	/*for (int i = 0; i < m_mesh->GetBonesCount(); i++)
 		m_mesh->BoneTransforms[i] = sm::Matrix::IdentityMatrix();*/

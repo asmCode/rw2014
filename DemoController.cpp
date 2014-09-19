@@ -24,11 +24,7 @@
 #include "Scenes/CamsTestScene.h"
 #include "DemoUtils.h"
 
-#include "Scenes/Scene01.h"
-#include "Scenes/Scene02.h"
-#include "Scenes/Scene03.h"
-#include "Scenes/Scene04.h"
-#include "Scenes/Scene06.h"
+#include "ScenesManager.h"
 
 #include "GraphicsEngine.h"
 #include "AssemblingScene.h"
@@ -116,7 +112,7 @@ float conv(int a, int b, int c)
 DemoController::DemoController() :
 	shadowPass(NULL),
 	m_envTexture(NULL),
-	m_activeScene(NULL),
+	m_scenesManager(NULL),
 	m_fovSignal(NULL),
 	m_fovPower(0.0f),
 	m_glowTex(NULL)
@@ -452,16 +448,15 @@ bool DemoController::LoadContent(const char *basePath)
 
 	*/
 
+	m_scenesManager = new ScenesManager();
+	m_scenesManager->Initialize();
+
 	m_graphicsEngine = new GraphicsEngine(width, height);
 	m_graphicsEngine->Initialize();
 
-	m_activeScene = new Scene06();
-	m_scenes.push_back(m_activeScene);
+	BaseScene* scene = m_scenesManager->GetActiveScene();
 
-	for (uint32_t i = 0; i < m_scenes.size(); i++)
-		m_scenes[i]->Initialize();
-
-	m_graphicsEngine->SetRenderables(m_activeScene->GetRenderables());
+	m_graphicsEngine->SetRenderables(scene->GetRenderables());
 
 	return true;
 }
@@ -509,9 +504,15 @@ bool DemoController::Update(float time, float seconds)
 	if (!Input::GetKey(KeyCode_LShift) && Input::GetKeyDown(KeyCode_Num1))
 		DemoUtils::LoadCamera(&manCam, 0);
 
+	m_scenesManager->Update(time);
+
 	m_activeCamera = NULL;
 
-	m_activeScene->Update(time, seconds);
+	BaseScene* activeScene = m_scenesManager->GetActiveScene();
+	if (m_scenesManager->IsSceneChanged())
+		m_graphicsEngine->SetRenderables(activeScene->GetRenderables());
+		
+	activeScene->Update(time, seconds);
 
 #if MAN_CAM
 	manCam.Process(seconds);
@@ -519,7 +520,7 @@ bool DemoController::Update(float time, float seconds)
 #else
 	//camerasAnimation->Update(m_greetzDanceTime, sm::Matrix::IdentityMatrix(), seconds);
 	//m_activeCamera = animCamsMng.GetActiveCamera(time);
-	m_activeCamera = m_activeScene->GetCamera();
+	m_activeCamera = activeScene->GetCamera();
 #endif
 
 	m_view = m_activeCamera->GetViewMatrix();

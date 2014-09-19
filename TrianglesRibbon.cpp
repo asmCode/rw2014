@@ -55,6 +55,10 @@ void TrianglesRibbon::Initialize(
 			maxDelay);
 
 		m_trianglesData[i]->ScaleCurve = ribbinCurveBuilder->CreateScaleCurve(m_trianglesData[i]->Curve, minScale);
+
+		m_trianglesData[i]->Axis = DemoUtils::GetRandomVector();
+		m_trianglesData[i]->Angle = 0.0f;
+		m_trianglesData[i]->AngleSpeed = random.GetFloat(1.0, 10.0f);
 	}
 }
 
@@ -78,11 +82,17 @@ void TrianglesRibbon::Update(float time, float deltaTime)
 		position = m_trianglesData[i]->Curve->Evaluate(time);
 		scale = m_trianglesData[i]->ScaleCurve->Evaluate(time);
 
+		float normTimeOnCurve = (time - m_trianglesData[i]->Curve->GetStartTime()) / (m_trianglesData[i]->Curve->GetEndTime() - m_trianglesData[i]->Curve->GetStartTime());
+		m_trianglesData[i]->Angle = (cos(normTimeOnCurve * 3.1415f * 2) - 1) * -0.5f;
+		m_trianglesData[i]->Angle *= m_trianglesData[i]->AngleSpeed;
+
+		//m_trianglesData[i]->Angle += m_trianglesData[i]->AngleSpeed * deltaTime;
+
 		m_triangledMesh->SetTriangleTransform(
 			i,
 			sm::Matrix::TranslateMatrix(position) *
 			m_triangledMesh->GetBaseRotation(i) *
-			//sm::Matrix::RotateAxisMatrix(m_trianglesData[i]->Time, 0, 0, 1) *
+			sm::Matrix::RotateAxisMatrix(m_trianglesData[i]->Angle * (1.0f - scale), m_trianglesData[i]->Axis) *
 			sm::Matrix::ScaleMatrix(scale, scale, scale));
 
 		if (m_triangleModificator != NULL)

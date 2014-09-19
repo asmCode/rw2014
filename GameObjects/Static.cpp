@@ -39,7 +39,7 @@ Static::Static(const std::string& sceneName, SceneElement::StaticData* staticDat
 		StaticGlowTransparencySpecullar* material = new StaticGlowTransparencySpecullar(glowSpecullarShader);
 		material->SetGlowMultiplier(staticData->Material->SolidGlowMultiplier);
 
-		Renderable* renderable = new Renderable(m_mesh, material);
+		Renderable* renderable = new Renderable(m_mesh, material, staticData->Order);
 		m_renderables.push_back(renderable);
 	}
 
@@ -49,7 +49,7 @@ Static::Static(const std::string& sceneName, SceneElement::StaticData* staticDat
 		material->SetGlowMultiplier(staticData->Material->WireGlowMultiplier);
 		material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 
-		Renderable* renderable = new Renderable(m_mesh, material);
+		Renderable* renderable = new Renderable(m_mesh, material, staticData->Order);
 		m_renderables.push_back(renderable);
 	}
 }

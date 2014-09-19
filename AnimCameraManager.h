@@ -33,4 +33,7 @@ public:
 	AnimCamera *GetActiveCamera(float time);
 
 	AnimCamera *GetCameraByName(const std::string &name);
+
+	int GetCamerasCount() const;
+	AnimCamera* GetCamera(int index);
 };

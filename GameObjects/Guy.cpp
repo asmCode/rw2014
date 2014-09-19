@@ -29,6 +29,7 @@ Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
 	m_mesh(NULL)
 {
 	assert(guyData != NULL);
+	assert(guyData->Material != NULL);
 	assert(guyData->Path != NULL);
 
 	SkinnedMeshData* meshData = Content::Instance->Get<SkinnedMeshData>("guy");
@@ -44,8 +45,8 @@ Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
 
 	m_mesh = new SkinnedMesh();
 	m_mesh->Initialize(meshData);
-	if (guyData->Material != NULL)
-		m_mesh->SetColor(sm::Vec4(guyData->Material->Diffuse, guyData->Material->Opacity));
+	m_mesh->SetColor(sm::Vec4(guyData->Material->Diffuse, guyData->Material->Opacity));
+	m_mesh->SetGlowPower(guyData->Material->SolidGlowPower);
 	m_mesh->AddAnimation("walk", m_animations[0]);
 	//m_mesh->AddAnimation("jump", m_animations[1]);
 
@@ -55,11 +56,26 @@ Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
 	Shader* shader = Content::Instance->Get<Shader>("Skinned");
 	assert(shader != NULL);
 
-	SkinnedGlowTransparencySpecullar* material = new SkinnedGlowTransparencySpecullar(shader, m_mesh);
+	////////////////////
+	if (guyData->Material->UseSolid)
+	{
+		SkinnedGlowTransparencySpecullar* material = new SkinnedGlowTransparencySpecullar(shader, m_mesh);
+		material->SetGlowMultiplier(guyData->Material->SolidGlowMultiplier);
 
-	Renderable* renderable = new Renderable(m_mesh, material);
+		Renderable* renderable = new Renderable(m_mesh, material);
+		m_renderables.push_back(renderable);
+	}
 
-	m_renderables.push_back(renderable);
+	if (guyData->Material->UseWire)
+	{
+		SkinnedGlowTransparencySpecullar* material = new SkinnedGlowTransparencySpecullar(shader, m_mesh);
+		material->SetGlowMultiplier(guyData->Material->WireGlowMultiplier);
+		material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
+
+		Renderable* renderable = new Renderable(m_mesh, material);
+		m_renderables.push_back(renderable);
+	}
+	///////////////////
 
 	m_positionCurve = new AnimationCurve<sm::Vec3>();
 	for (uint32_t i = 0; i < guyData->Path->Keys.size(); i++)
@@ -93,7 +109,7 @@ void Guy::Update(float time, float seconds)
 	m_animations[animationIndex]->Update(fmodf(time * 1.0f, animLength), baseTransform, seconds);
 	//m_animations[animationIndex]->Update(animLength * 0.8f, baseTransform, seconds);
 
-	DrawSegment2(m_animations[0]);
+	//DrawSegment2(m_animations[0]);
 
 	/*for (uint32_t i = 0; i < m_renderables.size(); i++)
 		m_renderables[i]->SetActive(false);*/

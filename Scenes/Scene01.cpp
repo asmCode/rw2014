@@ -30,36 +30,20 @@ void Scene01::InitializeSubScene()
 	}
 }
 
-float t = 0.0f;
-bool w = false;
-
 bool Scene01::Update(float time, float deltaTime)
 {
 	this->BaseScene::Update(time, deltaTime);
 
 	return true;
+}
 
-	if (Input::GetKeyDown(KeyCode::KeyCode_A))
-	{
-		w = true;
-	}
+float Scene01::GetStartTime() const
+{
+	return 0.0f;
+}
 
-	if (w)
-		t += deltaTime;
-
-	//QuadBlinkCurve d(0.1f);
-	BlinkCurve<float, QuadOut<float>, LinearCurve<float>> d(0.1f);
-	Static* pyramid = dynamic_cast<Static*>(FindGameObject("Pyramid003"));
-	if (t >= 2.0)
-		pyramid->GetMesh()->SetColor(sm::Vec4(0.3f, 0.6f, 1.0f, 0.0f));
-	else
-		pyramid->GetMesh()->SetColor(sm::Vec4(0.3f, 0.6f, 1.0f, d.Evaluate(0, 1, t / 2.0f)));
-
-	if (Input::GetKeyUp(KeyCode::KeyCode_A))
-	{
-		Log::LogT("waginiuim");
-	}
-
-
-	return true;
+float Scene01::GetEndTime() const
+{
+	assert(false);
+	return 0.0f;
 }

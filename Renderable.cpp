@@ -3,6 +3,7 @@
 #include <Graphics/Material.h>
 
 Renderable::Renderable(BaseMesh *mesh, Material* material, int order) :
+	Transform(sm::Matrix::IdentityMatrix()),
 	m_mesh(mesh),
 	m_material(material),
 	m_isActive(true),

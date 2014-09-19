@@ -94,7 +94,7 @@ float AnimationData::GetAnimLength()
 		scaleTime = scale->GetEndTime();
 
 	float maxAnimLength = 0;
-	for (int i = 0; i < subAnims.size(); i++)
+	for (uint32_t i = 0; i < subAnims.size(); i++)
 	{
 		float length = subAnims[i]->GetAnimLength();
 		if (length > maxAnimLength)
@@ -123,4 +123,23 @@ float AnimationData::GetAnimLengthById(int id)
 		scaleTime = anim->scale->GetEndTime();
 
 	return MathUtils::Max(MathUtils::Max(posTime, rotTime), scaleTime);
+}
+
+float AnimationData::GetAnimStartById(int id)
+{
+	AnimationData *anim = GetAnimationById(id);
+	assert(anim != NULL);
+
+	float posTime = 0.0f;
+	float rotTime = 0.0f;
+	float scaleTime = 0.0f;
+
+	if (anim->pos != NULL && anim->pos->GetKeysCount() > 0)
+		posTime = anim->pos->GetStartTime();
+	if (anim->rot != NULL && anim->rot->GetKeysCount() > 0)
+		rotTime = anim->rot->GetStartTime();
+	if (anim->scale != NULL && anim->scale->GetKeysCount() > 0)
+		scaleTime = anim->scale->GetStartTime();
+
+	return MathUtils::Min(MathUtils::Min(posTime, rotTime), scaleTime);
 }

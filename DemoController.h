@@ -32,6 +32,7 @@
 #include <map>
 
 class BaseScene;
+class ScenesManager;
 
 DWORD WINAPI EditableDemoThread(void *params);
 class DemoController;
@@ -100,8 +101,7 @@ public:
 
 	float m_fovPower;
 
-	std::vector<BaseScene*> m_scenes;
-	BaseScene *m_activeScene;
+	ScenesManager* m_scenesManager;
 
 	Model *m_mdl_teapot;
 

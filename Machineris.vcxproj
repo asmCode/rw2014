@@ -202,6 +202,7 @@ exit /B 0
     <ClCompile Include="SceneElement\RibbonData.cpp" />
     <ClCompile Include="SceneElement\StaticData.cpp" />
     <ClCompile Include="SceneLoader.cpp" />
+    <ClCompile Include="ScenesManager.cpp" />
     <ClCompile Include="Scenes\BaseScene.cpp" />
     <ClCompile Include="Scenes\BoneAnimTestScene.cpp" />
     <ClCompile Include="Scenes\CamsTestScene.cpp" />
@@ -211,7 +212,9 @@ exit /B 0
     <ClCompile Include="Scenes\Scene02.cpp" />
     <ClCompile Include="Scenes\Scene03.cpp" />
     <ClCompile Include="Scenes\Scene04.cpp" />
+    <ClCompile Include="Scenes\Scene05.cpp" />
     <ClCompile Include="Scenes\Scene06.cpp" />
+    <ClCompile Include="Scenes\Scene07.cpp" />
     <ClCompile Include="SceneUtils.cpp" />
     <ClCompile Include="SkinnedMesh.cpp" />
     <ClCompile Include="SkinnedRibbonMesh.cpp" />
@@ -375,6 +378,7 @@ exit /B 0
     <ClInclude Include="SceneElement\StaticDestination.h" />
     <ClInclude Include="SceneElement\StaticSource.h" />
     <ClInclude Include="SceneLoader.h" />
+    <ClInclude Include="ScenesManager.h" />
     <ClInclude Include="Scenes\BoneAnimTestScene.h" />
     <ClInclude Include="Scenes\CamsTestScene.h" />
     <ClInclude Include="Scenes\GlowTestScene.h" />
@@ -383,7 +387,9 @@ exit /B 0
     <ClInclude Include="Scenes\Scene02.h" />
     <ClInclude Include="Scenes\Scene03.h" />
     <ClInclude Include="Scenes\Scene04.h" />
+    <ClInclude Include="Scenes\Scene05.h" />
     <ClInclude Include="Scenes\Scene06.h" />
+    <ClInclude Include="Scenes\Scene07.h" />
     <ClInclude Include="SceneUtils.h" />
     <ClInclude Include="SkinnedMesh.h" />
     <ClInclude Include="SkinnedRibbonMesh.h" />
