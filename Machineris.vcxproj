@@ -195,6 +195,7 @@ exit /B 0
     <ClCompile Include="Ribbon\Modificators\BlinkAtStartAndEnd.cpp" />
     <ClCompile Include="Ribbon\RibbonCurve.cpp" />
     <ClCompile Include="Ribbon\RibbonCurveDestination.cpp" />
+    <ClCompile Include="Ribbon\RibbonCurveDestroy.cpp" />
     <ClCompile Include="Ribbon\RibbonCurveFullDestination.cpp" />
     <ClCompile Include="Ribbon\RibbonCurveFullSource.cpp" />
     <ClCompile Include="Ribbon\RibbonCurveSource.cpp" />
@@ -215,6 +216,8 @@ exit /B 0
     <ClCompile Include="Scenes\Scene05.cpp" />
     <ClCompile Include="Scenes\Scene06.cpp" />
     <ClCompile Include="Scenes\Scene07.cpp" />
+    <ClCompile Include="Scenes\Scene08.cpp" />
+    <ClCompile Include="Scenes\Scene09.cpp" />
     <ClCompile Include="SceneUtils.cpp" />
     <ClCompile Include="SkinnedMesh.cpp" />
     <ClCompile Include="SkinnedRibbonMesh.cpp" />
@@ -363,6 +366,7 @@ exit /B 0
     <ClInclude Include="Ribbon\Modificators\ITriangleModificator.h" />
     <ClInclude Include="Ribbon\RibbonCurve.h" />
     <ClInclude Include="Ribbon\RibbonCurveDestination.h" />
+    <ClInclude Include="Ribbon\RibbonCurveDestroy.h" />
     <ClInclude Include="Ribbon\RibbonCurveFullDestination.h" />
     <ClInclude Include="Ribbon\RibbonCurveFullSource.h" />
     <ClInclude Include="Ribbon\RibbonCurveSource.h" />
@@ -390,6 +394,8 @@ exit /B 0
     <ClInclude Include="Scenes\Scene05.h" />
     <ClInclude Include="Scenes\Scene06.h" />
     <ClInclude Include="Scenes\Scene07.h" />
+    <ClInclude Include="Scenes\Scene08.h" />
+    <ClInclude Include="Scenes\Scene09.h" />
     <ClInclude Include="SceneUtils.h" />
     <ClInclude Include="SkinnedMesh.h" />
     <ClInclude Include="SkinnedRibbonMesh.h" />

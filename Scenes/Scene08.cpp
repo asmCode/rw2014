@@ -1,4 +1,4 @@
-#include "Scene02.h"
+#include "Scene08.h"
 #include "../GameObject.h"
 #include "../GameObjects/Static.h"
 #include "../Materials/GlowTransparencySpecullar.h"
@@ -21,16 +21,16 @@
 
 #include "../Renderable.h"
 
-void Scene02::InitializeSubScene()
+void Scene08::InitializeSubScene()
 {
-	if (!SceneLoader::LoadFromFile(this, "Scene02"))
+	if (!SceneLoader::LoadFromFile(this, "Scene08"))
 	{
 		assert(false);
 		return;
 	}
 }
 
-bool Scene02::Update(float time, float deltaTime)
+bool Scene08::Update(float time, float deltaTime)
 {
 	this->BaseScene::Update(time, deltaTime);
 

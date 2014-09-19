@@ -3,11 +3,16 @@
 #include "BaseScene.h"
 #include <vector>
 
-class Scene02 : public BaseScene
+class Animation;
+
+class Scene07 : public BaseScene
 {
 public:
 	bool Update(float time, float deltaTime);
 
 private:
+	Animation* m_trainAnimation;
+	Animation* m_trainAnimationWire;
+
 	void InitializeSubScene();
 };

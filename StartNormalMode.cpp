@@ -10,6 +10,7 @@
 #include <assert.h>
 #include <fstream>
 #include <string>
+#include <Utils/Log.h>
 #include "GraphicsLibrary\TimeControl.h"
 #include <UserInput/Input.h>
 #include <unzip.h>
@@ -106,6 +107,8 @@ void ReleaseDemo()
 
 void StartNormalMode()
 {
+	Log::LogT("LODA %d", __LINE__);
+
 	int scrWidth;
 	int scrHeight;
 	int scrBpp;
@@ -140,6 +143,8 @@ void StartNormalMode()
 	baseDataPath = moduleFilename.GetPath() + "Data\\";
 #endif
 
+	Log::LogT("LODA %d", __LINE__);
+
 	bool fullscreen = false;
 #ifndef START_IN_WINDOW
 	fullscreen = true;
@@ -153,6 +158,8 @@ void StartNormalMode()
 		return;
 	}
 
+	Log::LogT("LODA %d", __LINE__);
+
 	if (!demo ->LoadContent(baseDataPath.c_str()))
 	{
 		ReleaseDemo();
@@ -160,12 +167,16 @@ void StartNormalMode()
 		return;
 	}
 
+	Log::LogT("LODA %d", __LINE__);
+
 	if (!demo ->BeforeStartSetups())
 	{
 		ReleaseDemo();
 		assert(false);
 		return;
 	}
+
+	Log::LogT("LODA %d", __LINE__);
 
 	TimeControl tc;
 
@@ -180,6 +191,8 @@ void StartNormalMode()
 	float timeShift = -1.0f;
 
 	Music *music = NULL;
+
+	Log::LogT("LODA %d", __LINE__);
 
 #ifndef DISABLE_MUSIC
 	music = new Music();

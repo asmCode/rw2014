@@ -1,7 +1,7 @@
 #define TIME_SCALE 1.0f
-#define TIME_SHIFT 00
+#define TIME_SHIFT 0
 //#define TIME_SHIFT 60 * 1 + 20 // greetz
-//#define TIME_SHIFT 60 * 1 + 05 // po greetz
+//#define TIME_SHIFT 60 * 3 + 30 // po greetz
 //#define TIME_SHIFT 60 * 4 + 00 // biegacze
 
 //#define MAN_CAM 1

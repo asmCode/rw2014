@@ -266,9 +266,11 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 
 	SetOpenglParams();
 
+#if 0
 	glEnable(GL_DEBUG_OUTPUT);
 	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 	glDebugMessageCallback(OpenglDebugCallback, this);
+#endif
 
 	GraphicsLog::Initialize(NULL, NULL);
 

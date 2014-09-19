@@ -3,7 +3,7 @@
 #include "BaseScene.h"
 #include <vector>
 
-class Scene02 : public BaseScene
+class Scene09 : public BaseScene
 {
 public:
 	bool Update(float time, float deltaTime);

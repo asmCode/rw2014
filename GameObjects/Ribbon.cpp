@@ -13,6 +13,7 @@
 #include "../SceneElement/Material.h"
 #include "../SceneElement/StaticDestination.h"
 #include "../SceneElement/Key.h"
+#include "../Ribbon/RibbonCurveDestroy.h"
 #include "../Ribbon/RibbonCurveFullSource.h"
 #include "../Ribbon/RibbonCurveFullDestination.h"
 #include "../Ribbon/RibbonCurveDestination.h"
@@ -65,7 +66,12 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 	IRibbonCurveBuilder* sourceCurveBuilder = NULL;
 	IRibbonCurveBuilder* destinationCurveBuilder = NULL;
 
-	if (ribbonData->Source != NULL && ribbonData->Destination == NULL)
+	if (ribbonData->Source != NULL && ribbonData->Source->Destroy)
+	{
+		sourceCurveBuilder = new RibbonCurveDestroy();
+		m_finishComposeTime *= 10.0f;
+	}
+	else if (ribbonData->Source != NULL && ribbonData->Destination == NULL)
 		sourceCurveBuilder = new RibbonCurveSource();
 	else if (ribbonData->Source == NULL && ribbonData->Destination != NULL)
 		destinationCurveBuilder = new RibbonCurveDestination();
@@ -161,33 +167,37 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 		}
 	}
 
-	if (ribbonData->StaticSource != NULL)
+	if (ribbonData->StaticSource != NULL ||
+		(ribbonData->Source != NULL) && ribbonData->Source->Stay)
 	{
-		assert(ribbonData->StaticSource->Material != NULL);
-		assert(ribbonData->StaticSource->Material->UseSolid || ribbonData->StaticSource->Material->UseWire);
+		SceneElement::Material* materialData = (ribbonData->StaticSource != NULL ? ribbonData->StaticSource->Material : ribbonData->Source->Material);
+		std::string meshName = (ribbonData->StaticSource != NULL ? ribbonData->StaticSource->MeshName : ribbonData->Source->MeshName);
 
-		Mesh* mesh = model->FindMesh(ribbonData->StaticSource->MeshName);
+		assert(materialData != NULL);
+		assert(materialData->UseSolid || materialData->UseWire);
+
+		Mesh* mesh = model->FindMesh(meshName);
 		assert(mesh != NULL);
 
 		m_staticSource = new StaticTriangledMesh();
 		m_staticSource->Initialize(mesh->meshParts[0]);
 
-		m_staticSource->SetGlowPower(ribbonData->StaticSource->Material->SolidGlowPower); // wspolne dla solid i wire
-		m_staticSource->SetColor(sm::Vec4(ribbonData->StaticSource->Material->Diffuse, ribbonData->StaticSource->Material->Opacity)); // wspolne dla wire i solid
+		m_staticSource->SetGlowPower(materialData->SolidGlowPower); // wspolne dla solid i wire
+		m_staticSource->SetColor(sm::Vec4(materialData->Diffuse, materialData->Opacity)); // wspolne dla wire i solid
 
-		if (ribbonData->StaticSource->Material->UseSolid)
+		if (materialData->UseSolid)
 		{
 			StaticGlowTransparencySpecullar* material = new StaticGlowTransparencySpecullar(staticGlowSpecullarShader);
-			material->SetGlowMultiplier(ribbonData->StaticSource->Material->SolidGlowMultiplier);
+			material->SetGlowMultiplier(materialData->SolidGlowMultiplier);
 
 			m_staticSourceRenderable = new Renderable(m_staticSource, material, order);
 			m_renderables.push_back(m_staticSourceRenderable);
 		}
 
-		if (ribbonData->StaticSource->Material->UseWire)
+		if (materialData->UseWire)
 		{
 			StaticGlowTransparencySpecullar* material = new StaticGlowTransparencySpecullar(staticGlowSpecullarShader);
-			material->SetGlowMultiplier(ribbonData->StaticSource->Material->WireGlowMultiplier);
+			material->SetGlowMultiplier(materialData->WireGlowMultiplier);
 			material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 
 			m_staticSourceRenderableWire = new Renderable(m_staticSource, material, order);

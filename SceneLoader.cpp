@@ -114,6 +114,8 @@ SceneElement::Source* SceneLoader::LoadSource(XMLNode* node)
 	SceneElement::Source* source = new SceneElement::Source();
 	source->MeshName = node->GetAttribAsString("mesh_name");
 	source->Material = LoadMaterialFromChild(node);
+	source->Destroy = node->GetAttribAsBool("destroy");
+	source->Stay = node->GetAttribAsBool("stay");
 	return source;
 }
 

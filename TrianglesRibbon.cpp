@@ -7,11 +7,13 @@
 #include "DebugUtils.h"
 #include <Utils/Randomizer.h>
 #include <Graphics/MeshPart.h>
+#include <Math/MathUtils.h>
 #include <Graphics/VertexInformation.h>
 #include <Math/Animation/AnimationCurve.h>
 
 TrianglesRibbon::TrianglesRibbon() :
-	m_triangleModificator(NULL)
+	m_triangleModificator(NULL),
+	m_minScale(0.4f)
 {
 }
 
@@ -29,6 +31,8 @@ void TrianglesRibbon::Initialize(
 	float maxDelay)
 {
 	assert(ribbinCurveBuilder != NULL);
+
+	m_minScale = minScale;
 
 	static Randomizer random;
 

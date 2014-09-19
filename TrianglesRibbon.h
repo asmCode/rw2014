@@ -56,4 +56,6 @@ protected:
 	TriangleData** m_trianglesData;
 
 	ITriangleModificator* m_triangleModificator;
+
+	float m_minScale;
 };
