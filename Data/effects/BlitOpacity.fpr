@@ -10,5 +10,5 @@ varying vec2 v_coords;
 void main()
 {
 	FragColor = texture2D(u_tex, v_coords);
-	FragColor.w = u_opacity;
+	FragColor.w *= u_opacity;
 }

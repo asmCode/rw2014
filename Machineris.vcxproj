@@ -59,7 +59,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>D:\stuff\River Wash 2014 Demo\Code\Framework;D:\stuff\River Wash 2014 Demo\Code\Ext;D:\stuff\River Wash 2014 Demo\Code\Ext\glew-1.9.0\include;d:\stuff\River Wash 2014 Demo\Code\zip\contrib\minizip\;d:\stuff\River Wash 2014 Demo\Code\zip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\stuff\River Wash 2014 Demo\Code\Framework;d:\stuff\we-can_2013-demo\code\zip\;D:\stuff\River Wash 2014 Demo\Code\Ext;D:\stuff\River Wash 2014 Demo\Code\Ext\glew-1.9.0\include;d:\stuff\River Wash 2014 Demo\Code\zip\contrib\minizip\;d:\stuff\River Wash 2014 Demo\Code\zip;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;libpng15.lib;zlib.lib;jpeg.lib;bass.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -246,6 +246,11 @@ exit /B 0
     <ClCompile Include="UniqueTriangledMesh.cpp" />
     <ClCompile Include="VectorGraphics.cpp" />
     <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="zip\ioapi.c" />
+    <ClCompile Include="zip\iowin32.c" />
+    <ClCompile Include="zip\mztools.c" />
+    <ClCompile Include="zip\unzip.c" />
+    <ClCompile Include="zip\zip.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationClips\IAnimationClip.h" />
@@ -477,6 +482,8 @@ exit /B 0
     <None Include="Data\effects\StaticSpecularBlur.vpr" />
     <None Include="Data\effects\VertBlur.fpr" />
     <None Include="Data\effects\VertBlur.vpr" />
+    <None Include="Data\effects\Water.fpr" />
+    <None Include="Data\effects\Water.vpr" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon1.ico" />

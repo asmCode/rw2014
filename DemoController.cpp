@@ -281,8 +281,14 @@ bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, i
 	blurFbo = new Framebuffer();
 	blurFbo ->Initialize(width / 2, height / 2, 32);
 
-	float fadeTexData[2 * 2 * 4 * sizeof(float)];
-	memset(fadeTexData, 0, 2 * 2 * 4 * sizeof(float));
+	uint8_t fadeTexData[] =
+	{
+		0, 0, 0, 255,
+		0, 0, 0, 255,
+		0, 0, 0, 255,
+		0, 0, 0, 255
+	};
+
 	m_fadeTex = new Texture(2, 2, 32, fadeTexData, Texture::Wrap_ClampToEdge, Texture::Filter_Nearest, Texture::Filter_Nearest, false);
 
 	m_shadowMapTexture = new DepthTexture(width, height);
@@ -379,6 +385,9 @@ bool DemoController::LoadContent(const char *basePath)
 
 	m_startScreen = Content::Instance->Get<Texture>("loader");
 	assert(m_startScreen != NULL);
+
+	m_mask = Content::Instance->Get<Texture>("super_maska_kurwo");
+	assert(m_mask != NULL);
 
 	m_endScreenAnim.AddKeyframe(5 * 60 + 56, 0);
 	m_endScreenAnim.AddKeyframe(5 * 60 + 58, 1);
@@ -795,6 +804,8 @@ bool DemoController::Draw(float time, float seconds)
 	//DrawingRoutines::DrawWithMaterial(m_content->Get<Model>("teapot")->m_meshParts);
 
 	m_graphicsEngine->RenderGameObjects();
+
+	m_graphicsEngine->RenderFullScreenTexture(m_mask, 0.5f);
 
 	float fade = CalcFlash(time, seconds);
 

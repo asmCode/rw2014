@@ -64,6 +64,17 @@ void Scene07::InitializeSubScene()
 		anim->AttachTransformTarget(&renderables[0]->Transform, NULL);
 		animWire->AttachTransformTarget(&renderables[1]->Transform, NULL);
 	}
+
+	Static* water = dynamic_cast<Static*>(FindGameObject("woda"));
+	assert(water != NULL);
+
+	m_waterShader = Content::Instance->Get<Shader>("Water");
+	assert(m_waterShader != NULL);
+
+	((GlowTransparencySpecullar*)water->GetRenderables()[0]->GetMaterial())->SetShader(m_waterShader);
+
+	if (water->GetRenderables().size() > 1)
+		((GlowTransparencySpecullar*)water->GetRenderables()[1]->GetMaterial())->SetShader(m_waterShader);
 }
 
 bool Scene07::Update(float time, float deltaTime)
@@ -72,6 +83,9 @@ bool Scene07::Update(float time, float deltaTime)
 
 	m_trainAnimation->Update(time, sm::Matrix::IdentityMatrix(), deltaTime);
 	m_trainAnimationWire->Update(time, sm::Matrix::IdentityMatrix(), deltaTime);
+
+	m_waterShader->UseProgram();
+	m_waterShader->SetParameter("u_time", time);
 
 	return true;
 }

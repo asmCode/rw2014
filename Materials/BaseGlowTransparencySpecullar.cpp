@@ -10,6 +10,11 @@ BaseGlowTransparencySpecullar::BaseGlowTransparencySpecullar(Shader* shader) :
 	m_shader = shader;
 }
 
+void BaseGlowTransparencySpecullar::SetShader(Shader* shader)
+{
+	m_shader = shader;
+}
+
 void BaseGlowTransparencySpecullar::SetWorldMatrix(const sm::Matrix* worldMatrix)
 {
 	m_worldMatrix = worldMatrix;

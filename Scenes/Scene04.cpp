@@ -28,11 +28,25 @@ void Scene04::InitializeSubScene()
 		assert(false);
 		return;
 	}
+
+	Static* water = dynamic_cast<Static*>(FindGameObject("water"));
+	assert(water != NULL);
+
+	m_waterShader = Content::Instance->Get<Shader>("Water");
+	assert(m_waterShader != NULL);
+
+	((GlowTransparencySpecullar*)water->GetRenderables()[0]->GetMaterial())->SetShader(m_waterShader);
+
+	if (water->GetRenderables().size() > 1)
+		((GlowTransparencySpecullar*)water->GetRenderables()[1]->GetMaterial())->SetShader(m_waterShader);
 }
 
 bool Scene04::Update(float time, float deltaTime)
 {
 	this->BaseScene::Update(time, deltaTime);
+
+	m_waterShader->UseProgram();
+	m_waterShader->SetParameter("u_time", time);
 
 	return true;
 }

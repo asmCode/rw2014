@@ -99,6 +99,18 @@ Guy::~Guy()
 
 void Guy::Update(float time, float seconds)
 {
+	if (time < m_positionCurve->GetStartTime() ||
+		time > m_positionCurve->GetEndTime())
+	{
+		for (uint32_t i = 0; i < m_renderables.size(); i++)
+			m_renderables[i]->SetActive(false);
+	}
+	else
+	{
+		for (uint32_t i = 0; i < m_renderables.size(); i++)
+			m_renderables[i]->SetActive(true);
+	}
+
 	sm::Vec3 position = m_positionCurve->Evaluate(time);
 	sm::Vec3 nextPosition = m_positionCurve->Evaluate(time + 0.05f);
 

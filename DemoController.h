@@ -313,4 +313,5 @@ public:
 	Texture* m_fadeTex;
 	Texture* m_endScreen;
 	Texture* m_startScreen;
+	Texture* m_mask;
 };

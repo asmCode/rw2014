@@ -4,6 +4,8 @@
 #include <vector>
 
 class Animation;
+class Shader;
+
 
 class Scene07 : public BaseScene
 {
@@ -13,6 +15,8 @@ public:
 private:
 	Animation* m_trainAnimation;
 	Animation* m_trainAnimationWire;
+
+	Shader* m_waterShader;
 
 	void InitializeSubScene();
 };

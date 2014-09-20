@@ -15,6 +15,8 @@ public:
 
 	BaseGlowTransparencySpecullar(Shader* shader);
 
+	void SetShader(Shader* shader);
+
 	void SetWorldMatrix(const sm::Matrix* worldMatrix);
 	void SetPolygonMode(PolygonMode polygonMode);
 	void SetGlowMultiplier(float glowMultiplier);
