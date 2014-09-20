@@ -15,6 +15,7 @@
 #include "SceneElement/Path.h"
 #include "SceneElement/Key.h"
 #include "SceneElement/IntKey.h"
+#include "SceneElement/FloatKey.h"
 #include "SceneElement/GuyData.h"
 #include "SceneElement/Material.h"
 #include "SceneElement/StaticData.h"
@@ -151,9 +152,17 @@ SceneElement::Path* SceneLoader::LoadPath(XMLNode* node)
 	path->Spread = node->GetAttribAsFloat("spread", 1.0f);
 	path->TriangleScale = node->GetAttribAsFloat("triangle_scale", 0.5f);
 	path->Delay = node->GetAttribAsFloat("delay", 4.0f);
+	path->DontRender = node->GetAttribAsBool("dont_render", false);
+
+	XMLNode* ribbonWeightsNode = node->GetChild("RibbonWeights");
+	if (ribbonWeightsNode != NULL)
+		LoadFloatKeys(ribbonWeightsNode, path->RibbonWeights);
 
 	for (uint32_t i = 0; i < node->GetChildrenCount(); i++)
 	{
+		if (node->GetChild(i)->GetName() != "Key")
+			continue;
+
 		SceneElement::Key *key = LoadKey(node->GetChild(i));
 		if (key != NULL)
 			path->Keys.push_back(key);
@@ -190,6 +199,7 @@ SceneElement::GuyData* SceneLoader::LoadGuy(XMLNode* node)
 
 	SceneElement::GuyData* guyData = new SceneElement::GuyData();
 	guyData->Id = node->GetAttribAsString("id");
+	guyData->RibbonName = node->GetAttribAsString("ribbon_name");
 	guyData->Material = LoadMaterialFromChild(node);
 
 	XMLNode* path = node->GetChild("Path");
@@ -270,6 +280,21 @@ void SceneLoader::LoadIntKeys(XMLNode* node, std::vector<SceneElement::IntKey*>&
 		SceneElement::IntKey* key = new SceneElement::IntKey();
 		key->Time = node->GetChild(i)->GetAttribAsFloat("time");
 		key->Value = node->GetChild(i)->GetAttribAsInt32("value");
+
+		keys.push_back(key);
+	}
+}
+
+void SceneLoader::LoadFloatKeys(XMLNode* node, std::vector<SceneElement::FloatKey*>& keys)
+{
+	for (uint32_t i = 0; i < node->GetChildrenCount(); i++)
+	{
+		if (node->GetChild(i)->GetName() != "Key")
+			continue;
+
+		SceneElement::FloatKey* key = new SceneElement::FloatKey();
+		key->Time = node->GetChild(i)->GetAttribAsFloat("time");
+		key->Value = node->GetChild(i)->GetAttribAsFloat("value");
 
 		keys.push_back(key);
 	}

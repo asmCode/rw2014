@@ -1,12 +1,15 @@
-#if 0
 #pragma once
 
 #include "SkinnedRibbonMesh.h"
 #include "TriangleDataColorGlow.h"
+#include "GameObjects/Ribbon.h"
+#include "TrianglesRibbon.h"
 #include <Graphics/SkinnedMeshData.h>
 #include <Graphics/SkinnedVertex.h>
 #include <Graphics/Animation.h>
 #include "MeshUtils.h"
+#include "DemoUtils.h"
+#include "VertexDataBufferTransform.h"
 #include <Math/Vec2.h>
 #include <GL/glew.h>
 
@@ -17,7 +20,9 @@ SkinnedRibbonMesh::SkinnedRibbonMesh() :
 	m_trianglesCount(0),
 	m_triangles(NULL),
 	m_meshData(NULL),
-	BoneTransforms(NULL)
+	BoneTransforms(NULL),
+	m_transformBuffer(NULL),
+	m_worldToOrigin(NULL)
 {
 }
 
@@ -69,6 +74,25 @@ void SkinnedRibbonMesh::Initialize(SkinnedMeshData* meshData)
 	BoneTransforms = new sm::Matrix[meshData->bonesCount];
 
 	m_trianglesCount = meshData->verticesCount / 3;
+
+	m_transformBuffer = new VertexDataBufferTransform();
+	m_transformBuffer->Initialize(m_trianglesCount);
+
+	m_worldToOrigin = new sm::Matrix[m_trianglesCount];
+
+	//meshData->vertices[0].position
+
+	for (int i = 0; i < m_trianglesCount; i++)
+	{
+		sm::Vec3 v[3];
+		v[0] = meshData->vertices[i * 3 + 0].position;
+		v[1] = meshData->vertices[i * 3 + 1].position;
+		v[2] = meshData->vertices[i * 3 + 2].position;
+
+		sm::Matrix transform = DemoUtils::GetTriangleTransform(v);
+		//m_transformBuffer->SetTransform(i, sm::Matrix::ScaleMatrix(0.01f, 0.01f, 0.01f) * transform.GetInversed());
+		m_worldToOrigin[i] = sm::Matrix::ScaleMatrix(0.01f, 0.01f, 0.01f) * transform.GetInversed();
+	}
 
 	CreateVertexPositionBuffer(meshData);
 	CreateIndexBuffer();
@@ -122,6 +146,8 @@ void SkinnedRibbonMesh::Apply()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(TriangleDataColorGlow)* m_trianglesCount * 3, m_triangles, GL_DYNAMIC_DRAW);
 	glVertexAttribPointer(3, 4, GL_FLOAT, false, sizeof(TriangleDataColorGlow), 0);
 	glVertexAttribPointer(4, 1, GL_FLOAT, false, sizeof(TriangleDataColorGlow), reinterpret_cast<void*>(sizeof(sm::Vec4)));
+
+	m_transformBuffer->Apply(5);
 }
 
 void SkinnedRibbonMesh::Draw()
@@ -138,6 +164,39 @@ void SkinnedRibbonMesh::Draw()
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
+
+void SkinnedRibbonMesh::Update(float time, float deltaTime)
+{
+	if (m_ribbon == NULL)
+		return;
+
+	TrianglesRibbon* trianglesRibbon = m_ribbon->GetSource();
+
+	for (int i = 0; i < m_trianglesCount; i++)
+	{
+		TrianglesRibbon::TriangleData* triangleData = trianglesRibbon->GetTriangleData(i);
+
+		sm::Vec3 position = triangleData->Curve->Evaluate(time);
+		float scale = triangleData->ScaleCurve->Evaluate(time);
+
+		//float normTimeOnCurve = (time - m_trianglesData[i]->Curve->GetStartTime()) / (m_trianglesData[i]->Curve->GetEndTime() - m_trianglesData[i]->Curve->GetStartTime());
+		//m_trianglesData[i]->Angle = (cos(normTimeOnCurve * 3.1415f * 2) - 1) * -0.5f;
+		//m_trianglesData[i]->Angle *= m_trianglesData[i]->AngleSpeed;
+
+		//m_trianglesData[i]->Angle += m_trianglesData[i]->AngleSpeed * deltaTime;
+
+		sm::Matrix ribbonTransform =
+			sm::Matrix::TranslateMatrix(position) *
+			//m_triangledMesh->GetBaseRotation(i) *
+			//sm::Matrix::RotateAxisMatrix(m_trianglesData[i]->Angle * (1.0f - scale), m_trianglesData[i]->Axis) *
+			sm::Matrix::ScaleMatrix(scale, scale, scale);
+
+		m_transformBuffer->SetTransform(
+			i,
+			ribbonTransform *
+			m_worldToOrigin[i]);
+	}
 }
 
 //TriangleDataColor* SkinnedRibbonMesh::GetTrianglesData() const
@@ -174,6 +233,12 @@ void SkinnedRibbonMesh::SetGlowPower(int index, float glowPower)
 	(trianglesPointer + 2)->GlowPower = glowPower;
 }
 
+void SkinnedRibbonMesh::SetGlowPower(float glowPower)
+{
+	for (uint32_t i = 0; i < m_trianglesCount; i++)
+		SetGlowPower(i, glowPower);
+}
+
 void SkinnedRibbonMesh::AddAnimation(const std::string& name, Animation* animation)
 {
 	for (int i = 0; i < m_meshData->bonesCount; i++)
@@ -192,4 +257,7 @@ int SkinnedRibbonMesh::GetBonesCount() const
 	return m_meshData->bonesCount;
 }
 
-#endif
+void SkinnedRibbonMesh::SetRibbon(Ribbon* ribbon)
+{
+	m_ribbon = ribbon;
+}

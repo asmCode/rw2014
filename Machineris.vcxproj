@@ -245,6 +245,7 @@ exit /B 0
     <ClCompile Include="TrianglesRibbon.cpp" />
     <ClCompile Include="UniqueTriangledMesh.cpp" />
     <ClCompile Include="VectorGraphics.cpp" />
+    <ClCompile Include="VertexDataBufferTransform.cpp" />
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="zip\ioapi.c" />
     <ClCompile Include="zip\iowin32.c" />
@@ -376,6 +377,7 @@ exit /B 0
     <ClInclude Include="Ribbon\RibbonCurveFullSource.h" />
     <ClInclude Include="Ribbon\RibbonCurveSource.h" />
     <ClInclude Include="SceneElement\Destination.h" />
+    <ClInclude Include="SceneElement\FloatKey.h" />
     <ClInclude Include="SceneElement\GuyData.h" />
     <ClInclude Include="SceneElement\IntKey.h" />
     <ClInclude Include="SceneElement\Key.h" />
@@ -436,6 +438,7 @@ exit /B 0
     <ClInclude Include="TrianglesRibbon.h" />
     <ClInclude Include="UniqueTriangledMesh.h" />
     <ClInclude Include="VectorGraphics.h" />
+    <ClInclude Include="VertexDataBufferTransform.h" />
     <ClInclude Include="XmlWriter.h" />
   </ItemGroup>
   <ItemGroup>

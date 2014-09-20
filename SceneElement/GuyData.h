@@ -18,5 +18,6 @@ namespace SceneElement
 		Material* Material;
 		Path* Path;
 		std::vector<IntKey*> AnimationIndex;
+		std::string RibbonName;
 	};
 }

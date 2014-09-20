@@ -2,6 +2,7 @@
 
 #include "../SceneElement/RibbonData.h"
 #include "../GameObject.h"
+#include <Math/Animation/AnimationCurve.h>
 #include <string>
 
 class TrianglesRibbon;
@@ -15,6 +16,10 @@ public:
 	~Ribbon();
 
 	void Update(float time, float seconds);
+
+	TrianglesRibbon* GetSource();
+
+	AnimationCurve<float>* m_ribbonWeightCurve;
 
 private:
 	TrianglesRibbon* m_decomposeAndFly;
