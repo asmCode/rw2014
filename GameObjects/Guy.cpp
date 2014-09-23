@@ -226,7 +226,7 @@ void Guy::Update(float time, float seconds)
 
 	sm::Matrix baseTransform =
 		sm::Matrix::TranslateMatrix(position) *
-		sm::Matrix::CreateLookAt(direction, sm::Vec3(0, 1, 0)) *
+		sm::Matrix::CreateLookAt(direction.GetReversed(), sm::Vec3(0, 1, 0)) *
 		sm::Matrix::ScaleMatrix(0.02f, 0.02f, 0.02f);
 
 	//sm::Matrix baseTransform = sm::Matrix::IdentityMatrix();

@@ -1,0 +1,493 @@
+<Scene name="Scene02">
+	<Ribbons>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.back" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="0.504224" triangle_scale="0.4" delay="0">
+				<Key time="38.2" position="-8.348615;78.079636;40.454281" />
+				<Key time="38.8667" position="-8.348615;76.795113;40.454281" />
+				<Key time="39.5667" position="-8.348615;75.530655;40.454281" />
+				<Key time="40.2333" position="-8.348615;74.266205;40.454281" />
+				<Key time="40.8667" position="-8.348615;73.215004;40.454281" />
+				<Key time="41.7667" position="-8.348615;71.739807;40.454281" />
+				<Key time="42.4333" position="-8.348615;70.437714;40.454281" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.back001" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="0.504224" triangle_scale="0.4" delay="4">
+				<Key time="41.6667" position="-10.339540;78.079636;36.946224" />
+				<Key time="42.5" position="-10.339540;76.795113;36.946224" />
+				<Key time="43.2667" position="-10.339540;75.530655;36.946224" />
+				<Key time="44.1333" position="-10.339540;74.266205;36.946224" />
+				<Key time="44.9667" position="-10.339540;73.215004;36.946224" />
+				<Key time="45.9333" position="-10.339540;71.739807;36.946224" />
+				<Key time="46.7667" position="-10.339540;70.437714;36.946224" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.back002" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="0.504224" triangle_scale="0.4" delay="4">
+				<Key time="41.6667" position="-8.834154;78.079636;33.314312" />
+				<Key time="42.5" position="-8.834154;76.795113;33.314312" />
+				<Key time="43.2667" position="-8.834154;75.530655;33.314312" />
+				<Key time="44.1333" position="-8.834154;74.266205;33.314312" />
+				<Key time="44.9667" position="-8.834154;73.215004;33.314312" />
+				<Key time="45.9333" position="-8.834154;71.739807;33.314312" />
+				<Key time="46.7667" position="-8.834154;70.437714;33.314312" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.back003" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="0.504224" triangle_scale="0.4" delay="4">
+				<Key time="45.2667" position="-10.293751;78.079636;29.956867" />
+				<Key time="45.6667" position="-10.293751;76.795113;29.956867" />
+				<Key time="46.0333" position="-10.293751;75.530655;29.956867" />
+				<Key time="46.4333" position="-10.293751;74.266205;29.956867" />
+				<Key time="46.8333" position="-10.293751;73.215004;29.956867" />
+				<Key time="47.3" position="-10.293751;71.739807;29.956867" />
+				<Key time="47.7" position="-10.293751;70.437714;29.956867" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.back004" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="0.504224" triangle_scale="0.4" delay="4">
+				<Key time="45.0333" position="-9.180305;78.079636;26.679638" />
+				<Key time="45.2667" position="-9.180305;76.795113;26.679638" />
+				<Key time="45.5" position="-9.180305;75.530655;26.679638" />
+				<Key time="45.7333" position="-9.180305;74.266205;26.679638" />
+				<Key time="45.9667" position="-9.180305;73.215004;26.679638" />
+				<Key time="46.2667" position="-9.180305;71.739807;26.679638" />
+				<Key time="46.5" position="-9.180305;70.437714;26.679638" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.back005" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="0.504224" triangle_scale="0.4" delay="4">
+				<Key time="45.0667" position="-6.432075;78.079636;24.472008" />
+				<Key time="45.3333" position="-6.432075;76.795113;24.472008" />
+				<Key time="45.5667" position="-6.432075;75.530655;24.472008" />
+				<Key time="45.8667" position="-6.432075;74.266205;24.472008" />
+				<Key time="46.1" position="-6.432075;73.215004;24.472008" />
+				<Key time="46.4" position="-6.432075;71.739807;24.472008" />
+				<Key time="46.6667" position="-6.432075;70.437714;24.472008" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.back006" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="0.504224" triangle_scale="0.4" delay="4">
+				<Key time="44" position="-1.653227;78.079636;24.215757" />
+				<Key time="44.2667" position="-1.653227;76.795113;24.215757" />
+				<Key time="44.5" position="-1.653227;75.530655;24.215757" />
+				<Key time="44.8" position="-1.653227;74.266205;24.215757" />
+				<Key time="45.0667" position="-1.653227;73.215004;24.215757" />
+				<Key time="45.3667" position="-1.653227;71.739807;24.215757" />
+				<Key time="45.6667" position="-1.653227;70.437714;24.215757" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.back007" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="0.504224" triangle_scale="0.4" delay="4">
+				<Key time="43.4333" position="3.782605;78.079636;24.269716" />
+				<Key time="43.7" position="3.782605;76.795113;24.269716" />
+				<Key time="43.9333" position="3.782605;75.530655;24.269716" />
+				<Key time="44.2333" position="3.782605;74.266205;24.269716" />
+				<Key time="44.4667" position="3.782605;73.215004;24.269716" />
+				<Key time="44.7667" position="3.782605;71.739807;24.269716" />
+				<Key time="45.0667" position="3.782605;70.437714;24.269716" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.back008" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="0.504224" triangle_scale="0.4" delay="4">
+				<Key time="44.6" position="7.486470;78.079636;25.782915" />
+				<Key time="44.9667" position="7.486470;76.795113;25.782915" />
+				<Key time="45.2667" position="7.486470;75.530655;25.782915" />
+				<Key time="45.6333" position="7.486470;74.266205;25.782915" />
+				<Key time="46" position="7.486470;73.215004;25.782915" />
+				<Key time="46.4" position="7.486470;71.739807;25.782915" />
+				<Key time="46.7667" position="7.486470;70.437714;25.782915" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.back009" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="0.504224" triangle_scale="0.4" delay="4">
+				<Key time="41.6667" position="8.310867;78.079636;30.653299" />
+				<Key time="42.0333" position="8.310867;76.795113;30.653299" />
+				<Key time="42.3667" position="8.310867;75.530655;30.653299" />
+				<Key time="42.7333" position="8.310867;74.266205;30.653299" />
+				<Key time="43.1" position="8.310867;73.215004;30.653299" />
+				<Key time="43.5" position="8.310867;71.739807;30.653299" />
+				<Key time="43.8667" position="8.310867;70.437714;30.653299" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.back010" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="0.504224" triangle_scale="0.4" delay="4">
+				<Key time="43.3333" position="8.346577;78.079636;35.171879" />
+				<Key time="43.8" position="8.346577;76.795113;35.171879" />
+				<Key time="44.1667" position="8.346577;75.530655;35.171879" />
+				<Key time="44.6" position="8.346577;74.266205;35.171879" />
+				<Key time="45.0333" position="8.346577;73.215004;35.171879" />
+				<Key time="45.5333" position="8.346577;71.739807;35.171879" />
+				<Key time="45.9667" position="8.346577;70.437714;35.171879" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.back011" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="0.504224" triangle_scale="0.4" delay="4">
+				<Key time="42.1333" position="7.188204;78.079636;39.059978" />
+				<Key time="42.5667" position="7.188204;76.795113;39.059978" />
+				<Key time="42.9667" position="7.188204;75.530655;39.059978" />
+				<Key time="43.4" position="7.188204;74.266205;39.059978" />
+				<Key time="43.8333" position="7.188204;73.215004;39.059978" />
+				<Key time="44.3" position="7.188204;71.739807;39.059978" />
+				<Key time="44.7667" position="7.188204;70.437714;39.059978" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.back012" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="0.504224" triangle_scale="0.4" delay="4">
+				<Key time="41.4333" position="3.599080;78.079636;41.523155" />
+				<Key time="41.9" position="3.599080;76.795113;41.523155" />
+				<Key time="42.3" position="3.599080;75.530655;41.523155" />
+				<Key time="42.7667" position="3.599080;74.266205;41.523155" />
+				<Key time="43.2333" position="3.599080;73.215004;41.523155" />
+				<Key time="43.7333" position="3.599080;71.739807;41.523155" />
+				<Key time="44.2" position="3.599080;70.437714;41.523155" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.back013" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="0.504224" triangle_scale="0.4" delay="4">
+				<Key time="40.7333" position="-2.240657;78.079636;42.388096" />
+				<Key time="41.0667" position="-2.240657;76.795113;42.388096" />
+				<Key time="41.3667" position="-2.240657;75.530655;42.388096" />
+				<Key time="41.6667" position="-2.240657;74.266205;42.388096" />
+				<Key time="42" position="-2.240657;73.215004;42.388096" />
+				<Key time="42.3667" position="-2.240657;71.739807;42.388096" />
+				<Key time="42.6667" position="-2.240657;70.437714;42.388096" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.building01" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="1" triangle_scale="0.4" delay="4">
+				<Key time="23.8667" position="12.364105;91.207100;29.088718" />
+				<Key time="24.5" position="2.840669;88.554001;33.250530" />
+				<Key time="25.1" position="2.152459;85.915886;30.025146" />
+				<Key time="25.7" position="5.498939;83.434372;33.630894" />
+				<Key time="26.3333" position="5.242592;81.261322;36.301456" />
+				<Key time="26.9667" position="-1.960906;79.079346;32.075741" />
+				<Key time="27.5667" position="-4.432191;76.962280;35.343105" />
+				<Key time="28.2" position="-4.702895;75.363892;37.813236" />
+				<Key time="30" position="-4.702895;74.786301;37.813236" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.building02" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="1" triangle_scale="0.4" delay="4">
+				<Key time="26.3667" position="-10.152991;94.848763;30.629354" />
+				<Key time="27.1333" position="-1.795274;96.782127;30.322695" />
+				<Key time="27.8667" position="1.534776;94.050751;30.492783" />
+				<Key time="28.6333" position="0.480317;90.449860;31.823994" />
+				<Key time="29.3667" position="-1.529115;86.966736;33.320091" />
+				<Key time="30.1333" position="-0.870575;82.825966;34.473324" />
+				<Key time="30.8667" position="0.409839;78.779999;35.496361" />
+				<Key time="31.6333" position="1.883020;74.975609;36.801857" />
+				<Key time="33.5667" position="1.883020;74.704453;36.801857" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.building03" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="1" triangle_scale="0.4" delay="4">
+				<Key time="30.3333" position="-5.439119;90.799034;28.167578" />
+				<Key time="30.9667" position="0.820101;89.909988;29.152346" />
+				<Key time="31.5667" position="-0.686611;85.485245;30.295135" />
+				<Key time="32.1667" position="2.274937;82.881226;31.702606" />
+				<Key time="32.7667" position="1.060031;80.490860;33.622627" />
+				<Key time="33.4" position="1.242553;77.831566;34.806610" />
+				<Key time="34" position="2.899333;75.220657;35.121971" />
+				<Key time="34.6333" position="4.320150;72.602661;34.443672" />
+				<Key time="36.6667" position="4.320150;71.575600;34.443672" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.building04" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="1" triangle_scale="0.4" delay="4">
+				<Key time="31.1333" position="-1.701038;96.631172;29.576427" />
+				<Key time="32.0333" position="-1.167968;93.746811;32.308899" />
+				<Key time="32.9333" position="-0.191526;90.301422;34.047352" />
+				<Key time="33.8333" position="1.562819;87.036736;32.866379" />
+				<Key time="34.7333" position="2.761714;83.609566;31.236088" />
+				<Key time="35.6667" position="3.323451;79.807083;30.078339" />
+				<Key time="36.5667" position="3.741833;75.951141;29.040522" />
+				<Key time="37.4667" position="3.881196;72.002251;28.450006" />
+				<Key time="39.2333" position="3.881196;71.399467;28.450006" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.building05" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="0.3" triangle_scale="0.2" delay="4">
+				<Key time="32.9" position="-2.706956;101.141396;35.999168" />
+				<Key time="33.7333" position="-4.930092;97.721825;35.755714" />
+				<Key time="34.5" position="-4.930092;94.646049;35.755714" />
+				<Key time="35.1333" position="-3.360647;92.177284;33.018314" />
+				<Key time="35.7667" position="-2.735605;89.328491;31.232555" />
+				<Key time="36.4333" position="-3.830594;86.365555;31.206171" />
+				<Key time="37.0667" position="-5.147962;83.432312;31.821146" />
+				<Key time="37.7" position="-3.983722;80.467461;31.742771" />
+				<Key time="38.3667" position="-3.490655;77.541527;30.538944" />
+				<Key time="39" position="-4.710760;74.926208;28.084225" />
+				<Key time="40.4" position="-4.710760;74.361694;28.084225" />
+			</Path>
+		</Ribbon>
+		<Ribbon>
+			<Destination mesh_name="scene.morph.dst.building06" stay="1">
+				<Material>
+					<Diffuse value="1.000000;1.000000;1.000000" />
+					<Opacity value="0.2" />
+					<UseSolid value="1" />
+					<UseWire value="1" />
+					<SolidGlowPower value="0.6" />
+					<SolidGlowMultiplier value="0" />
+					<WireGlowPower value="1" />
+					<WireGlowMultiplier value="1" />
+				</Material>
+			</Destination>
+			<Path spread="1" triangle_scale="0.4" delay="4">
+				<Key time="39.3333" position="1.014434;93.824509;33.235123" />
+				<Key time="39.6" position="-1.115676;91.099152;33.822990" />
+				<Key time="39.8667" position="-2.423635;88.117935;33.757580" />
+				<Key time="40.1" position="-2.879419;85.065643;32.938831" />
+				<Key time="40.3333" position="-3.295177;81.975182;32.719620" />
+				<Key time="40.6" position="-3.824593;78.927292;33.532871" />
+				<Key time="40.8333" position="-4.425371;75.890228;34.381618" />
+				<Key time="41.1" position="-5.301717;72.838692;34.621841" />
+				<Key time="41.9" position="-5.301717;72.395546;34.621841" />
+			</Path>
+		</Ribbon>
+	</Ribbons>
+	<StaticMeshes>
+		<Static mesh_name="ground" order="-1">
+			<Material>
+				<Diffuse value="1.000000;1.000000;1.000000" />
+				<Opacity value="0.15" />
+				<UseSolid value="1" />
+				<UseWire value="1" />
+				<SolidGlowPower value="0.5" />
+				<SolidGlowMultiplier value="0" />
+				<WireGlowPower value="1" />
+				<WireGlowMultiplier value="1" />
+			</Material>
+		</Static>
+	</StaticMeshes>
+	<Guys />
+</Scene>

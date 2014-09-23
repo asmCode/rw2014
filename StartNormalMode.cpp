@@ -137,7 +137,7 @@ void StartNormalMode()
 	char tempFolder[MAX_PATH + 1];
 	GetTempPath(MAX_PATH, tempFolder);
 	std::string basePath = tempFolder;
-	baseDataPath = basePath + "futuris_data\\";
+	baseDataPath = basePath + "futuris_data_citygrid\\";
 	UnzipData(moduleFilename.GetPath() + "demodat", basePath);
 #else
 	baseDataPath = moduleFilename.GetPath() + "Data\\";

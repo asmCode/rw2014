@@ -47,7 +47,8 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 	assert(ribbonData->Path != NULL);
 	assert(ribbonData->Path->Keys.size() > 0);
 
-	m_name = ribbonData->Destination->MeshName;
+	if (ribbonData->Destination != NULL)
+		m_name = ribbonData->Destination->MeshName;
 
 	int order = 1;
 	int halfPathKeyIndex = ribbonData->Path->Keys.size() / 2;
@@ -263,6 +264,8 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 				ribbonData->Path->RibbonWeights[i]->Time,
 				ribbonData->Path->RibbonWeights[i]->Value);
 		}
+
+		m_ribbonWeightCurve->SmoothTangents();
 	}
 }
 
