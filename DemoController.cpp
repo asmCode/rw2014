@@ -972,14 +972,14 @@ void DemoController::SetOpenglParams()
 	int width = glWnd ->GetWindowWidth();
 	int height = glWnd ->GetWindowHeight();
 
-	wglUseFontBitmaps(glWnd ->GetHDC(), 0, 255, 1000);
-	glListBase(1000);
+	//wglUseFontBitmaps(glWnd ->GetHDC(), 0, 255, 1000);
+	//glListBase(1000);
 
 	glViewport(0, 0, width, height);
 
 	//glowProj = sm::Matrix::PerspectiveMatrix(fov, (float)(width / 4) / (float)(height / 4), NEAR_PLANE, FAR_PLANE);
 
-	glShadeModel(GL_SMOOTH);
+//	glShadeModel(GL_SMOOTH);
 
 	//glClearColor(0.01f, 0.01f, 0.04f, 1.0f);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);

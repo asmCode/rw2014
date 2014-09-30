@@ -1,6 +1,5 @@
 #include "TrianglesRibbon.h"
 #include "UniqueTriangledMesh.h"
-#include "TriangleDataTransformColorGlow.h"
 #include "Ribbon/IRibbonCurveBuilder.h"
 #include "Ribbon/Modificators/ITriangleModificator.h"
 #include "DemoUtils.h"

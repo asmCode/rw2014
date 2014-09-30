@@ -122,7 +122,6 @@ exit /B 0
     <ClCompile Include="AssemblingScene.cpp" />
     <ClCompile Include="BasicLightingEffect.cpp" />
     <ClCompile Include="Billboard.cpp" />
-    <ClCompile Include="BumpAlongNormal.cpp" />
     <ClCompile Include="DebugUtils.cpp" />
     <ClCompile Include="DemoUtils.cpp" />
     <ClCompile Include="DistortParticleHandler.cpp" />
@@ -243,7 +242,6 @@ exit /B 0
     <ClCompile Include="StartDialog.cpp" />
     <ClCompile Include="StartNormalMode.cpp" />
     <ClCompile Include="Triangle.cpp" />
-    <ClCompile Include="TriangleShader.cpp" />
     <ClCompile Include="TrianglesRibbon.cpp" />
     <ClCompile Include="UniqueTriangledMesh.cpp" />
     <ClCompile Include="VectorGraphics.cpp" />
@@ -262,7 +260,6 @@ exit /B 0
     <ClInclude Include="BaseMesh.h" />
     <ClInclude Include="BasicLightingEffect.h" />
     <ClInclude Include="Billboard.h" />
-    <ClInclude Include="BumpAlongNormal.h" />
     <ClInclude Include="CameraMode.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="DebugUtils.h" />
@@ -409,8 +406,10 @@ exit /B 0
     <ClInclude Include="SkinnedMesh.h" />
     <ClInclude Include="SkinnedRibbonMesh.h" />
     <ClInclude Include="TriangleDataColorGlow.h" />
+    <ClInclude Include="TriangleDataGlow.h" />
     <ClInclude Include="TriangleDataTransformColorGlow.h" />
     <ClInclude Include="StaticTriangledMesh.h" />
+    <ClInclude Include="TriangleDataTransformGlow.h" />
     <ClInclude Include="TriangledMesh.h" />
     <ClInclude Include="ParticlesManager.h" />
     <ClInclude Include="Particles\IParticleHandler.h" />
@@ -435,8 +434,6 @@ exit /B 0
     <ClInclude Include="resource.h" />
     <ClInclude Include="StartDialog.h" />
     <ClInclude Include="Triangle.h" />
-    <ClInclude Include="TriangleDataTransformColor.h" />
-    <ClInclude Include="TriangleShader.h" />
     <ClInclude Include="TrianglesRibbon.h" />
     <ClInclude Include="UniqueTriangledMesh.h" />
     <ClInclude Include="VectorGraphics.h" />
@@ -479,8 +476,6 @@ exit /B 0
     <None Include="Data\effects\SkinnedRibbon.vpr" />
     <None Include="Data\effects\SpecularBlur.fpr" />
     <None Include="Data\effects\SpecularBlur.vpr" />
-    <None Include="Data\effects\SpecularColored.fpr" />
-    <None Include="Data\effects\SpecularColored.vpr" />
     <None Include="Data\effects\Sprite.fpr" />
     <None Include="Data\effects\Sprite.vpr" />
     <None Include="Data\effects\StaticSpecularBlur.fpr" />

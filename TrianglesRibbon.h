@@ -7,7 +7,6 @@
 
 class UniqueTriangledMesh;
 class MeshPart;
-class TriangleDataColor;
 class IRibbonCurveBuilder;
 class ITriangleModificator;
 

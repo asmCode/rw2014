@@ -43,8 +43,6 @@ private:
 	// only black objects with opacity
 	static Shader *m_blackShader;
 
-	static Shader *m_specularColored;
-
 	// only black objects for shadowmap
 	static Shader *m_shadowMapShader;
 

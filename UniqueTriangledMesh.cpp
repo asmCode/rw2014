@@ -2,7 +2,6 @@
 
 #include "UniqueTriangledMesh.h"
 #include "TriangledMesh.h"
-#include "TriangleDataTransformColorGlow.h"
 #include "MeshUtils.h"
 #include "DemoUtils.h"
 #include <Math/Vec2.h>
@@ -28,36 +27,6 @@ void UniqueTriangledMesh::Initialize(MeshPart* meshPart)
 	CreateVertexPositionBuffer(meshPart);
 	CreateIndexBuffer();
 	CreateVertexDataBuffer();
-}
-
-void UniqueTriangledMesh::Apply()
-{
-	glBindBuffer(GL_ARRAY_BUFFER, m_vertexDataBufferId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(TriangleDataTransformColorGlow)* m_trianglesCount * 3, m_triangles, GL_DYNAMIC_DRAW);
-	glVertexAttribPointer(1, 4, GL_FLOAT, false, sizeof(TriangleDataTransformColorGlow), 0);
-
-	int baseVertexDataIndex = 2;
-	for (int i = 0; i < 4; i++)
-	{
-		glVertexAttribPointer(baseVertexDataIndex + i, 4, GL_FLOAT, false, sizeof(TriangleDataTransformColorGlow), reinterpret_cast<void*>(sizeof(sm::Vec4) + sizeof(sm::Vec4) * i));
-	}
-
-	int d = offsetof(TriangleDataTransformColorGlow, GlowPower);
-	glVertexAttribPointer(6, 1, GL_FLOAT, false, sizeof(TriangleDataTransformColorGlow), reinterpret_cast<void*>(d));
-}
-
-void UniqueTriangledMesh::Draw()
-{
-	Apply();
-
-	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferId);
-	glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexBufferId);
-	glDrawElements(GL_TRIANGLES, 3 * m_trianglesCount, GL_UNSIGNED_SHORT, 0);
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 void UniqueTriangledMesh::CreateVertexPositionBuffer(MeshPart* meshPart)

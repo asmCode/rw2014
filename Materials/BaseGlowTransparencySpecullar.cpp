@@ -65,5 +65,6 @@ void BaseGlowTransparencySpecullar::SetupShader()
 		m_shader->SetMatrixParameter("u_viewProjMatrix", DrawingRoutines::GetViewProjMatrix() * (*m_worldMatrix));
 	else
 		m_shader->SetMatrixParameter("u_viewProjMatrix", DrawingRoutines::GetViewProjMatrix());
+
 	m_shader->SetParameter("u_glowMultiplier", m_glowMultiplier);
 }

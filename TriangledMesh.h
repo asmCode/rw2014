@@ -4,7 +4,7 @@
 #include <Math/Matrix.h>
 #include <stdint.h>
 
-class TriangleDataTransformColorGlow;
+class TriangleDataTransformGlow;
 
 class TriangledMesh : public BaseMesh
 {
@@ -17,11 +17,8 @@ public:
 	//TriangleDataColor* GetTrianglesData() const;
 	uint32_t GetTrianglesCount() const;
 
-	void SetTriangleData(int index, const sm::Matrix& transform, const sm::Vec4& color);
 	void SetTriangleTransform(int index, const sm::Matrix& transform);
-	void SetColor(const sm::Vec4& color);
 	void SetGlowPower(float glowPower);
-	void SetTriangleColor(int index, const sm::Vec4& color);
 	void SetGlowPower(int index, float glowPower);
 
 protected:
@@ -30,7 +27,7 @@ protected:
 	uint32_t m_indexBufferId;
 
 	int m_trianglesCount;
-	TriangleDataTransformColorGlow* m_triangles;
+	TriangleDataTransformGlow* m_triangles;
 
 	virtual void Apply();
 	void CreateVertexDataBuffer();

@@ -108,7 +108,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 		m_decomposeAndFly->SetTriangleModificator(BlinkAtStartAndEnd::GetInstance());
 
 		m_decomposeAndFly->GetMesh()->SetGlowPower(ribbonData->Source->Material->SolidGlowPower); // wspolne dla solid i wire
-		m_decomposeAndFly->GetMesh()->SetColor(sm::Vec4(ribbonData->Source->Material->Diffuse, ribbonData->Source->Material->Opacity));
+		//m_decomposeAndFly->GetMesh()->SetColor(sm::Vec4(ribbonData->Source->Material->Diffuse, ribbonData->Source->Material->Opacity));
 
 		if (!ribbonData->Path->DontRender)
 		{
@@ -153,7 +153,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 			ribbonData->Path->Delay);
 
 		m_composeFromRibbon->GetMesh()->SetGlowPower(ribbonData->Destination->Material->SolidGlowPower); // wspolne dla solid i wire
-		m_composeFromRibbon->GetMesh()->SetColor(sm::Vec4(ribbonData->Destination->Material->Diffuse, ribbonData->Destination->Material->Opacity));
+		//m_composeFromRibbon->GetMesh()->SetColor(sm::Vec4(ribbonData->Destination->Material->Diffuse, ribbonData->Destination->Material->Opacity));
 
 		if (!ribbonData->Path->DontRender)
 		{

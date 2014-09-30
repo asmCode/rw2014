@@ -24,7 +24,6 @@ Shader *DrawingRoutines::m_diffLightMapShader;
 Shader *DrawingRoutines::m_diffNormLightmapShader;
 Shader *DrawingRoutines::m_diffShader;
 Shader *DrawingRoutines::m_colorShader;
-Shader *DrawingRoutines::m_specularColored;
 Shader *DrawingRoutines::m_diffNormShader;
 Shader *DrawingRoutines::m_blackShader;
 Shader *DrawingRoutines::m_shadowMapShader;
@@ -105,13 +104,6 @@ bool DrawingRoutines::Initialize(Content *content)
 	m_sm_colorShader->BindVertexChannel(0, "a_position");
 	m_sm_colorShader->BindVertexChannel(1, "a_normal");
 	m_sm_colorShader->LinkProgram();
-
-	m_specularColored = content->Get<Shader>("SpecularColored");
-	assert(m_specularColored != NULL);
-	m_specularColored->BindVertexChannel(0, "a_position");
-	m_specularColored->BindVertexChannel(1, "a_color");
-	m_specularColored->BindVertexChannel(2, "a_transform");
-	m_specularColored->LinkProgram();
 
 	m_sm_diffNormShader = content->Get<Shader>("SM_DiffNorm");
 	assert(m_diffNormShader != NULL);

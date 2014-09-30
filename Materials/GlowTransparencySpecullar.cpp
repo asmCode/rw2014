@@ -17,6 +17,7 @@ void GlowTransparencySpecullar::SetupRenderState()
 	glEnableVertexAttribArray(3);
 	glEnableVertexAttribArray(4);
 	glEnableVertexAttribArray(5);
-	glEnableVertexAttribArray(6);
-	//glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(6);
+	glDisableVertexAttribArray(7);
+	glDisableVertexAttribArray(8);
 }
