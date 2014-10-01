@@ -5,7 +5,7 @@
 #include <stdint.h>
 
 class MeshPart;
-class TriangleDataColorGlow;
+class TriangleDataGlow;
 
 class StaticTriangledMesh : public BaseMesh
 {
@@ -19,8 +19,6 @@ public:
 	//TriangleDataColor* GetTrianglesData() const;
 	uint32_t GetTrianglesCount() const;
 
-	void SetColor(const sm::Vec4& color);
-	void SetTriangleColor(int index, const sm::Vec4& color);
 	void SetGlowPower(int index, float glowPower);
 	void SetGlowPower(float glowPower);
 
@@ -30,10 +28,13 @@ protected:
 	uint32_t m_indexBufferId;
 
 	int m_trianglesCount;
-	TriangleDataColorGlow* m_triangles;
+	TriangleDataGlow* m_triangles;
 
 	virtual void Apply();
 	void CreateVertexDataBuffer();
 	void CreateVertexPositionBuffer(MeshPart* meshPart);
 	void CreateIndexBuffer();
+
+private:
+	bool m_isDirty;
 };

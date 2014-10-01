@@ -1,7 +1,7 @@
 #pragma once
 
 #include "StaticTriangledMesh.h"
-#include "TriangleDataColorGlow.h"
+#include "TriangleDataGlow.h"
 #include "MeshUtils.h"
 #include <Math/Vec2.h>
 #include <Graphics/MeshPart.h>
@@ -14,7 +14,8 @@ StaticTriangledMesh::StaticTriangledMesh() :
 	m_vertexDataBufferId(0),
 	m_indexBufferId(0),
 	m_trianglesCount(0),
-	m_triangles(NULL)
+	m_triangles(NULL),
+	m_isDirty(true)
 {
 }
 
@@ -72,31 +73,32 @@ void StaticTriangledMesh::CreateVertexDataBuffer()
 {
 	// TODO: bedzie trzeba przeniesc inicjalizacji klas pochodnych
 
-	m_triangles = new TriangleDataColorGlow[m_trianglesCount * 3];
+	m_triangles = new TriangleDataGlow[m_trianglesCount * 3];
 
 	for (uint32_t i = 0; i < m_trianglesCount * 3; i++)
 	{
-		m_triangles[i].Color.Set(0.2f, 0.8f, 0.0f, 0.2f);
 		m_triangles[i].GlowPower = 0.8f;
 	}
 
 	glGenBuffers(1, &m_vertexDataBufferId);
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexDataBufferId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(TriangleDataColorGlow)* m_trianglesCount * 3, NULL, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(TriangleDataGlow)* m_trianglesCount * 3, NULL, GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void StaticTriangledMesh::Apply()
 {
-	glBindBuffer(GL_ARRAY_BUFFER, m_vertexDataBufferId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(TriangleDataColorGlow)* m_trianglesCount * 3, m_triangles, GL_DYNAMIC_DRAW);
-	glVertexAttribPointer(1, 4, GL_FLOAT, false, sizeof(TriangleDataColorGlow), 0);
-	glVertexAttribPointer(2, 1, GL_FLOAT, false, sizeof(TriangleDataColorGlow), reinterpret_cast<void*>(sizeof(sm::Vec4)));
+	glBufferData(GL_ARRAY_BUFFER, sizeof(TriangleDataGlow)* m_trianglesCount * 3, m_triangles, GL_DYNAMIC_DRAW);
+
+	m_isDirty = false;
 }
 
 void StaticTriangledMesh::Draw()
 {
-	Apply();
+	glBindBuffer(GL_ARRAY_BUFFER, m_vertexDataBufferId);
+	glVertexAttribPointer(1, 1, GL_FLOAT, false, sizeof(TriangleDataGlow), 0);
+	if (m_isDirty)
+		Apply();
 
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferId);
 	glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
@@ -118,24 +120,11 @@ uint32_t StaticTriangledMesh::GetTrianglesCount() const
 	return m_trianglesCount;
 }
 
-void StaticTriangledMesh::SetColor(const sm::Vec4& color)
-{
-	for (uint32_t i = 0; i < m_trianglesCount; i++)
-		SetTriangleColor(i, color);
-}
-
-void StaticTriangledMesh::SetTriangleColor(int index, const sm::Vec4& color)
-{
-	TriangleDataColorGlow* trianglesPointer = m_triangles + index * 3;
-
-	trianglesPointer->Color = color;
-	(trianglesPointer + 1)->Color = color;
-	(trianglesPointer + 2)->Color = color;
-}
-
 void StaticTriangledMesh::SetGlowPower(int index, float glowPower)
 {
-	TriangleDataColorGlow* trianglesPointer = m_triangles + index * 3;
+	m_isDirty = true;
+
+	TriangleDataGlow* trianglesPointer = m_triangles + index * 3;
 
 	trianglesPointer->GlowPower = glowPower;
 	(trianglesPointer + 1)->GlowPower = glowPower;

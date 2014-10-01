@@ -6,7 +6,7 @@
 
 //#define MAN_CAM 1
 //#define DISABLE_FRUSTUM_CULLING 1
-//#define SHOW_FPS 1
+#define SHOW_FPS 1
 //#define LOAD_LIGHTMAPS 1
 #define DISABLE_MUSIC 1
 #define START_IN_WINDOW 1

@@ -194,7 +194,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 		m_staticSource->Initialize(mesh->meshParts[0]);
 
 		m_staticSource->SetGlowPower(materialData->SolidGlowPower); // wspolne dla solid i wire
-		m_staticSource->SetColor(sm::Vec4(materialData->Diffuse, materialData->Opacity)); // wspolne dla wire i solid
+		//m_staticSource->SetColor(sm::Vec4(materialData->Diffuse, materialData->Opacity)); // wspolne dla wire i solid
 
 		if (materialData->UseSolid)
 		{
@@ -232,7 +232,7 @@ Ribbon::Ribbon(const std::string& sceneName, SceneElement::RibbonData* ribbonDat
 		m_staticDestination->Initialize(mesh->meshParts[0]);
 
 		m_staticDestination->SetGlowPower(materialData->SolidGlowPower); // wspolne dla solid i wire
-		m_staticDestination->SetColor(sm::Vec4(materialData->Diffuse, materialData->Opacity)); // wspolne dla wire i solid
+		//m_staticDestination->SetColor(sm::Vec4(materialData->Diffuse, materialData->Opacity)); // wspolne dla wire i solid
 
 		if (materialData->UseSolid)
 		{

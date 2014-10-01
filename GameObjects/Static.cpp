@@ -28,7 +28,7 @@ Static::Static(const std::string& sceneName, SceneElement::StaticData* staticDat
 	m_mesh = new StaticTriangledMesh();
 	m_mesh->Initialize(sceneMesh->meshParts[0]);
 
-	m_mesh->SetColor(sm::Vec4(staticData->Material->Diffuse, staticData->Material->Opacity));
+	//m_mesh->SetColor(sm::Vec4(staticData->Material->Diffuse, staticData->Material->Opacity));
 	m_mesh->SetGlowPower(staticData->Material->SolidGlowPower);
 
 	Shader* glowSpecullarShader = Content::Instance->Get<Shader>("StaticSpecularBlur");

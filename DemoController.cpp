@@ -972,8 +972,8 @@ void DemoController::SetOpenglParams()
 	int width = glWnd ->GetWindowWidth();
 	int height = glWnd ->GetWindowHeight();
 
-	//wglUseFontBitmaps(glWnd ->GetHDC(), 0, 255, 1000);
-	//glListBase(1000);
+	wglUseFontBitmaps(glWnd ->GetHDC(), 0, 255, 1000);
+	glListBase(1000);
 
 	glViewport(0, 0, width, height);
 
