@@ -20,6 +20,7 @@ public:
 	void SetWorldMatrix(const sm::Matrix* worldMatrix);
 	void SetPolygonMode(PolygonMode polygonMode);
 	void SetGlowMultiplier(float glowMultiplier);
+	void SetColor(const sm::Vec4& color);
 
 	bool IsOpacity() const;
 
@@ -30,4 +31,5 @@ protected:
 	const sm::Matrix* m_worldMatrix;
 	uint32_t m_polygonMode;
 	float m_glowMultiplier;
+	sm::Vec4 m_color;
 };

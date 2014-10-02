@@ -10,9 +10,6 @@ varying float o_glowPower;
 
 void main()
 {	
-	//FragColor =	u_color;
-	//BlurFragColor = u_color * o_glowPower * u_glowMultiplier;
-
-	FragColor =	vec4(1, 1, 0, 0.1);
-	BlurFragColor = vec4(1, 1, 0, 0.1) * o_glowPower * u_glowMultiplier;
+	FragColor = u_color;
+	BlurFragColor = u_color * o_glowPower * u_glowMultiplier;
 }

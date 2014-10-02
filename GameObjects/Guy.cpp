@@ -72,37 +72,37 @@ Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
 		////////////////////
 		if (guyData->Material->UseSolid)
 		{
-		SkinnedGlowTransparencySpecullar* material = new SkinnedGlowTransparencySpecullar(shader, m_mesh);
-		material->SetGlowMultiplier(guyData->Material->SolidGlowMultiplier);
+			SkinnedGlowTransparencySpecullar* material = new SkinnedGlowTransparencySpecullar(shader, m_mesh);
+			material->SetGlowMultiplier(guyData->Material->SolidGlowMultiplier);
 
-		Renderable* renderable = new Renderable(m_mesh, material);
-		m_renderables.push_back(renderable);
+			Renderable* renderable = new Renderable(m_mesh, material);
+			m_renderables.push_back(renderable);
 		}
 
 		if (guyData->Material->UseWire)
 		{
-		SkinnedGlowTransparencySpecullar* material = new SkinnedGlowTransparencySpecullar(shader, m_mesh);
-		material->SetGlowMultiplier(guyData->Material->WireGlowMultiplier);
-		material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
+			SkinnedGlowTransparencySpecullar* material = new SkinnedGlowTransparencySpecullar(shader, m_mesh);
+			material->SetGlowMultiplier(guyData->Material->WireGlowMultiplier);
+			material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 
-		Renderable* renderable = new Renderable(m_mesh, material);
-		m_renderables.push_back(renderable);
+			Renderable* renderable = new Renderable(m_mesh, material);
+			m_renderables.push_back(renderable);
 		}
 		///////////////////
 
 		m_positionCurve = new AnimationCurve<sm::Vec3>();
 		for (uint32_t i = 0; i < guyData->Path->Keys.size(); i++)
 		{
-		SceneElement::Key* key = guyData->Path->Keys[i];
-		m_positionCurve->AddKeyframe(key->Time, key->Position);
+			SceneElement::Key* key = guyData->Path->Keys[i];
+			m_positionCurve->AddKeyframe(key->Time, key->Position);
 		}
 
 		m_positionCurve->SmoothTangents();
 
 		for (uint32_t i = 0; i < guyData->AnimationIndex.size(); i++)
 		{
-		SceneElement::IntKey* key = guyData->AnimationIndex[i];
-		m_animationIndex.AddKeyframe(key->Time, key->Value, false);
+			SceneElement::IntKey* key = guyData->AnimationIndex[i];
+			m_animationIndex.AddKeyframe(key->Time, key->Value, false);
 		}
 	}
 	else

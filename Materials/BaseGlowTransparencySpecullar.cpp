@@ -5,7 +5,8 @@
 BaseGlowTransparencySpecullar::BaseGlowTransparencySpecullar(Shader* shader) :
 	m_worldMatrix(NULL),
 	m_polygonMode(GL_FILL),
-	m_glowMultiplier(1.0f)
+	m_glowMultiplier(1.0f),
+	m_color(1, 1, 1, 1)
 {
 	m_shader = shader;
 }
@@ -40,6 +41,11 @@ void BaseGlowTransparencySpecullar::SetGlowMultiplier(float glowMultiplier)
 	m_glowMultiplier = glowMultiplier;
 }
 
+void BaseGlowTransparencySpecullar::SetColor(const sm::Vec4& color)
+{
+	m_color = color;
+}
+
 bool BaseGlowTransparencySpecullar::IsOpacity() const
 {
 	return true;
@@ -67,4 +73,5 @@ void BaseGlowTransparencySpecullar::SetupShader()
 		m_shader->SetMatrixParameter("u_viewProjMatrix", DrawingRoutines::GetViewProjMatrix());
 
 	m_shader->SetParameter("u_glowMultiplier", m_glowMultiplier);
+	m_shader->SetParameter("u_color", m_color);
 }

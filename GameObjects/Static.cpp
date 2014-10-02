@@ -28,7 +28,6 @@ Static::Static(const std::string& sceneName, SceneElement::StaticData* staticDat
 	m_mesh = new StaticTriangledMesh();
 	m_mesh->Initialize(sceneMesh->meshParts[0]);
 
-	//m_mesh->SetColor(sm::Vec4(staticData->Material->Diffuse, staticData->Material->Opacity));
 	m_mesh->SetGlowPower(staticData->Material->SolidGlowPower);
 
 	Shader* glowSpecullarShader = Content::Instance->Get<Shader>("StaticSpecularBlur");
@@ -38,6 +37,7 @@ Static::Static(const std::string& sceneName, SceneElement::StaticData* staticDat
 	{
 		StaticGlowTransparencySpecullar* material = new StaticGlowTransparencySpecullar(glowSpecullarShader);
 		material->SetGlowMultiplier(staticData->Material->SolidGlowMultiplier);
+		material->SetColor(sm::Vec4(staticData->Material->Diffuse, staticData->Material->Opacity));
 
 		Renderable* renderable = new Renderable(m_mesh, material, staticData->Order);
 		m_renderables.push_back(renderable);
@@ -47,6 +47,7 @@ Static::Static(const std::string& sceneName, SceneElement::StaticData* staticDat
 	{
 		StaticGlowTransparencySpecullar* material = new StaticGlowTransparencySpecullar(glowSpecullarShader);
 		material->SetGlowMultiplier(staticData->Material->WireGlowMultiplier);
+		material->SetColor(sm::Vec4(staticData->Material->Diffuse, staticData->Material->Opacity));
 		material->SetPolygonMode(BaseGlowTransparencySpecullar::PolygonMode_Lines);
 
 		Renderable* renderable = new Renderable(m_mesh, material, staticData->Order);
