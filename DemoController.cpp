@@ -23,6 +23,7 @@
 #include "Scenes/GuySceneTest.h"
 #include "Scenes/CamsTestScene.h"
 #include "DemoUtils.h"
+#include "Utils/Stopwatch.h"
 
 #include "ScenesManager.h"
 
@@ -341,6 +342,8 @@ Animation *anim;
 
 bool DemoController::LoadContent(const char *basePath)
 {
+	Stopwatch loadContentStopwatch(true);
+
 	m_content = new Content(this);
 	Content *dc = m_content;
 	
@@ -352,15 +355,24 @@ bool DemoController::LoadContent(const char *basePath)
 	Environment::GetInstance()->SetBasePath(m_strBasePath);
 
 	//dc->AddContentObserver(this);
+	Stopwatch loadModelsStopwatch(true);
 	dc->LoadModels(m_strBasePath + "models\\");
+	Log::LogT("Models loaded in %.2f s", loadModelsStopwatch.GetTime());
+	Stopwatch loadTexturesStopwatch(true);
 	dc->LoadTextures(m_strBasePath + "textures\\");
-#if LOAD_LIGHTMAPS
-	dc->LoadTextures(m_strBasePath + "textures\\lightmaps\\");
-#endif
+	Log::LogT("Textures loaded in %.2f s", loadTexturesStopwatch.GetTime());
+	Stopwatch loadShadersStopwatch(true);
 	dc->LoadShaders(m_strBasePath + "effects\\");
+	Log::LogT("Shaders loaded in %.2f s", loadShadersStopwatch.GetTime());
+	Stopwatch loadAnimationsStopwatch(true);
 	dc->LoadAnimations(m_strBasePath + "animations\\");
+	Log::LogT("Animations loaded in %.2f s", loadAnimationsStopwatch.GetTime());
+	Stopwatch loadMaterialsStopwatch(true);
 	dc->LoadMaterials(m_strBasePath + "materials\\");
+	Log::LogT("Materials loaded in %.2f s", loadMaterialsStopwatch.GetTime());
+	Stopwatch loadSkinnedMeshesStopwatch(true);
 	dc->LoadSkinnedMeshes(m_strBasePath + "SkinnedMeshes\\");
+	Log::LogT("Skinned Meshes loaded in %.2f s", loadSkinnedMeshesStopwatch.GetTime());
 
 	if (!AssignAssets())
 		return false;
@@ -477,8 +489,10 @@ bool DemoController::LoadContent(const char *basePath)
 
 	*/
 
+	Stopwatch loadScenesStopwatch(true);
 	m_scenesManager = new ScenesManager();
 	m_scenesManager->Initialize();
+	Log::LogT("Scenes loaded in %.2f s", loadScenesStopwatch.GetTime());
 
 	m_graphicsEngine = new GraphicsEngine(width, height);
 	m_graphicsEngine->Initialize();
@@ -486,6 +500,8 @@ bool DemoController::LoadContent(const char *basePath)
 	BaseScene* scene = m_scenesManager->GetActiveScene();
 
 	m_graphicsEngine->SetRenderables(scene->GetRenderables());
+
+	Log::LogT("Loaded all assets in %.2f s", loadContentStopwatch.GetTime());
 
 	return true;
 }

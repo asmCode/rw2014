@@ -244,6 +244,7 @@ exit /B 0
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="TrianglesRibbon.cpp" />
     <ClCompile Include="UniqueTriangledMesh.cpp" />
+    <ClCompile Include="Utils\Stopwatch.cpp" />
     <ClCompile Include="VectorGraphics.cpp" />
     <ClCompile Include="VertexDataBufferTransform.cpp" />
     <ClCompile Include="WinMain.cpp" />
@@ -436,6 +437,7 @@ exit /B 0
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="TrianglesRibbon.h" />
     <ClInclude Include="UniqueTriangledMesh.h" />
+    <ClInclude Include="Utils\Stopwatch.h" />
     <ClInclude Include="VectorGraphics.h" />
     <ClInclude Include="VertexDataBufferTransform.h" />
     <ClInclude Include="XmlWriter.h" />
