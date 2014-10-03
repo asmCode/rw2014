@@ -1,19 +1,8 @@
 <Scene name="SceneDupa">
 	<Ribbons>
 		<Ribbon>
-			<Destination mesh_name="scene.morph.dst.rib1" stay="0">
-				<Material>
-					<Diffuse value="0.588000;0.588000;0.588000" />
-					<Opacity value="1" />
-					<UseSolid value="1" />
-					<UseWire value="1" />
-					<SolidGlowPower value="1" />
-					<SolidGlowMultiplier value="1" />
-					<WireGlowPower value="1" />
-					<WireGlowMultiplier value="1" />
-				</Material>
-			</Destination>
-			<Path spread="0.4" triangle_scale="1" delay="0.5" dont_render="1">
+			<Destination mesh_name="scene.morph.dst.rib1" stay="0" material_name="_ludekinitialShadingGroup" />
+			<Path spread="0.4" triangle_scale="0.5" delay="0.5" dont_render="1">
 				<RibbonWeights>
 					<Key time="0" value="0" />
 					<Key time="82.594" value="1" />
@@ -47,2443 +36,211 @@
 		</Ribbon>
 	</Ribbons>
 	<StaticMeshes>
-		<Static mesh_name="teren">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="droga1">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="droga2">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta110">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta109">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta108">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta103">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta101">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta098">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta091">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta088">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta087">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta069">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta068">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta067">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta066">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta065">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta064">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta063">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta062">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta40">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta39">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta38">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta37">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta36">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="1" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="1" />
-				<SolidGlowMultiplier value="1" />
-				<WireGlowPower value="1" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta35">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta34">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta33">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta28">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta25">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta24">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta23">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta22">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta21">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta20">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta19">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta15">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta14">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta10">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta09">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta06">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta05">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box286">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box289">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box293">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box298">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box299">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box300">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box301">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box303">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box305">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box306">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box307">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box308">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta111">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta113">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta114">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta115">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta116">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta117">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta118">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta119">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta120">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta121">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta123">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box355">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box356">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box357">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box358">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box359">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box360">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box361">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box362">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box363">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box364">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box365">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box366">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box367">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box368">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box369">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box370">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box371">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box372">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta125">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta126">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta128">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta130">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta131">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta132">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta133">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta137">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta140">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta141">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta142">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta144">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="makieta145">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box1252">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box462">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box1290">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box1292">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box1293">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box1297">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box1301">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box2233">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box2234">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box2235">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box2236">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box2237">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box2238">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box2239">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box2240">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box2241">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box2242">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box2243">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box2245">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="box2248">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="Box138">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="Box139">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="tablica002">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="tablica003">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="tablica004">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia009">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia010">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia011">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia012">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia013">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia014">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia017">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia018">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia027">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia028">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia029">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia030">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia031">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia032">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia033">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia034">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia035">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="latarnia036">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="pCube020">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="pCylinder002">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="pCube021">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="pCylinder003">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="pCube023">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="pCylinder005">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="pCube024">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="pCylinder006">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="pCube025">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="pCylinder007">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="pCube026">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="pCylinder008">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="pCube028">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="pCylinder010">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="reklama001">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="reklama002">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane0">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan18">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan17">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan16">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane5">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan14">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane6">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane7">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane3">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane8">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan10">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan12">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan13">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan15">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane4">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan11">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane9">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane2">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane1">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane010">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane011">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan019">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan020">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan021">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane012">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan022">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane013">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane014">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane015">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan023">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan024">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan025">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan026">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane016">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystan027">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane017">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane018">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="przystane019">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="hydrant">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="hydrant001">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="slup">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="slup001">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="slup002">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="slup006">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="slup007">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="slup008">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
-		<Static mesh_name="slup009">
-			<Material>
-				<Diffuse value="0.700000;0.700000;0.700000" />
-				<Opacity value="0.05" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0" />
-				<WireGlowPower value="0.2" />
-				<WireGlowMultiplier value="1" />
-			</Material>
-		</Static>
+		<Static mesh_name="teren" material_name="budynki" />
+		<Static mesh_name="droga1" material_name="budynki" />
+		<Static mesh_name="droga2" material_name="budynki" />
+		<Static mesh_name="makieta110" material_name="budynki" />
+		<Static mesh_name="makieta109" material_name="budynki" />
+		<Static mesh_name="makieta108" material_name="budynki" />
+		<Static mesh_name="makieta103" material_name="budynki" />
+		<Static mesh_name="makieta101" material_name="budynki" />
+		<Static mesh_name="makieta098" material_name="budynki" />
+		<Static mesh_name="makieta091" material_name="budynki" />
+		<Static mesh_name="makieta088" material_name="budynki" />
+		<Static mesh_name="makieta087" material_name="budynki" />
+		<Static mesh_name="makieta069" material_name="budynki" />
+		<Static mesh_name="makieta068" material_name="budynki" />
+		<Static mesh_name="makieta067" material_name="budynki" />
+		<Static mesh_name="makieta066" material_name="budynki" />
+		<Static mesh_name="makieta065" material_name="budynki" />
+		<Static mesh_name="makieta064" material_name="budynki" />
+		<Static mesh_name="makieta063" material_name="budynki" />
+		<Static mesh_name="makieta062" material_name="budynki" />
+		<Static mesh_name="makieta40" material_name="budynki" />
+		<Static mesh_name="makieta39" material_name="budynki" />
+		<Static mesh_name="makieta38" material_name="budynki" />
+		<Static mesh_name="makieta37" material_name="budynki" />
+		<Static mesh_name="makieta36" material_name="Default" />
+		<Static mesh_name="makieta35" material_name="budynki" />
+		<Static mesh_name="makieta34" material_name="budynki" />
+		<Static mesh_name="makieta33" material_name="budynki" />
+		<Static mesh_name="makieta28" material_name="budynki" />
+		<Static mesh_name="makieta25" material_name="budynki" />
+		<Static mesh_name="makieta24" material_name="budynki" />
+		<Static mesh_name="makieta23" material_name="budynki" />
+		<Static mesh_name="makieta22" material_name="budynki" />
+		<Static mesh_name="makieta21" material_name="budynki" />
+		<Static mesh_name="makieta20" material_name="budynki" />
+		<Static mesh_name="makieta19" material_name="budynki" />
+		<Static mesh_name="makieta15" material_name="budynki" />
+		<Static mesh_name="makieta14" material_name="budynki" />
+		<Static mesh_name="makieta10" material_name="budynki" />
+		<Static mesh_name="makieta09" material_name="budynki" />
+		<Static mesh_name="makieta06" material_name="budynki" />
+		<Static mesh_name="makieta05" material_name="budynki" />
+		<Static mesh_name="box286" material_name="budynki" />
+		<Static mesh_name="box289" material_name="budynki" />
+		<Static mesh_name="box293" material_name="budynki" />
+		<Static mesh_name="box298" material_name="budynki" />
+		<Static mesh_name="box299" material_name="budynki" />
+		<Static mesh_name="box300" material_name="budynki" />
+		<Static mesh_name="box301" material_name="budynki" />
+		<Static mesh_name="box303" material_name="budynki" />
+		<Static mesh_name="box305" material_name="budynki" />
+		<Static mesh_name="box306" material_name="budynki" />
+		<Static mesh_name="box307" material_name="budynki" />
+		<Static mesh_name="box308" material_name="budynki" />
+		<Static mesh_name="makieta111" material_name="budynki" />
+		<Static mesh_name="makieta113" material_name="budynki" />
+		<Static mesh_name="makieta114" material_name="budynki" />
+		<Static mesh_name="makieta115" material_name="budynki" />
+		<Static mesh_name="makieta116" material_name="budynki" />
+		<Static mesh_name="makieta117" material_name="budynki" />
+		<Static mesh_name="makieta118" material_name="budynki" />
+		<Static mesh_name="makieta119" material_name="budynki" />
+		<Static mesh_name="makieta120" material_name="budynki" />
+		<Static mesh_name="makieta121" material_name="budynki" />
+		<Static mesh_name="makieta123" material_name="budynki" />
+		<Static mesh_name="box355" material_name="budynki" />
+		<Static mesh_name="box356" material_name="budynki" />
+		<Static mesh_name="box357" material_name="budynki" />
+		<Static mesh_name="box358" material_name="budynki" />
+		<Static mesh_name="box359" material_name="budynki" />
+		<Static mesh_name="box360" material_name="budynki" />
+		<Static mesh_name="box361" material_name="budynki" />
+		<Static mesh_name="box362" material_name="budynki" />
+		<Static mesh_name="box363" material_name="budynki" />
+		<Static mesh_name="box364" material_name="budynki" />
+		<Static mesh_name="box365" material_name="budynki" />
+		<Static mesh_name="box366" material_name="budynki" />
+		<Static mesh_name="box367" material_name="budynki" />
+		<Static mesh_name="box368" material_name="budynki" />
+		<Static mesh_name="box369" material_name="budynki" />
+		<Static mesh_name="box370" material_name="budynki" />
+		<Static mesh_name="box371" material_name="budynki" />
+		<Static mesh_name="box372" material_name="budynki" />
+		<Static mesh_name="makieta125" material_name="budynki" />
+		<Static mesh_name="makieta126" material_name="budynki" />
+		<Static mesh_name="makieta128" material_name="budynki" />
+		<Static mesh_name="makieta130" material_name="budynki" />
+		<Static mesh_name="makieta131" material_name="budynki" />
+		<Static mesh_name="makieta132" material_name="budynki" />
+		<Static mesh_name="makieta133" material_name="budynki" />
+		<Static mesh_name="makieta137" material_name="budynki" />
+		<Static mesh_name="makieta140" material_name="budynki" />
+		<Static mesh_name="makieta141" material_name="budynki" />
+		<Static mesh_name="makieta142" material_name="budynki" />
+		<Static mesh_name="makieta144" material_name="budynki" />
+		<Static mesh_name="makieta145" material_name="budynki" />
+		<Static mesh_name="box1252" material_name="budynki" />
+		<Static mesh_name="box462" material_name="budynki" />
+		<Static mesh_name="box1290" material_name="budynki" />
+		<Static mesh_name="box1292" material_name="budynki" />
+		<Static mesh_name="box1293" material_name="budynki" />
+		<Static mesh_name="box1297" material_name="budynki" />
+		<Static mesh_name="box1301" material_name="budynki" />
+		<Static mesh_name="box2233" material_name="budynki" />
+		<Static mesh_name="box2234" material_name="budynki" />
+		<Static mesh_name="box2235" material_name="budynki" />
+		<Static mesh_name="box2236" material_name="budynki" />
+		<Static mesh_name="box2237" material_name="budynki" />
+		<Static mesh_name="box2238" material_name="budynki" />
+		<Static mesh_name="box2239" material_name="budynki" />
+		<Static mesh_name="box2240" material_name="budynki" />
+		<Static mesh_name="box2241" material_name="budynki" />
+		<Static mesh_name="box2242" material_name="budynki" />
+		<Static mesh_name="box2243" material_name="budynki" />
+		<Static mesh_name="box2245" material_name="budynki" />
+		<Static mesh_name="box2248" material_name="budynki" />
+		<Static mesh_name="Box138" material_name="budynki" />
+		<Static mesh_name="Box139" material_name="budynki" />
+		<Static mesh_name="tablica002" material_name="budynki" />
+		<Static mesh_name="tablica003" material_name="budynki" />
+		<Static mesh_name="tablica004" material_name="budynki" />
+		<Static mesh_name="latarnia009" material_name="budynki" />
+		<Static mesh_name="latarnia010" material_name="budynki" />
+		<Static mesh_name="latarnia011" material_name="budynki" />
+		<Static mesh_name="latarnia012" material_name="budynki" />
+		<Static mesh_name="latarnia013" material_name="budynki" />
+		<Static mesh_name="latarnia014" material_name="budynki" />
+		<Static mesh_name="latarnia017" material_name="budynki" />
+		<Static mesh_name="latarnia018" material_name="budynki" />
+		<Static mesh_name="latarnia027" material_name="budynki" />
+		<Static mesh_name="latarnia028" material_name="budynki" />
+		<Static mesh_name="latarnia029" material_name="budynki" />
+		<Static mesh_name="latarnia030" material_name="budynki" />
+		<Static mesh_name="latarnia031" material_name="budynki" />
+		<Static mesh_name="latarnia032" material_name="budynki" />
+		<Static mesh_name="latarnia033" material_name="budynki" />
+		<Static mesh_name="latarnia034" material_name="budynki" />
+		<Static mesh_name="latarnia035" material_name="budynki" />
+		<Static mesh_name="latarnia036" material_name="budynki" />
+		<Static mesh_name="pCube020" material_name="budynki" />
+		<Static mesh_name="pCylinder002" material_name="budynki" />
+		<Static mesh_name="pCube021" material_name="budynki" />
+		<Static mesh_name="pCylinder003" material_name="budynki" />
+		<Static mesh_name="pCube023" material_name="budynki" />
+		<Static mesh_name="pCylinder005" material_name="budynki" />
+		<Static mesh_name="pCube024" material_name="budynki" />
+		<Static mesh_name="pCylinder006" material_name="budynki" />
+		<Static mesh_name="pCube025" material_name="budynki" />
+		<Static mesh_name="pCylinder007" material_name="budynki" />
+		<Static mesh_name="pCube026" material_name="budynki" />
+		<Static mesh_name="pCylinder008" material_name="budynki" />
+		<Static mesh_name="pCube028" material_name="budynki" />
+		<Static mesh_name="pCylinder010" material_name="budynki" />
+		<Static mesh_name="reklama001" material_name="budynki" />
+		<Static mesh_name="reklama002" material_name="budynki" />
+		<Static mesh_name="przystane0" material_name="budynki" />
+		<Static mesh_name="przystan18" material_name="budynki" />
+		<Static mesh_name="przystan17" material_name="budynki" />
+		<Static mesh_name="przystan16" material_name="budynki" />
+		<Static mesh_name="przystane5" material_name="budynki" />
+		<Static mesh_name="przystan14" material_name="budynki" />
+		<Static mesh_name="przystane6" material_name="budynki" />
+		<Static mesh_name="przystane7" material_name="budynki" />
+		<Static mesh_name="przystane3" material_name="budynki" />
+		<Static mesh_name="przystane8" material_name="budynki" />
+		<Static mesh_name="przystan10" material_name="budynki" />
+		<Static mesh_name="przystan12" material_name="budynki" />
+		<Static mesh_name="przystan13" material_name="budynki" />
+		<Static mesh_name="przystan15" material_name="budynki" />
+		<Static mesh_name="przystane4" material_name="budynki" />
+		<Static mesh_name="przystan11" material_name="budynki" />
+		<Static mesh_name="przystane9" material_name="budynki" />
+		<Static mesh_name="przystane2" material_name="budynki" />
+		<Static mesh_name="przystane1" material_name="budynki" />
+		<Static mesh_name="przystane010" material_name="budynki" />
+		<Static mesh_name="przystane011" material_name="budynki" />
+		<Static mesh_name="przystan019" material_name="budynki" />
+		<Static mesh_name="przystan020" material_name="budynki" />
+		<Static mesh_name="przystan021" material_name="budynki" />
+		<Static mesh_name="przystane012" material_name="budynki" />
+		<Static mesh_name="przystan022" material_name="budynki" />
+		<Static mesh_name="przystane013" material_name="budynki" />
+		<Static mesh_name="przystane014" material_name="budynki" />
+		<Static mesh_name="przystane015" material_name="budynki" />
+		<Static mesh_name="przystan023" material_name="budynki" />
+		<Static mesh_name="przystan024" material_name="budynki" />
+		<Static mesh_name="przystan025" material_name="budynki" />
+		<Static mesh_name="przystan026" material_name="budynki" />
+		<Static mesh_name="przystane016" material_name="budynki" />
+		<Static mesh_name="przystan027" material_name="budynki" />
+		<Static mesh_name="przystane017" material_name="budynki" />
+		<Static mesh_name="przystane018" material_name="budynki" />
+		<Static mesh_name="przystane019" material_name="budynki" />
+		<Static mesh_name="hydrant" material_name="budynki" />
+		<Static mesh_name="hydrant001" material_name="budynki" />
+		<Static mesh_name="slup" material_name="budynki" />
+		<Static mesh_name="slup001" material_name="budynki" />
+		<Static mesh_name="slup002" material_name="budynki" />
+		<Static mesh_name="slup006" material_name="budynki" />
+		<Static mesh_name="slup007" material_name="budynki" />
+		<Static mesh_name="slup008" material_name="budynki" />
+		<Static mesh_name="slup009" material_name="budynki" />
 	</StaticMeshes>
 	<Guys>
-		<Guy id="1" ribbon_name="rib1">
-			<Material>
-				<Diffuse value="0.529412;0.917647;0.000000" />
-				<Opacity value="0.4" />
-				<UseSolid value="1" />
-				<UseWire value="1" />
-				<SolidGlowPower value="0.8" />
-				<SolidGlowMultiplier value="0.8" />
-				<WireGlowPower value="0.8" />
-				<WireGlowMultiplier value="1.2" />
-			</Material>
+		<Guy id="1" ribbon_name="rib1" material_name="green">
 			<Path spread="1" triangle_scale="0.5" delay="4">
 				<Key time="82.6333" position="-90.254120;5.745838;20.739618" />
 				<Key time="105.033" position="-128.123032;4.532310;-43.539562" />
@@ -2491,4 +248,50 @@
 			<AnimationIndex />
 		</Guy>
 	</Guys>
+	<Materials>
+		<Material>
+			<Name value="Default" />
+			<Diffuse value="0.700000;0.700000;0.700000" />
+			<Opacity value="1" />
+			<UseSolid value="1" />
+			<UseWire value="1" />
+			<SolidGlowPower value="1" />
+			<SolidGlowMultiplier value="1" />
+			<WireGlowPower value="1" />
+			<WireGlowMultiplier value="1" />
+		</Material>
+		<Material>
+			<Name value="_ludekinitialShadingGroup" />
+			<Diffuse value="0.588000;0.588000;0.588000" />
+			<Opacity value="1" />
+			<UseSolid value="1" />
+			<UseWire value="1" />
+			<SolidGlowPower value="1" />
+			<SolidGlowMultiplier value="1" />
+			<WireGlowPower value="1" />
+			<WireGlowMultiplier value="1" />
+		</Material>
+		<Material>
+			<Name value="budynki" />
+			<Diffuse value="0.700000;0.700000;0.700000" />
+			<Opacity value="0.05" />
+			<UseSolid value="1" />
+			<UseWire value="1" />
+			<SolidGlowPower value="0.8" />
+			<SolidGlowMultiplier value="0" />
+			<WireGlowPower value="0.2" />
+			<WireGlowMultiplier value="1" />
+		</Material>
+		<Material>
+			<Name value="green" />
+			<Diffuse value="0.529412;0.917647;0.000000" />
+			<Opacity value="0.4" />
+			<UseSolid value="1" />
+			<UseWire value="1" />
+			<SolidGlowPower value="0.8" />
+			<SolidGlowMultiplier value="0.8" />
+			<WireGlowPower value="0.8" />
+			<WireGlowMultiplier value="1.2" />
+		</Material>
+	</Materials>
 </Scene>

@@ -23,7 +23,9 @@
 
 void Scene08::InitializeSubScene()
 {
-	if (!SceneLoader::LoadFromFile(this, "Scene08"))
+	SceneLoader sceneLoader;
+
+	if (!sceneLoader.LoadFromFile(this, "Scene08"))
 	{
 		assert(false);
 		return;

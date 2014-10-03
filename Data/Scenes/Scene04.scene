@@ -1,18 +1,7 @@
 <Scene name="Scene04">
 	<Ribbons>
 		<Ribbon>
-			<Destination mesh_name="scene.morph.dst.rib1" stay="0">
-				<Material>
-					<Diffuse value="0.588000;0.588000;0.588000" />
-					<Opacity value="1" />
-					<UseSolid value="1" />
-					<UseWire value="1" />
-					<SolidGlowPower value="1" />
-					<SolidGlowMultiplier value="1" />
-					<WireGlowPower value="1" />
-					<WireGlowMultiplier value="1" />
-				</Material>
-			</Destination>
+			<Destination mesh_name="scene.morph.dst.rib1" stay="0" material_name="_ludekinitialShadingGroup" />
 			<Path spread="0.736357" triangle_scale="0.5" delay="6" dont_render="1">
 				<RibbonWeights>
 					<Key time="0" value="0" />
@@ -45,31 +34,10 @@
 		</Ribbon>
 	</Ribbons>
 	<StaticMeshes>
-		<Static mesh_name="water">
-			<Material>
-				<Diffuse value="0.588235;0.588235;0.588235" />
-				<Opacity value="0.5" />
-				<UseSolid value="0" />
-				<UseWire value="1" />
-				<SolidGlowPower value="1" />
-				<SolidGlowMultiplier value="1" />
-				<WireGlowPower value="1" />
-				<WireGlowMultiplier value="0" />
-			</Material>
-		</Static>
+		<Static mesh_name="water" material_name="01 - Default" />
 	</StaticMeshes>
 	<Guys>
-		<Guy id="1" ribbon_name="rib1">
-			<Material>
-				<Diffuse value="0.588235;0.588235;0.588235" />
-				<Opacity value="0.5" />
-				<UseSolid value="0" />
-				<UseWire value="1" />
-				<SolidGlowPower value="1" />
-				<SolidGlowMultiplier value="1" />
-				<WireGlowPower value="1" />
-				<WireGlowMultiplier value="0" />
-			</Material>
+		<Guy id="1" ribbon_name="rib1" material_name="01 - Default">
 			<Path spread="1" triangle_scale="0.5" delay="4">
 				<Key time="0" position="-20.000000;0.000000;0.000000" />
 				<Key time="20.4333" position="20.000000;0.000000;0.000000" />
@@ -77,4 +45,28 @@
 			<AnimationIndex />
 		</Guy>
 	</Guys>
+	<Materials>
+		<Material>
+			<Name value="01 - Default" />
+			<Diffuse value="0.588235;0.588235;0.588235" />
+			<Opacity value="0.5" />
+			<UseSolid value="0" />
+			<UseWire value="1" />
+			<SolidGlowPower value="1" />
+			<SolidGlowMultiplier value="1" />
+			<WireGlowPower value="1" />
+			<WireGlowMultiplier value="0" />
+		</Material>
+		<Material>
+			<Name value="_ludekinitialShadingGroup" />
+			<Diffuse value="0.588000;0.588000;0.588000" />
+			<Opacity value="1" />
+			<UseSolid value="1" />
+			<UseWire value="1" />
+			<SolidGlowPower value="1" />
+			<SolidGlowMultiplier value="1" />
+			<WireGlowPower value="1" />
+			<WireGlowMultiplier value="1" />
+		</Material>
+	</Materials>
 </Scene>

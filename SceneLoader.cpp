@@ -23,15 +23,42 @@
 #include <XML/XMLNode.h>
 #include <XML/XMLLoader.h>
 
+#include "./Utils/Stopwatch.h"
+#include <Utils/Log.h>
+
+#include <map>
+
 bool SceneLoader::LoadFromFile(BaseScene* scene, const std::string& sceneName)
 {
+	Log::LogT("Loading scene %s ===================================", sceneName.c_str());
+
+	Stopwatch stopwatch(true);
+
 	std::string path = Environment::GetInstance()->GetBasePath() + "Scenes\\" + sceneName + ".scene";
 
 	XMLNode* node = XMLLoader::LoadFromFile(path);
 	if (node == NULL)
 		return false;
 
+	Log::LogT("Loading xml time: %.2f", stopwatch.GetTime());
+
+	stopwatch.ResetAndStart();
+
 	scene->m_name = node->GetAttribAsString("name");
+
+	XMLNode* materialsNode = node->GetChild("Materials");
+	if (materialsNode != NULL)
+	{
+		for (uint32_t i = 0; i < materialsNode->GetChildrenCount(); i++)
+		{
+			SceneElement::Material* material = LoadMaterial(materialsNode->GetChild(i));
+			if (material != NULL)
+				m_materials[material->Name] = material;
+		}
+	}
+
+	Log::LogT("Loading materials time: %.2f", stopwatch.GetTime());
+	stopwatch.ResetAndStart();
 
 	XMLNode* ribbonsNode = node->GetChild("Ribbons");
 	if (ribbonsNode == NULL)
@@ -48,6 +75,9 @@ bool SceneLoader::LoadFromFile(BaseScene* scene, const std::string& sceneName)
 			scene->m_gameObjects.push_back(ribbon);
 	}
 
+	Log::LogT("Loading ribbons time: %.2f", stopwatch.GetTime());
+	stopwatch.ResetAndStart();
+
 	XMLNode* staticMeshesNode = node->GetChild("StaticMeshes");
 	if (staticMeshesNode != NULL)
 	{
@@ -63,6 +93,9 @@ bool SceneLoader::LoadFromFile(BaseScene* scene, const std::string& sceneName)
 		}
 	}
 
+	Log::LogT("Loading static time: %.2f", stopwatch.GetTime());
+	stopwatch.ResetAndStart();
+
 	XMLNode* guysNode = node->GetChild("Guys");
 	if (guysNode != NULL)
 	{
@@ -77,6 +110,9 @@ bool SceneLoader::LoadFromFile(BaseScene* scene, const std::string& sceneName)
 				scene->m_gameObjects.push_back(guy);
 		}
 	}
+
+	Log::LogT("Loading guys time: %.2f", stopwatch.GetTime());
+	stopwatch.ResetAndStart();
 
 	return true;
 }
@@ -114,7 +150,7 @@ SceneElement::Source* SceneLoader::LoadSource(XMLNode* node)
 {
 	SceneElement::Source* source = new SceneElement::Source();
 	source->MeshName = node->GetAttribAsString("mesh_name");
-	source->Material = LoadMaterialFromChild(node);
+	source->Material = FindMaterial(node->GetAttribAsString("material_name"));
 	source->Destroy = node->GetAttribAsBool("destroy");
 	source->Stay = node->GetAttribAsBool("stay");
 	return source;
@@ -124,7 +160,7 @@ SceneElement::Destination* SceneLoader::LoadDestination(XMLNode* node)
 {
 	SceneElement::Destination* destination = new SceneElement::Destination();
 	destination->MeshName = node->GetAttribAsString("mesh_name");
-	destination->Material = LoadMaterialFromChild(node);
+	destination->Material = FindMaterial(node->GetAttribAsString("material_name"));
 	destination->Stay = node->GetAttribAsBool("stay");
 	return destination;
 }
@@ -133,7 +169,7 @@ SceneElement::StaticSource* SceneLoader::LoadStaticSource(XMLNode* node)
 {
 	SceneElement::StaticSource* source = new SceneElement::StaticSource();
 	source->MeshName = node->GetAttribAsString("mesh_name");
-	source->Material = LoadMaterialFromChild(node);
+	source->Material = FindMaterial(node->GetAttribAsString("material_name"));
 	return source;
 }
 
@@ -141,7 +177,7 @@ SceneElement::StaticDestination* SceneLoader::LoadStaticDestination(XMLNode* nod
 {
 	SceneElement::StaticDestination* destination = new SceneElement::StaticDestination();
 	destination->MeshName = node->GetAttribAsString("mesh_name");
-	destination->Material = LoadMaterialFromChild(node);
+	destination->Material = FindMaterial(node->GetAttribAsString("material_name"));
 	return destination;
 }
 
@@ -188,7 +224,7 @@ SceneElement::StaticData* SceneLoader::LoadStatic(XMLNode* node)
 	SceneElement::StaticData* data = new SceneElement::StaticData();
 	data->MeshName = node->GetAttribAsString("mesh_name");
 	data->Order = node->GetAttribAsInt32("order");
-	data->Material = LoadMaterialFromChild(node);
+	data->Material = FindMaterial(node->GetAttribAsString("material_name"));
 
 	return data;
 }
@@ -200,7 +236,7 @@ SceneElement::GuyData* SceneLoader::LoadGuy(XMLNode* node)
 	SceneElement::GuyData* guyData = new SceneElement::GuyData();
 	guyData->Id = node->GetAttribAsString("id");
 	guyData->RibbonName = node->GetAttribAsString("ribbon_name");
-	guyData->Material = LoadMaterialFromChild(node);
+	guyData->Material = FindMaterial(node->GetAttribAsString("material_name"));
 
 	XMLNode* path = node->GetChild("Path");
 	if (path != NULL)
@@ -228,6 +264,10 @@ SceneElement::Material* SceneLoader::LoadMaterial(XMLNode* materialNode)
 	material->WireGlowMultiplier = 1.0f;
 
 	XMLNode* paramNode = NULL;
+
+	paramNode = materialNode->GetChild("Name");
+	if (paramNode != NULL)
+		material->Name = paramNode->GetAttribAsString("value");
 	
 	paramNode = materialNode->GetChild("Diffuse");
 	if (paramNode != NULL)
@@ -262,15 +302,6 @@ SceneElement::Material* SceneLoader::LoadMaterial(XMLNode* materialNode)
 		material->WireGlowMultiplier = paramNode->GetAttribAsFloat("value");
 
 	return material;
-}
-
-SceneElement::Material* SceneLoader::LoadMaterialFromChild(XMLNode* node)
-{
-	XMLNode* materialNode = node->GetChild("Material");
-	if (materialNode == NULL)
-		return NULL;
-
-	return LoadMaterial(materialNode);
 }
 
 void SceneLoader::LoadIntKeys(XMLNode* node, std::vector<SceneElement::IntKey*>& keys)
@@ -313,4 +344,13 @@ Static* SceneLoader::CreateStaticFromData(const std::string& sceneName, SceneEle
 Guy* SceneLoader::CreateGuyFromData(const std::string& sceneName, SceneElement::GuyData* guyData)
 {
 	return new Guy(sceneName, guyData);
+}
+
+SceneElement::Material* SceneLoader::FindMaterial(const std::string& materialName)
+{
+	std::map<std::string, SceneElement::Material*>::iterator it = m_materials.find(materialName);
+	if (it == m_materials.end())
+		return NULL;
+
+	return it->second;
 }

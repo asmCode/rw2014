@@ -26,7 +26,9 @@
 
 void Scene04::InitializeSubScene()
 {
-	if (!SceneLoader::LoadFromFile(this, "SceneDupa"))
+	SceneLoader sceneLoader;
+
+	if (!sceneLoader.LoadFromFile(this, "SceneDupa"))
 	{
 		assert(false);
 		return;

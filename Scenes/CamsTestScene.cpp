@@ -21,7 +21,9 @@ AnimationData* camsAnimData;
 
 void CamsTestScene::InitializeSubScene()
 {
-	if (!SceneLoader::LoadFromFile(this, "CamsTestScene"))
+	SceneLoader sceneLoader;
+
+	if (!sceneLoader.LoadFromFile(this, "CamsTestScene"))
 	{
 		assert(false);
 		return;

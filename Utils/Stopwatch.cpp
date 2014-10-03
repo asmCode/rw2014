@@ -19,6 +19,11 @@ void Stopwatch::Start()
 	m_timeControl->Start();
 }
 
+void Stopwatch::ResetAndStart()
+{
+	m_timeControl->Start();
+}
+
 float Stopwatch::GetTime() const
 {
 	return m_timeControl->GetTime();

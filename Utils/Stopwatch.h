@@ -9,6 +9,7 @@ public:
 	~Stopwatch();
 
 	void Start();
+	void ResetAndStart();
 	float GetTime() const;
 
 private:

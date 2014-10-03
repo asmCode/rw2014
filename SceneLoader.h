@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 class Ribbon;
 class Guy;
@@ -29,24 +30,27 @@ class XMLNode;
 class SceneLoader
 {
 public:
-	static bool LoadFromFile(BaseScene* scene, const std::string& sceneName);
+	bool LoadFromFile(BaseScene* scene, const std::string& sceneName);
 
 private:
-	static SceneElement::RibbonData* LoadRibbon(XMLNode* node);
-	static SceneElement::Source* LoadSource(XMLNode* node);
-	static SceneElement::Destination* LoadDestination(XMLNode* node);
-	static SceneElement::StaticSource* LoadStaticSource(XMLNode* node);
-	static SceneElement::StaticDestination* LoadStaticDestination(XMLNode* node);
-	static SceneElement::Path* LoadPath(XMLNode* node);
-	static SceneElement::Key* LoadKey(XMLNode* node);
-	static SceneElement::StaticData* LoadStatic(XMLNode* node);
-	static SceneElement::GuyData* LoadGuy(XMLNode* node);
-	static SceneElement::Material* LoadMaterial(XMLNode* materialNode);
-	static SceneElement::Material* LoadMaterialFromChild(XMLNode* node);
+	std::map<std::string, SceneElement::Material*> m_materials;
+
+	SceneElement::RibbonData* LoadRibbon(XMLNode* node);
+	SceneElement::Source* LoadSource(XMLNode* node);
+	SceneElement::Destination* LoadDestination(XMLNode* node);
+	SceneElement::StaticSource* LoadStaticSource(XMLNode* node);
+	SceneElement::StaticDestination* LoadStaticDestination(XMLNode* node);
+	SceneElement::Path* LoadPath(XMLNode* node);
+	SceneElement::Key* LoadKey(XMLNode* node);
+	SceneElement::StaticData* LoadStatic(XMLNode* node);
+	SceneElement::GuyData* LoadGuy(XMLNode* node);
+	SceneElement::Material* LoadMaterial(XMLNode* materialNode);
 	static void LoadIntKeys(XMLNode* node, std::vector<SceneElement::IntKey*>& keys);
 	static void LoadFloatKeys(XMLNode* node, std::vector<SceneElement::FloatKey*>& keys);
 
-	static Ribbon* CreateRibbonFromData(const std::string& sceneName, SceneElement::RibbonData* ribbon);
-	static Static* CreateStaticFromData(const std::string& sceneName, SceneElement::StaticData* staticData);
-	static Guy* CreateGuyFromData(const std::string& sceneName, SceneElement::GuyData* guyData);
+	Ribbon* CreateRibbonFromData(const std::string& sceneName, SceneElement::RibbonData* ribbon);
+	Static* CreateStaticFromData(const std::string& sceneName, SceneElement::StaticData* staticData);
+	Guy* CreateGuyFromData(const std::string& sceneName, SceneElement::GuyData* guyData);
+
+	SceneElement::Material* FindMaterial(const std::string& materialName);
 };

@@ -14,7 +14,9 @@
 
 void GuySceneTest::InitializeSubScene()
 {
-	if (!SceneLoader::LoadFromFile(this, "GuySceneTest"))
+	SceneLoader sceneLoader;
+
+	if (!sceneLoader.LoadFromFile(this, "GuySceneTest"))
 	{
 		assert(false);
 		return;
