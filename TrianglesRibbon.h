@@ -16,9 +16,7 @@ class TrianglesRibbon
 {
 public:
 	struct TriangleData
-	{
-		sm::Matrix BaseTransform;
-
+	{	
 		int LastKeyframeIndex;
 		AnimationCurve<sm::Vec3>* Curve;
 		AnimationCurve<float>* ScaleCurve;

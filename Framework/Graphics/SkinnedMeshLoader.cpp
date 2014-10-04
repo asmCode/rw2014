@@ -65,11 +65,6 @@ SkinnedMeshData* SkinnedMeshLoader::LoadMesh(BinaryReader &br)
 	mesh->bonesIds = new int[mesh->bonesCount];
 	br.ReadBuffer((char*)mesh->bonesIds, sizeof(int)* mesh->bonesCount);
 
-	for (int i = 0; i < mesh->bonesCount; i++)
-	{
-		Log::LogT("Bone index %d = %d", i, mesh->bonesIds[i]);
-	}
-
 	mesh->verticesCount = br.Read<int>();
 	mesh->vertices = new SkinnedVertex[mesh->verticesCount];
 	br.ReadBuffer((char*)mesh->vertices, sizeof(SkinnedVertex) * mesh->verticesCount);
