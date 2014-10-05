@@ -17,8 +17,8 @@ Mesh::Mesh()
 {
 	id = 0;
 	colorMask = sm::Vec3(1, 1, 1);
-	transform = sm::Matrix::IdentityMatrix();
-	animTransform = sm::Matrix::IdentityMatrix();
+	transform = sm::Matrix::Identity;
+	animTransform = sm::Matrix::Identity;
 	model = NULL;
 
 	m_isShadowCaster = false;

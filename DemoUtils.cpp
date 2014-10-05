@@ -42,7 +42,7 @@ sm::Matrix DemoUtils::GetTriangleTransform(sm::Vec3* triangle)
 		up != sm::Vec3(0, 0, 0))
 		rotate = sm::Matrix::CreateLookAt(normal, up);
 	else
-		rotate = sm::Matrix::IdentityMatrix();
+		rotate = sm::Matrix::Identity;
 
 	return
 		sm::Matrix::TranslateMatrix(center) *

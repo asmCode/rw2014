@@ -3,7 +3,7 @@
 #include <stddef.h>
 
 GameObject::GameObject() :
-	WorldMatrix(sm::Matrix::IdentityMatrix()),
+	WorldMatrix(sm::Matrix::Identity),
 	m_isActive(true)
 {
 }

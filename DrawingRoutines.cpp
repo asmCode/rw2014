@@ -38,7 +38,7 @@ Shader *DrawingRoutines::m_specularBlur;
 //
 //DrawingRoutines::DrawingRoutines(void)
 //{
-//	fixCoordsMatrix = sm::Matrix::IdentityMatrix();
+//	fixCoordsMatrix = sm::Matrix::Identity;
 //	fixCoordsMatrix[0] = 0.5f;
 //	fixCoordsMatrix[5] = 0.5f;
 //	fixCoordsMatrix[10] = 0.5f;
@@ -247,7 +247,7 @@ bool DrawingRoutines::SetupShader(Material *material, MeshPart *meshPart, const 
 		if (meshPart != NULL)
 			m_diffNormShader->SetMatrixParameter("u_worldMatrix", meshPart->mesh->Transform());
 		else
-			m_diffNormShader->SetMatrixParameter("u_worldMatrix", sm::Matrix::IdentityMatrix());
+			m_diffNormShader->SetMatrixParameter("u_worldMatrix", sm::Matrix::Identity);
 		m_diffNormShader->SetTextureParameter("u_diffTex", 0, material->diffuseTex->GetId());
 		m_diffNormShader->SetTextureParameter("u_normalTex", 1, material->normalTex->GetId());
 		m_diffNormShader->SetParameter("u_specularColor", material->specularColor);
@@ -274,7 +274,7 @@ bool DrawingRoutines::SetupShader(Material *material, MeshPart *meshPart, const 
 		if (meshPart != NULL)
 			m_colorShader->SetMatrixParameter("u_worldMatrix", meshPart->mesh->model->m_baseTransform * meshPart->mesh->Transform());
 		else
-			m_colorShader->SetMatrixParameter("u_worldMatrix", sm::Matrix::IdentityMatrix());
+			m_colorShader->SetMatrixParameter("u_worldMatrix", sm::Matrix::Identity);
 		//m_sm_colorShader->SetMatrixParameter("u_worldMatrix", meshPart->mesh->Transform());
 		m_colorShader->SetParameter("u_lightPosition", m_lightPosition);
 		m_colorShader->SetParameter("u_eyePosition", m_eyePosition);
@@ -664,7 +664,7 @@ void DrawingRoutines::DrawWithMaterial(Renderable* renderable)
 		renderable->SetMaterial(material);
 	}
 
-	//if (SetupShader(mesh->GetMaterial(), NULL, sm::Matrix::IdentityMatrix()))
+	//if (SetupShader(mesh->GetMaterial(), NULL, sm::Matrix::Identity))
 	//{
 	//}
 

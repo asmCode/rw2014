@@ -19,9 +19,7 @@
 #include "common.h"
 #include "Scenes/Test1Scene.h"
 #include "Scenes/GlowTestScene.h"
-#include "Scenes/BoneAnimTestScene.h"
 #include "Scenes/GuySceneTest.h"
-#include "Scenes/CamsTestScene.h"
 #include "DemoUtils.h"
 #include "Utils/Stopwatch.h"
 
@@ -563,7 +561,7 @@ bool DemoController::Update(float time, float seconds)
 	manCam.Process(seconds);
 	m_activeCamera = &manCam;
 #else
-	//camerasAnimation->Update(m_greetzDanceTime, sm::Matrix::IdentityMatrix(), seconds);
+	//camerasAnimation->Update(m_greetzDanceTime, sm::Matrix::Identity, seconds);
 	//m_activeCamera = animCamsMng.GetActiveCamera(time);
 	m_activeCamera = activeScene->GetCamera();
 #endif
@@ -578,7 +576,7 @@ bool DemoController::Update(float time, float seconds)
 	m_viewProj = m_proj * m_view;
 	return true;
 
-	camerasFactoryAnimation->Update(time, sm::Matrix::IdentityMatrix(), seconds);
+	camerasFactoryAnimation->Update(time, sm::Matrix::Identity, seconds);
 	m_currentLightCamera = m_lightCamsMng.GetActiveCamera(time);
 
 	m_lightViewMatrix = m_currentLightCamera->GetViewMatrix();
@@ -632,7 +630,7 @@ bool DemoController::Update(float time, float seconds)
 	m_particlesManager->SetProjMatrix(m_proj);
 	m_particlesManager->Update(seconds);
 
-	//anim->Update(time / 1000.0f, sm::Matrix::IdentityMatrix(), seconds);
+	//anim->Update(time / 1000.0f, sm::Matrix::Identity, seconds);
 
 	//m_robot->SetViewProjMatrix(m_viewProj);
 	//m_robot->Update(time, seconds);
@@ -671,7 +669,7 @@ bool DemoController::Update(float time, float seconds)
 //
 //	return true;
 //
-//	m_doorsAnim->Update(time / 1000.0f, sm::Matrix::IdentityMatrix(), ms / 1000.0f);
+//	m_doorsAnim->Update(time / 1000.0f, sm::Matrix::Identity, ms / 1000.0f);
 //
 //	m_fovPower -= (ms / 1000.0f) * 2.0f;
 //	if (m_fovPower < 0.0f)
@@ -699,7 +697,7 @@ bool DemoController::Update(float time, float seconds)
 //		m_activeScene = m_assemblingScene;
 //	}*/
 //
-//	camerasAnimation->Update(time / 1000, sm::Matrix::IdentityMatrix(), ms / 1000.0f);
+//	camerasAnimation->Update(time / 1000, sm::Matrix::Identity, ms / 1000.0f);
 //
 //	if (errorOccured)
 //		return false;
@@ -1123,7 +1121,7 @@ void DemoController::DrawText(const std::string &text, int x, int y, BYTE r, BYT
 	glUseProgram(0);
 
 	glMatrixMode(GL_PROJECTION);
-	glLoadMatrixf(sm::Matrix::Ortho2DMatrix(0, width, 0, height));
+	glLoadMatrixf(sm::Matrix::Ortho2DMatrix(0, width, 0, height).a);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 

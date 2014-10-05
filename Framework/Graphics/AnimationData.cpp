@@ -9,7 +9,7 @@ AnimationData::AnimationData(void) :
 	m_flattenedChilds(NULL)
 {
 	id = 0;
-	worldTMInv = sm::Matrix::IdentityMatrix();
+	worldTMInv = sm::Matrix::Identity;
 
 	pos = NULL;
 	rot = NULL;

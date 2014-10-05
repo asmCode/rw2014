@@ -16,7 +16,7 @@
 //
 //	lightRot = 0.0f;
 //
-//	fixCoordsMatrix = sm::Matrix::IdentityMatrix();
+//	fixCoordsMatrix = sm::Matrix::Identity;
 //	fixCoordsMatrix[0] = 0.5f;
 //	fixCoordsMatrix[5] = 0.5f;
 //	fixCoordsMatrix[10] = 0.5f;
@@ -90,7 +90,7 @@
 //
 //	glViewport(0, 0, lightMapWidth, lightMapHeight);
 //
-//	sm::Matrix world = sm::Matrix::IdentityMatrix();
+//	sm::Matrix world = sm::Matrix::Identity;
 //
 //	/*std::vector<Model*> models;
 //	models.push_back(stage);*/

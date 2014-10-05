@@ -143,7 +143,7 @@ sm::Matrix SteerCamera::GetViewMatrix()
 	glLoadIdentity();
 	SetViewMatrix();
 	sm::Matrix view;
-	glGetFloatv(GL_MODELVIEW_MATRIX, view);
+	glGetFloatv(GL_MODELVIEW_MATRIX, view.a);
 
 	glPopMatrix();
 	glMatrixMode(prevMatrixMode);

@@ -69,8 +69,8 @@ bool Scene05::Update(float time, float deltaTime)
 {
 	this->BaseScene::Update(time, deltaTime);
 
-	m_trainAnimation->Update(time, sm::Matrix::IdentityMatrix(), deltaTime);
-	m_trainAnimationWire->Update(time, sm::Matrix::IdentityMatrix(), deltaTime);
+	m_trainAnimation->Update(time, sm::Matrix::Identity, deltaTime);
+	m_trainAnimationWire->Update(time, sm::Matrix::Identity, deltaTime);
 
 	return true;
 }

@@ -50,21 +50,17 @@ Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
 
 		AnimationData* walkAnimationData = Content::Instance->Get<AnimationData>("walk");
 		assert(walkAnimationData != NULL);
-		AnimationData* jumpAnimationData = Content::Instance->Get<AnimationData>("jump");
-		assert(jumpAnimationData != NULL);
 
 		m_animations.push_back(new Animation(walkAnimationData));
-		m_animations.push_back(new Animation(jumpAnimationData));
 
 		m_mesh = new SkinnedMesh();
 		m_mesh->Initialize(meshData);
 		m_mesh->SetColor(sm::Vec4(guyData->Material->Diffuse, guyData->Material->Opacity));
 		m_mesh->SetGlowPower(guyData->Material->SolidGlowPower);
 		m_mesh->AddAnimation("walk", m_animations[0]);
-		//m_mesh->AddAnimation("jump", m_animations[1]);
 
-		//m_animations[1]->SetAnimationTime(0.1f, sm::Matrix::IdentityMatrix());
-		//m_animations[0]->Update(0.0f, sm::Matrix::IdentityMatrix(), 0.0f);
+		//m_animations[1]->SetAnimationTime(0.1f, sm::Matrix::Identity);
+		//m_animations[0]->Update(0.0f, sm::Matrix::Identity, 0.0f);
 
 		Shader* shader = Content::Instance->Get<Shader>("Skinned");
 		assert(shader != NULL);
@@ -118,21 +114,17 @@ Guy::Guy(const std::string& sceneName, SceneElement::GuyData* guyData) :
 
 		AnimationData* walkAnimationData = Content::Instance->Get<AnimationData>("walk");
 		assert(walkAnimationData != NULL);
-		AnimationData* jumpAnimationData = Content::Instance->Get<AnimationData>("jump");
-		assert(jumpAnimationData != NULL);
 
 		m_animations.push_back(new Animation(walkAnimationData));
-		m_animations.push_back(new Animation(jumpAnimationData));
 
 		m_meshRibbon = new SkinnedRibbonMesh();
 		m_meshRibbon->Initialize(meshData);
 		m_meshRibbon->SetColor(sm::Vec4(guyData->Material->Diffuse, guyData->Material->Opacity));
 		m_meshRibbon->SetGlowPower(guyData->Material->SolidGlowPower);
 		m_meshRibbon->AddAnimation("walk", m_animations[0]);
-		//m_mesh->AddAnimation("jump", m_animations[1]);
 
-		//m_animations[1]->SetAnimationTime(0.1f, sm::Matrix::IdentityMatrix());
-		//m_animations[0]->Update(0.0f, sm::Matrix::IdentityMatrix(), 0.0f);
+		//m_animations[1]->SetAnimationTime(0.1f, sm::Matrix::Identity);
+		//m_animations[0]->Update(0.0f, sm::Matrix::Identity, 0.0f);
 
 		shader = Content::Instance->Get<Shader>("SkinnedRibbon");
 		assert(shader != NULL);
@@ -229,7 +221,7 @@ void Guy::Update(float time, float seconds)
 		sm::Matrix::CreateLookAt(direction.GetReversed(), sm::Vec3(0, 1, 0)) *
 		sm::Matrix::ScaleMatrix(0.02f, 0.02f, 0.02f);
 
-	//sm::Matrix baseTransform = sm::Matrix::IdentityMatrix();
+	//sm::Matrix baseTransform = sm::Matrix::Identity;
 
 	int animationIndex = 0;
 

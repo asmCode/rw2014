@@ -43,6 +43,11 @@ void Animation::FlattenChilds(std::vector<Animation*> &flattenChilds)
 
 void Animation::Update(float time, const sm::Matrix &transform, float seconds)
 {
+	if (m_transform == NULL &&
+		m_animTransform == NULL &&
+		subAnims.size() == 0)
+		return;
+
 	sm::Matrix tr = transform;
 
 	sm::Vec3 posVal;

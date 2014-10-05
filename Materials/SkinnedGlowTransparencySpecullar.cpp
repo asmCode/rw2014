@@ -52,7 +52,7 @@ void SkinnedGlowTransparencySpecullar::SetupShader()
 	this->BaseGlowTransparencySpecullar::SetupShader();
 
 	/*for (int i = 0; i < m_mesh->GetBonesCount(); i++)
-		m_mesh->BoneTransforms[i] = sm::Matrix::IdentityMatrix();*/
+		m_mesh->BoneTransforms[i] = sm::Matrix::Identity;*/
 
 	if (m_mesh != NULL)
 	{

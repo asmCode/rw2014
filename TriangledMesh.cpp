@@ -38,7 +38,7 @@ void TriangledMesh::CreateVertexDataBuffer()
 
 	for (uint32_t i = 0; i < m_trianglesCount * 3; i++)
 	{
-		m_triangles[i].Transform = sm::Matrix::IdentityMatrix();
+		m_triangles[i].Transform = sm::Matrix::Identity;
 		m_triangles[i].GlowPower = 0.5f;
 	}
 

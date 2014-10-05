@@ -56,7 +56,7 @@ float BaseScene::GetEndTime() const
 
 bool BaseScene::Update(float time, float deltaTime)
 {
-	m_camerasAnimation->Update(time, sm::Matrix::IdentityMatrix(), deltaTime);
+	m_camerasAnimation->Update(time, sm::Matrix::Identity, deltaTime);
 	m_activeCamera = m_camerasManager->GetActiveCamera(time);
 
 	for (uint32_t i = 0; i < m_gameObjects.size(); i++)

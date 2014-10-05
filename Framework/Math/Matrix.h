@@ -19,20 +19,6 @@ namespace sm
 		static Matrix CreateIdentityMatrix();
 
 		float a[16];
-
-		static Matrix IdentityMatrix()
-		{
-			Matrix matrix;
-			
-			for (int i = 0; i < 16; i++)
-				if (i % 5 == 0)
-					matrix.a[i] = 1.0f;
-				else
-					matrix.a[i] = 0.0f;
-			
-			
-			return matrix;
-		}
 		
 		Matrix GetTransposed() const
 		{
@@ -205,7 +191,7 @@ namespace sm
 		//TODO: nietestowane!
 		static Matrix RotateXMatrix(float angle)
 		{
-			Matrix matrix = IdentityMatrix();
+			Matrix matrix = Identity;
 
 //			float tsin = sinf(angle);
 	//		float tcos = cosf(angle);
@@ -220,7 +206,7 @@ namespace sm
 
 		static Matrix RotateYMatrix(float angle)
 		{
-			Matrix matrix = IdentityMatrix();
+			Matrix matrix = Identity;
 //
 		//	float tsin = sinf(angle);
 //float tcos = cosf(angle);
@@ -235,7 +221,7 @@ namespace sm
 
 		static Matrix RotateZMatrix(float angle)
 		{
-			Matrix matrix = IdentityMatrix();
+			Matrix matrix = Identity;
 
 		//	float tsin = sinf(angle);
 		//	float tcos = cosf(angle);
@@ -284,7 +270,7 @@ namespace sm
 
 		static Matrix PerspectiveMatrix(float fovH, float aspect, float znear, float zfar)
 		{
-			Matrix matrix = IdentityMatrix();
+			Matrix matrix = Identity;
 
 			float fovV = 2.0f * atanf(tanf(fovH / 2.0f) / aspect);
 
@@ -306,7 +292,7 @@ namespace sm
 			float _near = -100.0f;
 			float _far = 100.0f;
 
-			Matrix matrix = IdentityMatrix();
+			Matrix matrix = Identity;
 
 			matrix.a[0] = 2.0f / (right - left);
 			matrix.a[5] = 2.0f / (top - bottom);
@@ -420,7 +406,7 @@ namespace sm
 
 		static Matrix CreateLookAt(const sm::Vec3 &direction, const sm::Vec3 &up)
 		{
-			sm::Matrix rot = sm::Matrix::IdentityMatrix();
+			sm::Matrix rot = sm::Matrix::Identity;
 
 			sm::Vec3 right = (direction * up).GetNormalized();
 			sm::Vec3 yAxis = right * direction;

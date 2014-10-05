@@ -46,7 +46,7 @@ void TrianglesRibbon::Initialize(
 	{
 		m_trianglesData[i] = new TriangleData();
 		//m_trianglesData[i]->BaseTransform = m_triangledMesh->GetBaseTransform(i);
-		//m_trianglesData[i]->BaseTransform = sm::Matrix::IdentityMatrix();
+		//m_trianglesData[i]->BaseTransform = sm::Matrix::Identity;
 
 		m_trianglesData[i]->LastKeyframeIndex = 0;
 		m_trianglesData[i]->Curve = ribbinCurveBuilder->CreateCurve(
