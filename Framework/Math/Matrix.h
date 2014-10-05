@@ -15,6 +15,9 @@ namespace sm
 	class Matrix
 	{
 	public:
+		static Matrix Identity;
+		static Matrix CreateIdentityMatrix();
+
 		float a[16];
 
 		static Matrix IdentityMatrix()
@@ -48,67 +51,67 @@ namespace sm
 			float tmp[12];
 			float det;
 			
-			tmp[0] = src[10] * src[15];
-			tmp[1] = src[11] * src[14];
-			tmp[2] = src[9] * src[15];
-			tmp[3] = src[11] * src[13];
-			tmp[4] = src[9] * src[14];
-			tmp[5] = src[10] * src[13];
-			tmp[6] = src[8] * src[15];
-			tmp[7] = src[11] * src[12];
-			tmp[8] = src[8] * src[14];
-			tmp[9] = src[10] * src[12];
-			tmp[10] = src[8] * src[13];
-			tmp[11] = src[9] * src[12];
+			tmp[0] = src.a[10] * src.a[15];
+			tmp[1] = src.a[11] * src.a[14];
+			tmp[2] = src.a[9] * src.a[15];
+			tmp[3] = src.a[11] * src.a[13];
+			tmp[4] = src.a[9] * src.a[14];
+			tmp[5] = src.a[10] * src.a[13];
+			tmp[6] = src.a[8] * src.a[15];
+			tmp[7] = src.a[11] * src.a[12];
+			tmp[8] = src.a[8] * src.a[14];
+			tmp[9] = src.a[10] * src.a[12];
+			tmp[10] = src.a[8] * src.a[13];
+			tmp[11] = src.a[9] * src.a[12];
 			
-			dst.a[0] = tmp[0]*src[5] + tmp[3]*src[6] + tmp[4]*src[7];
-			dst.a[0] -= tmp[1]*src[5] + tmp[2]*src[6] + tmp[5]*src[7];
-			dst.a[1] = tmp[1]*src[4] + tmp[6]*src[6] + tmp[9]*src[7];
-			dst.a[1] -= tmp[0]*src[4] + tmp[7]*src[6] + tmp[8]*src[7];
-			dst.a[2] = tmp[2]*src[4] + tmp[7]*src[5] + tmp[10]*src[7];
-			dst.a[2] -= tmp[3]*src[4] + tmp[6]*src[5] + tmp[11]*src[7];
-			dst.a[3] = tmp[5]*src[4] + tmp[8]*src[5] + tmp[11]*src[6];
-			dst.a[3] -= tmp[4]*src[4] + tmp[9]*src[5] + tmp[10]*src[6];
-			dst.a[4] = tmp[1]*src[1] + tmp[2]*src[2] + tmp[5]*src[3];
-			dst.a[4] -= tmp[0]*src[1] + tmp[3]*src[2] + tmp[4]*src[3];
-			dst.a[5] = tmp[0]*src[0] + tmp[7]*src[2] + tmp[8]*src[3];
-			dst.a[5] -= tmp[1]*src[0] + tmp[6]*src[2] + tmp[9]*src[3];
-			dst.a[6] = tmp[3]*src[0] + tmp[6]*src[1] + tmp[11]*src[3];
-			dst.a[6] -= tmp[2]*src[0] + tmp[7]*src[1] + tmp[10]*src[3];
-			dst.a[7] = tmp[4]*src[0] + tmp[9]*src[1] + tmp[10]*src[2];
-			dst.a[7] -= tmp[5]*src[0] + tmp[8]*src[1] + tmp[11]*src[2];
+			dst.a[0] = tmp[0]*src.a[5] + tmp[3]*src.a[6] + tmp[4]*src.a[7];
+			dst.a[0] -= tmp[1]*src.a[5] + tmp[2]*src.a[6] + tmp[5]*src.a[7];
+			dst.a[1] = tmp[1]*src.a[4] + tmp[6]*src.a[6] + tmp[9]*src.a[7];
+			dst.a[1] -= tmp[0]*src.a[4] + tmp[7]*src.a[6] + tmp[8]*src.a[7];
+			dst.a[2] = tmp[2]*src.a[4] + tmp[7]*src.a[5] + tmp[10]*src.a[7];
+			dst.a[2] -= tmp[3]*src.a[4] + tmp[6]*src.a[5] + tmp[11]*src.a[7];
+			dst.a[3] = tmp[5]*src.a[4] + tmp[8]*src.a[5] + tmp[11]*src.a[6];
+			dst.a[3] -= tmp[4]*src.a[4] + tmp[9]*src.a[5] + tmp[10]*src.a[6];
+			dst.a[4] = tmp[1]*src.a[1] + tmp[2]*src.a[2] + tmp[5]*src.a[3];
+			dst.a[4] -= tmp[0]*src.a[1] + tmp[3]*src.a[2] + tmp[4]*src.a[3];
+			dst.a[5] = tmp[0]*src.a[0] + tmp[7]*src.a[2] + tmp[8]*src.a[3];
+			dst.a[5] -= tmp[1]*src.a[0] + tmp[6]*src.a[2] + tmp[9]*src.a[3];
+			dst.a[6] = tmp[3]*src.a[0] + tmp[6]*src.a[1] + tmp[11]*src.a[3];
+			dst.a[6] -= tmp[2]*src.a[0] + tmp[7]*src.a[1] + tmp[10]*src.a[3];
+			dst.a[7] = tmp[4]*src.a[0] + tmp[9]*src.a[1] + tmp[10]*src.a[2];
+			dst.a[7] -= tmp[5]*src.a[0] + tmp[8]*src.a[1] + tmp[11]*src.a[2];
 			
-			tmp[0] = src[2]*src[7];
-			tmp[1] = src[3]*src[6];
-			tmp[2] = src[1]*src[7];
-			tmp[3] = src[3]*src[5];
-			tmp[4] = src[1]*src[6];
-			tmp[5] = src[2]*src[5];
-			tmp[6] = src[0]*src[7];
-			tmp[7] = src[3]*src[4];
-			tmp[8] = src[0]*src[6];
-			tmp[9] = src[2]*src[4];
-			tmp[10] = src[0]*src[5];
-			tmp[11] = src[1]*src[4];
+			tmp[0] = src.a[2]*src.a[7];
+			tmp[1] = src.a[3]*src.a[6];
+			tmp[2] = src.a[1]*src.a[7];
+			tmp[3] = src.a[3]*src.a[5];
+			tmp[4] = src.a[1]*src.a[6];
+			tmp[5] = src.a[2]*src.a[5];
+			tmp[6] = src.a[0]*src.a[7];
+			tmp[7] = src.a[3]*src.a[4];
+			tmp[8] = src.a[0]*src.a[6];
+			tmp[9] = src.a[2]*src.a[4];
+			tmp[10] = src.a[0]*src.a[5];
+			tmp[11] = src.a[1]*src.a[4];
 			
-			dst.a[8] = tmp[0]*src[13] + tmp[3]*src[14] + tmp[4]*src[15];
-			dst.a[8] -= tmp[1]*src[13] + tmp[2]*src[14] + tmp[5]*src[15];
-			dst.a[9] = tmp[1]*src[12] + tmp[6]*src[14] + tmp[9]*src[15];
-			dst.a[9] -= tmp[0]*src[12] + tmp[7]*src[14] + tmp[8]*src[15];
-			dst.a[10] = tmp[2]*src[12] + tmp[7]*src[13] + tmp[10]*src[15];
-			dst.a[10]-= tmp[3]*src[12] + tmp[6]*src[13] + tmp[11]*src[15];
-			dst.a[11] = tmp[5]*src[12] + tmp[8]*src[13] + tmp[11]*src[14];
-			dst.a[11]-= tmp[4]*src[12] + tmp[9]*src[13] + tmp[10]*src[14];
-			dst.a[12] = tmp[2]*src[10] + tmp[5]*src[11] + tmp[1]*src[9];
-			dst.a[12]-= tmp[4]*src[11] + tmp[0]*src[9] + tmp[3]*src[10];
-			dst.a[13] = tmp[8]*src[11] + tmp[0]*src[8] + tmp[7]*src[10];
-			dst.a[13]-= tmp[6]*src[10] + tmp[9]*src[11] + tmp[1]*src[8];
-			dst.a[14] = tmp[6]*src[9] + tmp[11]*src[11] + tmp[3]*src[8];
-			dst.a[14]-= tmp[10]*src[11] + tmp[2]*src[8] + tmp[7]*src[9];
-			dst.a[15] = tmp[10]*src[10] + tmp[4]*src[8] + tmp[9]*src[9];
-			dst.a[15]-= tmp[8]*src[9] + tmp[11]*src[10] + tmp[5]*src[8];
+			dst.a[8] = tmp[0]*src.a[13] + tmp[3]*src.a[14] + tmp[4]*src.a[15];
+			dst.a[8] -= tmp[1]*src.a[13] + tmp[2]*src.a[14] + tmp[5]*src.a[15];
+			dst.a[9] = tmp[1]*src.a[12] + tmp[6]*src.a[14] + tmp[9]*src.a[15];
+			dst.a[9] -= tmp[0]*src.a[12] + tmp[7]*src.a[14] + tmp[8]*src.a[15];
+			dst.a[10] = tmp[2]*src.a[12] + tmp[7]*src.a[13] + tmp[10]*src.a[15];
+			dst.a[10]-= tmp[3]*src.a[12] + tmp[6]*src.a[13] + tmp[11]*src.a[15];
+			dst.a[11] = tmp[5]*src.a[12] + tmp[8]*src.a[13] + tmp[11]*src.a[14];
+			dst.a[11]-= tmp[4]*src.a[12] + tmp[9]*src.a[13] + tmp[10]*src.a[14];
+			dst.a[12] = tmp[2]*src.a[10] + tmp[5]*src.a[11] + tmp[1]*src.a[9];
+			dst.a[12]-= tmp[4]*src.a[11] + tmp[0]*src.a[9] + tmp[3]*src.a[10];
+			dst.a[13] = tmp[8]*src.a[11] + tmp[0]*src.a[8] + tmp[7]*src.a[10];
+			dst.a[13]-= tmp[6]*src.a[10] + tmp[9]*src.a[11] + tmp[1]*src.a[8];
+			dst.a[14] = tmp[6]*src.a[9] + tmp[11]*src.a[11] + tmp[3]*src.a[8];
+			dst.a[14]-= tmp[10]*src.a[11] + tmp[2]*src.a[8] + tmp[7]*src.a[9];
+			dst.a[15] = tmp[10]*src.a[10] + tmp[4]*src.a[8] + tmp[9]*src.a[9];
+			dst.a[15]-= tmp[8]*src.a[9] + tmp[11]*src.a[10] + tmp[5]*src.a[8];
 			
-			det=src[0]*dst.a[0]+src[1]*dst.a[1]+src[2]*dst.a[2]+src[3]*dst.a[3];
+			det=src.a[0]*dst.a[0]+src.a[1]*dst.a[1]+src.a[2]*dst.a[2]+src.a[3]*dst.a[3];
 			
 			det = 1.0f / det;
 			for (int j = 0; j < 16; j++)
@@ -124,13 +127,26 @@ namespace sm
 
 		static Matrix TranslateMatrix(float x, float y, float z)
 		{
-			Matrix matrix = IdentityMatrix();
+			Matrix mat;
 
-			matrix.a[12] = x;
-			matrix.a[13] = y;
-			matrix.a[14] = z;
+			mat.a[0] = 1.0f;
+			mat.a[1] = 0.0f;
+			mat.a[2] = 0.0f;
+			mat.a[3] = 0.0f;
+			mat.a[4] = 0.0f;
+			mat.a[5] = 1.0f;
+			mat.a[6] = 0.0f;
+			mat.a[7] = 0.0f;
+			mat.a[8] = 0.0f;
+			mat.a[9] = 0.0f;
+			mat.a[10] = 1.0f;
+			mat.a[11] = 0.0f;
+			mat.a[12] = x;
+			mat.a[13] = y;
+			mat.a[14] = z;
+			mat.a[15] = 1.0f;
 
-			return matrix;
+			return mat;
 		}
 
 		static Matrix ScaleMatrix(const Vec3 &v)
@@ -140,13 +156,50 @@ namespace sm
 
 		static Matrix ScaleMatrix(float x, float y, float z)
 		{
-			Matrix matrix = IdentityMatrix();
+			Matrix mat;
 
-			matrix.a[0] = x;
-			matrix.a[5] = y;
-			matrix.a[10] = z;
+			mat.a[0] = x;
+			mat.a[1] = 0.0f;
+			mat.a[2] = 0.0f;
+			mat.a[3] = 0.0f;
+			mat.a[4] = 0.0f;
+			mat.a[5] = y;
+			mat.a[6] = 0.0f;
+			mat.a[7] = 0.0f;
+			mat.a[8] = 0.0f;
+			mat.a[9] = 0.0f;
+			mat.a[10] = z;
+			mat.a[11] = 0.0f;
+			mat.a[12] = 0.0f;
+			mat.a[13] = 0.0f;
+			mat.a[14] = 0.0f;
+			mat.a[15] = 1.0f;
 
-			return matrix;
+			return mat;
+		}
+
+		static Matrix ScaleMatrix(float value)
+		{
+			Matrix mat;
+
+			mat.a[0] = value;
+			mat.a[1] = 0.0f;
+			mat.a[2] = 0.0f;
+			mat.a[3] = 0.0f;
+			mat.a[4] = 0.0f;
+			mat.a[5] = value;
+			mat.a[6] = 0.0f;
+			mat.a[7] = 0.0f;
+			mat.a[8] = 0.0f;
+			mat.a[9] = 0.0f;
+			mat.a[10] = value;
+			mat.a[11] = 0.0f;
+			mat.a[12] = 0.0f;
+			mat.a[13] = 0.0f;
+			mat.a[14] = 0.0f;
+			mat.a[15] = 1.0f;
+
+			return mat;
 		}
 
 		//TODO: nietestowane!
@@ -202,7 +255,7 @@ namespace sm
 
 		static Matrix RotateAxisMatrix(float angle, float x, float y, float z)
 		{
-			Matrix matrix = IdentityMatrix();
+			Matrix matrix;
 
 			float c = cosf(angle);
 			float s = sinf(angle);
@@ -212,12 +265,19 @@ namespace sm
 			matrix.a[0] = x * x * oneMinusC + c;
 			matrix.a[1] = y * x * oneMinusC + z * s;
 			matrix.a[2] = x * z * oneMinusC - y * s;
+			matrix.a[3] = 0.0f;
 			matrix.a[4] = x * y * oneMinusC - z * s;
 			matrix.a[5] = y * y * oneMinusC + c;
 			matrix.a[6] = y * z * oneMinusC + x * s;
+			matrix.a[7] = 0.0f;
 			matrix.a[8] = x * z * oneMinusC + y * s;
 			matrix.a[9] = y * z * oneMinusC - x * s;
 			matrix.a[10] = z * z * oneMinusC + c;
+			matrix.a[11] = 0.0f;
+			matrix.a[12] = 0.0f;
+			matrix.a[13] = 0.0f;
+			matrix.a[14] = 0.0f;
+			matrix.a[15] = 1.0f;
 
 			return matrix;
 		}
@@ -269,21 +329,30 @@ namespace sm
 		}
 
 		Matrix operator * (const Matrix &right) const
-		{
+		{	
 			Matrix left;
 
-			for (int i = 0; i < 4; i++)
-			{
-				for (int j = 0; j < 4; j++)
-				{
-					float val = 0.0f;
-					for (int k = 0; k < 4; k++)
-						val += a[(k * 4) + i] * right.a[(j * 4) + k];
-					left.a[(j * 4) + i] = val;
-				}
-			}
+			left.a[0] = a[0] * right.a[0] + a[4] * right.a[1] + a[8] * right.a[2] + a[12] * right.a[3];
+			left.a[1] = a[1] * right.a[0] + a[5] * right.a[1] + a[9] * right.a[2] + a[13] * right.a[3];
+			left.a[2] = a[2] * right.a[0] + a[6] * right.a[1] + a[10] * right.a[2] + a[14] * right.a[3];
+			left.a[3] = a[3] * right.a[0] + a[7] * right.a[1] + a[11] * right.a[2] + a[15] * right.a[3];
 
-			return left;
+			left.a[4] = a[0] * right.a[4] + a[4] * right.a[5] + a[8] * right.a[6] + a[12] * right.a[7];
+			left.a[5] = a[1] * right.a[4] + a[5] * right.a[5] + a[9] * right.a[6] + a[13] * right.a[7];
+			left.a[6] = a[2] * right.a[4] + a[6] * right.a[5] + a[10] * right.a[6] + a[14] * right.a[7];
+			left.a[7] = a[3] * right.a[4] + a[7] * right.a[5] + a[11] * right.a[6] + a[15] * right.a[7];
+
+			left.a[8] = a[0] * right.a[8] + a[4] * right.a[9] + a[8] * right.a[10] + a[12] * right.a[11];
+			left.a[9] = a[1] * right.a[8] + a[5] * right.a[9] + a[9] * right.a[10] + a[13] * right.a[11];
+			left.a[10] = a[2] * right.a[8] + a[6] * right.a[9] + a[10] * right.a[10] + a[14] * right.a[11];
+			left.a[11] = a[3] * right.a[8] + a[7] * right.a[9] + a[11] * right.a[10] + a[15] * right.a[11];
+
+			left.a[12] = a[0] * right.a[12] + a[4] * right.a[13] + a[8] * right.a[14] + a[12] * right.a[15];
+			left.a[13] = a[1] * right.a[12] + a[5] * right.a[13] + a[9] * right.a[14] + a[13] * right.a[15];
+			left.a[14] = a[2] * right.a[12] + a[6] * right.a[13] + a[10] * right.a[14] + a[14] * right.a[15];
+			left.a[15] = a[3] * right.a[12] + a[7] * right.a[13] + a[11] * right.a[14] + a[15] * right.a[15];
+
+			return left;			
 		}
 
 		Vec3 operator * (const Vec3 &right) const
@@ -328,16 +397,6 @@ namespace sm
 		{
 			for (int i = 0; i < 16; i++)
 				 this ->a[i] = a[i];
-		}
-
-		operator float*()
-		{
-			return a;
-		}
-
-		operator const float*() const
-		{
-			return a;
 		}
 
 		void SetValue(int row, int column, float value)
