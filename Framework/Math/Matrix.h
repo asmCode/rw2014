@@ -188,52 +188,6 @@ namespace sm
 			return mat;
 		}
 
-		//TODO: nietestowane!
-		static Matrix RotateXMatrix(float angle)
-		{
-			Matrix matrix = Identity;
-
-//			float tsin = sinf(angle);
-	//		float tcos = cosf(angle);
-
-			/*matrix.a[1][1] = tcos;
-			matrix.a[1][2] = tsin;
-			matrix.a[2][1] = -tsin;
-			matrix.a[2][2] = tcos;*/
-
-			return matrix;
-		}
-
-		static Matrix RotateYMatrix(float angle)
-		{
-			Matrix matrix = Identity;
-//
-		//	float tsin = sinf(angle);
-//float tcos = cosf(angle);
-
-			/*matrix.a[0][0] = tcos;
-			matrix.a[0][2] = -tsin;
-			matrix.a[2][0] = tsin;
-			matrix.a[2][2] = tcos;*/
-
-			return matrix;
-		}
-
-		static Matrix RotateZMatrix(float angle)
-		{
-			Matrix matrix = Identity;
-
-		//	float tsin = sinf(angle);
-		//	float tcos = cosf(angle);
-
-			/*matrix.a[1][0] = tcos;
-			matrix.a[1][1] = tsin;
-			matrix.a[2][0] = -tsin;
-			matrix.a[2][1] = tcos;*/
-
-			return matrix;
-		}
-
 		static Matrix RotateAxisMatrix(float angle, const Vec3 &axis)
 		{
 			return RotateAxisMatrix(angle, axis.x, axis.y, axis.z);
@@ -343,34 +297,21 @@ namespace sm
 
 		Vec3 operator * (const Vec3 &right) const
 		{
-			Vec4 right4(right);
-			Vec4 left;
-
-			for (int i = 0; i < 4; i++)
-			{
-				float val = 0.0f;
-				for (int k = 0; k < 4; k++)
-					val += a[(k * 4) + i] * right4[k];
-				left[i] = val;
-			}
-
-			return Vec3(left.x, left.y, left.z);
+			return Vec3(
+				a[0] * right.x + a[4] * right.y + a[8] * right.z + a[12],
+				a[1] * right.x + a[5] * right.y + a[9] * right.z + a[13],
+				a[2] * right.x + a[6] * right.y + a[10] * right.z + a[14]
+				);
 		}
 
 		Vec4 operator * (const Vec4 &right) const
 		{
-			Vec4 right4 = right;
-			Vec4 left;
-
-			for (int i = 0; i < 4; i++)
-			{
-				float val = 0.0f;
-				for (int k = 0; k < 4; k++)
-					val += a[(k * 4) + i] * right4[k];
-				left[i] = val;
-			}
-
-			return left;
+			return Vec4(
+				a[0] * right.x + a[4] * right.y + a[8] * right.z + a[12] * right.w,
+				a[1] * right.x + a[5] * right.y + a[9] * right.z + a[13] * right.w,
+				a[2] * right.x + a[6] * right.y + a[10] * right.z + a[14] * right.w,
+				a[3] * right.x + a[7] * right.y + a[11] * right.z + a[15] * right.w
+				);
 		}
 
 		Matrix &operator *= (const Matrix &right)
@@ -388,20 +329,6 @@ namespace sm
 		void SetValue(int row, int column, float value)
 		{
 			a[(column * 4) + row] = value;
-		}
-
-		Vec3 ExtractScale() const
-		{
-			Vec3 xAxis(a[0], a[1], a[2]);
-			Vec3 yAxis(a[4], a[5], a[6]);
-			Vec3 zAxis(a[8], a[9], a[10]);
-
-			/*Vec3 xAxis(a[0], a[4], a[8]);
-			Vec3 yAxis(a[1], a[5], a[9]);
-			Vec3 zAxis(a[2], a[6], a[10]);*/
-
-			return Vec3(xAxis.GetLength(), yAxis.GetLength(), zAxis.GetLength());
-			//return Vec3(1, 1, 1);
 		}
 
 		static Matrix CreateLookAt(const sm::Vec3 &direction, const sm::Vec3 &up)
