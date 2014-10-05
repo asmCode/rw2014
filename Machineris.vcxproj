@@ -170,6 +170,7 @@ exit /B 0
     <ClCompile Include="Framework\Math\glm\detail\dummy.cpp" />
     <ClCompile Include="Framework\Math\glm\detail\glm.cpp" />
     <ClCompile Include="Framework\Math\MathUtils.cpp" />
+    <ClCompile Include="Framework\Math\Matrix.cpp" />
     <ClCompile Include="Framework\UserInput\Input.cpp" />
     <ClCompile Include="Framework\Utils\Log.cpp" />
     <ClCompile Include="Framework\Utils\Randomizer.cpp" />
@@ -208,8 +209,6 @@ exit /B 0
     <ClCompile Include="SceneLoader.cpp" />
     <ClCompile Include="ScenesManager.cpp" />
     <ClCompile Include="Scenes\BaseScene.cpp" />
-    <ClCompile Include="Scenes\BoneAnimTestScene.cpp" />
-    <ClCompile Include="Scenes\CamsTestScene.cpp" />
     <ClCompile Include="Scenes\GlowTestScene.cpp" />
     <ClCompile Include="Scenes\GuySceneTest.cpp" />
     <ClCompile Include="Scenes\Scene01.cpp" />
@@ -537,8 +536,6 @@ exit /B 0
     <ClInclude Include="SceneElement\StaticSource.h" />
     <ClInclude Include="SceneLoader.h" />
     <ClInclude Include="ScenesManager.h" />
-    <ClInclude Include="Scenes\BoneAnimTestScene.h" />
-    <ClInclude Include="Scenes\CamsTestScene.h" />
     <ClInclude Include="Scenes\GlowTestScene.h" />
     <ClInclude Include="Scenes\GuySceneTest.h" />
     <ClInclude Include="Scenes\Scene01.h" />
