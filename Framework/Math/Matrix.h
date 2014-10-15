@@ -24,8 +24,12 @@ namespace sm
 		{
 			Matrix matrix;
 			for (int y = 0; y < 4; y++)
+			{
 				for (int x = 0; x < 4; x++)
+				{
 					matrix.a[y * 4 + x] = a[x * 4 + y];
+				}
+			}
 			
 			return matrix;
 		}
