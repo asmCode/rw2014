@@ -18,4 +18,5 @@ public:
 
 protected:
 	std::vector<SynchEvent*> m_events;
+	float m_time;
 };

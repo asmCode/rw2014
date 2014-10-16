@@ -33,6 +33,7 @@
 
 class BaseScene;
 class ScenesManager;
+class SynchManager;
 
 DWORD WINAPI EditableDemoThread(void *params);
 class DemoController;
@@ -109,18 +110,13 @@ public:
 	Shader *m_distortShader;
 
 	ICamera *m_activeCamera;
+	SynchManager* m_synchManager;
 
 	/*ParticleEmmiter *m_particleEmmiter;
 	DistortParticleHandler *m_distortParticleHandler;*/
 
 	//Texture *m_particleTex;
 	//Texture *m_distortParticleTex;
-
-	Shader *m_horiBlurShader;
-	Shader *m_vertBlurShader;
-	Framebuffer *m_glowFramebuffer;
-	Blur *m_glowBlur;
-	Texture *m_glowTex;
 
 	SpriteBatch *m_spriteBatch;
 	FontRenderer *m_fontRenderer;

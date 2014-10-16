@@ -123,6 +123,7 @@ exit /B 0
     <ClCompile Include="BasicLightingEffect.cpp" />
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="DebugUtils.cpp" />
+    <ClCompile Include="MidiSynchEventsLoader.cpp" />
     <ClCompile Include="SynchEvent.cpp" />
     <ClCompile Include="DemoUtils.cpp" />
     <ClCompile Include="DistortParticleHandler.cpp" />
@@ -223,6 +224,7 @@ exit /B 0
     <ClCompile Include="SkinnedMesh.cpp" />
     <ClCompile Include="SkinnedRibbonMesh.cpp" />
     <ClCompile Include="StaticTriangledMesh.cpp" />
+    <ClCompile Include="SynchEventSort.cpp" />
     <ClCompile Include="SynchManager.cpp" />
     <ClCompile Include="TriangledMesh.cpp" />
     <ClCompile Include="ParticlesManager.cpp" />
@@ -265,6 +267,7 @@ exit /B 0
     <ClInclude Include="CameraMode.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="DebugUtils.h" />
+    <ClInclude Include="MidiSynchEventsLoader.h" />
     <ClInclude Include="SynchEvent.h" />
     <ClInclude Include="DemoOptions.h" />
     <ClInclude Include="DemoUtils.h" />
@@ -406,6 +409,7 @@ exit /B 0
     <ClInclude Include="SceneUtils.h" />
     <ClInclude Include="SkinnedMesh.h" />
     <ClInclude Include="SkinnedRibbonMesh.h" />
+    <ClInclude Include="SynchEventSort.h" />
     <ClInclude Include="SynchManager.h" />
     <ClInclude Include="TriangleDataColorGlow.h" />
     <ClInclude Include="TriangleDataGlow.h" />

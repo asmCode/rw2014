@@ -17,11 +17,14 @@
 #include "Frustum.h"
 #include <Graphics/BoundingSphere.h>
 #include "common.h"
+#include "MidiSynchEventsLoader.h"
 #include "Scenes/Test1Scene.h"
 #include "Scenes/GlowTestScene.h"
 #include "Scenes/GuySceneTest.h"
 #include "DemoUtils.h"
 #include "Utils/Stopwatch.h"
+#include "SynchManager.h"
+#include "SynchEvent.h"
 
 #include "ScenesManager.h"
 
@@ -114,7 +117,7 @@ DemoController::DemoController() :
 	m_scenesManager(NULL),
 	m_fovSignal(NULL),
 	m_fovPower(0.0f),
-	m_glowTex(NULL)
+	m_synchManager(NULL)
 {
 	flaps = 0;
 	firstupdate = true;
@@ -174,30 +177,6 @@ void DemoController::InitializeBlur()
 	uint32_t glowWidth = static_cast<uint32_t>(width * GlowBufferWidthRatio);
 	uint32_t glowHeight = static_cast<uint32_t>(height * GlowBufferHeightRatio);
 
-	m_glowTex = new Texture(
-		glowWidth,
-		glowHeight,
-		32,
-		NULL,
-		Texture::Wrap_ClampToEdge, Texture::Filter_Linear,
-		Texture::Filter_Linear, false); 
-
-	m_horiBlurShader = m_content->Get<Shader>("HoriBlur");
-	assert(m_horiBlurShader != NULL);
-	m_horiBlurShader->BindVertexChannel(0, "a_position");
-	m_horiBlurShader->BindVertexChannel(1, "a_coords");
-	m_horiBlurShader->LinkProgram();
-
-	m_vertBlurShader = m_content->Get<Shader>("VertBlur");
-	assert(m_vertBlurShader != NULL);
-	m_vertBlurShader->BindVertexChannel(0, "a_position");
-	m_vertBlurShader->BindVertexChannel(1, "a_coords");
-	m_vertBlurShader->LinkProgram();
-
-	m_glowFramebuffer = new Framebuffer();
-	m_glowFramebuffer->Initialize(glowWidth, glowHeight, 32);
-	m_glowBlur = new Blur(1, m_horiBlurShader, m_vertBlurShader, glowWidth, glowHeight);
-
 	m_distortionTexture = new Texture(
 		width,
 		height,
@@ -227,22 +206,22 @@ void DemoController::InitializeBlur()
 }
 
 bool DemoController::Initialize(bool isStereo, HWND parent, const char *title, int width, int height,
-								int bpp, int freq, bool fullscreen, bool createOwnWindow)
+	int bpp, int freq, bool fullscreen, bool createOwnWindow)
 {
 	delay = 0.0f;
 	delayLimit = 0.5f;
 	fps = 0.0f;
 
 	tmp_progress = 0.0f;
-	
+
 	frustum = new Frustum();
 
-	this ->width = width;
-	this ->height = height;
-	this ->isStereo = isStereo;
+	this->width = width;
+	this->height = height;
+	this->isStereo = isStereo;
 
 	glWnd = new OpenglWindow();
-	if (!glWnd ->Initialize(parent, title,
+	if (!glWnd->Initialize(parent, title,
 		width, height, bpp, freq, fullscreen, createOwnWindow, dynamic_cast<IKeyboardCallback*>(this)))
 	{
 		Log::LogT("couldn't initialize opengl window");
@@ -399,6 +378,10 @@ bool DemoController::LoadContent(const char *basePath)
 	m_mask = Content::Instance->Get<Texture>("super_maska_kurwo");
 	assert(m_mask != NULL);
 
+	m_synchManager = new SynchManager();
+	MidiSynchEventsLoader::LoadFromFile(m_strBasePath + "synch/Piano.snh", m_synchManager);
+	m_synchManager->SortEventsByTime();
+
 	m_endScreenAnim.AddKeyframe(5 * 60 + 56, 0);
 	m_endScreenAnim.AddKeyframe(5 * 60 + 58, 1);
 	m_endScreenAnim.SmoothTangents();
@@ -533,7 +516,6 @@ void DemoController::Release()
 
 	Billboard::Release();
 
-	DeleteObject(m_glowTex);
 	DeleteObject(blurFbo);
 	DeleteObject(m_envTexture);
 }
@@ -1231,36 +1213,6 @@ void DemoController::FilterOpacityObjects(const std::vector<Model*> &models,
 			}
 		}
 	}
-}
-
-void DemoController::DrawGlowTexture()
-{
-	glViewport(0, 0, width * GlowBufferWidthRatio, height * GlowBufferHeightRatio);
-
-	m_glowFramebuffer->BindFramebuffer();
-	m_glowFramebuffer->AttachColorTexture(m_glowTex->GetId());
-	m_glowFramebuffer->Validate();
-
-	glDepthMask(true);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	DrawingRoutines::DrawWithMaterial(m_solidGlowObjects);
-	DrawingRoutines::DrawBlack(m_solidNonGlowObjects);
-
-	DrawingRoutines::DrawWithMaterial(m_opacityGlowObjects);
-	DrawingRoutines::DrawBlack(m_opacityNonGlowObjects);
-
-	Framebuffer::RestoreDefaultFramebuffer();
-
-	m_glowBlur->MakeBlur(m_glowTex->GetId());
-	
-#if 0
-	glViewport(0, 0, width, height);
-	m_spriteBatch->Begin();
-	glDisable(GL_BLEND);
-	m_spriteBatch->Draw(m_glowBlur->GetBlurredTexture(0), 0, 0);
-	m_spriteBatch->End();
-#endif
 }
 
 void DemoController::DrawShadowMap()
