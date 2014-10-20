@@ -7,3 +7,7 @@ zip
 /*.aps
 /Machineris.opensdf
 /Machineris.sdf
+*.user
+*.suo
+*.filters
+*.sdf
